@@ -456,6 +456,10 @@ if(EXISTS ${PROJECT_SOURCE_DIR}/Encodings/Compiler AND ENABLE_ENCODINGS_COMPILER
 	list(APPEND Poco_COMPONENTS "EncodingsCompiler")
 endif()
 
+if(EXISTS ${PROJECT_SOURCE_DIR}/SerialPort AND ENABLE_SERIAL_PORT)
+	add_subdirectory(SerialPort)
+	list(APPEND Poco_COMPONENTS "SerialPort")
+endif()
 
 #############################################################
 # Uninstall stuff see: http://www.vtk.org/Wiki/CMake_FAQ
