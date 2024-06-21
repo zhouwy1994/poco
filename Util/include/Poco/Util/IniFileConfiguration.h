@@ -69,6 +69,16 @@ public:
 		/// Loads the configuration data from the given file, which
 		/// must be in initialization file format.
 
+	void save(std::ostream& ostr) const;
+		/// Writes the configuration data to the given stream.
+		///
+		/// The data is written as a sequence of statements in the form
+		/// <key> = <value>
+		/// separated by a newline character.
+
+	void save(const std::string& path) const;
+		/// Writes the configuration data to the given file.
+
 protected:
 	bool getRaw(const std::string& key, std::string& value) const;
 	void setRaw(const std::string& key, const std::string& value);

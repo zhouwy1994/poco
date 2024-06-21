@@ -23,6 +23,7 @@
 #include "Poco/Path.h"
 #include "Poco/FileStream.h"
 #include "Poco/Ascii.h"
+#include "Poco/LineEndingConverter.h"
 #include <set>
 
 
@@ -79,6 +80,43 @@ void IniFileConfiguration::load(const std::string& path)
 		throw Poco::OpenFileException(path);
 }
 
+void IniFileConfiguration::save(std::ostream& ostr) const
+{
+	AbstractConfiguration::ScopedLock lock(*this);
+	typedef std::map<std::string, std::vector<std::pair<std::string, std::string>>> IPairMap;
+	IPairMap pmap;
+	for (const auto &it : _map) {
+		auto splitIndex = it.first.find_first_of('.');
+		if (splitIndex == std::string::npos) {
+			continue;
+		}
+		std::string key = it.first.substr(0,splitIndex);
+		std::pair<std::string, std::string> value(it.first.substr(splitIndex+1,it.first.size()),it.second);
+		pmap[key].push_back(value);
+	}
+
+	for (const auto &it : pmap) {
+		ostr << '[' << it.first << ']' << "\n";
+		for (const auto &vit : it.second) {
+			ostr << vit.first << " = " << vit.second << "\n";
+		}
+	}
+}
+
+
+void IniFileConfiguration::save(const std::string& path) const
+{
+	Poco::FileOutputStream ostr(path);
+	if (ostr.good())
+	{
+		Poco::OutputLineEndingConverter lec(ostr);
+		save(lec);
+		lec.flush();
+		ostr.flush();
+		if (!ostr.good()) throw Poco::WriteFileException(path);
+	}
+	else throw Poco::CreateFileException(path);
+}
 
 bool IniFileConfiguration::getRaw(const std::string& key, std::string& value) const
 {
