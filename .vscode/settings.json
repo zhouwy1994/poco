@@ -99,5 +99,6 @@
         "**/obj": true
 	},
 	"git.ignoreLimitWarning": true,
-	"cmake.configureOnOpen": false
+	"cmake.configureOnOpen": false,
+	"files.eol": "\n"
 }

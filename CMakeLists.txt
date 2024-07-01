@@ -461,6 +461,11 @@ if(EXISTS ${PROJECT_SOURCE_DIR}/SerialPort AND ENABLE_SERIAL_PORT)
 	list(APPEND Poco_COMPONENTS "SerialPort")
 endif()
 
+if(EXISTS ${PROJECT_SOURCE_DIR}/Fruit AND ENABLE_FRUIT)
+	add_subdirectory(Fruit)
+	list(APPEND Poco_COMPONENTS "Fruit")
+endif()
+
 #############################################################
 # Uninstall stuff see: http://www.vtk.org/Wiki/CMake_FAQ
 configure_file(
