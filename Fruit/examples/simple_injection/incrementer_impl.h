@@ -21,6 +21,6 @@
 #include "incrementer.h"
 #include <Poco/Fruit/fruit.h>
 
-Fruit::Component<Fruit::Required<Adder>, Incrementer> getIncrementerImplComponent();
+Poco::Fruit::Component<Poco::Fruit::Required<Adder>, Incrementer> getIncrementerImplComponent();
 
 #endif // INCREMENTER_IMPL_H

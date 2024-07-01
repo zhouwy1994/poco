@@ -22,7 +22,7 @@ COMMON_DEFINITIONS = '''
     struct X;
 
     struct Annotation1 {};
-    using XAnnot = Fruit::Annotated<Annotation1, X>;
+    using XAnnot = Poco::Fruit::Annotated<Annotation1, X>;
 
     struct Annotation2 {};
     '''
@@ -39,7 +39,7 @@ class TestInjectedProvider(parameterized.TestCase):
         source = '''
             struct X {};
     
-            Fruit::Provider<XVariant> provider;
+            Poco::Fruit::Provider<XVariant> provider;
             '''
         expect_compile_error(
             'NonClassTypeError<XVariantRegexp,X>',
@@ -52,26 +52,26 @@ class TestInjectedProvider(parameterized.TestCase):
         source = '''
             struct X {};
     
-            Fruit::Provider<XAnnot> provider;
+            Poco::Fruit::Provider<XAnnot> provider;
             '''
         expect_compile_error(
-            'AnnotatedTypeError<Fruit::Annotated<Annotation1,X>,X>',
+            'AnnotatedTypeError<Poco::Fruit::Annotated<Annotation1,X>,X>',
             'An annotated type was specified where a non-annotated type was expected.',
             COMMON_DEFINITIONS,
             source)
 
     @parameterized.parameters([
-        ('X', 'Fruit::Provider<X>', 'X', 'X'),
-        ('X', 'Fruit::Provider<X>', 'X', 'const X&'),
-        ('X', 'Fruit::Provider<X>', 'X', 'const X*'),
-        ('X', 'Fruit::Provider<X>', 'X', 'X&'),
-        ('X', 'Fruit::Provider<X>', 'X', 'X*'),
-        ('X', 'Fruit::Provider<X>', 'X', 'std::shared_ptr<X>'),
-        ('X', 'Fruit::Provider<X>', 'X', 'Fruit::Provider<X>'),
-        ('X', 'Fruit::Provider<X>', 'X', 'Fruit::Provider<const X>'),
-        ('X', 'Fruit::Provider<const X>', 'const X', 'const X&'),
-        ('Fruit::Annotated<Annotation1, X>', 'Fruit::Annotated<Annotation1, Fruit::Provider<X>>', 'X', 'const X&'),
-        ('Fruit::Annotated<Annotation1, X>', 'Fruit::Annotated<Annotation1, Fruit::Provider<const X>>', 'const X', 'const X&'),
+        ('X', 'Poco::Fruit::Provider<X>', 'X', 'X'),
+        ('X', 'Poco::Fruit::Provider<X>', 'X', 'const X&'),
+        ('X', 'Poco::Fruit::Provider<X>', 'X', 'const X*'),
+        ('X', 'Poco::Fruit::Provider<X>', 'X', 'X&'),
+        ('X', 'Poco::Fruit::Provider<X>', 'X', 'X*'),
+        ('X', 'Poco::Fruit::Provider<X>', 'X', 'std::shared_ptr<X>'),
+        ('X', 'Poco::Fruit::Provider<X>', 'X', 'Poco::Fruit::Provider<X>'),
+        ('X', 'Poco::Fruit::Provider<X>', 'X', 'Poco::Fruit::Provider<const X>'),
+        ('X', 'Poco::Fruit::Provider<const X>', 'const X', 'const X&'),
+        ('Poco::Fruit::Annotated<Annotation1, X>', 'Poco::Fruit::Annotated<Annotation1, Poco::Fruit::Provider<X>>', 'X', 'const X&'),
+        ('Poco::Fruit::Annotated<Annotation1, X>', 'Poco::Fruit::Annotated<Annotation1, Poco::Fruit::Provider<const X>>', 'const X', 'const X&'),
     ])
     def test_provider_get_ok(self, XBindingInInjector, XProviderAnnot, XParamInProvider, XProviderGetParam):
         source = '''
@@ -79,13 +79,13 @@ class TestInjectedProvider(parameterized.TestCase):
               using Inject = X();
             };
     
-            Fruit::Component<XBindingInInjector> getComponent() {
-              return Fruit::createComponent();
+            Poco::Fruit::Component<XBindingInInjector> getComponent() {
+              return Poco::Fruit::createComponent();
             }
     
             int main() {
-              Fruit::Injector<XBindingInInjector> injector(getComponent);
-              Fruit::Provider<XParamInProvider> provider = injector.get<XProviderAnnot>();
+              Poco::Fruit::Injector<XBindingInInjector> injector(getComponent);
+              Poco::Fruit::Provider<XParamInProvider> provider = injector.get<XProviderAnnot>();
     
               XProviderGetParam x = provider.get<XProviderGetParam>();
               (void)x;
@@ -97,11 +97,11 @@ class TestInjectedProvider(parameterized.TestCase):
             locals())
 
     @parameterized.parameters([
-        ('const X', 'Fruit::Provider<const X>', 'const X', 'X'),
-        ('const X', 'Fruit::Provider<const X>', 'const X', 'const X&'),
-        ('const X', 'Fruit::Provider<const X>', 'const X', 'const X*'),
-        ('const X', 'Fruit::Provider<const X>', 'const X', 'Fruit::Provider<const X>'),
-        ('Fruit::Annotated<Annotation1, const X>', 'Fruit::Annotated<Annotation1, Fruit::Provider<const X>>', 'const X', 'const X&'),
+        ('const X', 'Poco::Fruit::Provider<const X>', 'const X', 'X'),
+        ('const X', 'Poco::Fruit::Provider<const X>', 'const X', 'const X&'),
+        ('const X', 'Poco::Fruit::Provider<const X>', 'const X', 'const X*'),
+        ('const X', 'Poco::Fruit::Provider<const X>', 'const X', 'Poco::Fruit::Provider<const X>'),
+        ('Poco::Fruit::Annotated<Annotation1, const X>', 'Poco::Fruit::Annotated<Annotation1, Poco::Fruit::Provider<const X>>', 'const X', 'const X&'),
     ])
     def test_provider_get_const_binding_ok(self, XBindingInInjector, XProviderAnnot, XParamInProvider, XProviderGetParam):
         XBindingInInjectorWithoutConst = XBindingInInjector.replace('const ', '')
@@ -110,14 +110,14 @@ class TestInjectedProvider(parameterized.TestCase):
             
             const X x{};
     
-            Fruit::Component<XBindingInInjector> getComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<XBindingInInjector> getComponent() {
+              return Poco::Fruit::createComponent()
                   .bindInstance<XBindingInInjectorWithoutConst, X>(x);
             }
     
             int main() {
-              Fruit::Injector<XBindingInInjector> injector(getComponent);
-              Fruit::Provider<XParamInProvider> provider = injector.get<XProviderAnnot>();
+              Poco::Fruit::Injector<XBindingInInjector> injector(getComponent);
+              Poco::Fruit::Provider<XParamInProvider> provider = injector.get<XProviderAnnot>();
     
               XProviderGetParam x = provider.get<XProviderGetParam>();
               (void)x;
@@ -138,7 +138,7 @@ class TestInjectedProvider(parameterized.TestCase):
     
             struct Y {
               X x;
-              INJECT(Y(Fruit::Provider<X> xProvider))
+              INJECT(Y(Poco::Fruit::Provider<X> xProvider))
                 : x(xProvider.get<X>()) {
               }
     
@@ -149,7 +149,7 @@ class TestInjectedProvider(parameterized.TestCase):
     
             struct Z {
               Y y;
-              INJECT(Z(Fruit::Provider<Y> yProvider))
+              INJECT(Z(Poco::Fruit::Provider<Y> yProvider))
                   : y(yProvider.get<Y>()) {
               }
     
@@ -158,13 +158,13 @@ class TestInjectedProvider(parameterized.TestCase):
               }
             };
     
-            Fruit::Component<Z> getZComponent() {
-              return Fruit::createComponent();
+            Poco::Fruit::Component<Z> getZComponent() {
+              return Poco::Fruit::createComponent();
             }
     
             int main() {
-              Fruit::Injector<Z> injector(getZComponent);
-              Fruit::Provider<Z> provider(injector);
+              Poco::Fruit::Injector<Z> injector(getZComponent);
+              Poco::Fruit::Provider<Z> provider(injector);
               // During provider.get<Z>(), yProvider.get() is called, and during that xProvider.get()
               // is called.
               Z z = provider.get<Z>();
@@ -180,7 +180,7 @@ class TestInjectedProvider(parameterized.TestCase):
             struct X {};
             struct Y {};
     
-            void f(Fruit::Provider<X> provider) {
+            void f(Poco::Fruit::Provider<X> provider) {
               provider.get<Y>();
             }
             '''
@@ -200,13 +200,13 @@ class TestInjectedProvider(parameterized.TestCase):
         ('X*&', r'X\*&'),
         ('X(*)()', r'X(\((__cdecl)?\*\))?\((void)?\)'),
         ('void', r'void'),
-        ('Fruit::Annotated<Annotation1, Fruit::Annotated<Annotation1, X>>', r'Fruit::Annotated<Annotation1, X>'),
+        ('Poco::Fruit::Annotated<Annotation1, Poco::Fruit::Annotated<Annotation1, X>>', r'Poco::Fruit::Annotated<Annotation1, X>'),
     ])
     def test_provider_get_error_type_not_injectable(self, XVariant, XVariantRegex):
         source = '''
             struct X {};
     
-            void f(Fruit::Provider<X> provider) {
+            void f(Poco::Fruit::Provider<X> provider) {
               provider.get<XVariant>();
             }
             '''
@@ -221,11 +221,11 @@ class TestInjectedProvider(parameterized.TestCase):
         ('X&', r'X&'),
         ('X*', r'X\*'),
         ('std::shared_ptr<X>', r'std::shared_ptr<X>'),
-        ('Fruit::Provider<X>', r'Fruit::Provider<X>'),
+        ('Poco::Fruit::Provider<X>', r'Poco::Fruit::Provider<X>'),
     ])
     def test_const_provider_get_does_not_allow_injecting_nonconst_variants(self, XProviderGetParam, XProviderGetParamRegex):
         source = '''
-            void f(Fruit::Provider<const X> provider) {
+            void f(Poco::Fruit::Provider<const X> provider) {
               provider.get<XProviderGetParam>();
             }
             '''
@@ -237,8 +237,8 @@ class TestInjectedProvider(parameterized.TestCase):
             locals())
 
     @parameterized.parameters([
-        ('Fruit::Provider<Y>'),
-        ('ANNOTATED(Annotation1, Fruit::Provider<Y>)'),
+        ('Poco::Fruit::Provider<Y>'),
+        ('ANNOTATED(Annotation1, Poco::Fruit::Provider<Y>)'),
     ])
     def test_lazy_injection_with_annotations(self, Y_PROVIDER_ANNOT):
         source = '''
@@ -255,20 +255,20 @@ class TestInjectedProvider(parameterized.TestCase):
                 (void) y;
               }
     
-              Fruit::Provider<Y> provider;
+              Poco::Fruit::Provider<Y> provider;
             };
     
-            Fruit::Component<X> getComponent() {
-              return Fruit::createComponent();
+            Poco::Fruit::Component<X> getComponent() {
+              return Poco::Fruit::createComponent();
             }
             
-            Fruit::Component<> getEmptyComponent() {
-              return Fruit::createComponent();
+            Poco::Fruit::Component<> getEmptyComponent() {
+              return Poco::Fruit::createComponent();
             }
     
             int main() {
-              Fruit::NormalizedComponent<> normalizedComponent(getEmptyComponent);
-              Fruit::Injector<X> injector(normalizedComponent, getComponent);
+              Poco::Fruit::NormalizedComponent<> normalizedComponent(getEmptyComponent);
+              Poco::Fruit::Injector<X> injector(normalizedComponent, getComponent);
     
               Assert(X::num_objects_constructed == 0);
               Assert(Y::num_objects_constructed == 0);

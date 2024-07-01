@@ -22,6 +22,7 @@
 #include <Poco/Fruit/impl/meta/pair.h>
 #include <Poco/Fruit/impl/meta/vector.h>
 
+namespace Poco{
 namespace Fruit {
 namespace impl {
 namespace meta {
@@ -177,5 +178,6 @@ struct GetArbitrarySetElement {
 } // namespace meta
 } // namespace impl
 } // namespace Fruit
+} // namespace Poco
 
 #endif // FRUIT_META_SET_H

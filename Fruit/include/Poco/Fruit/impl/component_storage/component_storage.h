@@ -20,6 +20,7 @@
 #include <Poco/Fruit/impl/data_structures/fixed_size_vector.h>
 #include <Poco/Fruit/impl/fruit_internal_forward_decls.h>
 
+namespace Poco{
 namespace Fruit {
 namespace impl {
 
@@ -59,6 +60,7 @@ public:
 
 } // namespace impl
 } // namespace Fruit
+} // namespace Poco
 
 #include <Poco/Fruit/impl/component_storage/component_storage.defn.h>
 

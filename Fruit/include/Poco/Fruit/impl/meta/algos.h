@@ -20,6 +20,7 @@
 #include <Poco/Fruit/impl/fruit-config.h>
 #include <Poco/Fruit/impl/meta/immutable_map.h>
 
+namespace Poco{
 namespace Fruit {
 namespace impl {
 namespace meta {
@@ -70,5 +71,6 @@ struct HasDuplicates {
 } // namespace meta
 } // namespace impl
 } // namespace Fruit
+} // namespace Poco
 
 #endif // FRUIT_META_ALGOS_H

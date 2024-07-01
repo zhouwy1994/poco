@@ -19,6 +19,7 @@
 
 #include <Poco/Fruit/fruit.h>
 
+namespace Poco{
 namespace Fruit {
 namespace impl {
 
@@ -46,9 +47,10 @@ struct InjectorAccessorForTests {
    * Otherwise this method will return nullptr.
    */
   template <typename C, typename... Params>
-  static const Fruit::impl::RemoveAnnotations<C>*
-  unsafeGet(Fruit::Injector<Params...>& injector);
+  static const Poco::Fruit::impl::RemoveAnnotations<C>*
+  unsafeGet(Poco::Fruit::Injector<Params...>& injector);
 };
+}
 }
 }
 

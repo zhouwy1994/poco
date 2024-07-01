@@ -4,11 +4,11 @@ struct X {
   INJECT(X()) = default;
 };
 
-Fruit::Component<X> getXComponent() {
-  return Fruit::createComponent();
+Poco::Fruit::Component<X> getXComponent() {
+  return Poco::Fruit::createComponent();
 }
 
 int main() {
-  Fruit::Injector<X> injector(getXComponent);
+  Poco::Fruit::Injector<X> injector(getXComponent);
   injector.get<X*>();
 }

@@ -19,6 +19,7 @@
 
 #include <Poco/Fruit/impl/meta/metaprogramming.h>
 
+namespace Poco{
 namespace Fruit {
 namespace impl {
 
@@ -27,7 +28,7 @@ namespace impl {
 /**
  * Binds the base class I to the implementation C.
  * I must be a base class of C. I=C is not allowed.
- * I and/or C may be annotated using Fruit::Annotated<>.
+ * I and/or C may be annotated using Poco::Fruit::Annotated<>.
  */
 template <typename I, typename C>
 struct Bind {};
@@ -36,14 +37,14 @@ struct Bind {};
  * Registers Signature as the constructor signature to use to inject a type.
  * Signature must be a valid signature and its return type must be constructible with those argument
  * types.
- * The arguments and the return type can be annotated using Fruit::Annotated<>.
+ * The arguments and the return type can be annotated using Poco::Fruit::Annotated<>.
  */
 template <typename Signature>
 struct RegisterConstructor {};
 
 /**
  * Binds an instance (i.e., object) to the type C.
- * AnnotatedC may be annotated using Fruit::Annotated<>.
+ * AnnotatedC may be annotated using Poco::Fruit::Annotated<>.
  * NOTE: for this binding, the runtime binding is added in advance.
  */
 template <typename AnnotatedC, typename C>
@@ -108,8 +109,8 @@ struct AddMultibindingProvider<AnnotatedSignature, Lambda> {};
 
 /**
  * Registers `Lambda' as a factory of C, where `Lambda' is a lambda with no captures returning C.
- * Lambda must have signature DecoratedSignature (ignoring any Fruit::Annotated<> and
- * Fruit::Assisted<>).
+ * Lambda must have signature DecoratedSignature (ignoring any Poco::Fruit::Annotated<> and
+ * Poco::Fruit::Assisted<>).
  * Lambda must return a C by value, or a std::unique_ptr<C>.
  */
 template <typename DecoratedSignature, typename Lambda>
@@ -144,5 +145,6 @@ struct ReplaceComponent {};
 
 } // namespace impl
 } // namespace Fruit
+} // namespace Poco
 
 #endif // FRUIT_BINDINGS_H

@@ -20,6 +20,7 @@
 #include <Poco/Fruit/impl/fruit_assert.h>
 #include <Poco/Fruit/impl/meta/set.h>
 
+namespace Poco{
 namespace Fruit {
 namespace impl {
 
@@ -289,19 +290,19 @@ template <typename TypeParameter, typename TypeOfValue>
 struct TypeMismatchInBindInstanceError {
   static_assert(AlwaysFalse<TypeParameter>::value,
                 "A type parameter was specified in bindInstance() but it doesn't match the value type"
-                " (even after removing the Fruit::Annotation<>, if any). Please change the type parameter"
+                " (even after removing the Poco::Fruit::Annotation<>, if any). Please change the type parameter"
                 " to be the same as the type of the value (or a subclass).");
 };
 
 template <typename RequiredType>
 struct RequiredTypesInComponentArgumentsError {
   static_assert(AlwaysFalse<RequiredType>::value,
-                "A Required<...> type was passed as a non-first template parameter to Fruit::Component or "
-                "Fruit::NormalizedComponent. "
+                "A Required<...> type was passed as a non-first template parameter to Poco::Fruit::Component or "
+                "Poco::Fruit::NormalizedComponent. "
                 "All required types (if any) should be passed together as a single Required<> type passed as the first "
-                "type argument of Fruit::Component (and Fruit::NormalizedComponent). For example, write "
-                "Fruit::Component<Fruit::Required<Foo, Bar>, Baz> instead of "
-                "Fruit::Component<Fruit::Required<Foo>, Fruit::Required<Bar>, Baz>.");
+                "type argument of Poco::Fruit::Component (and Poco::Fruit::NormalizedComponent). For example, write "
+                "Poco::Fruit::Component<Poco::Fruit::Required<Foo, Bar>, Baz> instead of "
+                "Poco::Fruit::Component<Poco::Fruit::Required<Foo>, Poco::Fruit::Required<Bar>, Baz>.");
 };
 
 template <typename T>
@@ -321,8 +322,8 @@ struct ConstBindingDeclaredAsRequiredButNonConstBindingRequiredError {
       "required. You should either change all the usages of this type so that they no longer require a non-const "
       "binding "
       "(i.e., you shouldn't inject T*, T& or std::shared_ptr<T>) or you should remove the 'const' in the type of the "
-      "returned Component, e.g. changing Fruit::Component<Fruit::Required<const T, ...>, ...> to "
-      "Fruit::Component<Fruit::Required<T, ...>, ...>.");
+      "returned Component, e.g. changing Poco::Fruit::Component<Poco::Fruit::Required<const T, ...>, ...> to "
+      "Poco::Fruit::Component<Poco::Fruit::Required<T, ...>, ...>.");
 };
 
 template <typename T>
@@ -380,7 +381,7 @@ template <typename Arg>
 struct IncorrectArgTypePassedToInstallComponentFuntionsError {
     static_assert(
         AlwaysFalse<Arg>::value,
-        "All arguments passed to installComponentFunctions() must be Fruit::ComponentFunction<...> objects but an "
+        "All arguments passed to installComponentFunctions() must be Poco::Fruit::ComponentFunction<...> objects but an "
         "argument with type Arg was passed instead.");
 };
 
@@ -601,5 +602,6 @@ struct IncorrectArgTypePassedToInstallComponentFuntionsErrorTag {
 
 } // namespace impl
 } // namespace Fruit
+} // namespace Poco
 
 #endif // FRUIT_INJECTION_ERRORS_H

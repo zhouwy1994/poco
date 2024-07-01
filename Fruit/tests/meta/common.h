@@ -14,8 +14,8 @@
 
 using namespace std;
 using namespace Fruit;
-using namespace Fruit::impl;
-using namespace Fruit::impl::meta;
+using namespace Poco::Fruit::impl;
+using namespace Poco::Fruit::impl::meta;
 
 template <typename T, typename U>
 struct DifferentError {

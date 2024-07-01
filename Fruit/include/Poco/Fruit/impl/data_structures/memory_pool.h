@@ -19,6 +19,7 @@
 
 #include <vector>
 
+namespace Poco{
 namespace Fruit {
 namespace impl {
 
@@ -59,6 +60,7 @@ public:
 
 } // namespace impl
 } // namespace Fruit
+} // namespace Poco
 
 #include <Poco/Fruit/impl/data_structures/memory_pool.defn.h>
 

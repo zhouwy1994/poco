@@ -19,6 +19,7 @@
 
 #include <Poco/Fruit/impl/normalized_component_storage/normalized_bindings.h>
 
+namespace Poco{
 namespace Fruit {
 namespace impl {
 
@@ -50,5 +51,6 @@ inline NormalizedBinding::NormalizedBinding(ComponentStorageEntry entry) {
 
 } // namespace impl
 } // namespace Fruit
+} // namespace Poco
 
 #endif // FRUIT_NORMALIZED_BINDINGS_DEFN_H

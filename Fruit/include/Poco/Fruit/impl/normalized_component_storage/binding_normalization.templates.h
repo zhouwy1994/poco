@@ -26,6 +26,7 @@
 #include <Poco/Fruit/impl/normalized_component_storage/binding_normalization.h>
 #include <Poco/Fruit/impl/util/type_info.h>
 
+namespace Poco{
 namespace Fruit {
 namespace impl {
 
@@ -721,5 +722,6 @@ void BindingNormalization::normalizeBindingsWithBindingCompression(
 
 } // namespace impl
 } // namespace Fruit
+} // namespace Poco
 
 #endif // FRUIT_BINDING_NORMALIZATION_TEMPLATES_H

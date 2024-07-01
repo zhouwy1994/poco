@@ -79,21 +79,21 @@ COMMON_DEFINITIONS = '''
     
     struct Annotation {};
     
-    using I1Annot = Fruit::Annotated<Annotation, I1>;
-    using I2Annot = Fruit::Annotated<Annotation, I2>;
-    using I3Annot = Fruit::Annotated<Annotation, I3>;
-    using I4Annot = Fruit::Annotated<Annotation, I4>;
+    using I1Annot = Poco::Fruit::Annotated<Annotation, I1>;
+    using I2Annot = Poco::Fruit::Annotated<Annotation, I2>;
+    using I3Annot = Poco::Fruit::Annotated<Annotation, I3>;
+    using I4Annot = Poco::Fruit::Annotated<Annotation, I4>;
     
-    using X1Annot = Fruit::Annotated<Annotation, X1>;
-    using X2Annot = Fruit::Annotated<Annotation, X2>;
-    using X3Annot = Fruit::Annotated<Annotation, X3>;
-    using X4Annot = Fruit::Annotated<Annotation, X4>;
-    using X5Annot = Fruit::Annotated<Annotation, X5>;
-    using X6Annot = Fruit::Annotated<Annotation, X6>;
-    using X7Annot = Fruit::Annotated<Annotation, X7>;
-    using X8Annot = Fruit::Annotated<Annotation, X8>;
+    using X1Annot = Poco::Fruit::Annotated<Annotation, X1>;
+    using X2Annot = Poco::Fruit::Annotated<Annotation, X2>;
+    using X3Annot = Poco::Fruit::Annotated<Annotation, X3>;
+    using X4Annot = Poco::Fruit::Annotated<Annotation, X4>;
+    using X5Annot = Poco::Fruit::Annotated<Annotation, X5>;
+    using X6Annot = Poco::Fruit::Annotated<Annotation, X6>;
+    using X7Annot = Poco::Fruit::Annotated<Annotation, X7>;
+    using X8Annot = Poco::Fruit::Annotated<Annotation, X8>;
     
-    using X1PtrAnnot = Fruit::Annotated<Annotation, X1*>;
+    using X1PtrAnnot = Poco::Fruit::Annotated<Annotation, X1*>;
     '''
 
 class TestClassDestruction(parameterized.TestCase):
@@ -104,10 +104,10 @@ class TestClassDestruction(parameterized.TestCase):
     def test_injector_creation_no_injection(self,
             I1Annot, I2Annot, I3Annot, I4Annot, X1Annot, X2Annot, X3Annot, X4Annot, X5Annot, X6Annot, X7Annot, X8Annot, X1PtrAnnot, bindX5Instance, addX7InstanceMultibinding):
         source = '''
-            Fruit::Component<I1Annot, I2Annot, I3Annot, I4Annot, X5Annot> getComponent() {
+            Poco::Fruit::Component<I1Annot, I2Annot, I3Annot, I4Annot, X5Annot> getComponent() {
               static X5 x5;
               static std::unique_ptr<X7> x7(new X7());
-              return Fruit::createComponent()
+              return Poco::Fruit::createComponent()
                   .bind<I1Annot, X1Annot>()
                   .bind<I2Annot, X2Annot>()
                   .bind<I3Annot, X3Annot>()
@@ -121,7 +121,7 @@ class TestClassDestruction(parameterized.TestCase):
             }
             
             int main() {
-              Fruit::Injector<I1Annot, I2Annot, I3Annot, I4Annot, X5Annot> injector(getComponent);
+              Poco::Fruit::Injector<I1Annot, I2Annot, I3Annot, I4Annot, X5Annot> injector(getComponent);
               (void)injector;
             }
             '''
@@ -137,10 +137,10 @@ class TestClassDestruction(parameterized.TestCase):
     def test_injector_creation_and_injection(self,
             I1Annot, I2Annot, I3Annot, I4Annot, X1Annot, X2Annot, X3Annot, X4Annot, X5Annot, X6Annot, X7Annot, X8Annot, X1PtrAnnot, bindX5Instance, addX7InstanceMultibinding):
         source = '''
-            Fruit::Component<I1Annot, I2Annot, I3Annot, I4Annot, X5Annot> getComponent() {
+            Poco::Fruit::Component<I1Annot, I2Annot, I3Annot, I4Annot, X5Annot> getComponent() {
               static X5 x5;
               static std::unique_ptr<X7> x7(new X7());
-              return Fruit::createComponent()
+              return Poco::Fruit::createComponent()
                   .bind<I1Annot, X1Annot>()
                   .bind<I2Annot, X2Annot>()
                   .bind<I3Annot, X3Annot>()
@@ -154,7 +154,7 @@ class TestClassDestruction(parameterized.TestCase):
             }
             
             int main() {
-              Fruit::Injector<I1Annot, I2Annot, I3Annot, I4Annot, X5Annot> injector(getComponent);
+              Poco::Fruit::Injector<I1Annot, I2Annot, I3Annot, I4Annot, X5Annot> injector(getComponent);
               
               injector.get<I1Annot>();
               injector.get<I2Annot>();

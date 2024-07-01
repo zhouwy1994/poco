@@ -104,11 +104,11 @@
  * These are intentionally NOT in the fruit namespace, they can't be there for technical reasons.
  *
  * NOTE: don't use these directly, they're only used to implement the INJECT macro.
- * Consider them part of Fruit::impl.
+ * Consider them part of Poco::Fruit::impl.
  */
 template <typename T>
-using FruitAssistedTypedef = Fruit::Assisted<T>;
+using FruitAssistedTypedef = Poco::Fruit::Assisted<T>;
 template <typename Annotation, typename T>
-using FruitAnnotatedTypedef = Fruit::Annotated<Annotation, T>;
+using FruitAnnotatedTypedef = Poco::Fruit::Annotated<Annotation, T>;
 
 #endif // FRUIT_MACRO_H

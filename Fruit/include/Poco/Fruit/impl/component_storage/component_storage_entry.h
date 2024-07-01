@@ -22,6 +22,7 @@
 #include <Poco/Fruit/impl/data_structures/semistatic_graph.h>
 #include <Poco/Fruit/impl/fruit_internal_forward_decls.h>
 
+namespace Poco{
 namespace Fruit {
 namespace impl {
 
@@ -203,7 +204,7 @@ struct ComponentStorageEntry {
     static ComponentStorageEntry create(Component (*fun)());
 
     template <typename Component>
-    static ComponentStorageEntry create(Fruit::ComponentFunction<Component> component_function);
+    static ComponentStorageEntry create(Poco::Fruit::ComponentFunction<Component> component_function);
 
     template <typename Component>
     static ComponentStorageEntry createReplacedComponentEntry(Component (*fun)());
@@ -262,7 +263,7 @@ struct ComponentStorageEntry {
     static ComponentStorageEntry create(Component (*fun)(Args...), std::tuple<Args...> args_tuple);
 
     template <typename Component, typename Arg, typename... Args>
-    static ComponentStorageEntry create(Fruit::ComponentFunction<Component, Arg, Args...> component_function);
+    static ComponentStorageEntry create(Poco::Fruit::ComponentFunction<Component, Arg, Args...> component_function);
 
     template <typename Component, typename... Args>
     static ComponentStorageEntry createReplacedComponentEntry(Component (*fun)(Args...),
@@ -337,6 +338,7 @@ static_assert(sizeof(ComponentStorageEntry) <= 4 * sizeof(std::uint64_t),
 
 } // namespace impl
 } // namespace Fruit
+} // namespace Poco
 
 #include <Poco/Fruit/impl/component_storage/component_storage_entry.defn.h>
 

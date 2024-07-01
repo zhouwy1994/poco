@@ -25,6 +25,7 @@
 #include <Poco/Fruit/impl/util/type_info.h>
 #include <utility>
 
+namespace Poco{
 namespace Fruit {
 namespace impl {
 
@@ -117,7 +118,7 @@ public:
 };
 
 template <typename C, typename Annotation, typename C1, typename... PreviousBindings>
-class PartialComponentStorage<BindInstance<Fruit::Annotated<Annotation, C>, C1>, PreviousBindings...> {
+class PartialComponentStorage<BindInstance<Poco::Fruit::Annotated<Annotation, C>, C1>, PreviousBindings...> {
 private:
   PartialComponentStorage<PreviousBindings...>& previous_storage;
   C& instance;
@@ -128,7 +129,7 @@ public:
 
   void addBindings(FixedSizeVector<ComponentStorageEntry>& entries) const {
     entries.push_back(
-        InjectorStorage::createComponentStorageEntryForBindInstance<Fruit::Annotated<Annotation, C>, C>(instance));
+        InjectorStorage::createComponentStorageEntryForBindInstance<Poco::Fruit::Annotated<Annotation, C>, C>(instance));
     previous_storage.addBindings(entries);
   }
 
@@ -138,7 +139,7 @@ public:
 };
 
 template <typename C, typename Annotation, typename C1, typename... PreviousBindings>
-class PartialComponentStorage<BindConstInstance<Fruit::Annotated<Annotation, C>, C1>, PreviousBindings...> {
+class PartialComponentStorage<BindConstInstance<Poco::Fruit::Annotated<Annotation, C>, C1>, PreviousBindings...> {
 private:
   PartialComponentStorage<PreviousBindings...>& previous_storage;
   const C& instance;
@@ -149,7 +150,7 @@ public:
 
   void addBindings(FixedSizeVector<ComponentStorageEntry>& entries) const {
     entries.push_back(
-        InjectorStorage::createComponentStorageEntryForBindConstInstance<Fruit::Annotated<Annotation, C>, C>(instance));
+        InjectorStorage::createComponentStorageEntryForBindConstInstance<Poco::Fruit::Annotated<Annotation, C>, C>(instance));
     previous_storage.addBindings(entries);
   }
 
@@ -198,7 +199,7 @@ public:
 };
 
 template <typename C, typename Annotation, typename... PreviousBindings>
-class PartialComponentStorage<AddInstanceMultibinding<Fruit::Annotated<Annotation, C>>, PreviousBindings...> {
+class PartialComponentStorage<AddInstanceMultibinding<Poco::Fruit::Annotated<Annotation, C>>, PreviousBindings...> {
 private:
   PartialComponentStorage<PreviousBindings...>& previous_storage;
   C& instance;
@@ -209,10 +210,10 @@ public:
 
   void addBindings(FixedSizeVector<ComponentStorageEntry>& entries) const {
     entries.push_back(
-        InjectorStorage::createComponentStorageEntryForInstanceMultibinding<Fruit::Annotated<Annotation, C>, C>(
+        InjectorStorage::createComponentStorageEntryForInstanceMultibinding<Poco::Fruit::Annotated<Annotation, C>, C>(
             instance));
     entries.push_back(
-        InjectorStorage::createComponentStorageEntryForMultibindingVectorCreator<Fruit::Annotated<Annotation, C>>());
+        InjectorStorage::createComponentStorageEntryForMultibindingVectorCreator<Poco::Fruit::Annotated<Annotation, C>>());
     previous_storage.addBindings(entries);
   }
 
@@ -247,7 +248,7 @@ public:
 };
 
 template <typename C, typename Annotation, typename... PreviousBindings>
-class PartialComponentStorage<AddInstanceVectorMultibindings<Fruit::Annotated<Annotation, C>>, PreviousBindings...> {
+class PartialComponentStorage<AddInstanceVectorMultibindings<Poco::Fruit::Annotated<Annotation, C>>, PreviousBindings...> {
 private:
   PartialComponentStorage<PreviousBindings...>& previous_storage;
   std::vector<C>& instances;
@@ -261,9 +262,9 @@ public:
       // TODO: consider optimizing this so that we need just 1 MULTIBINDING_VECTOR_CREATOR entry (removing the
       // assumption that each multibinding entry is always preceded by that).
       entries.push_back(
-          InjectorStorage::createComponentStorageEntryForInstanceMultibinding<Fruit::Annotated<Annotation, C>, C>(*i));
+          InjectorStorage::createComponentStorageEntryForInstanceMultibinding<Poco::Fruit::Annotated<Annotation, C>, C>(*i));
       entries.push_back(
-          InjectorStorage::createComponentStorageEntryForMultibindingVectorCreator<Fruit::Annotated<Annotation, C>>());
+          InjectorStorage::createComponentStorageEntryForMultibindingVectorCreator<Poco::Fruit::Annotated<Annotation, C>>());
     }
     previous_storage.addBindings(entries);
   }
@@ -380,13 +381,13 @@ struct AddAllComponentStorageEntries {
 
     template <typename ComponentType>
     inline ComponentStorageEntry createEntry(
-        Fruit::ComponentFunction<ComponentType> component_function) {
+        Poco::Fruit::ComponentFunction<ComponentType> component_function) {
       return ComponentStorageEntry::LazyComponentWithNoArgs::create(std::move(component_function));
     }
 
     template <typename ComponentType, typename Arg, typename... Args>
     inline ComponentStorageEntry createEntry(
-        Fruit::ComponentFunction<ComponentType, Arg, Args...> component_function) {
+        Poco::Fruit::ComponentFunction<ComponentType, Arg, Args...> component_function) {
       return ComponentStorageEntry::LazyComponentWithArgs::create(std::move(component_function));
     }
 };
@@ -524,5 +525,6 @@ public:
 
 } // namespace impl
 } // namespace Fruit
+} // namespace Poco
 
 #endif // FRUIT_PARTIAL_COMPONENT_STORAGE_DEFN_H

@@ -20,6 +20,7 @@
 #include <memory>
 #include <vector>
 
+namespace Poco{
 namespace Fruit {
 namespace impl {
 
@@ -47,5 +48,6 @@ struct OpForComponent;
 } // namespace impl
 
 } // namespace Fruit
+} // namespace Poco
 
 #endif // FRUIT_FRUIT_INTERNAL_FORWARD_DECLS_H

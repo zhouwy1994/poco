@@ -25,6 +25,7 @@
 #include <cstring>
 #include <utility>
 
+namespace Poco{
 namespace Fruit {
 namespace impl {
 
@@ -135,5 +136,6 @@ inline void FixedSizeVector<T, Allocator>::clear() {
 
 } // namespace impl
 } // namespace Fruit
+} // namespace Poco
 
 #endif // FRUIT_FIXED_SIZE_VECTOR_DEFN_H

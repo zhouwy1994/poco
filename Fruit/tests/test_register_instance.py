@@ -38,14 +38,14 @@ class TestRegisterInstance(parameterized.TestCase):
               }
             };
     
-            Fruit::Component<X> getComponent(X* x) {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<X> getComponent(X* x) {
+              return Poco::Fruit::createComponent()
                 .bindInstance(*x);
             }
     
             int main() {
               X x(34);
-              Fruit::Injector<X> injector(getComponent, &x);
+              Poco::Fruit::Injector<X> injector(getComponent, &x);
               X& x1 = injector.get<X&>();
               Assert(&x == &x1);
             }
@@ -62,15 +62,15 @@ class TestRegisterInstance(parameterized.TestCase):
               }
             };
     
-            Fruit::Component<Fruit::Annotated<Annotation1, X>> getComponent(X* x) {
-              return Fruit::createComponent()
-                .bindInstance<Fruit::Annotated<Annotation1, X>>(*x);
+            Poco::Fruit::Component<Poco::Fruit::Annotated<Annotation1, X>> getComponent(X* x) {
+              return Poco::Fruit::createComponent()
+                .bindInstance<Poco::Fruit::Annotated<Annotation1, X>>(*x);
             }
     
             int main() {
               X x(34);
-              Fruit::Injector<Fruit::Annotated<Annotation1, X>> injector(getComponent, &x);
-              X& x1 = injector.get<Fruit::Annotated<Annotation1, X&>>();
+              Poco::Fruit::Injector<Poco::Fruit::Annotated<Annotation1, X>> injector(getComponent, &x);
+              X& x1 = injector.get<Poco::Fruit::Annotated<Annotation1, X&>>();
               Assert(&x == &x1);
             }
             '''
@@ -86,15 +86,15 @@ class TestRegisterInstance(parameterized.TestCase):
               }
             };
     
-            Fruit::Component<const X> getComponent(const X* x) {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<const X> getComponent(const X* x) {
+              return Poco::Fruit::createComponent()
                 .bindInstance(*x);
             }
     
             const X x(34);
             
             int main() {
-              Fruit::Injector<const X> injector(getComponent, &x);
+              Poco::Fruit::Injector<const X> injector(getComponent, &x);
               const X& x1 = injector.get<const X&>();
               Assert(&x == &x1);
             }
@@ -111,16 +111,16 @@ class TestRegisterInstance(parameterized.TestCase):
               }
             };
     
-            Fruit::Component<Fruit::Annotated<Annotation1, const X>> getComponent(const X* x) {
-              return Fruit::createComponent()
-                .bindInstance<Fruit::Annotated<Annotation1, X>>(*x);
+            Poco::Fruit::Component<Poco::Fruit::Annotated<Annotation1, const X>> getComponent(const X* x) {
+              return Poco::Fruit::createComponent()
+                .bindInstance<Poco::Fruit::Annotated<Annotation1, X>>(*x);
             }
     
             const X x(34);
             
             int main() {
-              Fruit::Injector<Fruit::Annotated<Annotation1, const X>> injector(getComponent, &x);
-              const X& x1 = injector.get<Fruit::Annotated<Annotation1, const X&>>();
+              Poco::Fruit::Injector<Poco::Fruit::Annotated<Annotation1, const X>> injector(getComponent, &x);
+              const X& x1 = injector.get<Poco::Fruit::Annotated<Annotation1, const X&>>();
               Assert(&x == &x1);
             }
             '''
@@ -129,8 +129,8 @@ class TestRegisterInstance(parameterized.TestCase):
     @parameterized.parameters([
         ('X', 'X', 'X*', 'X*'),
         ('X', 'const X', 'const X*', 'const X*'),
-        ('Fruit::Annotated<Annotation1, X>', 'Fruit::Annotated<Annotation1, X>', 'X*', 'Fruit::Annotated<Annotation1, X*>'),
-        ('Fruit::Annotated<Annotation1, X>', 'Fruit::Annotated<Annotation1, const X>', 'const X*', 'Fruit::Annotated<Annotation1, const X*>'),
+        ('Poco::Fruit::Annotated<Annotation1, X>', 'Poco::Fruit::Annotated<Annotation1, X>', 'X*', 'Poco::Fruit::Annotated<Annotation1, X*>'),
+        ('Poco::Fruit::Annotated<Annotation1, X>', 'Poco::Fruit::Annotated<Annotation1, const X>', 'const X*', 'Poco::Fruit::Annotated<Annotation1, const X*>'),
     ])
     def test_bind_instance_two_explicit_type_arguments_success(self, XAnnot, MaybeConstXAnnot, XPtr, XPtrAnnot):
         source = '''
@@ -142,14 +142,14 @@ class TestRegisterInstance(parameterized.TestCase):
               }
             };
     
-            Fruit::Component<MaybeConstXAnnot> getComponent(XPtr x) {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<MaybeConstXAnnot> getComponent(XPtr x) {
+              return Poco::Fruit::createComponent()
                 .bindInstance<XAnnot, X>(*x);
             }
     
             int main() {
               X x(34);
-              Fruit::Injector<MaybeConstXAnnot> injector(getComponent, &x);
+              Poco::Fruit::Injector<MaybeConstXAnnot> injector(getComponent, &x);
               XPtr x1 = injector.get<XPtrAnnot>();
               Assert(&x == x1);
             }
@@ -158,7 +158,7 @@ class TestRegisterInstance(parameterized.TestCase):
 
     @parameterized.parameters([
         'X',
-        'Fruit::Annotated<Annotation1, X>',
+        'Poco::Fruit::Annotated<Annotation1, X>',
     ])
     def test_bind_instance_abstract_class_ok(self, XAnnot):
         source = '''
@@ -166,13 +166,13 @@ class TestRegisterInstance(parameterized.TestCase):
               virtual void foo() = 0;
             };
             
-            Fruit::Component<> getComponentForInstanceHelper(X* x) {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<> getComponentForInstanceHelper(X* x) {
+              return Poco::Fruit::createComponent()
                 .bindInstance<XAnnot, X>(*x);
             }
     
-            Fruit::Component<XAnnot> getComponentForInstance(X* x) {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<XAnnot> getComponentForInstance(X* x) {
+              return Poco::Fruit::createComponent()
                 .install(getComponentForInstanceHelper, x)
                 .bindInstance<XAnnot, X>(*x);
             }
@@ -184,24 +184,24 @@ class TestRegisterInstance(parameterized.TestCase):
 
     @parameterized.parameters([
         ('int', 'int*'),
-        ('Fruit::Annotated<Annotation1, int>', 'Fruit::Annotated<Annotation1, int*>'),
+        ('Poco::Fruit::Annotated<Annotation1, int>', 'Poco::Fruit::Annotated<Annotation1, int*>'),
     ])
     def test_bind_instance_multiple_equivalent_bindings_success(self, intAnnot, intPtrAnnot):
         source = '''
-            Fruit::Component<> getComponentForInstanceHelper(int* n) {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<> getComponentForInstanceHelper(int* n) {
+              return Poco::Fruit::createComponent()
                 .bindInstance<intAnnot, int>(*n);
             }
             
-            Fruit::Component<intAnnot> getComponentForInstance(int* n) {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<intAnnot> getComponentForInstance(int* n) {
+              return Poco::Fruit::createComponent()
                 .install(getComponentForInstanceHelper, n)
                 .bindInstance<intAnnot, int>(*n);
             }
     
             int main() {
               int n = 5;
-              Fruit::Injector<intAnnot> injector(getComponentForInstance, &n);
+              Poco::Fruit::Injector<intAnnot> injector(getComponentForInstance, &n);
               if (injector.get<intPtrAnnot>() != &n)
                 abort();
             }
@@ -213,24 +213,24 @@ class TestRegisterInstance(parameterized.TestCase):
 
     @parameterized.parameters([
         ('int', 'int*'),
-        ('Fruit::Annotated<Annotation1, int>', 'Fruit::Annotated<Annotation1, int*>'),
+        ('Poco::Fruit::Annotated<Annotation1, int>', 'Poco::Fruit::Annotated<Annotation1, int*>'),
     ])
     def test_bind_instance_multiple_equivalent_bindings_different_constness_success(self, intAnnot, intPtrAnnot):
         source = '''
-            Fruit::Component<> getComponentForInstanceHelper(const int* n) {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<> getComponentForInstanceHelper(const int* n) {
+              return Poco::Fruit::createComponent()
                 .bindInstance<intAnnot, int>(*n);
             }
             
-            Fruit::Component<intAnnot> getComponentForInstance(int* n) {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<intAnnot> getComponentForInstance(int* n) {
+              return Poco::Fruit::createComponent()
                 .install(getComponentForInstanceHelper, n)
                 .bindInstance<intAnnot, int>(*n);
             }
     
             int main() {
               int n = 5;
-              Fruit::Injector<intAnnot> injector(getComponentForInstance, &n);
+              Poco::Fruit::Injector<intAnnot> injector(getComponentForInstance, &n);
               if (injector.get<intPtrAnnot>() != &n)
                 abort();
             }
@@ -242,24 +242,24 @@ class TestRegisterInstance(parameterized.TestCase):
 
     @parameterized.parameters([
         ('int', 'int*'),
-        ('Fruit::Annotated<Annotation1, int>', 'Fruit::Annotated<Annotation1, int*>'),
+        ('Poco::Fruit::Annotated<Annotation1, int>', 'Poco::Fruit::Annotated<Annotation1, int*>'),
     ])
     def test_bind_instance_multiple_equivalent_bindings_different_constness_other_order_success(self, intAnnot, intPtrAnnot):
         source = '''
-            Fruit::Component<> getComponentForInstanceHelper(const int* n) {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<> getComponentForInstanceHelper(const int* n) {
+              return Poco::Fruit::createComponent()
                 .bindInstance<intAnnot, int>(*n);
             }
             
-            Fruit::Component<intAnnot> getComponentForInstance(int* n) {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<intAnnot> getComponentForInstance(int* n) {
+              return Poco::Fruit::createComponent()
                 .bindInstance<intAnnot, int>(*n)
                 .install(getComponentForInstanceHelper, n);
             }
     
             int main() {
               int n = 5;
-              Fruit::Injector<intAnnot> injector(getComponentForInstance, &n);
+              Poco::Fruit::Injector<intAnnot> injector(getComponentForInstance, &n);
               if (injector.get<intPtrAnnot>() != &n)
                 abort();
             }
@@ -282,8 +282,8 @@ class TestRegisterInstance(parameterized.TestCase):
         source = '''
             struct X {};
     
-            Fruit::Component<> getComponent(XVariant x) {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<> getComponent(XVariant x) {
+              return Poco::Fruit::createComponent()
                 .bindInstance(x);
             }
             '''
@@ -306,9 +306,9 @@ class TestRegisterInstance(parameterized.TestCase):
         source = '''
             struct X {};
     
-            Fruit::Component<> getComponent(XVariant x) {
-              return Fruit::createComponent()
-                .bindInstance<Fruit::Annotated<Annotation1, XVariant>>(x);
+            Poco::Fruit::Component<> getComponent(XVariant x) {
+              return Poco::Fruit::createComponent()
+                .bindInstance<Poco::Fruit::Annotated<Annotation1, XVariant>>(x);
             }
             '''
         expect_compile_error(
@@ -326,27 +326,27 @@ class TestRegisterInstance(parameterized.TestCase):
         ('const X&', 'const X&'),
         ('std::shared_ptr<X>', 'std::shared_ptr<X>'),
 
-        ('Fruit::Annotated<Annotation1, const X>', 'const X'),
-        ('Fruit::Annotated<Annotation1, X*>', 'X*'),
-        ('Fruit::Annotated<Annotation1, const X*>', 'const X*'),
-        ('Fruit::Annotated<Annotation1, X&>', 'X&'),
-        ('Fruit::Annotated<Annotation1, const X&>', 'const X&'),
-        ('Fruit::Annotated<Annotation1, std::shared_ptr<X>>', 'std::shared_ptr<X>'),
+        ('Poco::Fruit::Annotated<Annotation1, const X>', 'const X'),
+        ('Poco::Fruit::Annotated<Annotation1, X*>', 'X*'),
+        ('Poco::Fruit::Annotated<Annotation1, const X*>', 'const X*'),
+        ('Poco::Fruit::Annotated<Annotation1, X&>', 'X&'),
+        ('Poco::Fruit::Annotated<Annotation1, const X&>', 'const X&'),
+        ('Poco::Fruit::Annotated<Annotation1, std::shared_ptr<X>>', 'std::shared_ptr<X>'),
 
-        ('Fruit::Annotated<Annotation1, X>', 'const X'),
-        ('Fruit::Annotated<Annotation1, X>', 'X*'),
-        ('Fruit::Annotated<Annotation1, X>', 'const X*'),
-        ('Fruit::Annotated<Annotation1, X>', 'X&'),
-        ('Fruit::Annotated<Annotation1, X>', 'const X&'),
-        ('Fruit::Annotated<Annotation1, X>', 'std::shared_ptr<X>'),
+        ('Poco::Fruit::Annotated<Annotation1, X>', 'const X'),
+        ('Poco::Fruit::Annotated<Annotation1, X>', 'X*'),
+        ('Poco::Fruit::Annotated<Annotation1, X>', 'const X*'),
+        ('Poco::Fruit::Annotated<Annotation1, X>', 'X&'),
+        ('Poco::Fruit::Annotated<Annotation1, X>', 'const X&'),
+        ('Poco::Fruit::Annotated<Annotation1, X>', 'std::shared_ptr<X>'),
     ])
     def test_bind_instance_non_normalized_type_error_two_explicit_type_arguments(self, XAnnotVariant, XVariant):
         XVariantRegexp = escape_regex(XVariant)
         source = '''
             struct X {};
     
-            Fruit::Component<> getComponent(XVariant x) {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<> getComponent(XVariant x) {
+              return Poco::Fruit::createComponent()
                 .bindInstance<XAnnotVariant, XVariant>(x);
             }
             '''
@@ -366,8 +366,8 @@ class TestRegisterInstance(parameterized.TestCase):
         source = '''
             struct X {};
     
-            Fruit::Component<> getComponentForInstance(XVariant x) {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<> getComponentForInstance(XVariant x) {
+              return Poco::Fruit::createComponent()
                   .bindInstance(x);
             }
             '''
@@ -387,9 +387,9 @@ class TestRegisterInstance(parameterized.TestCase):
         source = '''
             struct X {};
     
-            Fruit::Component<> getComponentForInstance(XVariant x) {
-              return Fruit::createComponent()
-                  .bindInstance<Fruit::Annotated<Annotation1, X>>(x);
+            Poco::Fruit::Component<> getComponentForInstance(XVariant x) {
+              return Poco::Fruit::createComponent()
+                  .bindInstance<Poco::Fruit::Annotated<Annotation1, X>>(x);
             }
             '''
         expect_compile_error(
@@ -401,14 +401,14 @@ class TestRegisterInstance(parameterized.TestCase):
 
     @parameterized.parameters([
         'X',
-        'Fruit::Annotated<Annotation1, X>',
+        'Poco::Fruit::Annotated<Annotation1, X>',
     ])
     def test_bind_instance_mismatched_type_arguments(self, XAnnot):
         source = '''
             struct X {};
     
-            Fruit::Component<> getComponent(int* n) {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<> getComponent(int* n) {
+              return Poco::Fruit::createComponent()
                 .bindInstance<XAnnot, int>(*n);
             }
             '''
@@ -421,7 +421,7 @@ class TestRegisterInstance(parameterized.TestCase):
 
     @parameterized.parameters([
         ('Base', 'Base*'),
-        ('Fruit::Annotated<Annotation1, Base>', 'Fruit::Annotated<Annotation1, Base*>'),
+        ('Poco::Fruit::Annotated<Annotation1, Base>', 'Poco::Fruit::Annotated<Annotation1, Base*>'),
     ])
     def test_bind_instance_to_subclass(self, BaseAnnot, BasePtrAnnot):
         source = '''
@@ -436,14 +436,14 @@ class TestRegisterInstance(parameterized.TestCase):
               }
             };
     
-            Fruit::Component<BaseAnnot> getComponent(Derived* derived) {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<BaseAnnot> getComponent(Derived* derived) {
+              return Poco::Fruit::createComponent()
                 .bindInstance<BaseAnnot, Base>(*derived);
             }
     
             int main() {
               Derived derived;
-              Fruit::Injector<BaseAnnot> injector(getComponent, &derived);
+              Poco::Fruit::Injector<BaseAnnot> injector(getComponent, &derived);
               Base* base = injector.get<BasePtrAnnot>();
               base->f();
             }
@@ -454,15 +454,15 @@ class TestRegisterInstance(parameterized.TestCase):
         ('X**', r'X\*\*'),
         ('std::shared_ptr<X>*', r'std::shared_ptr<X>\*'),
         ('X*&', r'X\*&'),
-        ('Fruit::Annotated<Annotation1, X**>', r'X\*\*'),
+        ('Poco::Fruit::Annotated<Annotation1, X**>', r'X\*\*'),
     ])
     def test_bind_instance_type_not_normalized(self, XVariant, XVariantRegex):
         source = '''
             struct X {};
     
             using XVariantT = XVariant;
-            Fruit::Component<> getComponent(XVariantT x) {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<> getComponent(XVariantT x) {
+              return Poco::Fruit::createComponent()
                 .bindInstance<XVariant, XVariant>(x);
             }
             '''
@@ -481,8 +481,8 @@ class TestRegisterInstance(parameterized.TestCase):
             struct X {};
             
             using XVariantT = XVariant;
-            Fruit::Component<> getComponent(XVariantT x) {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<> getComponent(XVariantT x) {
+              return Poco::Fruit::createComponent()
                 .bindInstance<XVariant, XVariant>(x);
             }
             '''

@@ -318,7 +318,7 @@ def apply_any_error_context_replacements(error_string, following_lines):
     if CXX_COMPILER_NAME == 'MSVC':
         # MSVC errors are of the form:
         #
-        # C:\Path\To\header\foo.h(59): note: see reference to class template instantiation 'Fruit::impl::NoBindingFoundError<Fruit::Annotated<Annotation,U>>' being compiled
+        # C:\Path\To\header\foo.h(59): note: see reference to class template instantiation 'Poco::Fruit::impl::NoBindingFoundError<Poco::Fruit::Annotated<Annotation,U>>' being compiled
         #         with
         #         [
         #              Annotation=Annotation1,
@@ -426,7 +426,7 @@ def expect_compile_error(
         normalized_error_message_lines = normalize_error_message_lines(error_message_lines)
 
         for line_number, line in enumerate(normalized_error_message_lines):
-            match = re.search('Fruit::impl::(.*Error<.*>)', line)
+            match = re.search('Poco::Fruit::impl::(.*Error<.*>)', line)
             if match:
                 actual_fruit_error_line_number = line_number
                 actual_fruit_error = match.groups()[0]
@@ -508,7 +508,7 @@ def expect_compile_error(
                 error_message = error_message_head)))
 
         for line in error_message_lines[:max(actual_fruit_error_line_number, actual_static_assert_error_line_number)]:
-            if re.search('Fruit::impl::meta', line):
+            if re.search('Poco::Fruit::impl::meta', line):
                 raise Exception(
                     'The compilation failed with the expected message, but the error message contained some metaprogramming types in the output (besides Error). Error message:\n%s' + error_message_head)
 

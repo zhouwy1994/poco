@@ -26,16 +26,16 @@ COMMON_DEFINITIONS = '''
     using WithNoAnnot = T;
 
     template <typename T>
-    using WithAnnot1 = Fruit::Annotated<Annotation1, T>;
+    using WithAnnot1 = Poco::Fruit::Annotated<Annotation1, T>;
 
     template <typename T>
-    using WithAnnot2 = Fruit::Annotated<Annotation2, T>;
+    using WithAnnot2 = Poco::Fruit::Annotated<Annotation2, T>;
     '''
 
 class TestBindingCompression(parameterized.TestCase):
     @parameterized.parameters([
         ('I', 'X', 'WithNoAnnot'),
-        ('Fruit::Annotated<Annotation1, I>', 'Fruit::Annotated<Annotation2, X>', 'WithAnnot1'),
+        ('Poco::Fruit::Annotated<Annotation1, I>', 'Poco::Fruit::Annotated<Annotation2, X>', 'WithAnnot1'),
     ])
     def test_provider_returning_value_success_with_annotation(self, IAnnot, XAnnot, WithAnnot):
         source = '''
@@ -46,14 +46,14 @@ class TestBindingCompression(parameterized.TestCase):
             struct X : public I, ConstructionTracker<X> {
             };
     
-            Fruit::Component<IAnnot> getComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<IAnnot> getComponent() {
+              return Poco::Fruit::createComponent()
                 .registerProvider<XAnnot()>([](){return X();})
                 .bind<IAnnot, XAnnot>();
             }
     
             int main() {
-              Fruit::Injector<IAnnot> injector(getComponent);
+              Poco::Fruit::Injector<IAnnot> injector(getComponent);
               Assert((injector.get<WithAnnot<I                 >>() .value == 5));
               Assert((injector.get<WithAnnot<I*                >>()->value == 5));
               Assert((injector.get<WithAnnot<I&                >>() .value == 5));
@@ -61,7 +61,7 @@ class TestBindingCompression(parameterized.TestCase):
               Assert((injector.get<WithAnnot<const I*          >>()->value == 5));
               Assert((injector.get<WithAnnot<const I&          >>() .value == 5));
               Assert((injector.get<WithAnnot<std::shared_ptr<I>>>()->value == 5));
-              Assert(Fruit::impl::InjectorAccessorForTests::unsafeGet<WithAnnot<X>>(injector) == nullptr);
+              Assert(Poco::Fruit::impl::InjectorAccessorForTests::unsafeGet<WithAnnot<X>>(injector) == nullptr);
     
               Assert(X::num_objects_constructed == 1);
             }
@@ -73,7 +73,7 @@ class TestBindingCompression(parameterized.TestCase):
 
     @parameterized.parameters([
         ('I', 'X', 'X*', 'WithNoAnnot'),
-        ('Fruit::Annotated<Annotation1, I>', 'Fruit::Annotated<Annotation2, X>', 'Fruit::Annotated<Annotation2, X*>', 'WithAnnot1'),
+        ('Poco::Fruit::Annotated<Annotation1, I>', 'Poco::Fruit::Annotated<Annotation2, X>', 'Poco::Fruit::Annotated<Annotation2, X*>', 'WithAnnot1'),
     ])
     def test_provider_returning_pointer_success_with_annotation(self, IAnnot, XAnnot, XPtrAnnot, WithAnnot):
         source = '''
@@ -84,14 +84,14 @@ class TestBindingCompression(parameterized.TestCase):
             struct X : public I, ConstructionTracker<X> {
             };
     
-            Fruit::Component<IAnnot> getComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<IAnnot> getComponent() {
+              return Poco::Fruit::createComponent()
                 .registerProvider<XPtrAnnot()>([](){return new X();})
                 .bind<IAnnot, XAnnot>();
             }
     
             int main() {
-              Fruit::Injector<IAnnot> injector(getComponent);
+              Poco::Fruit::Injector<IAnnot> injector(getComponent);
               Assert((injector.get<WithAnnot<I                 >>() .value == 5));
               Assert((injector.get<WithAnnot<I*                >>()->value == 5));
               Assert((injector.get<WithAnnot<I&                >>() .value == 5));
@@ -99,7 +99,7 @@ class TestBindingCompression(parameterized.TestCase):
               Assert((injector.get<WithAnnot<const I*          >>()->value == 5));
               Assert((injector.get<WithAnnot<const I&          >>() .value == 5));
               Assert((injector.get<WithAnnot<std::shared_ptr<I>>>()->value == 5));
-              Assert(Fruit::impl::InjectorAccessorForTests::unsafeGet<WithAnnot<X>>(injector) == nullptr);
+              Assert(Poco::Fruit::impl::InjectorAccessorForTests::unsafeGet<WithAnnot<X>>(injector) == nullptr);
               Assert(X::num_objects_constructed == 1);
             }
             '''
@@ -120,13 +120,13 @@ class TestBindingCompression(parameterized.TestCase):
               INJECT(C2(I1*)) {}
             };
     
-            Fruit::Component<I1> getI1Component() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<I1> getI1Component() {
+              return Poco::Fruit::createComponent()
                   .bind<I1, C1>();
             }
     
-            Fruit::Component<I2> getI2Component() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<I2> getI2Component() {
+              return Poco::Fruit::createComponent()
                   .install(getI1Component)
                   .bind<I2, C2>();
             }
@@ -136,21 +136,21 @@ class TestBindingCompression(parameterized.TestCase):
               INJECT(X(C1*)) {}
             };
     
-            Fruit::Component<X> getXComponent() {
-              return Fruit::createComponent();
+            Poco::Fruit::Component<X> getXComponent() {
+              return Poco::Fruit::createComponent();
             }
     
             int main() {
               // Here the binding C2->I1->C1 is compressed into C2->C1.
-              Fruit::NormalizedComponent<I2> normalizedComponent(getI2Component);
+              Poco::Fruit::NormalizedComponent<I2> normalizedComponent(getI2Component);
     
               // However the binding X->C1 prevents binding compression on I1->C1, the binding compression must be undone.
-              Fruit::Injector<I2, X> injector(normalizedComponent, getXComponent);
+              Poco::Fruit::Injector<I2, X> injector(normalizedComponent, getXComponent);
     
               Assert(C1::num_objects_constructed == 0);
               injector.get<I2*>();
               injector.get<X*>();
-              Assert(Fruit::impl::InjectorAccessorForTests::unsafeGet<C1>(injector) != nullptr);
+              Assert(Poco::Fruit::impl::InjectorAccessorForTests::unsafeGet<C1>(injector) != nullptr);
               Assert(C1::num_objects_constructed == 1);
             }
             '''

@@ -39,8 +39,8 @@ class TestMisc(parameterized.TestCase):
 
     def test_misc(self):
         source = '''
-            Fruit::Component<X<V<float>>> getXProvider2() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<X<V<float>>> getXProvider2() {
+              return Poco::Fruit::createComponent()
                   .registerProvider([](){return X<V<float>>(1);});
             }
             
@@ -87,9 +87,9 @@ class TestMisc(parameterized.TestCase):
               virtual void f() {};
             };
             
-            Fruit::Component<Interface2, XFactory, std::function<Implementation1(int)>> getParentComponent() {
-              return Fruit::createComponent()
-                  .registerFactory<Implementation1(Fruit::Assisted<int>, XFactory)>(
+            Poco::Fruit::Component<Interface2, XFactory, std::function<Implementation1(int)>> getParentComponent() {
+              return Poco::Fruit::createComponent()
+                  .registerFactory<Implementation1(Poco::Fruit::Assisted<int>, XFactory)>(
                     [](int, XFactory xFactory) {
                       return Implementation1(V<int>(), xFactory);
                     })
@@ -103,7 +103,7 @@ class TestMisc(parameterized.TestCase):
             };
             
             struct Implementation3 : public Interface3 {
-              INJECT(Implementation3(Implementation2*, Fruit::Provider<Implementation2> provider)) {
+              INJECT(Implementation3(Implementation2*, Poco::Fruit::Provider<Implementation2> provider)) {
                 (void) provider.get();
                 std::cout << "Called Implementation2()" << std::endl;
               }
@@ -113,27 +113,27 @@ class TestMisc(parameterized.TestCase):
               virtual void f() {};
             };
             
-            Fruit::Component<Interface3, std::function<Implementation1(int)>> getMyComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<Interface3, std::function<Implementation1(int)>> getMyComponent() {
+              return Poco::Fruit::createComponent()
                   // Must fail at runtime.
                   // .install(getXProvider2)
                   .bind<Interface3, Implementation3>()
                   .install(getParentComponent);
             }
             
-            Fruit::Component<std::function<AssistedMultiparamExample(std::map<int, float>)>> getAssistedMultiparamExampleComponent() {
-              return Fruit::createComponent();
+            Poco::Fruit::Component<std::function<AssistedMultiparamExample(std::map<int, float>)>> getAssistedMultiparamExampleComponent() {
+              return Poco::Fruit::createComponent();
             }
             
             int main() {
-              Fruit::Injector<
+              Poco::Fruit::Injector<
                 Interface3,
                 // XFactory,
                 std::function<Implementation1(int)>
                 > oldInjector(getMyComponent);
             
               // The move is completely unnecessary, it's just to check that it works.
-              Fruit::Injector<
+              Poco::Fruit::Injector<
                 Interface3,
                 // XFactory,
                 std::function<Implementation1(int)>
@@ -157,7 +157,7 @@ class TestMisc(parameterized.TestCase):
               }
               std::cout << "Destroying injector" << std::endl;
               
-              Fruit::Injector<std::function<AssistedMultiparamExample(std::map<int, float>)>> assistedMultiparamExampleInjector(
+              Poco::Fruit::Injector<std::function<AssistedMultiparamExample(std::map<int, float>)>> assistedMultiparamExampleInjector(
                 getAssistedMultiparamExampleComponent);
               
               return 0;

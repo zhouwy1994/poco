@@ -19,6 +19,7 @@
 
 #include <functional>
 
+namespace Poco{
 namespace Fruit {
 namespace impl {
 namespace meta {
@@ -237,5 +238,6 @@ using DebugType = typename DebugTypeHelper<T>::type;
 } // namespace meta
 } // namespace impl
 } // namespace Fruit
+} // namespace Poco
 
 #endif // FRUIT_META_BASICS_H

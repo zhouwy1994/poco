@@ -99,6 +99,6 @@ private:
   }
 };
 
-Fruit::Component<Server> getServerComponent() {
-  return Fruit::createComponent().bind<Server, ServerImpl>();
+Poco::Fruit::Component<Server> getServerComponent() {
+  return Poco::Fruit::createComponent().bind<Server, ServerImpl>();
 }

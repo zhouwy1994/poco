@@ -19,10 +19,11 @@
 
 #include <Poco/Fruit/impl/fruit_internal_forward_decls.h>
 
+namespace Poco{
 namespace Fruit {
 
 /**
- * See Fruit::componentFunction() helper for how to construct a ComponentFunction, and see
+ * See Poco::Fruit::componentFunction() helper for how to construct a ComponentFunction, and see
  * PartialComponent::installComponentFunctions() for more information on using ComponentFunction objects.
  */
 template <typename ComponentType, typename... ComponentFunctionArgs>
@@ -32,11 +33,11 @@ private:
     std::tuple<ComponentFunctionArgs...> args_tuple;
 
     /**
-     * This is (intentionally) private, use Fruit::componentFunction() to construct ComponentFunction objects.
+     * This is (intentionally) private, use Poco::Fruit::componentFunction() to construct ComponentFunction objects.
      */
     explicit ComponentFunction(ComponentType (*getComponent)(ComponentFunctionArgs...), ComponentFunctionArgs... args);
 
-    friend struct Fruit::impl::ComponentStorageEntry;
+    friend struct Poco::Fruit::impl::ComponentStorageEntry;
 
 public:
 	// Prefer using the simpler componentFunction() below instead of this.
@@ -62,10 +63,11 @@ public:
  * See PartialComponent::installComponentFunctions() for more information on using ComponentFunction.
  */
 template <typename... ComponentParams, typename... FormalArgs, typename... ActualArgs>
-ComponentFunction<Fruit::Component<ComponentParams...>, FormalArgs...> componentFunction(
-    Fruit::Component<ComponentParams...> (*getComponent)(FormalArgs...),
+ComponentFunction<Poco::Fruit::Component<ComponentParams...>, FormalArgs...> componentFunction(
+    Poco::Fruit::Component<ComponentParams...> (*getComponent)(FormalArgs...),
     ActualArgs&&... args);
 
+}
 }
 
 #include <Poco/Fruit/impl/component_function.defn.h>

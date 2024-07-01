@@ -303,7 +303,7 @@ def p_error(p):
 lexer = lex.lex()
 parser = yacc.yacc(start='balanced_string')
 
-strings_to_remove = re.compile(r'template class |template type alias |function template specialization |member class |member function |default argument for |Fruit::impl::meta::|Fruit::impl::|Fruit::')
+strings_to_remove = re.compile(r'template class |template type alias |function template specialization |member class |member function |default argument for |Poco::Fruit::impl::meta::|Poco::Fruit::impl::|Poco::Fruit::')
 
 def do_simplify_template_trace_element(element):
     element, _ = re.subn(strings_to_remove, '', element)

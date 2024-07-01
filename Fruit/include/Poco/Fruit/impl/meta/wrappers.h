@@ -21,6 +21,7 @@
 
 #include <memory>
 
+namespace Poco{
 namespace Fruit {
 namespace impl {
 namespace meta {
@@ -174,5 +175,6 @@ struct HasVirtualDestructor {
 } // namespace meta
 } // namespace impl
 } // namespace Fruit
+} // namespace Poco
 
 #endif // FRUIT_META_WRAPPERS_H

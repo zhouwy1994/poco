@@ -22,7 +22,7 @@ COMMON_DEFINITIONS = '''
     struct X;
 
     struct Annotation1 {};
-    using XAnnot1 = Fruit::Annotated<Annotation1, X>;
+    using XAnnot1 = Poco::Fruit::Annotated<Annotation1, X>;
     '''
 
 class TestInstallComponentFunctions(parameterized.TestCase):
@@ -30,26 +30,26 @@ class TestInstallComponentFunctions(parameterized.TestCase):
         source = '''
             int num_executions = 0;
             
-            Fruit::Component<int> getChildComponent() {
+            Poco::Fruit::Component<int> getChildComponent() {
               static int n = 5;
               ++num_executions;
-              return Fruit::createComponent()
+              return Poco::Fruit::createComponent()
                   .bindInstance(n);
             }
             
-            Fruit::Component<> getMiddleComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<> getMiddleComponent() {
+              return Poco::Fruit::createComponent()
                   .install(getChildComponent);
             }
             
-            Fruit::Component<int> getMainComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<int> getMainComponent() {
+              return Poco::Fruit::createComponent()
                   .install(getMiddleComponent)
-                  .installComponentFunctions(Fruit::componentFunction(getChildComponent));
+                  .installComponentFunctions(Poco::Fruit::componentFunction(getChildComponent));
             }
     
             int main() {
-              Fruit::Injector<int> injector(getMainComponent);
+              Poco::Fruit::Injector<int> injector(getMainComponent);
               int n = injector.get<int>();
               Assert(n == 5);
               Assert(num_executions == 1);
@@ -64,26 +64,26 @@ class TestInstallComponentFunctions(parameterized.TestCase):
         source = '''
             int num_executions = 0;
             
-            Fruit::Component<int> getChildComponent() {
+            Poco::Fruit::Component<int> getChildComponent() {
               static int n = 5;
               ++num_executions;
-              return Fruit::createComponent()
+              return Poco::Fruit::createComponent()
                   .bindInstance(n);
             }
             
-            Fruit::Component<> getMiddleComponent() {
-              return Fruit::createComponent()
-                  .installComponentFunctions(Fruit::componentFunction(getChildComponent));
+            Poco::Fruit::Component<> getMiddleComponent() {
+              return Poco::Fruit::createComponent()
+                  .installComponentFunctions(Poco::Fruit::componentFunction(getChildComponent));
             }
             
-            Fruit::Component<int> getMainComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<int> getMainComponent() {
+              return Poco::Fruit::createComponent()
                   .install(getMiddleComponent)
                   .install(getChildComponent);
             }
     
             int main() {
-              Fruit::Injector<int> injector(getMainComponent);
+              Poco::Fruit::Injector<int> injector(getMainComponent);
               int n = injector.get<int>();
               Assert(n == 5);
               Assert(num_executions == 1);
@@ -98,26 +98,26 @@ class TestInstallComponentFunctions(parameterized.TestCase):
         source = '''
             int num_executions = 0;
             
-            Fruit::Component<int> getChildComponent(int) {
+            Poco::Fruit::Component<int> getChildComponent(int) {
               static int n = 5;
               ++num_executions;
-              return Fruit::createComponent()
+              return Poco::Fruit::createComponent()
                   .bindInstance(n);
             }
             
-            Fruit::Component<> getMiddleComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<> getMiddleComponent() {
+              return Poco::Fruit::createComponent()
                   .install(getChildComponent, 42);
             }
                     
-            Fruit::Component<int> getMainComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<int> getMainComponent() {
+              return Poco::Fruit::createComponent()
                   .install(getMiddleComponent)
-                  .installComponentFunctions(Fruit::componentFunction(getChildComponent, 42));
+                  .installComponentFunctions(Poco::Fruit::componentFunction(getChildComponent, 42));
             }
     
             int main() {
-              Fruit::Injector<int> injector(getMainComponent);
+              Poco::Fruit::Injector<int> injector(getMainComponent);
               int n = injector.get<int>();
               Assert(n == 5);
               Assert(num_executions == 1);
@@ -132,26 +132,26 @@ class TestInstallComponentFunctions(parameterized.TestCase):
         source = '''
             int num_executions = 0;
             
-            Fruit::Component<int> getChildComponent(int) {
+            Poco::Fruit::Component<int> getChildComponent(int) {
               static int n = 5;
               ++num_executions;
-              return Fruit::createComponent()
+              return Poco::Fruit::createComponent()
                   .bindInstance(n);
             }
             
-            Fruit::Component<> getMiddleComponent() {
-              return Fruit::createComponent()
-                  .installComponentFunctions(Fruit::componentFunction(getChildComponent, 42));
+            Poco::Fruit::Component<> getMiddleComponent() {
+              return Poco::Fruit::createComponent()
+                  .installComponentFunctions(Poco::Fruit::componentFunction(getChildComponent, 42));
             }
                             
-            Fruit::Component<int> getMainComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<int> getMainComponent() {
+              return Poco::Fruit::createComponent()
                   .install(getMiddleComponent)
                   .install(getChildComponent, 42);
             }
     
             int main() {
-              Fruit::Injector<int> injector(getMainComponent);
+              Poco::Fruit::Injector<int> injector(getMainComponent);
               int n = injector.get<int>();
               Assert(n == 5);
               Assert(num_executions == 1);
@@ -166,26 +166,26 @@ class TestInstallComponentFunctions(parameterized.TestCase):
         source = '''
             int num_executions = 0;
             
-            Fruit::Component<int> getChildComponent(int) {
+            Poco::Fruit::Component<int> getChildComponent(int) {
               static int n = 5;
               ++num_executions;
-              return Fruit::createComponent()
+              return Poco::Fruit::createComponent()
                   .bindInstance(n);
             }
     
-            Fruit::Component<> getMiddleComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<> getMiddleComponent() {
+              return Poco::Fruit::createComponent()
                   .install(getChildComponent, 42);
             }
             
-            Fruit::Component<int> getMainComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<int> getMainComponent() {
+              return Poco::Fruit::createComponent()
                   .install(getMiddleComponent)
-                  .installComponentFunctions(Fruit::componentFunction(getChildComponent, 2));
+                  .installComponentFunctions(Poco::Fruit::componentFunction(getChildComponent, 2));
             }
     
             int main() {
-              Fruit::Injector<int> injector(getMainComponent);
+              Poco::Fruit::Injector<int> injector(getMainComponent);
               int n = injector.get<int>();
               Assert(n == 5);
               Assert(num_executions == 2);
@@ -200,26 +200,26 @@ class TestInstallComponentFunctions(parameterized.TestCase):
         source = '''
             int num_executions = 0;
             
-            Fruit::Component<int> getChildComponent(int) {
+            Poco::Fruit::Component<int> getChildComponent(int) {
               static int n = 5;
               ++num_executions;
-              return Fruit::createComponent()
+              return Poco::Fruit::createComponent()
                   .bindInstance(n);
             }
     
-            Fruit::Component<> getMiddleComponent() {
-              return Fruit::createComponent()
-                  .installComponentFunctions(Fruit::componentFunction(getChildComponent, 42));
+            Poco::Fruit::Component<> getMiddleComponent() {
+              return Poco::Fruit::createComponent()
+                  .installComponentFunctions(Poco::Fruit::componentFunction(getChildComponent, 42));
             }
                     
-            Fruit::Component<int> getMainComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<int> getMainComponent() {
+              return Poco::Fruit::createComponent()
                   .install(getMiddleComponent)
                   .install(getChildComponent, 2);
             }
     
             int main() {
-              Fruit::Injector<int> injector(getMainComponent);
+              Poco::Fruit::Injector<int> injector(getMainComponent);
               (void)injector;
               Assert(num_executions == 2);
             }
@@ -231,13 +231,13 @@ class TestInstallComponentFunctions(parameterized.TestCase):
 
     def test_install_component_functions_no_component_functions(self):
         source = '''
-            Fruit::Component<> getComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<> getComponent() {
+              return Poco::Fruit::createComponent()
                 .installComponentFunctions();
             }
     
             int main() {
-              Fruit::Injector<> injector(getComponent);
+              Poco::Fruit::Injector<> injector(getComponent);
               (void)injector;
             }
             '''
@@ -250,18 +250,18 @@ class TestInstallComponentFunctions(parameterized.TestCase):
               X(int n) : n(n) {}
             };
             
-            Fruit::Component<X> getParentComponent(std::string) {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<X> getParentComponent(std::string) {
+              return Poco::Fruit::createComponent()
                 .registerProvider([]() { return X(5); });
             }
     
-            Fruit::Component<X> getComponent() {
-              return Fruit::createComponent()
-                .installComponentFunctions(Fruit::componentFunction(getParentComponent, std::string("Hello")));
+            Poco::Fruit::Component<X> getComponent() {
+              return Poco::Fruit::createComponent()
+                .installComponentFunctions(Poco::Fruit::componentFunction(getParentComponent, std::string("Hello")));
             }
     
             int main() {
-              Fruit::Injector<X> injector(getComponent);
+              Poco::Fruit::Injector<X> injector(getComponent);
               X x = injector.get<X>();
               Assert(x.n == 5);
             }
@@ -280,25 +280,25 @@ class TestInstallComponentFunctions(parameterized.TestCase):
               Y(int n) : n(n) {}
             };
             
-            Fruit::Component<X> getParentComponent1(std::string) {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<X> getParentComponent1(std::string) {
+              return Poco::Fruit::createComponent()
                 .registerProvider([]() { return X(5); });
             }
     
-            Fruit::Component<Y> getParentComponent2(std::string) {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<Y> getParentComponent2(std::string) {
+              return Poco::Fruit::createComponent()
                   .registerProvider([]() { return Y(42); });
             }
     
-            Fruit::Component<X, Y> getComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<X, Y> getComponent() {
+              return Poco::Fruit::createComponent()
                   .installComponentFunctions(
-                      Fruit::componentFunction(getParentComponent1, std::string("Hello")),
-                      Fruit::componentFunction(getParentComponent2, std::string("World")));
+                      Poco::Fruit::componentFunction(getParentComponent1, std::string("Hello")),
+                      Poco::Fruit::componentFunction(getParentComponent2, std::string("World")));
             }
     
             int main() {
-              Fruit::Injector<X, Y> injector(getComponent);
+              Poco::Fruit::Injector<X, Y> injector(getComponent);
               X x = injector.get<X>();
               Y y = injector.get<Y>();
               Assert(x.n == 5);
@@ -324,29 +324,29 @@ class TestInstallComponentFunctions(parameterized.TestCase):
             
             template <>
             struct GetComponentHolder<X> {
-                static Fruit::Component<X> getComponent(std::string) {
-                  return Fruit::createComponent()
+                static Poco::Fruit::Component<X> getComponent(std::string) {
+                  return Poco::Fruit::createComponent()
                     .registerProvider([]() { return X(5); });
                 }
             };
     
             template <>
             struct GetComponentHolder<Y> {
-                static Fruit::Component<Y> getComponent(std::string) {
-                  return Fruit::createComponent()
+                static Poco::Fruit::Component<Y> getComponent(std::string) {
+                  return Poco::Fruit::createComponent()
                       .registerProvider([]() { return Y(42); });
                 } 
             };
     
             template <typename... Ts>
-            Fruit::Component<Ts...> getComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<Ts...> getComponent() {
+              return Poco::Fruit::createComponent()
                   .installComponentFunctions(
-                      Fruit::componentFunction(GetComponentHolder<Ts>::getComponent, std::string("Hello"))...);
+                      Poco::Fruit::componentFunction(GetComponentHolder<Ts>::getComponent, std::string("Hello"))...);
             }
     
             int main() {
-              Fruit::Injector<X, Y> injector(getComponent<X, Y>);
+              Poco::Fruit::Injector<X, Y> injector(getComponent<X, Y>);
               X x = injector.get<X>();
               Y y = injector.get<Y>();
               Assert(x.n == 5);
@@ -357,14 +357,14 @@ class TestInstallComponentFunctions(parameterized.TestCase):
 
     def test_install_component_functions_wrong_argument_type(self):
         source = '''
-            Fruit::Component<> getMainComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<> getMainComponent() {
+              return Poco::Fruit::createComponent()
                   .installComponentFunctions(42);
             }
             '''
         expect_compile_error(
             'IncorrectArgTypePassedToInstallComponentFuntionsError<int>',
-            'All arguments passed to installComponentFunctions.. must be Fruit::ComponentFunction<...> objects but an '
+            'All arguments passed to installComponentFunctions.. must be Poco::Fruit::ComponentFunction<...> objects but an '
             'argument with type Arg was passed instead.',
             COMMON_DEFINITIONS,
             source,

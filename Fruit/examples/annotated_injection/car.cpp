@@ -41,8 +41,8 @@ public:
   }
 };
 
-Fruit::Component<Car> getCarComponent() {
-  return Fruit::createComponent()
+Poco::Fruit::Component<Car> getCarComponent() {
+  return Poco::Fruit::createComponent()
       .bind<Car, CarImpl>()
       .install(getMainBrakeComponent)
       .install(getEmergencyBrakeComponent);

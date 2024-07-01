@@ -37,5 +37,5 @@ public:
 };
 
 Component<Required<Request, ServerContext>, BarHandler> getBarHandlerComponent() {
-  return Fruit::createComponent().bind<BarHandler, BarHandlerImpl>();
+  return Poco::Fruit::createComponent().bind<BarHandler, BarHandlerImpl>();
 }

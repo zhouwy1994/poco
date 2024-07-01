@@ -22,6 +22,7 @@
 #include <Poco/Fruit/impl/meta/numeric_operations.h>
 #include <functional>
 
+namespace Poco{
 namespace Fruit {
 namespace impl {
 namespace meta {
@@ -53,5 +54,6 @@ struct FoldList {
 } // namespace meta
 } // namespace impl
 } // namespace Fruit
+} // namespace Poco
 
 #endif // FRUIT_META_LIST_H

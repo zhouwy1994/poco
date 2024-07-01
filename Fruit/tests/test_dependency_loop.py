@@ -22,20 +22,20 @@ COMMON_DEFINITIONS = '''
     struct X;
 
     struct Annotation1 {};
-    using XAnnot1 = Fruit::Annotated<Annotation1, X>;
+    using XAnnot1 = Poco::Fruit::Annotated<Annotation1, X>;
 
     struct Annotation2 {};
-    using XAnnot2 = Fruit::Annotated<Annotation2, X>;
+    using XAnnot2 = Poco::Fruit::Annotated<Annotation2, X>;
 
     struct Annotation3 {};
-    using XAnnot3 = Fruit::Annotated<Annotation3, X>;
+    using XAnnot3 = Poco::Fruit::Annotated<Annotation3, X>;
     '''
 
 class TestDependencyLoop(parameterized.TestCase):
     @parameterized.parameters([
         ('X', 'const X&', 'Y', 'const Y&'),
-        ('Fruit::Annotated<Annotation1, X>', 'ANNOTATED(Annotation1, const X&)',
-         'Fruit::Annotated<Annotation2, Y>', 'ANNOTATED(Annotation2, const Y&)')
+        ('Poco::Fruit::Annotated<Annotation1, X>', 'ANNOTATED(Annotation1, const X&)',
+         'Poco::Fruit::Annotated<Annotation2, Y>', 'ANNOTATED(Annotation2, const Y&)')
     ])
     def test_loop_in_autoinject(self, XAnnot, XConstRefAnnot, YAnnot, YConstRefAnnot):
         source = '''
@@ -49,8 +49,8 @@ class TestDependencyLoop(parameterized.TestCase):
               INJECT(Y(XConstRefAnnot)) {};
             };
     
-            Fruit::Component<XAnnot> mutuallyConstructibleComponent() {
-              return Fruit::createComponent();
+            Poco::Fruit::Component<XAnnot> mutuallyConstructibleComponent() {
+              return Poco::Fruit::createComponent();
             }
             '''
         expect_compile_error(
@@ -62,8 +62,8 @@ class TestDependencyLoop(parameterized.TestCase):
 
     @parameterized.parameters([
         ('X', 'const X', 'const X&', 'Y', 'const Y&'),
-        ('Fruit::Annotated<Annotation1, X>', 'ANNOTATED(Annotation1, const X)', 'ANNOTATED(Annotation1, const X&)',
-         'Fruit::Annotated<Annotation2, Y>', 'ANNOTATED(Annotation2, const Y&)')
+        ('Poco::Fruit::Annotated<Annotation1, X>', 'ANNOTATED(Annotation1, const X)', 'ANNOTATED(Annotation1, const X&)',
+         'Poco::Fruit::Annotated<Annotation2, Y>', 'ANNOTATED(Annotation2, const Y&)')
     ])
     def test_loop_in_autoinject_const(self, XAnnot, ConstXAnnot, XConstRefAnnot, YAnnot, YConstRefAnnot):
         source = '''
@@ -77,8 +77,8 @@ class TestDependencyLoop(parameterized.TestCase):
               INJECT(Y(XConstRefAnnot)) {};
             };
     
-            Fruit::Component<ConstXAnnot> mutuallyConstructibleComponent() {
-              return Fruit::createComponent();
+            Poco::Fruit::Component<ConstXAnnot> mutuallyConstructibleComponent() {
+              return Poco::Fruit::createComponent();
             }
             '''
         expect_compile_error(
@@ -93,8 +93,8 @@ class TestDependencyLoop(parameterized.TestCase):
             struct X {};
             struct Y {};
     
-            Fruit::Component<X> mutuallyConstructibleComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<X> mutuallyConstructibleComponent() {
+              return Poco::Fruit::createComponent()
                   .registerProvider<X(Y)>([](Y) {return X();})
                   .registerProvider<Y(X)>([](X) {return Y();});
             }
@@ -110,14 +110,14 @@ class TestDependencyLoop(parameterized.TestCase):
         source = '''
             struct X {};
     
-            Fruit::Component<Fruit::Annotated<Annotation1, X>> mutuallyConstructibleComponent() {
-              return Fruit::createComponent()
-                  .registerProvider<Fruit::Annotated<Annotation1, X>(Fruit::Annotated<Annotation2, X>)>([](X x) {return x;})
-                  .registerProvider<Fruit::Annotated<Annotation2, X>(Fruit::Annotated<Annotation1, X>)>([](X x) {return x;});
+            Poco::Fruit::Component<Poco::Fruit::Annotated<Annotation1, X>> mutuallyConstructibleComponent() {
+              return Poco::Fruit::createComponent()
+                  .registerProvider<Poco::Fruit::Annotated<Annotation1, X>(Poco::Fruit::Annotated<Annotation2, X>)>([](X x) {return x;})
+                  .registerProvider<Poco::Fruit::Annotated<Annotation2, X>(Poco::Fruit::Annotated<Annotation1, X>)>([](X x) {return x;});
             }
             '''
         expect_compile_error(
-            'SelfLoopError<Fruit::Annotated<Annotation1, X>, Fruit::Annotated<Annotation2, X>>',
+            'SelfLoopError<Poco::Fruit::Annotated<Annotation1, X>, Poco::Fruit::Annotated<Annotation2, X>>',
             'Found a loop in the dependencies',
             COMMON_DEFINITIONS,
             source,
@@ -127,15 +127,15 @@ class TestDependencyLoop(parameterized.TestCase):
         source = '''
             struct X {};
     
-            Fruit::Component<XAnnot3> getComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<XAnnot3> getComponent() {
+              return Poco::Fruit::createComponent()
                   .registerProvider<XAnnot1()>([](){return X();})
                   .registerProvider<XAnnot2(XAnnot1)>([](X x){return x;})
                   .registerProvider<XAnnot3(XAnnot2)>([](X x){return x;});
             }
     
             int main() {
-              Fruit::Injector<XAnnot3> injector(getComponent);
+              Poco::Fruit::Injector<XAnnot3> injector(getComponent);
               injector.get<XAnnot3>();
             }
             '''

@@ -27,6 +27,7 @@
 #include <Poco/Fruit/impl/component_storage/partial_component_storage.h>
 #include <Poco/Fruit/impl/meta/component.h>
 
+namespace Poco{
 namespace Fruit {
 
 /**
@@ -58,7 +59,7 @@ public:
   Component(PartialComponent<Bindings...>&& component) noexcept; // NOLINT(google-explicit-constructor)
 
 private:
-  // Do not use. Use Fruit::createComponent() instead.
+  // Do not use. Use Poco::Fruit::createComponent() instead.
   Component() = default;
 
   template <typename... Types>
@@ -74,21 +75,21 @@ private:
   friend class Injector;
 
   template <typename... Bindings>
-  friend class Fruit::impl::PartialComponentStorage;
+  friend class Poco::Fruit::impl::PartialComponentStorage;
 
   template <typename Component, typename... Args>
-  friend class Fruit::impl::LazyComponentImpl;
+  friend class Poco::Fruit::impl::LazyComponentImpl;
 
-  friend struct Fruit::impl::ComponentStorageEntry::LazyComponentWithNoArgs;
+  friend struct Poco::Fruit::impl::ComponentStorageEntry::LazyComponentWithNoArgs;
 
   template <typename Component, typename... Args>
-  friend class Fruit::impl::ComponentInterfaceImpl;
+  friend class Poco::Fruit::impl::ComponentInterfaceImpl;
 
-  Fruit::impl::ComponentStorage storage;
+  Poco::Fruit::impl::ComponentStorage storage;
 
-  using Comp = Fruit::impl::meta::Eval<Fruit::impl::meta::ConstructComponentImpl(Fruit::impl::meta::Type<Params>...)>;
+  using Comp = Poco::Fruit::impl::meta::Eval<Poco::Fruit::impl::meta::ConstructComponentImpl(Poco::Fruit::impl::meta::Type<Params>...)>;
 
-  using Check1 = typename Fruit::impl::meta::CheckIfError<Comp>::type;
+  using Check1 = typename Poco::Fruit::impl::meta::CheckIfError<Comp>::type;
   // Force instantiation of Check1.
   static_assert(true || sizeof(Check1), "");
 };
@@ -98,8 +99,8 @@ private:
  *
  * Example usage:
  *
- * Fruit::Component<Foo> getFooComponent() {
- *   return Fruit::createComponent()
+ * Poco::Fruit::Component<Foo> getFooComponent() {
+ *   return Poco::Fruit::createComponent()
  *      .install(getComponent1)
  *      .install(getComponent2)
  *      .bind<Foo, FooImpl>();
@@ -108,8 +109,8 @@ private:
  * Since types are auto-injected when needed, just converting this to the desired component can suffice in some cases,
  * e.g.:
  *
- * Fruit::Component<Foo> getFooComponent() {
- *   return Fruit::createComponent();
+ * Poco::Fruit::Component<Foo> getFooComponent() {
+ *   return Poco::Fruit::createComponent();
  * }
  *
  * That works if Foo has an Inject typedef or a constructor wrapped in INJECT.
@@ -120,7 +121,7 @@ PartialComponent<> createComponent();
  * A partially constructed component.
  *
  * Client code should never write `PartialComponent'; always start the construction of a component with
- * Fruit::createComponent(), and end it by casting the PartialComponent to the desired Component (often done implicitly
+ * Poco::Fruit::createComponent(), and end it by casting the PartialComponent to the desired Component (often done implicitly
  * by returning a PartialComponent from a function that has Component<...> as the return type).
  *
  * The template parameter is used to propagate information about bound types, it is purely an implementation detail;
@@ -130,8 +131,8 @@ PartialComponent<> createComponent();
  *
  * Example usage:
  *
- * Fruit::Component<Foo> getFooComponent() {
- *   return Fruit::createComponent()
+ * Poco::Fruit::Component<Foo> getFooComponent() {
+ *   return Poco::Fruit::createComponent()
  *      .install(getComponent1)
  *      .install(getComponent2)
  *      .bind<Foo, FooImpl>();
@@ -168,8 +169,8 @@ public:
    *   }
    * };
    *
-   * Fruit::Component<MyInterface> getMyInterfaceComponent() {
-   *   return Fruit::createComponent()
+   * Poco::Fruit::Component<MyInterface> getMyInterfaceComponent() {
+   *   return Poco::Fruit::createComponent()
    *      .bind<MyInterface, MyImplementation>();
    * }
    *
@@ -180,9 +181,9 @@ public:
    * for more details), however the interface will then also be considered bound with a constant binding, and you must
    * declare that in the returned Component's type. For example:
    *
-   * Fruit::Component<const MyInterface> getMyInterfaceComponent() {
+   * Poco::Fruit::Component<const MyInterface> getMyInterfaceComponent() {
    *   static const MyImplementation my_implementation = MyImplementation();
-   *   return Fruit::createComponent()
+   *   return Poco::Fruit::createComponent()
    *      .bindInstance(my_implementation)
    *      .bind<MyInterface, MyImplementation>();
    * }
@@ -191,9 +192,9 @@ public:
    * std::function<std::unique_ptr<I>(Args...)> to a std::function<std::unique_ptr<C>(Args...)> or a
    * std::function<C(Args...)>. For example:
    *
-   * Fruit::Component<std::function<std::unique_ptr<MyInterface>(int)>> getIFactoryComponent() {
+   * Poco::Fruit::Component<std::function<std::unique_ptr<MyInterface>(int)>> getIFactoryComponent() {
    *   static const std::function<MyImplementation(int)> cFactory = [](int n) { return MyImplementation(n); };
-   *   return Fruit::createComponent()
+   *   return Poco::Fruit::createComponent()
    *       .bind<MyInterface, MyImplementation>()
    *       .bindInstance(cFactory);
    * }
@@ -208,8 +209,8 @@ public:
    *   ...
    * };
    *
-   * Fruit::Component<std::function<std::unique_ptr<MyInterface>(int)>> getIFactoryComponent() {
-   *   return Fruit::createComponent()
+   * Poco::Fruit::Component<std::function<std::unique_ptr<MyInterface>(int)>> getIFactoryComponent() {
+   *   return Poco::Fruit::createComponent()
    *       .bind<MyInterface, MyImplementation>();
    * }
    *
@@ -237,32 +238,32 @@ public:
    *   }
    * };
    *
-   * Fruit::Component<Foo> getIFactoryComponent() {
-   *   return Fruit::createComponent()
+   * Poco::Fruit::Component<Foo> getIFactoryComponent() {
+   *   return Poco::Fruit::createComponent()
    *       // We want to bind Foo, which requires std::function<std::unique_ptr<MyInterface>(int)>.
    *       // So std::function<std::unique_ptr<MyInterface>(int)> will be bound to
    *       // std::function<std::unique_ptr<MyImplementation>(int)>, and that will be bound using constructor injection.
    *       .bind<MyInterface, MyImplementation>();
    * }
    *
-   * All these cases support annotated injection, just wrap I and/or C in Fruit::Annotated<> if desired. For example:
+   * All these cases support annotated injection, just wrap I and/or C in Poco::Fruit::Annotated<> if desired. For example:
    *
    * struct MyAnnotation{};
    *
-   * Fruit::Component<Fruit::Annotated<MyAnnotation, MyInterface>> getMyInterfaceComponent() {
-   *   return Fruit::createComponent()
-   *      .bind<Fruit::Annotated<MyAnnotation, MyInterface>, MyImplementation>();
+   * Poco::Fruit::Component<Poco::Fruit::Annotated<MyAnnotation, MyInterface>> getMyInterfaceComponent() {
+   *   return Poco::Fruit::createComponent()
+   *      .bind<Poco::Fruit::Annotated<MyAnnotation, MyInterface>, MyImplementation>();
    * }
    */
   template <typename I, typename C>
-  PartialComponent<Fruit::impl::Bind<I, C>, Bindings...> bind();
+  PartialComponent<Poco::Fruit::impl::Bind<I, C>, Bindings...> bind();
 
   /**
    * Registers Signature as the constructor signature to use to inject a type.
    *
    * Example usage:
    *
-   * Fruit::createComponent()
+   * Poco::Fruit::createComponent()
    *     .registerConstructor<Foo(Bar*,Baz*)>() // Registers the constructor Foo::Foo(Bar*,Baz*)
    *
    * It's usually more convenient to use an INJECT macro or Inject typedef instead, e.g.:
@@ -288,7 +289,7 @@ public:
    * or when C is a third-party class that can't be modified.
    *
    * This supports annotated injection, just wrap the desired types (return type and/or argument types of the signature)
-   * with Fruit::Annotated<> if desired. For example:
+   * with Poco::Fruit::Annotated<> if desired. For example:
    *
    * struct Annotation1 {};
    * struct Annotation2 {};
@@ -297,12 +298,12 @@ public:
    *   Foo(Bar* bar) {...}
    * };
    *
-   * Fruit::Component<Fruit::Annotated<Annotation1, Bar>> getBarComponent() {...}
+   * Poco::Fruit::Component<Poco::Fruit::Annotated<Annotation1, Bar>> getBarComponent() {...}
    *
-   * Fruit::Component<Fruit::Annotated<Annotation2, Foo>> getFooComponent() {
-   *   return Fruit::createComponent()
+   * Poco::Fruit::Component<Poco::Fruit::Annotated<Annotation2, Foo>> getFooComponent() {
+   *   return Poco::Fruit::createComponent()
    *       .install(getBarComponent)
-   *       .registerConstructor<Fruit::Annotated<Annotation2, Foo>(Fruit::Annotated<Annotation1, Bar*>)>();
+   *       .registerConstructor<Poco::Fruit::Annotated<Annotation2, Foo>(Poco::Fruit::Annotated<Annotation1, Bar*>)>();
    * }
    *
    * This does *not* support assisted injection, for that you should use registerFactory() instead.
@@ -327,7 +328,7 @@ public:
    * Annotated<Annotation, Provider<const C>>   (for any type `Annotation')
    */
   template <typename Signature>
-  PartialComponent<Fruit::impl::RegisterConstructor<Signature>, Bindings...> registerConstructor();
+  PartialComponent<Poco::Fruit::impl::RegisterConstructor<Signature>, Bindings...> registerConstructor();
 
   /**
    * Use this method to bind the type C to a specific instance.
@@ -338,7 +339,7 @@ public:
    * Example usage:
    *
    * Component<Request> getRequestComponent(Request* request) {
-   *   return Fruit::createComponent()
+   *   return Poco::Fruit::createComponent()
    *       .bindInstance(*request);
    * }
    *
@@ -356,7 +357,7 @@ public:
    * details.
    */
   template <typename C>
-  PartialComponent<Fruit::impl::BindInstance<C, C>, Bindings...> bindInstance(C& instance);
+  PartialComponent<Poco::Fruit::impl::BindInstance<C, C>, Bindings...> bindInstance(C& instance);
 
   /**
    * Similar to the previous, but binds a const&. Note that the reference must still outlive the component/injector
@@ -365,7 +366,7 @@ public:
    *
    * Component<const MyExpensiveClass> getMyExpensiveClassComponent() {
    *   static const MyExpensiveClass my_expensive_class = createMyExpensiveClass();
-   *   return Fruit::createComponent()
+   *   return Poco::Fruit::createComponent()
    *       .bindInstance(my_expensive_class);
    * }
    *
@@ -393,46 +394,46 @@ public:
    * Annotated<Annotation, Provider<C>>         (for any type `Annotation')
    */
   template <typename C>
-  PartialComponent<Fruit::impl::BindConstInstance<C, C>, Bindings...> bindInstance(const C& instance);
+  PartialComponent<Poco::Fruit::impl::BindConstInstance<C, C>, Bindings...> bindInstance(const C& instance);
 
   /**
    * This is deleted to catch cases where the instance would likely be destroyed before the component/injectors.
    */
   template <typename C>
-  PartialComponent<Fruit::impl::BindConstInstance<C, C>, Bindings...> bindInstance(C&&) = delete;
+  PartialComponent<Poco::Fruit::impl::BindConstInstance<C, C>, Bindings...> bindInstance(C&&) = delete;
 
   /**
    * Similar to the first version of bindInstance(), but allows to specify an annotated type that
    * will be bound to the specified value.
-   * For example, to bind an instance to the type Fruit::Annotated<Hostname, std::string>, you can use:
+   * For example, to bind an instance to the type Poco::Fruit::Annotated<Hostname, std::string>, you can use:
    *
-   * Fruit::Component<Fruit::Annotated<Hostname, std::string>> getHostnameComponent(std::string* hostname) {
-   *   Fruit::createComponent()
-   *       .bindInstance<Fruit::Annotated<Hostname, std::string>>(*hostname);
+   * Poco::Fruit::Component<Poco::Fruit::Annotated<Hostname, std::string>> getHostnameComponent(std::string* hostname) {
+   *   Poco::Fruit::createComponent()
+   *       .bindInstance<Poco::Fruit::Annotated<Hostname, std::string>>(*hostname);
    * }
    */
   template <typename AnnotatedType, typename C>
-  PartialComponent<Fruit::impl::BindInstance<AnnotatedType, C>, Bindings...> bindInstance(C& instance);
+  PartialComponent<Poco::Fruit::impl::BindInstance<AnnotatedType, C>, Bindings...> bindInstance(C& instance);
 
   /**
    * Similar to the previous, but binds a const&. Example usage:
    *
-   * Fruit::Component<Fruit::Annotated<Hostname, const std::string>> getHostnameComponent() {
+   * Poco::Fruit::Component<Poco::Fruit::Annotated<Hostname, const std::string>> getHostnameComponent() {
    *   static const std::string hostname = determineHostname();
-   *   Fruit::createComponent()
-   *       .bindInstance<Fruit::Annotated<Hostname, std::string>>(hostname);
+   *   Poco::Fruit::createComponent()
+   *       .bindInstance<Poco::Fruit::Annotated<Hostname, std::string>>(hostname);
    * }
    *
    * See the documentation for the bindInstance() overload that takes a non-annotated const& for more details.
    */
   template <typename AnnotatedType, typename C>
-  PartialComponent<Fruit::impl::BindConstInstance<AnnotatedType, C>, Bindings...> bindInstance(const C& instance);
+  PartialComponent<Poco::Fruit::impl::BindConstInstance<AnnotatedType, C>, Bindings...> bindInstance(const C& instance);
 
   /**
    * This is deleted to catch cases where the instance would likely be destroyed before the component/injectors.
    */
   template <typename AnnotatedType, typename C>
-  PartialComponent<Fruit::impl::BindConstInstance<AnnotatedType, C>, Bindings...> bindInstance(C&& instance);
+  PartialComponent<Poco::Fruit::impl::BindConstInstance<AnnotatedType, C>, Bindings...> bindInstance(C&& instance);
 
   /**
    * Registers `provider' as a provider of C, where provider is a lambda with no captures returning either C or C*
@@ -445,8 +446,8 @@ public:
    *
    * Example:
    *
-   * Fruit::Component<Foo> getFooComponent() {
-   *   return Fruit::createComponent()
+   * Poco::Fruit::Component<Foo> getFooComponent() {
+   *   return Poco::Fruit::createComponent()
    *       .install(getBarComponent)
    *       .install(getBazComponent)
    *       .registerProvider([](Bar* bar, Baz* baz) {
@@ -471,14 +472,14 @@ public:
    *
    * Component<MyClass> getMyClassComponent() {
    *   static const Functor aFunctor(42);
-   *   return Fruit::createComponent()
+   *   return Poco::Fruit::createComponent()
    *       .install(getFooComponent)
    *       .bindInstance(aFunctor)
    *       .registerProvider([](const Functor& functor, Foo* foo) { return functor(foo); });
    * }
    */
   template <typename Lambda>
-  PartialComponent<Fruit::impl::RegisterProvider<Lambda>, Bindings...> registerProvider(Lambda lambda);
+  PartialComponent<Poco::Fruit::impl::RegisterProvider<Lambda>, Bindings...> registerProvider(Lambda lambda);
 
   /**
    * Similar to the previous version of registerProvider(), but allows to specify an annotated type
@@ -488,16 +489,16 @@ public:
    * struct MyAnnotation1 {};
    * struct MyAnnotation2 {};
    *
-   * Component<Fruit::Annotated<Annotation1, Bar>> getBarComponent() {...}
+   * Component<Poco::Fruit::Annotated<Annotation1, Bar>> getBarComponent() {...}
    * Component<Baz> getBazComponent() {...}
    *
-   * Fruit::Component<Fruit::Annotated<Annotation2, Foo>> getFooComponent() {
-   *   return Fruit::createComponent()
+   * Poco::Fruit::Component<Poco::Fruit::Annotated<Annotation2, Foo>> getFooComponent() {
+   *   return Poco::Fruit::createComponent()
    *       .install(getBarComponent)
    *       .install(getBazComponent)
    *       .registerProvider<
-   *           Fruit::Annotated<Annotation2, Foo>(
-   *               Fruit::Annotated<Annotation1, Bar*>,
+   *           Poco::Fruit::Annotated<Annotation2, Foo>(
+   *               Poco::Fruit::Annotated<Annotation1, Bar*>,
    *               Baz*)
    *           >([](Bar* bar, Baz* baz) {
    *              Foo foo(bar, baz);
@@ -507,7 +508,7 @@ public:
    * }
    */
   template <typename AnnotatedSignature, typename Lambda>
-  PartialComponent<Fruit::impl::RegisterProvider<AnnotatedSignature, Lambda>, Bindings...>
+  PartialComponent<Poco::Fruit::impl::RegisterProvider<AnnotatedSignature, Lambda>, Bindings...>
   registerProvider(Lambda lambda);
 
   /**
@@ -525,11 +526,11 @@ public:
    * std::function<std::unique_ptr<I>(Args...)> to a std::function<std::unique_ptr<C>(Args...)> or a
    * std::function<C(Args...)>.
    *
-   * As bind(), this supports annotated injection, just wrap I and/or C in Fruit::Annotated<> if desired. See the
+   * As bind(), this supports annotated injection, just wrap I and/or C in Poco::Fruit::Annotated<> if desired. See the
    * documentation of bind() for more details.
    */
   template <typename I, typename C>
-  PartialComponent<Fruit::impl::AddMultibinding<I, C>, Bindings...> addMultibinding();
+  PartialComponent<Poco::Fruit::impl::AddMultibinding<I, C>, Bindings...> addMultibinding();
 
   /**
    * Similar to bindInstance(), but adds a multibinding instead.
@@ -556,20 +557,20 @@ public:
    *   ...
    * };
    *
-   * Fruit::Component<> getMyComponent() {
+   * Poco::Fruit::Component<> getMyComponent() {
    *   static MyClass x = MyClass(...);
    *   static MyClass y = MyClass(...);
-   *   return Fruit::createComponent()
+   *   return Poco::Fruit::createComponent()
    *       .addInstanceMultibinding(x)
    *       .addInstanceMultibinding(y);
    * }
    *
-   * Fruit::Injector<> injector(getMyComponent);
+   * Poco::Fruit::Injector<> injector(getMyComponent);
    * // This vector contains {&x, &y}.
    * const std::vector<MyClass*>& objects = injector.getMultibindings<MyClass>();
    */
   template <typename C>
-  PartialComponent<Fruit::impl::AddInstanceMultibinding<C>, Bindings...> addInstanceMultibinding(C& instance);
+  PartialComponent<Poco::Fruit::impl::AddInstanceMultibinding<C>, Bindings...> addInstanceMultibinding(C& instance);
 
   /**
    * Similar to the previous version of addInstanceMultibinding(), but allows to specify an
@@ -582,20 +583,20 @@ public:
    *   ...
    * };
    *
-   * Fruit::Component<> getMyComponent() {
+   * Poco::Fruit::Component<> getMyComponent() {
    *   static MyClass x = MyClass(...);
    *   static MyClass y = MyClass(...);
-   *   return Fruit::createComponent()
-   *       .addInstanceMultibinding<Fruit::Annotated<MyAnnotation, MyClass>>(x)
-   *       .addInstanceMultibinding<Fruit::Annotated<MyAnnotation, MyClass>>(y);
+   *   return Poco::Fruit::createComponent()
+   *       .addInstanceMultibinding<Poco::Fruit::Annotated<MyAnnotation, MyClass>>(x)
+   *       .addInstanceMultibinding<Poco::Fruit::Annotated<MyAnnotation, MyClass>>(y);
    * }
    *
-   * Fruit::Injector<> injector(getMyComponent);
+   * Poco::Fruit::Injector<> injector(getMyComponent);
    * // This vector contains {&x, &y}.
-   * const std::vector<MyClass*>& objects = injector.getMultibindings<Fruit::Annotated<MyAnnotation, MyClass>>();
+   * const std::vector<MyClass*>& objects = injector.getMultibindings<Poco::Fruit::Annotated<MyAnnotation, MyClass>>();
    */
   template <typename AnnotatedC, typename C>
-  PartialComponent<Fruit::impl::AddInstanceMultibinding<AnnotatedC>, Bindings...> addInstanceMultibinding(C& instance);
+  PartialComponent<Poco::Fruit::impl::AddInstanceMultibinding<AnnotatedC>, Bindings...> addInstanceMultibinding(C& instance);
 
   /**
    * Equivalent to calling addInstanceMultibinding() for each elements of `instances'.
@@ -610,20 +611,20 @@ public:
    *   ...
    * };
    *
-   * Fruit::Component<> getMyComponent() {
+   * Poco::Fruit::Component<> getMyComponent() {
    *   static MyClass x = MyClass(...);
    *   static std::vector<MyClass> other_objects{MyClass(...), MyClass(...)};
-   *   return Fruit::createComponent()
+   *   return Poco::Fruit::createComponent()
    *       .addInstanceMultibinding(x)
    *       .addInstanceMultibindings(other_objects);
    * }
    *
-   * Fruit::Injector<> injector(getMyComponent);
+   * Poco::Fruit::Injector<> injector(getMyComponent);
    * // This vector contains {&x, &(other_objects[0]), &(other_objects[1])}.
    * const std::vector<MyClass*>& objects = injector.getMultibindings<MyClass>();
    */
   template <typename C>
-  PartialComponent<Fruit::impl::AddInstanceVectorMultibindings<C>, Bindings...>
+  PartialComponent<Poco::Fruit::impl::AddInstanceVectorMultibindings<C>, Bindings...>
   addInstanceMultibindings(std::vector<C>& instances);
 
   /**
@@ -635,20 +636,20 @@ public:
    *   ...
    * };
    *
-   * Fruit::Component<> getMyComponent() {
+   * Poco::Fruit::Component<> getMyComponent() {
    *   static MyClass x = MyClass(...);
    *   static std::vector<MyClass> other_objects{MyClass(...), MyClass(...)};
-   *   return Fruit::createComponent()
-   *       .addInstanceMultibinding<Fruit::Annotated<MyAnnotation, MyClass>>(x)
-   *       .addInstanceMultibindings<Fruit::Annotated<MyAnnotation, MyClass>>(other_objects);
+   *   return Poco::Fruit::createComponent()
+   *       .addInstanceMultibinding<Poco::Fruit::Annotated<MyAnnotation, MyClass>>(x)
+   *       .addInstanceMultibindings<Poco::Fruit::Annotated<MyAnnotation, MyClass>>(other_objects);
    * }
    *
-   * Fruit::Injector<> injector(getMyComponent);
+   * Poco::Fruit::Injector<> injector(getMyComponent);
    * // This vector contains {&x, &(other_objects[0]), &(other_objects[1])}.
-   * const std::vector<MyClass*>& objects = injector.getMultibindings<Fruit::Annotated<MyAnnotation, MyClass>>();
+   * const std::vector<MyClass*>& objects = injector.getMultibindings<Poco::Fruit::Annotated<MyAnnotation, MyClass>>();
    */
   template <typename AnnotatedC, typename C>
-  PartialComponent<Fruit::impl::AddInstanceVectorMultibindings<AnnotatedC>, Bindings...>
+  PartialComponent<Poco::Fruit::impl::AddInstanceVectorMultibindings<AnnotatedC>, Bindings...>
   addInstanceMultibindings(std::vector<C>& instances);
 
   /**
@@ -671,14 +672,14 @@ public:
    *   MyClass(int n) {...}
    * };
    *
-   * Fruit::Component<> getMyComponent() {
-   *   return Fruit::createComponent()
+   * Poco::Fruit::Component<> getMyComponent() {
+   *   return Poco::Fruit::createComponent()
    *       .addMultibindingProvider([]() { return MyClass(10); })
    *       .addMultibindingProvider([]() { return MyClass(10); })
    *       .addMultibindingProvider([]() { return MyClass(20); });
    * }
    *
-   * Fruit::Injector<> injector(getMyComponent);
+   * Poco::Fruit::Injector<> injector(getMyComponent);
    * // This vector contains {&x, &y, &z} where x and y are MyClass objects constructed with 10 and z is a MyClass
    * // object constructed with 20.
    * const std::vector<MyClass*>& objects = injector.getMultibindings<MyClass>();
@@ -688,7 +689,7 @@ public:
    * before returning it.
    */
   template <typename Lambda>
-  PartialComponent<Fruit::impl::AddMultibindingProvider<Lambda>, Bindings...> addMultibindingProvider(Lambda lambda);
+  PartialComponent<Poco::Fruit::impl::AddMultibindingProvider<Lambda>, Bindings...> addMultibindingProvider(Lambda lambda);
 
   /**
    * Similar to the previous version of addMultibindingProvider(), but allows to specify an annotated type
@@ -700,16 +701,16 @@ public:
    * struct MyAnnotation1 {};
    * struct MyAnnotation2 {};
    *
-   * Component<Fruit::Annotated<Annotation1, Bar>> getBarComponent() {...}
+   * Component<Poco::Fruit::Annotated<Annotation1, Bar>> getBarComponent() {...}
    * Component<Baz> getBazComponent() {...}
    *
-   * Fruit::Component<> getFooComponent() {
-   *   return Fruit::createComponent()
+   * Poco::Fruit::Component<> getFooComponent() {
+   *   return Poco::Fruit::createComponent()
    *       .install(getBarComponent)
    *       .install(getBazComponent)
    *       .registerMultibindingProvider<
-   *           Fruit::Annotated<Annotation2, Foo>(
-   *               Fruit::Annotated<Annotation1, Bar*>,
+   *           Poco::Fruit::Annotated<Annotation2, Foo>(
+   *               Poco::Fruit::Annotated<Annotation1, Bar*>,
    *               Baz*)
    *           >([](Bar* bar, Baz* baz) {
    *              Foo foo(bar, baz);
@@ -719,13 +720,13 @@ public:
    * }
    *
    *
-   * Fruit::Injector<> injector(getFooComponent);
+   * Poco::Fruit::Injector<> injector(getFooComponent);
    * // This vector contains {&x} where x is an instance of Foo constructed using the lambda above, with injected
    * // instances of Bar and Baz.
-   * const std::vector<MyClass*>& objects = injector.getMultibindings<Fruit::Annotated<Annotation2, Foo>>();
+   * const std::vector<MyClass*>& objects = injector.getMultibindings<Poco::Fruit::Annotated<Annotation2, Foo>>();
    */
   template <typename AnnotatedSignature, typename Lambda>
-  PartialComponent<Fruit::impl::AddMultibindingProvider<AnnotatedSignature, Lambda>, Bindings...>
+  PartialComponent<Poco::Fruit::impl::AddMultibindingProvider<AnnotatedSignature, Lambda>, Bindings...>
   addMultibindingProvider(Lambda lambda);
 
   /**
@@ -742,9 +743,9 @@ public:
    * Example:
    *
    * Component<std::function<std::unique_ptr<MyClass>(int)>> getMyClassComponent() {
-   *   Fruit::createComponent()
+   *   Poco::Fruit::createComponent()
    *       .install(getFooComponent)
-   *       .registerFactory<std::unique_ptr<MyClass>(Foo*, Fruit::Assisted<int>)>(
+   *       .registerFactory<std::unique_ptr<MyClass>(Foo*, Poco::Fruit::Assisted<int>)>(
    *          [](Foo* foo, int n) {
    *              return std::unique_ptr<MyClass>(new MyClass(foo, n));
    *          });
@@ -794,7 +795,7 @@ public:
    *
    * Component<std::function<std::unique_ptr<MyClass>(int)>> getMyClassComponent() {
    *   static const Functor aFunctor(42.0);
-   *   return Fruit::createComponent()
+   *   return Poco::Fruit::createComponent()
    *       ... // Bind Foo
    *       .bindInstance(aFunctor)
    *       .registerFactory<
@@ -808,20 +809,20 @@ public:
    * }
    */
   template <typename DecoratedSignature, typename Factory>
-  PartialComponent<Fruit::impl::RegisterFactory<DecoratedSignature, Factory>, Bindings...>
+  PartialComponent<Poco::Fruit::impl::RegisterFactory<DecoratedSignature, Factory>, Bindings...>
   registerFactory(Factory factory);
 
   /**
    * Adds the bindings (and multibindings) in the Component obtained by calling fun(args...) to the current component.
    *
    * For example, these component functions:
-   * Fruit::Component<Foo> getComponent1();
-   * Fruit::Component<Bar> getComponent2(int n, std::string s);
+   * Poco::Fruit::Component<Foo> getComponent1();
+   * Poco::Fruit::Component<Bar> getComponent2(int n, std::string s);
    *
    * can be combined as:
    *
-   * Fruit::Component<Foo, Bar> getFooBarComponent() {
-   *   return Fruit::createComponent()
+   * Poco::Fruit::Component<Foo, Bar> getFooBarComponent() {
+   *   return Poco::Fruit::createComponent()
    *      .install(getComponent1)
    *      .install(getComponent2, 5, std::string("Hello"));
    * }
@@ -842,8 +843,8 @@ public:
    *
    * A lambda with no captures can also be used as the first argument, for example:
    *
-   * Fruit::Component<Foo, Bar> getFooBarComponent() {
-   *   return Fruit::createComponent()
+   * Poco::Fruit::Component<Foo, Bar> getFooBarComponent() {
+   *   return Poco::Fruit::createComponent()
    *      .install([]() { return getComponent1(); })
    *      .install([](int n) { return getComponent2(n, std::string("Hello")); }, 5);
    * }
@@ -856,27 +857,27 @@ public:
    * Fruit automatically de-duplicates install() calls, so they're effectively memoized (within each injector).
    * For example, in this code:
    *
-   * Fruit::Component<Foo> getFooComponent() {...}
+   * Poco::Fruit::Component<Foo> getFooComponent() {...}
    *
-   * Fruit::Component<Bar> getBarComponent() {
-   *   return Fruit::createComponent()
+   * Poco::Fruit::Component<Bar> getBarComponent() {
+   *   return Poco::Fruit::createComponent()
    *       .install(getFooComponent)
    *       .bind<Bar, BarImpl>();
    * }
    *
-   * Fruit::Component<Baz> getBazComponent() {
-   *   return Fruit::createComponent()
+   * Poco::Fruit::Component<Baz> getBazComponent() {
+   *   return Poco::Fruit::createComponent()
    *       .install(getFooComponent)
    *       .bind<Baz, BazImpl>();
    * }
    *
-   * Fruit::Component<Bar, Baz> getBarBazComponent() {
-   *   return Fruit::createComponent()
+   * Poco::Fruit::Component<Bar, Baz> getBarBazComponent() {
+   *   return Poco::Fruit::createComponent()
    *       .install(getBarComponent)
    *       .install(getBazComponent);
    * }
    *
-   * Fruit::Injector<Bar, Baz> injector(getBarBazComponent);
+   * Poco::Fruit::Injector<Bar, Baz> injector(getBarBazComponent);
    *
    *
    * getFooComponent() will only be called once.
@@ -888,30 +889,30 @@ public:
    * for that argument when installing the component.
    */
   template <typename... OtherComponentParams, typename... FormalArgs, typename... Args>
-  PartialComponent<Fruit::impl::InstallComponent<Fruit::Component<OtherComponentParams...>(FormalArgs...)>, Bindings...>
-  install(Fruit::Component<OtherComponentParams...> (*)(FormalArgs...), Args&&... args);
+  PartialComponent<Poco::Fruit::impl::InstallComponent<Poco::Fruit::Component<OtherComponentParams...>(FormalArgs...)>, Bindings...>
+  install(Poco::Fruit::Component<OtherComponentParams...> (*)(FormalArgs...), Args&&... args);
 
   /**
    * Similar to install(), but allows to install a variable number of component functions instead of just 1. This
    * additional flexibility is sometimes useful in templated `get*Component` functions and for other advanced use-cases.
    *
-   * To use this method, wrap each get*Component function with its args in a Fruit::ComponentFunction<...> object (using
-   * the helper function Fruit::componentFunction), then pass all the Fruit::ComponentFunction<...> objects (which can
+   * To use this method, wrap each get*Component function with its args in a Poco::Fruit::ComponentFunction<...> object (using
+   * the helper function Poco::Fruit::componentFunction), then pass all the Poco::Fruit::ComponentFunction<...> objects (which can
    * potentially have different params) to this method.
    *
    * For example:
    *
-   * Fruit::Component<Foo, Bar> getBarBazComponent() {
-   *   return Fruit::createComponent()
+   * Poco::Fruit::Component<Foo, Bar> getBarBazComponent() {
+   *   return Poco::Fruit::createComponent()
    *       .installComponentFunctions(
-   *           Fruit::componentFunction(getFooComponent, a, b, c),
-   *           Fruit::componentFunction(getBarComponent, x, y));
+   *           Poco::Fruit::componentFunction(getFooComponent, a, b, c),
+   *           Poco::Fruit::componentFunction(getBarComponent, x, y));
    * }
    *
    * Is equivalent to:
    *
-   * Fruit::Component<Foo, Bar> getBarBazComponent() {
-   *   return Fruit::createComponent()
+   * Poco::Fruit::Component<Foo, Bar> getBarBazComponent() {
+   *   return Poco::Fruit::createComponent()
    *       .install(getFooComponent, a, b, c)
    *       .install(getBarComponent, x, y);
    * }
@@ -919,7 +920,7 @@ public:
    * This is a simple example to show the idea, however in a simple case like this it's easier to just use install().
    */
   template <typename... ComponentFunctions>
-  PartialComponent<Fruit::impl::InstallComponentFunctions<ComponentFunctions...>, Bindings...>
+  PartialComponent<Poco::Fruit::impl::InstallComponentFunctions<ComponentFunctions...>, Bindings...>
   installComponentFunctions(ComponentFunctions... componentFunctions);
 
   /**
@@ -928,12 +929,12 @@ public:
   template <typename ReplacedComponent, typename... GetReplacedComponentFormalArgs>
   class PartialComponentWithReplacementInProgress {
   private:
-    using storage_t = Fruit::impl::PartialComponentStorage<
-        Fruit::impl::PartialReplaceComponent<ReplacedComponent(GetReplacedComponentFormalArgs...)>, Bindings...>;
+    using storage_t = Poco::Fruit::impl::PartialComponentStorage<
+        Poco::Fruit::impl::PartialReplaceComponent<ReplacedComponent(GetReplacedComponentFormalArgs...)>, Bindings...>;
 
   public:
     template <typename... FormalArgs, typename... Args>
-    PartialComponent<Fruit::impl::ReplaceComponent<ReplacedComponent(GetReplacedComponentFormalArgs...),
+    PartialComponent<Poco::Fruit::impl::ReplaceComponent<ReplacedComponent(GetReplacedComponentFormalArgs...),
                                                    ReplacedComponent(FormalArgs...)>,
                      Bindings...>
     with(ReplacedComponent (*)(FormalArgs...), Args&&... args);
@@ -951,16 +952,16 @@ public:
    * This allows to replace an installed Component with another one. This is useful for testing.
    * For example, if you have these components:
    *
-   * Fruit::Component<MyDependency> getDependencyComponent() {...}
+   * Poco::Fruit::Component<MyDependency> getDependencyComponent() {...}
    *
-   * Fruit::Component<Foo> getFooComponent() {
-   *     return Fruit::createComponent()
+   * Poco::Fruit::Component<Foo> getFooComponent() {
+   *     return Poco::Fruit::createComponent()
    *         .install(getDependencyComponent)
    *         .bind<Foo, FooImpl>();
    * }
    *
-   * Fruit::Component<Bar> getBarComponent() {
-   *     return Fruit::createComponent()
+   * Poco::Fruit::Component<Bar> getBarComponent() {
+   *     return Poco::Fruit::createComponent()
    *         .install(getFooComponent)
    *         .bind<Bar, BarImpl>();
    * }
@@ -968,20 +969,20 @@ public:
    * When you test Bar, you might want to replace getDependencyComponent with a component that binds a fake
    * MyDependency:
    *
-   * Fruit::Component<MyDependency> getFakeDependencyComponent() {...}
+   * Poco::Fruit::Component<MyDependency> getFakeDependencyComponent() {...}
    *
    * To do so, you can define a component like:
    *
-   * Fruit::Component<Bar> getBarComponentWithFakeDependency() {
-   *     return Fruit::createComponent()
+   * Poco::Fruit::Component<Bar> getBarComponentWithFakeDependency() {
+   *     return Poco::Fruit::createComponent()
    *         .replace(getDependencyComponent).with(getFakeDependencyComponent)
    *         .install(getBarComponent);
    * }
    *
    * This component is equivalent to:
    *
-   * Fruit::Component<Bar> getBarComponentWithFakeDependency() {
-   *     return Fruit::createComponent()
+   * Poco::Fruit::Component<Bar> getBarComponentWithFakeDependency() {
+   *     return Poco::Fruit::createComponent()
    *         .install(getFakeDependencyComponent)
    *         .bind<Foo, FooImpl>()
    *         .bind<Bar, BarImpl>();
@@ -1004,20 +1005,20 @@ public:
    * The component types returned by the replaced and replacement components must be the same. For example, this is NOT
    * allowed:
    *
-   * Fruit::Component<MyDependency, SomethingElse> getFakeDependencyComponentWithSomethingElse() {...}
+   * Poco::Fruit::Component<MyDependency, SomethingElse> getFakeDependencyComponentWithSomethingElse() {...}
    *
-   * Fruit::Component<Bar> getBarComponentWithFakeDependency() {
-   *     return Fruit::createComponent()
+   * Poco::Fruit::Component<Bar> getBarComponentWithFakeDependency() {
+   *     return Poco::Fruit::createComponent()
    *         .replace(getDependencyComponent).with(getFakeDependencyComponentWithSomethingElse) // error!
    *         .install(getBarComponent);
    * }
    *
    * But replacing a replaced component is allowed:
    *
-   * Fruit::Component<MyDependency> getOtherFakeDependencyComponent() {...}
+   * Poco::Fruit::Component<MyDependency> getOtherFakeDependencyComponent() {...}
    *
-   * Fruit::Component<Bar> getBarComponentWithOtherFakeDependency() {
-   *     return Fruit::createComponent()
+   * Poco::Fruit::Component<Bar> getBarComponentWithOtherFakeDependency() {
+   *     return Poco::Fruit::createComponent()
    *         // The two replacements can appear in any order, but they must both be before the install().
    *         .replace(getFakeDependencyComponent).with(getOtherFakeDependencyComponent)
    *         .replace(getDependencyComponent).with(getFakeDependencyComponent)
@@ -1029,13 +1030,13 @@ public:
    *
    * And note that you can also replace components that define replacements, for example:
    *
-   * Fruit::Component<> getFakeDependencyReplacementComponent() {
-   *     return Fruit::createComponent()
+   * Poco::Fruit::Component<> getFakeDependencyReplacementComponent() {
+   *     return Poco::Fruit::createComponent()
    *         .replace(getDependencyComponent).with(getFakeDependencyComponentWithSomethingElse);
    * }
    *
-   * Fruit::Component<...> getComponent() {
-   *     return Fruit::createComponent()
+   * Poco::Fruit::Component<...> getComponent() {
+   *     return Poco::Fruit::createComponent()
    *         .replace(getFakeDependencyReplacementComponent).with(...)
    *         .install(...);
    * }
@@ -1046,12 +1047,12 @@ public:
    */
   template <typename... OtherComponentParams, typename... FormalArgs, typename... Args>
   typename PartialComponent<Bindings...>::template PartialComponentWithReplacementInProgress<
-      Fruit::Component<OtherComponentParams...>, FormalArgs...>
-  replace(Fruit::Component<OtherComponentParams...> (*)(FormalArgs...), Args&&... args);
+      Poco::Fruit::Component<OtherComponentParams...>, FormalArgs...>
+  replace(Poco::Fruit::Component<OtherComponentParams...> (*)(FormalArgs...), Args&&... args);
 
   ~PartialComponent() = default;
 
-  // Do not use. Use Fruit::createComponent() instead.
+  // Do not use. Use Poco::Fruit::createComponent() instead.
   PartialComponent() = delete;
 
   // Do not use. Only use PartialComponent for temporaries, and then convert it to a Component.
@@ -1065,17 +1066,18 @@ private:
   template <typename... Types>
   friend class Component;
 
-  Fruit::impl::PartialComponentStorage<Bindings...> storage;
+  Poco::Fruit::impl::PartialComponentStorage<Bindings...> storage;
 
-  PartialComponent(Fruit::impl::PartialComponentStorage<Bindings...> storage); // NOLINT(google-explicit-constructor)
+  PartialComponent(Poco::Fruit::impl::PartialComponentStorage<Bindings...> storage); // NOLINT(google-explicit-constructor)
 
   template <typename NewBinding>
-  using OpFor = typename Fruit::impl::meta::OpForComponent<Bindings...>::template AddBinding<NewBinding>;
+  using OpFor = typename Poco::Fruit::impl::meta::OpForComponent<Bindings...>::template AddBinding<NewBinding>;
 
   friend PartialComponent<> createComponent();
 };
 
 } // namespace Fruit
+} // namespace Poco
 
 #include <Poco/Fruit/impl/component.defn.h>
 

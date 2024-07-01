@@ -29,6 +29,6 @@ public:
   virtual std::string get(std::string key) = 0;
 };
 
-Fruit::Component<KeyValueStorage> getKeyValueStorageComponent();
+Poco::Fruit::Component<KeyValueStorage> getKeyValueStorageComponent();
 
 #endif // FRUIT_KEY_VALUE_STORAGE_H

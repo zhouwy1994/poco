@@ -19,6 +19,7 @@
 
 #include <Poco/Fruit/impl/util/hash_codes.h>
 
+namespace Poco{
 namespace Fruit {
 namespace impl {
 
@@ -66,5 +67,6 @@ inline std::size_t combineHashes(std::size_t h1, std::size_t h2) {
 
 } // namespace impl
 } // namespace Fruit
+} // namespace Poco
 
 #endif // FRUIT_HASH_CODES_DEFN_H

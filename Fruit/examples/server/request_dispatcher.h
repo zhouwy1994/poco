@@ -29,6 +29,6 @@ public:
   virtual void handleRequest() = 0;
 };
 
-Fruit::Component<Fruit::Required<Request, ServerContext>, RequestDispatcher> getRequestDispatcherComponent();
+Poco::Fruit::Component<Poco::Fruit::Required<Request, ServerContext>, RequestDispatcher> getRequestDispatcherComponent();
 
 #endif // REQUEST_DISPATCHER_H

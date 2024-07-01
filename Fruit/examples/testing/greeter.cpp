@@ -25,7 +25,7 @@ public:
   }
 };
 
-Fruit::Component<Greeter> getGreeterComponent() {
-  return Fruit::createComponent()
+Poco::Fruit::Component<Greeter> getGreeterComponent() {
+  return Poco::Fruit::createComponent()
       .bind<Greeter, GreeterImpl>();
 }

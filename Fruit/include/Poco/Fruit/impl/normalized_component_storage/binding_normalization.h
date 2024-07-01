@@ -28,6 +28,7 @@
 #include <Poco/Fruit/impl/normalized_component_storage/normalized_component_storage.h>
 #include <Poco/Fruit/impl/util/hash_helpers.h>
 
+namespace Poco{
 namespace Fruit {
 namespace impl {
 
@@ -367,5 +368,6 @@ private:
 
 } // namespace impl
 } // namespace Fruit
+} // namespace Poco
 
 #endif // FRUIT_BINDING_NORMALIZATION_H

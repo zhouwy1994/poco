@@ -19,6 +19,7 @@
 
 #include <Poco/Fruit/impl/injection_errors.h>
 
+namespace Poco{
 namespace Fruit {
 namespace impl {
 namespace meta {
@@ -106,5 +107,6 @@ struct ProofNotEntailedByForestBecauseHpsNotASubsetErrorTag {
 } // namespace meta
 } // namespace impl
 } // namespace Fruit
+} // namespace Poco
 
 #endif // FRUIT_INJECTION_DEBUG_ERRORS_H

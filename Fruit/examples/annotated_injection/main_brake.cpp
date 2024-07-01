@@ -25,6 +25,6 @@ public:
   }
 };
 
-Fruit::Component<Fruit::Annotated<MainBrake, Brake>> getMainBrakeComponent() {
-  return Fruit::createComponent().bind<Fruit::Annotated<MainBrake, Brake>, MainBrakeImpl>();
+Poco::Fruit::Component<Poco::Fruit::Annotated<MainBrake, Brake>> getMainBrakeComponent() {
+  return Poco::Fruit::createComponent().bind<Poco::Fruit::Annotated<MainBrake, Brake>, MainBrakeImpl>();
 }

@@ -28,6 +28,6 @@ public:
   }
 };
 
-Fruit::Component<Fruit::Required<Adder>, Incrementer> getIncrementerImplComponent() {
-  return Fruit::createComponent().bind<Incrementer, IncrementerImpl>();
+Poco::Fruit::Component<Poco::Fruit::Required<Adder>, Incrementer> getIncrementerImplComponent() {
+  return Poco::Fruit::createComponent().bind<Incrementer, IncrementerImpl>();
 }

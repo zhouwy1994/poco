@@ -22,6 +22,7 @@
 #include <utility>
 #include <functional>
 
+namespace Poco{
 namespace Fruit {
 namespace impl {
 
@@ -47,5 +48,6 @@ FRUIT_ALWAYS_INLINE inline int checkAcceptableComponentInstallArg() {
 
 } // namespace impl
 } // namespace Fruit
+} // namespace Poco
 
 #endif // FRUIT_COMPONENT_INSTALL_ARG_CHECKS_DEFN_H

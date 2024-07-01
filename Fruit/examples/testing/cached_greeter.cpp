@@ -43,9 +43,9 @@ public:
   }
 };
 
-Fruit::Component<Fruit::Annotated<Cached, Greeter>> getCachedGreeterComponent() {
-  return Fruit::createComponent()
-      .bind<Fruit::Annotated<Cached, Greeter>, CachedGreeterImpl>()
+Poco::Fruit::Component<Poco::Fruit::Annotated<Cached, Greeter>> getCachedGreeterComponent() {
+  return Poco::Fruit::createComponent()
+      .bind<Poco::Fruit::Annotated<Cached, Greeter>, CachedGreeterImpl>()
       .install(getKeyValueStorageComponent)
       .install(getGreeterComponent);
 }

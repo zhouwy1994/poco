@@ -25,6 +25,7 @@
 #include <Poco/Fruit/impl/fruit-config.h>
 #include <Poco/Fruit/impl/fruit_assert.h>
 
+namespace Poco{
 namespace Fruit {
 namespace impl {
 
@@ -118,10 +119,10 @@ struct GetTypeInfoForType {
 };
 
 template <typename Annotation, typename T>
-struct GetTypeInfoForType<Fruit::Annotated<Annotation, T>> {
+struct GetTypeInfoForType<Poco::Fruit::Annotated<Annotation, T>> {
   constexpr TypeInfo operator()() const {
 #if FRUIT_HAS_TYPEID
-    return TypeInfo(typeid(Fruit::Annotated<Annotation, T>), GetConcreteTypeInfo<T>()());
+    return TypeInfo(typeid(Poco::Fruit::Annotated<Annotation, T>), GetConcreteTypeInfo<T>()());
 #else
     return TypeInfo(GetConcreteTypeInfo<T>()());
 #endif
@@ -145,7 +146,7 @@ template <typename L>
 struct GetTypeIdsForListHelper;
 
 template <typename... Ts>
-struct GetTypeIdsForListHelper<Fruit::impl::meta::Vector<Ts...>> {
+struct GetTypeIdsForListHelper<Poco::Fruit::impl::meta::Vector<Ts...>> {
   std::vector<TypeId, ArenaAllocator<TypeId>> operator()(MemoryPool& memory_pool) {
     return std::vector<TypeId, ArenaAllocator<TypeId>>(std::initializer_list<TypeId>{getTypeId<Ts>()...}, ArenaAllocator<TypeId>{memory_pool});
   }
@@ -166,11 +167,12 @@ inline std::ostream& operator<<(std::ostream& os, TypeId type) {
 
 } // namespace impl
 } // namespace Fruit
+} // namespace Poco
 
 namespace std {
 
-inline std::size_t hash<Fruit::impl::TypeId>::operator()(Fruit::impl::TypeId type) const {
-  return hash<const Fruit::impl::TypeInfo*>()(type.type_info);
+inline std::size_t hash<Poco::Fruit::impl::TypeId>::operator()(Poco::Fruit::impl::TypeId type) const {
+  return hash<const Poco::Fruit::impl::TypeInfo*>()(type.type_info);
 }
 
 } // namespace std

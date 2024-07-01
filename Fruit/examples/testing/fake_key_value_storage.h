@@ -19,6 +19,6 @@
 
 #include "key_value_storage.h"
 
-Fruit::Component<KeyValueStorage> getFakeKeyValueStorageComponent();
+Poco::Fruit::Component<KeyValueStorage> getFakeKeyValueStorageComponent();
 
 #endif // FRUIT_FAKE_KEY_VALUE_STORAGE_H

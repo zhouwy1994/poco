@@ -36,7 +36,7 @@ public:
   }
 };
 
-Fruit::Component<KeyValueStorage> getKeyValueStorageComponent() {
-  return Fruit::createComponent()
+Poco::Fruit::Component<KeyValueStorage> getKeyValueStorageComponent() {
+  return Poco::Fruit::createComponent()
       .bind<KeyValueStorage, KeyValueStorageImpl>();
 }

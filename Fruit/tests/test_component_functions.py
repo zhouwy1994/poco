@@ -50,18 +50,18 @@ class TestComponentFunctions(parameterized.TestCase):
               };
             }
     
-            Fruit::Component<X> getParentComponent(int, std::string, Arg, Arg) {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<X> getParentComponent(int, std::string, Arg, Arg) {
+              return Poco::Fruit::createComponent()
                 .registerProvider([]() { return X(5); });
             }
     
-            Fruit::Component<X> getComponent() {
-              return Fruit::createComponent()
-                .installComponentFunctions(Fruit::componentFunction(getParentComponent, 5, std::string("Hello"), Arg{}, 15));
+            Poco::Fruit::Component<X> getComponent() {
+              return Poco::Fruit::createComponent()
+                .installComponentFunctions(Poco::Fruit::componentFunction(getParentComponent, 5, std::string("Hello"), Arg{}, 15));
             }
     
             int main() {
-              Fruit::Injector<X> injector(getComponent);
+              Poco::Fruit::Injector<X> injector(getComponent);
               X x = injector.get<X>();
               Assert(x.n == 5);
             }
@@ -75,18 +75,18 @@ class TestComponentFunctions(parameterized.TestCase):
               X(int n) : n(n) {}
             };
             
-            Fruit::Component<X> getParentComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<X> getParentComponent() {
+              return Poco::Fruit::createComponent()
                 .registerProvider([]() { return X(5); });
             }
     
-            Fruit::Component<X> getComponent() {
-              return Fruit::createComponent()
-                .installComponentFunctions(Fruit::componentFunction(getParentComponent));
+            Poco::Fruit::Component<X> getComponent() {
+              return Poco::Fruit::createComponent()
+                .installComponentFunctions(Poco::Fruit::componentFunction(getParentComponent));
             }
     
             int main() {
-              Fruit::Injector<X> injector(getComponent);
+              Poco::Fruit::Injector<X> injector(getComponent);
               X x = injector.get<X>();
               Assert(x.n == 5);
             }
@@ -100,18 +100,18 @@ class TestComponentFunctions(parameterized.TestCase):
               X(int n) : n(n) {}
             };
             
-            Fruit::Component<X> getParentComponent(std::string) {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<X> getParentComponent(std::string) {
+              return Poco::Fruit::createComponent()
                 .registerProvider([]() { return X(5); });
             }
     
-            Fruit::Component<X> getComponent() {
-              return Fruit::createComponent()
-                .installComponentFunctions(Fruit::componentFunction(getParentComponent, std::string("Hello")));
+            Poco::Fruit::Component<X> getComponent() {
+              return Poco::Fruit::createComponent()
+                .installComponentFunctions(Poco::Fruit::componentFunction(getParentComponent, std::string("Hello")));
             }
     
             int main() {
-              Fruit::Injector<X> injector(getComponent);
+              Poco::Fruit::Injector<X> injector(getComponent);
               X x = injector.get<X>();
               Assert(x.n == 5);
             }
@@ -139,11 +139,11 @@ class TestComponentFunctions(parameterized.TestCase):
               };
             }
     
-            Fruit::Component<X> getParentComponent(int, std::string, Arg);
+            Poco::Fruit::Component<X> getParentComponent(int, std::string, Arg);
     
-            Fruit::Component<X> getComponent() {
-              return Fruit::createComponent()
-                .installComponentFunctions(Fruit::componentFunction(getParentComponent, 5, std::string("Hello"), Arg{}));
+            Poco::Fruit::Component<X> getComponent() {
+              return Poco::Fruit::createComponent()
+                .installComponentFunctions(Poco::Fruit::componentFunction(getParentComponent, 5, std::string("Hello"), Arg{}));
             }
             '''
         expect_generic_compile_error(
@@ -177,11 +177,11 @@ class TestComponentFunctions(parameterized.TestCase):
               };
             }
     
-            Fruit::Component<X> getParentComponent(int, std::string, Arg);
+            Poco::Fruit::Component<X> getParentComponent(int, std::string, Arg);
     
-            Fruit::Component<X> getComponent() {
-              return Fruit::createComponent()
-                .installComponentFunctions(Fruit::componentFunction(getParentComponent, 5, std::string("Hello"), 15));
+            Poco::Fruit::Component<X> getComponent() {
+              return Poco::Fruit::createComponent()
+                .installComponentFunctions(Poco::Fruit::componentFunction(getParentComponent, 5, std::string("Hello"), 15));
             }
             '''
         expect_generic_compile_error(
@@ -217,11 +217,11 @@ class TestComponentFunctions(parameterized.TestCase):
               };
             }
     
-            Fruit::Component<X> getParentComponent(int, std::string, Arg);
+            Poco::Fruit::Component<X> getParentComponent(int, std::string, Arg);
     
-            Fruit::Component<X> getComponent() {
-              return Fruit::createComponent()
-                .installComponentFunctions(Fruit::componentFunction(getParentComponent, 5, std::string("Hello"), Arg{}));
+            Poco::Fruit::Component<X> getComponent() {
+              return Poco::Fruit::createComponent()
+                .installComponentFunctions(Poco::Fruit::componentFunction(getParentComponent, 5, std::string("Hello"), Arg{}));
             }
             '''
         expect_generic_compile_error(
@@ -260,11 +260,11 @@ class TestComponentFunctions(parameterized.TestCase):
               };
             }
     
-            Fruit::Component<X> getParentComponent(int, std::string, Arg);
+            Poco::Fruit::Component<X> getParentComponent(int, std::string, Arg);
     
-            Fruit::Component<X> getComponent() {
-              return Fruit::createComponent()
-                .installComponentFunctions(Fruit::componentFunction(getParentComponent, 5, std::string("Hello"), 15));
+            Poco::Fruit::Component<X> getComponent() {
+              return Poco::Fruit::createComponent()
+                .installComponentFunctions(Poco::Fruit::componentFunction(getParentComponent, 5, std::string("Hello"), 15));
             }
             '''
         expect_generic_compile_error(
@@ -299,11 +299,11 @@ class TestComponentFunctions(parameterized.TestCase):
               };
             }
     
-            Fruit::Component<X> getParentComponent(int, std::string, Arg);
+            Poco::Fruit::Component<X> getParentComponent(int, std::string, Arg);
     
-            Fruit::Component<X> getComponent() {
-              return Fruit::createComponent()
-                .installComponentFunctions(Fruit::componentFunction(getParentComponent, 5, std::string("Hello"), Arg{}));
+            Poco::Fruit::Component<X> getComponent() {
+              return Poco::Fruit::createComponent()
+                .installComponentFunctions(Poco::Fruit::componentFunction(getParentComponent, 5, std::string("Hello"), Arg{}));
             }
             '''
         expect_generic_compile_error(
@@ -335,11 +335,11 @@ class TestComponentFunctions(parameterized.TestCase):
               };
             }
     
-            Fruit::Component<X> getParentComponent(int, std::string, Arg);
+            Poco::Fruit::Component<X> getParentComponent(int, std::string, Arg);
     
-            Fruit::Component<X> getComponent() {
-              return Fruit::createComponent()
-                .installComponentFunctions(Fruit::componentFunction(getParentComponent, 5, std::string("Hello"), 15));
+            Poco::Fruit::Component<X> getComponent() {
+              return Poco::Fruit::createComponent()
+                .installComponentFunctions(Poco::Fruit::componentFunction(getParentComponent, 5, std::string("Hello"), 15));
             }
             '''
         expect_generic_compile_error(
@@ -373,11 +373,11 @@ class TestComponentFunctions(parameterized.TestCase):
               };
             }
     
-            Fruit::Component<X> getParentComponent(int, std::string, Arg);
+            Poco::Fruit::Component<X> getParentComponent(int, std::string, Arg);
     
-            Fruit::Component<X> getComponent() {
-              return Fruit::createComponent()
-                .installComponentFunctions(Fruit::componentFunction(getParentComponent, 5, std::string("Hello"), Arg{}));
+            Poco::Fruit::Component<X> getComponent() {
+              return Poco::Fruit::createComponent()
+                .installComponentFunctions(Poco::Fruit::componentFunction(getParentComponent, 5, std::string("Hello"), Arg{}));
             }
             '''
         expect_generic_compile_error(
@@ -412,11 +412,11 @@ class TestComponentFunctions(parameterized.TestCase):
               };
             }
     
-            Fruit::Component<X> getParentComponent(int, std::string, Arg);
+            Poco::Fruit::Component<X> getParentComponent(int, std::string, Arg);
     
-            Fruit::Component<X> getComponent() {
-              return Fruit::createComponent()
-                .installComponentFunctions(Fruit::componentFunction(getParentComponent, 5, std::string("Hello"), 15));
+            Poco::Fruit::Component<X> getComponent() {
+              return Poco::Fruit::createComponent()
+                .installComponentFunctions(Poco::Fruit::componentFunction(getParentComponent, 5, std::string("Hello"), 15));
             }
             '''
         expect_generic_compile_error(
@@ -448,11 +448,11 @@ class TestComponentFunctions(parameterized.TestCase):
               };
             }
     
-            Fruit::Component<X> getParentComponent(int, std::string, Arg);
+            Poco::Fruit::Component<X> getParentComponent(int, std::string, Arg);
     
-            Fruit::Component<X> getComponent() {
-              return Fruit::createComponent()
-                .installComponentFunctions(Fruit::componentFunction(getParentComponent, 5, std::string("Hello"), Arg{}));
+            Poco::Fruit::Component<X> getComponent() {
+              return Poco::Fruit::createComponent()
+                .installComponentFunctions(Poco::Fruit::componentFunction(getParentComponent, 5, std::string("Hello"), Arg{}));
             }
             '''
         expect_generic_compile_error(
@@ -485,11 +485,11 @@ class TestComponentFunctions(parameterized.TestCase):
               };
             }
     
-            Fruit::Component<X> getParentComponent(int, std::string, Arg);
+            Poco::Fruit::Component<X> getParentComponent(int, std::string, Arg);
     
-            Fruit::Component<X> getComponent() {
-              return Fruit::createComponent()
-                .installComponentFunctions(Fruit::componentFunction(getParentComponent, 5, std::string("Hello"), 15));
+            Poco::Fruit::Component<X> getComponent() {
+              return Poco::Fruit::createComponent()
+                .installComponentFunctions(Poco::Fruit::componentFunction(getParentComponent, 5, std::string("Hello"), 15));
             }
             '''
         expect_generic_compile_error(
@@ -513,11 +513,11 @@ class TestComponentFunctions(parameterized.TestCase):
             
             bool operator==(const Arg&, const Arg&);
             
-            Fruit::Component<X> getParentComponent(int, std::string, Arg);
+            Poco::Fruit::Component<X> getParentComponent(int, std::string, Arg);
     
-            Fruit::Component<X> getComponent() {
-              return Fruit::createComponent()
-                .installComponentFunctions(Fruit::componentFunction(getParentComponent, 5, std::string("Hello"), Arg{}));
+            Poco::Fruit::Component<X> getComponent() {
+              return Poco::Fruit::createComponent()
+                .installComponentFunctions(Poco::Fruit::componentFunction(getParentComponent, 5, std::string("Hello"), Arg{}));
             }
             '''
         expect_generic_compile_error(
@@ -545,11 +545,11 @@ class TestComponentFunctions(parameterized.TestCase):
             
             bool operator==(const Arg&, const Arg&);
             
-            Fruit::Component<X> getParentComponent(int, std::string, Arg);
+            Poco::Fruit::Component<X> getParentComponent(int, std::string, Arg);
     
-            Fruit::Component<X> getComponent() {
-              return Fruit::createComponent()
-                .installComponentFunctions(Fruit::componentFunction(getParentComponent, 5, std::string("Hello"), 15));
+            Poco::Fruit::Component<X> getComponent() {
+              return Poco::Fruit::createComponent()
+                .installComponentFunctions(Poco::Fruit::componentFunction(getParentComponent, 5, std::string("Hello"), 15));
             }
             '''
         expect_generic_compile_error(

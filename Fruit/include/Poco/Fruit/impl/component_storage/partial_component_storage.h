@@ -19,6 +19,7 @@
 
 #include <cstddef>
 
+namespace Poco{
 namespace Fruit {
 namespace impl {
 
@@ -43,6 +44,7 @@ class PartialComponentStorage {};
 
 } // namespace impl
 } // namespace Fruit
+} // namespace Poco
 
 #include <Poco/Fruit/impl/component_storage/partial_component_storage.defn.h>
 

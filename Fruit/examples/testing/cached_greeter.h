@@ -20,6 +20,6 @@
 #include "cached.h"
 #include "greeter.h"
 
-Fruit::Component<Fruit::Annotated<Cached, Greeter>> getCachedGreeterComponent();
+Poco::Fruit::Component<Poco::Fruit::Annotated<Cached, Greeter>> getCachedGreeterComponent();
 
 #endif // FRUIT_CACHED_GREETER_H

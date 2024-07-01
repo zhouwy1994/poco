@@ -37,5 +37,5 @@ public:
 };
 
 Component<Required<Request, ServerContext>, FooHandler> getFooHandlerComponent() {
-  return Fruit::createComponent().bind<FooHandler, FooHandlerImpl>();
+  return Poco::Fruit::createComponent().bind<FooHandler, FooHandlerImpl>();
 }

@@ -20,6 +20,7 @@
 #include <Poco/Fruit/impl/component_storage/component_storage.h>
 #include <Poco/Fruit/impl/component_storage/component_storage_entry.h>
 
+namespace Poco{
 namespace Fruit {
 namespace impl {
 
@@ -76,5 +77,6 @@ inline ComponentStorage& ComponentStorage::operator=(ComponentStorage&& other) n
 
 } // namespace impl
 } // namespace Fruit
+} // namespace Poco
 
 #endif // FRUIT_COMPONENT_STORAGE_DEFN_H

@@ -80,7 +80,7 @@ do
         sed 's| (\*)||g;
               s|.* required from .*DoEval<||;
               s|>.$||;
-              s/Fruit::impl::meta:://g;
+              s/Poco::Fruit::impl::meta:://g;
               s| >|>|g;
               s|, |,|g' |
         sed 's|[>]|,>|g;
@@ -106,7 +106,7 @@ do
         sed 's| (\*)||g;
               s|.* required from .*EvalFun<||;
               s|>.$||;
-              s/Fruit::impl::meta:://g;
+              s/Poco::Fruit::impl::meta:://g;
               s| >|>|g;
               s|, |,|g' |
         sed 's|[>]|,>|g;
@@ -127,4 +127,4 @@ do
   else
     echo "${line}"
   fi
-done | sed 's/Fruit::impl::meta:://g;s/struct //g' | grep -v "required from .EvalIf<"
+done | sed 's/Poco::Fruit::impl::meta:://g;s/struct //g' | grep -v "required from .EvalIf<"

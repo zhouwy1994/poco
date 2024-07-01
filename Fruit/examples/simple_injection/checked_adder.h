@@ -20,6 +20,6 @@
 #include "adder.h"
 #include <Poco/Fruit/fruit.h>
 
-Fruit::Component<Adder> getCheckedAdderComponent();
+Poco::Fruit::Component<Adder> getCheckedAdderComponent();
 
 #endif // CHECKED_ADDER_H

@@ -42,24 +42,24 @@ COMMON_DEFINITIONS = '''
       }
     };
     
-    using XAnnot = Fruit::Annotated<Annotation, X>;
-    using YAnnot = Fruit::Annotated<Annotation, Y>;
-    using ZAnnot = Fruit::Annotated<Annotation, Z>;
+    using XAnnot = Poco::Fruit::Annotated<Annotation, X>;
+    using YAnnot = Poco::Fruit::Annotated<Annotation, Y>;
+    using ZAnnot = Poco::Fruit::Annotated<Annotation, Z>;
     '''
 
 class TestTypeAlignmentWithAnnotation(parameterized.TestCase):
     def test_type_alignment_with_annotation(self):
         source = '''
-            Fruit::Component<XAnnot, YAnnot, ZAnnot> getComponent() {
-              return Fruit::createComponent();
+            Poco::Fruit::Component<XAnnot, YAnnot, ZAnnot> getComponent() {
+              return Poco::Fruit::createComponent();
             }
             
             int main() {
-              Fruit::Injector<XAnnot, YAnnot, ZAnnot> injector(getComponent);
+              Poco::Fruit::Injector<XAnnot, YAnnot, ZAnnot> injector(getComponent);
               
-              injector.get<Fruit::Annotated<Annotation, X*>>();
-              injector.get<Fruit::Annotated<Annotation, Y*>>();
-              injector.get<Fruit::Annotated<Annotation, Z*>>();
+              injector.get<Poco::Fruit::Annotated<Annotation, X*>>();
+              injector.get<Poco::Fruit::Annotated<Annotation, Y*>>();
+              injector.get<Poco::Fruit::Annotated<Annotation, Z*>>();
             }
             '''
         expect_success(

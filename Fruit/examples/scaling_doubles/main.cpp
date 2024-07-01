@@ -18,7 +18,7 @@
 
 #include "scaler.h"
 
-using Fruit::Injector;
+using Poco::Fruit::Injector;
 
 int main() {
   Injector<ScalerFactory> injector(getScalerComponent);

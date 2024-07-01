@@ -20,6 +20,7 @@
 #include <cstdlib>
 #include <memory>
 
+namespace Poco{
 namespace Fruit {
 namespace impl {
 
@@ -82,6 +83,7 @@ public:
 
 } // namespace impl
 } // namespace Fruit
+} // namespace Poco
 
 #include <Poco/Fruit/impl/data_structures/fixed_size_vector.defn.h>
 

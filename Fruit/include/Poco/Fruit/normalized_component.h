@@ -26,6 +26,7 @@
 #include <Poco/Fruit/impl/normalized_component_storage/normalized_component_storage_holder.h>
 #include <memory>
 
+namespace Poco{
 namespace Fruit {
 
 /**
@@ -43,8 +44,8 @@ namespace Fruit {
  * When both of those requirements apply, you can switch to using NormalizedComponent in the "similar" injectors by
  * first refactoring the injectors' root components to be of the form:
  *
- * Fruit::Component<...> getRootComponent(...) {
- *   return Fruit::createComponent()
+ * Poco::Fruit::Component<...> getRootComponent(...) {
+ *   return Poco::Fruit::createComponent()
  *       // This contains the bindings common to the group of similar injectors.
  *       .install(getSharedComponent, ...)
  *       // This contains the bindings specific to this injector.
@@ -53,12 +54,12 @@ namespace Fruit {
  *
  * Then you can change your injector construction from:
  *
- * Fruit::Injector<...> injector(getRootComponent, ...);
+ * Poco::Fruit::Injector<...> injector(getRootComponent, ...);
  *
  * To:
  *
- * Fruit::NormalizedComponent<Fruit::Required<...>, ...> normalized_component(getSharedComponent, ...);
- * Fruit::Injector<...> injector(normalized_component, getSpecificComponent, ...);
+ * Poco::Fruit::NormalizedComponent<Poco::Fruit::Required<...>, ...> normalized_component(getSharedComponent, ...);
+ * Poco::Fruit::Injector<...> injector(normalized_component, getSpecificComponent, ...);
  *
  * This splits the work of constructing the Injector in two phases: normalization (where Fruit will call the Component
  * functions to collect all the bindings and check for some classes of runtime errors) and the actual creation of the
@@ -81,7 +82,7 @@ namespace Fruit {
  *
  * // In the global scope.
  * Component<Request> getRequestComponent(Request* request) {
- *   return Fruit::createComponent()
+ *   return Poco::Fruit::createComponent()
  *       .bindInstance(*request);
  * }
  *
@@ -120,23 +121,24 @@ public:
   NormalizedComponent& operator=(const NormalizedComponent&) = delete;
 
 private:
-  NormalizedComponent(Fruit::impl::ComponentStorage&& storage, Fruit::impl::MemoryPool memory_pool);
+  NormalizedComponent(Poco::Fruit::impl::ComponentStorage&& storage, Poco::Fruit::impl::MemoryPool memory_pool);
 
   // This is held via a unique_ptr to avoid including normalized_component_storage.h
   // in fruit.h.
-  Fruit::impl::NormalizedComponentStorageHolder storage;
+  Poco::Fruit::impl::NormalizedComponentStorageHolder storage;
 
   template <typename... OtherParams>
   friend class Injector;
 
-  using Comp = Fruit::impl::meta::Eval<Fruit::impl::meta::ConstructComponentImpl(Fruit::impl::meta::Type<Params>...)>;
+  using Comp = Poco::Fruit::impl::meta::Eval<Poco::Fruit::impl::meta::ConstructComponentImpl(Poco::Fruit::impl::meta::Type<Params>...)>;
 
-  using Check1 = typename Fruit::impl::meta::CheckIfError<Comp>::type;
+  using Check1 = typename Poco::Fruit::impl::meta::CheckIfError<Comp>::type;
   // Force instantiation of Check1.
   static_assert(true || sizeof(Check1), "");
 };
 
 } // namespace Fruit
+} // namespace Poco
 
 #include <Poco/Fruit/impl/normalized_component.defn.h>
 

@@ -22,26 +22,28 @@
 #include <Poco/Fruit/component.h>
 #include <Poco/Fruit/impl/util/type_info.h>
 
+namespace Poco{
 namespace Fruit {
 
 template <typename... Params>
 template <typename... FormalArgs, typename... Args>
 inline NormalizedComponent<Params...>::NormalizedComponent(Component<Params...> (*getComponent)(FormalArgs...),
                                                            Args&&... args)
-    : NormalizedComponent(std::move(Fruit::Component<Params...>(
-                                        Fruit::createComponent().install(getComponent, std::forward<Args>(args)...))
+    : NormalizedComponent(std::move(Poco::Fruit::Component<Params...>(
+                                        Poco::Fruit::createComponent().install(getComponent, std::forward<Args>(args)...))
                                         .storage),
-                          Fruit::impl::MemoryPool()) {}
+                          Poco::Fruit::impl::MemoryPool()) {}
 
 template <typename... Params>
-inline NormalizedComponent<Params...>::NormalizedComponent(Fruit::impl::ComponentStorage&& storage,
-                                                           Fruit::impl::MemoryPool memory_pool)
+inline NormalizedComponent<Params...>::NormalizedComponent(Poco::Fruit::impl::ComponentStorage&& storage,
+                                                           Poco::Fruit::impl::MemoryPool memory_pool)
     : storage(std::move(storage),
-              Fruit::impl::getTypeIdsForList<typename Fruit::impl::meta::Eval<Fruit::impl::meta::SetToVector(
-                  typename Fruit::impl::meta::Eval<Fruit::impl::meta::ConstructComponentImpl(
-                      Fruit::impl::meta::Type<Params>...)>::Ps)>>(memory_pool),
-              memory_pool, Fruit::impl::NormalizedComponentStorageHolder::WithUndoableCompression()) {}
+              Poco::Fruit::impl::getTypeIdsForList<typename Poco::Fruit::impl::meta::Eval<Poco::Fruit::impl::meta::SetToVector(
+                  typename Poco::Fruit::impl::meta::Eval<Poco::Fruit::impl::meta::ConstructComponentImpl(
+                      Poco::Fruit::impl::meta::Type<Params>...)>::Ps)>>(memory_pool),
+              memory_pool, Poco::Fruit::impl::NormalizedComponentStorageHolder::WithUndoableCompression()) {}
 
 } // namespace Fruit
+} // namespace Poco
 
 #endif // FRUIT_NORMALIZED_COMPONENT_INLINES_H

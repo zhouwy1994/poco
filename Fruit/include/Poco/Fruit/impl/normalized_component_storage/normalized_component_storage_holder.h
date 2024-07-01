@@ -23,6 +23,7 @@
 #include <Poco/Fruit/impl/fruit_internal_forward_decls.h>
 #include <memory>
 
+namespace Poco{
 namespace Fruit {
 namespace impl {
 
@@ -38,7 +39,7 @@ private:
   friend class InjectorStorage;
 
   template <typename... P>
-  friend class Fruit::Injector;
+  friend class Poco::Fruit::Injector;
 
 public:
   // These are just used as tags to select the desired constructor.
@@ -68,5 +69,6 @@ public:
 
 } // namespace impl
 } // namespace Fruit
+} // namespace Poco
 
 #endif // FRUIT_NORMALIZED_COMPONENT_STORAGE_HOLDER_H

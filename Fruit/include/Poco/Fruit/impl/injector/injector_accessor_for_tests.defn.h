@@ -19,16 +19,18 @@
 
 #include <Poco/Fruit/impl/injector/injector_accessor_for_tests.h>
 
+namespace Poco{
 namespace Fruit {
 namespace impl {
 
 template <typename AnnotatedC, typename... Params>
-const Fruit::impl::RemoveAnnotations<AnnotatedC>*
-InjectorAccessorForTests::unsafeGet(Fruit::Injector<Params...>& injector) {
-  using Op = Fruit::impl::meta::Eval<Fruit::impl::meta::CheckNormalizedTypes(
-      Fruit::impl::meta::Vector<Fruit::impl::meta::Type<AnnotatedC>>)>;
-  (void)typename Fruit::impl::meta::CheckIfError<Op>::type();
+const Poco::Fruit::impl::RemoveAnnotations<AnnotatedC>*
+InjectorAccessorForTests::unsafeGet(Poco::Fruit::Injector<Params...>& injector) {
+  using Op = Poco::Fruit::impl::meta::Eval<Poco::Fruit::impl::meta::CheckNormalizedTypes(
+      Poco::Fruit::impl::meta::Vector<Poco::Fruit::impl::meta::Type<AnnotatedC>>)>;
+  (void)typename Poco::Fruit::impl::meta::CheckIfError<Op>::type();
   return injector.storage->template unsafeGet<AnnotatedC>();
+}
 }
 }
 }

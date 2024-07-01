@@ -27,14 +27,14 @@ class TestBindInstance(parameterized.TestCase):
     @parameterized.parameters([
         ('X', 'X', 'const X&', 'Y'),
         ('X', 'const X', 'const X&', 'Y'),
-        ('X', 'X', 'const X&', 'Fruit::Annotated<Annotation1, Y>'),
-        ('X', 'const X', 'const X&', 'Fruit::Annotated<Annotation1, Y>'),
-        ('Fruit::Annotated<Annotation1, X>', 'Fruit::Annotated<Annotation1, X>', 'Fruit::Annotated<Annotation1, const X&>', 'Y'),
-        ('Fruit::Annotated<Annotation1, X>', 'Fruit::Annotated<Annotation1, const X>', 'Fruit::Annotated<Annotation1, const X&>', 'Y'),
-        ('Fruit::Annotated<Annotation1, X>', 'Fruit::Annotated<Annotation1, X>', 'Fruit::Annotated<Annotation1, const X&>', 'Fruit::Annotated<Annotation1, Y>'),
-        ('Fruit::Annotated<Annotation1, X>', 'Fruit::Annotated<Annotation1, const X>', 'Fruit::Annotated<Annotation1, const X&>', 'Fruit::Annotated<Annotation1, Y>'),
-        ('Fruit::Annotated<Annotation1, X>', 'Fruit::Annotated<Annotation1, X>', 'Fruit::Annotated<Annotation1, const X&>', 'Fruit::Annotated<Annotation2, Y>'),
-        ('Fruit::Annotated<Annotation1, X>', 'Fruit::Annotated<Annotation1, const X>', 'Fruit::Annotated<Annotation1, const X&>', 'Fruit::Annotated<Annotation2, Y>'),
+        ('X', 'X', 'const X&', 'Poco::Fruit::Annotated<Annotation1, Y>'),
+        ('X', 'const X', 'const X&', 'Poco::Fruit::Annotated<Annotation1, Y>'),
+        ('Poco::Fruit::Annotated<Annotation1, X>', 'Poco::Fruit::Annotated<Annotation1, X>', 'Poco::Fruit::Annotated<Annotation1, const X&>', 'Y'),
+        ('Poco::Fruit::Annotated<Annotation1, X>', 'Poco::Fruit::Annotated<Annotation1, const X>', 'Poco::Fruit::Annotated<Annotation1, const X&>', 'Y'),
+        ('Poco::Fruit::Annotated<Annotation1, X>', 'Poco::Fruit::Annotated<Annotation1, X>', 'Poco::Fruit::Annotated<Annotation1, const X&>', 'Poco::Fruit::Annotated<Annotation1, Y>'),
+        ('Poco::Fruit::Annotated<Annotation1, X>', 'Poco::Fruit::Annotated<Annotation1, const X>', 'Poco::Fruit::Annotated<Annotation1, const X&>', 'Poco::Fruit::Annotated<Annotation1, Y>'),
+        ('Poco::Fruit::Annotated<Annotation1, X>', 'Poco::Fruit::Annotated<Annotation1, X>', 'Poco::Fruit::Annotated<Annotation1, const X&>', 'Poco::Fruit::Annotated<Annotation2, Y>'),
+        ('Poco::Fruit::Annotated<Annotation1, X>', 'Poco::Fruit::Annotated<Annotation1, const X>', 'Poco::Fruit::Annotated<Annotation1, const X&>', 'Poco::Fruit::Annotated<Annotation2, Y>'),
     ])
     def test_bind_interface(self, XAnnot, MaybeConstXAnnot, XConstRefAnnot, YAnnot):
         source = '''
@@ -49,13 +49,13 @@ class TestBindInstance(parameterized.TestCase):
               }
             };
     
-            Fruit::Component<MaybeConstXAnnot> getComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<MaybeConstXAnnot> getComponent() {
+              return Poco::Fruit::createComponent()
                 .bind<XAnnot, YAnnot>();
             }
     
             int main() {
-              Fruit::Injector<MaybeConstXAnnot> injector(getComponent);
+              Poco::Fruit::Injector<MaybeConstXAnnot> injector(getComponent);
               const X& x = injector.get<XConstRefAnnot>();
               x.f();
             }
@@ -67,10 +67,10 @@ class TestBindInstance(parameterized.TestCase):
 
     @parameterized.parameters([
         ('X', 'const X', 'const X&', 'Y'),
-        ('X', 'const X', 'const X&', 'Fruit::Annotated<Annotation1, Y>'),
-        ('Fruit::Annotated<Annotation1, X>', 'Fruit::Annotated<Annotation1, const X>', 'Fruit::Annotated<Annotation1, const X&>', 'Y'),
-        ('Fruit::Annotated<Annotation1, X>', 'Fruit::Annotated<Annotation1, const X>', 'Fruit::Annotated<Annotation1, const X&>', 'Fruit::Annotated<Annotation1, Y>'),
-        ('Fruit::Annotated<Annotation1, X>', 'Fruit::Annotated<Annotation1, const X>', 'Fruit::Annotated<Annotation1, const X&>', 'Fruit::Annotated<Annotation2, Y>'),
+        ('X', 'const X', 'const X&', 'Poco::Fruit::Annotated<Annotation1, Y>'),
+        ('Poco::Fruit::Annotated<Annotation1, X>', 'Poco::Fruit::Annotated<Annotation1, const X>', 'Poco::Fruit::Annotated<Annotation1, const X&>', 'Y'),
+        ('Poco::Fruit::Annotated<Annotation1, X>', 'Poco::Fruit::Annotated<Annotation1, const X>', 'Poco::Fruit::Annotated<Annotation1, const X&>', 'Poco::Fruit::Annotated<Annotation1, Y>'),
+        ('Poco::Fruit::Annotated<Annotation1, X>', 'Poco::Fruit::Annotated<Annotation1, const X>', 'Poco::Fruit::Annotated<Annotation1, const X&>', 'Poco::Fruit::Annotated<Annotation2, Y>'),
     ])
     def test_bind_interface_to_constant(self, XAnnot, ConstXAnnot, XConstRefAnnot, YAnnot):
         source = '''
@@ -85,14 +85,14 @@ class TestBindInstance(parameterized.TestCase):
             
             const Y y{};
     
-            Fruit::Component<ConstXAnnot> getComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<ConstXAnnot> getComponent() {
+              return Poco::Fruit::createComponent()
                 .bindInstance<YAnnot, Y>(y)
                 .bind<XAnnot, YAnnot>();
             }
     
             int main() {
-              Fruit::Injector<ConstXAnnot> injector(getComponent);
+              Poco::Fruit::Injector<ConstXAnnot> injector(getComponent);
               const X& x = injector.get<XConstRefAnnot>();
               x.f();
             }
@@ -104,7 +104,7 @@ class TestBindInstance(parameterized.TestCase):
 
     @parameterized.parameters([
         ('X', 'X&', 'Y'),
-        ('Fruit::Annotated<Annotation1, X>', 'Fruit::Annotated<Annotation1, X&>', 'Fruit::Annotated<Annotation2, Y>'),
+        ('Poco::Fruit::Annotated<Annotation1, X>', 'Poco::Fruit::Annotated<Annotation1, X&>', 'Poco::Fruit::Annotated<Annotation2, Y>'),
     ])
     def test_bind_interface_target_bound_in_other_component(self, XAnnot, XRefAnnot, YAnnot):
         source = '''
@@ -117,19 +117,19 @@ class TestBindInstance(parameterized.TestCase):
               }
             };
     
-            Fruit::Component<Fruit::Required<YAnnot>, XAnnot> getComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<Poco::Fruit::Required<YAnnot>, XAnnot> getComponent() {
+              return Poco::Fruit::createComponent()
                 .bind<XAnnot, YAnnot>();
             }
     
-            Fruit::Component<XAnnot> getRootComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<XAnnot> getRootComponent() {
+              return Poco::Fruit::createComponent()
                 .registerConstructor<YAnnot()>()
                 .install(getComponent);
             }
     
             int main() {
-              Fruit::Injector<XAnnot> injector(getRootComponent);
+              Poco::Fruit::Injector<XAnnot> injector(getRootComponent);
               X& x = injector.get<XRefAnnot>();
               x.f();
             }
@@ -141,7 +141,7 @@ class TestBindInstance(parameterized.TestCase):
 
     @parameterized.parameters([
         ('X', 'X&', 'Y'),
-        ('Fruit::Annotated<Annotation1, X>', 'Fruit::Annotated<Annotation1, X&>', 'Fruit::Annotated<Annotation2, Y>'),
+        ('Poco::Fruit::Annotated<Annotation1, X>', 'Poco::Fruit::Annotated<Annotation1, X&>', 'Poco::Fruit::Annotated<Annotation2, Y>'),
     ])
     def test_bind_nonconst_interface_requires_nonconst_target(self, XAnnot, XRefAnnot, YAnnot):
         source = '''
@@ -154,8 +154,8 @@ class TestBindInstance(parameterized.TestCase):
               }
             };
     
-            Fruit::Component<Fruit::Required<const YAnnot>, XAnnot> getComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<Poco::Fruit::Required<const YAnnot>, XAnnot> getComponent() {
+              return Poco::Fruit::createComponent()
                 .bind<XAnnot, YAnnot>();
             }
         '''
@@ -168,7 +168,7 @@ class TestBindInstance(parameterized.TestCase):
 
     @parameterized.parameters([
         ('X', 'Y'),
-        ('Fruit::Annotated<Annotation1, X>', 'Fruit::Annotated<Annotation2, Y>'),
+        ('Poco::Fruit::Annotated<Annotation1, X>', 'Poco::Fruit::Annotated<Annotation2, Y>'),
     ])
     def test_bind_interface_to_constant_nonconst_required_const_bound_error(self, XAnnot, YAnnot):
         source = '''
@@ -183,8 +183,8 @@ class TestBindInstance(parameterized.TestCase):
             
             const Y y{};
     
-            Fruit::Component<XAnnot> getComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<XAnnot> getComponent() {
+              return Poco::Fruit::createComponent()
                 .bindInstance<YAnnot, Y>(y)
                 .bind<XAnnot, YAnnot>();
             }
@@ -198,7 +198,7 @@ class TestBindInstance(parameterized.TestCase):
 
     @parameterized.parameters([
         ('X', 'X&', 'Y'),
-        ('Fruit::Annotated<Annotation1, X>', 'Fruit::Annotated<Annotation1, X&>', 'Fruit::Annotated<Annotation2, Y>'),
+        ('Poco::Fruit::Annotated<Annotation1, X>', 'Poco::Fruit::Annotated<Annotation1, X&>', 'Poco::Fruit::Annotated<Annotation2, Y>'),
     ])
     def test_bind_nonconst_interface_requires_nonconst_target_abstract(self, XAnnot, XRefAnnot, YAnnot):
         source = '''
@@ -208,8 +208,8 @@ class TestBindInstance(parameterized.TestCase):
     
             struct Y : public X {};
     
-            Fruit::Component<Fruit::Required<const YAnnot>, XAnnot> getComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<Poco::Fruit::Required<const YAnnot>, XAnnot> getComponent() {
+              return Poco::Fruit::createComponent()
                 .bind<XAnnot, YAnnot>();
             }
         '''
@@ -222,14 +222,14 @@ class TestBindInstance(parameterized.TestCase):
 
     @parameterized.parameters([
         ('X', 'int'),
-        ('Fruit::Annotated<Annotation1, X>', 'Fruit::Annotated<Annotation2, int>'),
+        ('Poco::Fruit::Annotated<Annotation1, X>', 'Poco::Fruit::Annotated<Annotation2, int>'),
     ])
     def test_error_not_base(self, XAnnot, intAnnot):
         source = '''
             struct X {};
     
-            Fruit::Component<intAnnot> getComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<intAnnot> getComponent() {
+              return Poco::Fruit::createComponent()
                 .bind<XAnnot, intAnnot>();
             }
             '''
@@ -243,14 +243,14 @@ class TestBindInstance(parameterized.TestCase):
     # TODO: maybe the error should include the annotation here.
     @parameterized.parameters([
         'X',
-        'Fruit::Annotated<Annotation1, X>',
+        'Poco::Fruit::Annotated<Annotation1, X>',
     ])
     def test_error_bound_to_itself(self, XAnnot):
         source = '''
             struct X {};
     
-            Fruit::Component<X> getComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<X> getComponent() {
+              return Poco::Fruit::createComponent()
                 .bind<XAnnot, XAnnot>();
             }
             '''
@@ -265,10 +265,10 @@ class TestBindInstance(parameterized.TestCase):
         source = '''
             struct X {};
     
-            Fruit::Component<> getComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<> getComponent() {
+              return Poco::Fruit::createComponent()
                 .registerConstructor<X()>()
-                .bind<Fruit::Annotated<Annotation1, X>, X>();
+                .bind<Poco::Fruit::Annotated<Annotation1, X>, X>();
             }
             '''
         expect_compile_error(
@@ -291,14 +291,14 @@ class TestBindInstance(parameterized.TestCase):
               }
             };
     
-            Fruit::Component<X> getComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<X> getComponent() {
+              return Poco::Fruit::createComponent()
                 .bind<X, Y>()
                 .bind<Y, Z>();
             }
     
             int main() {
-              Fruit::Injector<X> injector(getComponent);
+              Poco::Fruit::Injector<X> injector(getComponent);
               X& x = injector.get<X&>();
               x.f();
             }
@@ -311,8 +311,8 @@ class TestBindInstance(parameterized.TestCase):
     
             struct Y : public std::shared_ptr<X> {};
     
-            Fruit::Component<> getComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<> getComponent() {
+              return Poco::Fruit::createComponent()
                 .bind<std::shared_ptr<X>, Y>();
             }
             '''

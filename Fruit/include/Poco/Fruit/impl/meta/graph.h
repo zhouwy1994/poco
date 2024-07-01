@@ -22,6 +22,7 @@
 #include <Poco/Fruit/impl/meta/set.h>
 #include <Poco/Fruit/impl/meta/triplet.h>
 
+namespace Poco{
 namespace Fruit {
 namespace impl {
 namespace meta {
@@ -106,5 +107,6 @@ struct GraphFindLoop {
 } // namespace meta
 } // namespace impl
 } // namespace Fruit
+} // namespace Poco
 
 #endif // FRUIT_META_GRAPH_H

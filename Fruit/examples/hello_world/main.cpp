@@ -2,8 +2,8 @@
 #include <Poco/Fruit/fruit.h>
 #include <iostream>
 
-using Fruit::Component;
-using Fruit::Injector;
+using Poco::Fruit::Component;
+using Poco::Fruit::Injector;
 
 class Writer {
 public:
@@ -41,7 +41,7 @@ public:
 };
 
 Component<Greeter> getGreeterComponent() {
-  return Fruit::createComponent().bind<Writer, StdoutWriter>().bind<Greeter, GreeterImpl>();
+  return Poco::Fruit::createComponent().bind<Writer, StdoutWriter>().bind<Greeter, GreeterImpl>();
 }
 
 int main() {

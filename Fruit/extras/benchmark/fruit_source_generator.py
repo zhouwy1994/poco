@@ -34,7 +34,7 @@ def generate_files(injection_graph: nx.DiGraph, generate_runtime_bench_code: boo
     return file_content_by_name
 
 def _get_component_type(component_index: int):
-    return 'Fruit::Component<Interface{component_index}>'.format(**locals())
+    return 'Poco::Fruit::Component<Interface{component_index}>'.format(**locals())
 
 def _generate_component_header(component_index: int):
     component_type = _get_component_type(component_index)
@@ -91,7 +91,7 @@ struct X{component_index} : public Interface{component_index} {{
 
     template += """
 {component_type} getComponent{component_index}() {{
-    return Fruit::createComponent(){install_expressions}
+    return Poco::Fruit::createComponent(){install_expressions}
         .bind<Interface{component_index}, X{component_index}>();
 }}
 """
@@ -111,8 +111,8 @@ def _generate_main(toplevel_component: int, generate_runtime_bench_code: bool):
 
 using namespace std;
 
-Fruit::Component<> getEmptyComponent() {{
-  return Fruit::createComponent();
+Poco::Fruit::Component<> getEmptyComponent() {{
+  return Poco::Fruit::createComponent();
 }}
 
 int main(int argc, char* argv[]) {{
@@ -122,11 +122,11 @@ int main(int argc, char* argv[]) {{
   }}
   size_t num_loops = std::atoi(argv[1]);
   
-  Fruit::NormalizedComponent<Interface{toplevel_component}> normalizedComponent(getComponent{toplevel_component});
+  Poco::Fruit::NormalizedComponent<Interface{toplevel_component}> normalizedComponent(getComponent{toplevel_component});
     
   std::chrono::high_resolution_clock::time_point start_time = std::chrono::high_resolution_clock::now();
   for (size_t i = 0; i < num_loops; i++) {{
-    Fruit::Injector<Interface{toplevel_component}> injector(normalizedComponent, getEmptyComponent);
+    Poco::Fruit::Injector<Interface{toplevel_component}> injector(normalizedComponent, getEmptyComponent);
     injector.get<std::shared_ptr<Interface{toplevel_component}>>();
   }}
   double perRequestTime = std::chrono::duration_cast<std::chrono::duration<double>>(std::chrono::high_resolution_clock::now() - start_time).count();
@@ -143,13 +143,13 @@ int main(int argc, char* argv[]) {{
 
 #include <iostream>
 
-Fruit::Component<> getEmptyComponent() {{
-  return Fruit::createComponent();
+Poco::Fruit::Component<> getEmptyComponent() {{
+  return Poco::Fruit::createComponent();
 }}
 
 int main(void) {{
-  Fruit::NormalizedComponent<Interface{toplevel_component}> normalizedComponent(getComponent{toplevel_component});
-  Fruit::Injector<Interface{toplevel_component}> injector(normalizedComponent, getEmptyComponent);
+  Poco::Fruit::NormalizedComponent<Interface{toplevel_component}> normalizedComponent(getComponent{toplevel_component});
+  Poco::Fruit::Injector<Interface{toplevel_component}> injector(normalizedComponent, getEmptyComponent);
   injector.get<std::shared_ptr<Interface{toplevel_component}>>();
   std::cout << "Hello, world" << std::endl;
   return 0;

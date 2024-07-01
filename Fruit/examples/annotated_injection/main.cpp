@@ -16,7 +16,7 @@
 
 #include "car.h"
 
-using Fruit::Injector;
+using Poco::Fruit::Injector;
 
 int main() {
   Injector<Car> injector(getCarComponent);

@@ -25,6 +25,6 @@ public:
   virtual double multiply(double x, double y) = 0;
 };
 
-Fruit::Component<Multiplier> getMultiplierComponent();
+Poco::Fruit::Component<Multiplier> getMultiplierComponent();
 
 #endif // MULTIPLIER_H

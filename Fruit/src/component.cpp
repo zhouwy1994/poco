@@ -21,6 +21,7 @@
 #include <exception>
 #include <iostream>
 
+namespace Poco{
 namespace Fruit {
 
 // TODO: reimplement this check somehow.
@@ -35,7 +36,7 @@ point
 user of Fruit,
   // and there can't be any leftover instances of PartialComponent<> referring to this EmptyComponent anyway.
   if (!already_converted_to_component && !std::uncaught_exception()) {
-    std::cerr << "The result of Fruit::createComponent() was not converted to a Component before the end of the
+    std::cerr << "The result of Poco::Fruit::createComponent() was not converted to a Component before the end of the
 expression! "
         << "This is a misuse of the Fruit API. This is likely to cause undefined behavior, aborting now to be safe." <<
 std::endl;
@@ -45,4 +46,5 @@ std::endl;
 */
 
 // We need a LCOV_EXCL_BR_LINE below because for some reason gcov/lcov think there's a branch there.
-} // namespace Fruit LCOV_EXCL_BR_LINE
+} // namespace Fruit
+} // namespace Poco LCOV_EXCL_BR_LINE

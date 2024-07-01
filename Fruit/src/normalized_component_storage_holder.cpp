@@ -19,6 +19,7 @@
 #include <Poco/Fruit/impl/normalized_component_storage/normalized_component_storage.h>
 #include <Poco/Fruit/impl/normalized_component_storage/normalized_component_storage_holder.h>
 
+namespace Poco{
 namespace Fruit {
 namespace impl {
 
@@ -32,3 +33,4 @@ NormalizedComponentStorageHolder::~NormalizedComponentStorageHolder() noexcept {
 
 } // namespace impl
 } // namespace Fruit
+} // namespace Poco

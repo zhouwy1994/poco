@@ -25,6 +25,6 @@ public:
   }
 };
 
-Fruit::Component<Adder> getSimpleAdderComponent() {
-  return Fruit::createComponent().bind<Adder, SimpleAdder>();
+Poco::Fruit::Component<Adder> getSimpleAdderComponent() {
+  return Poco::Fruit::createComponent().bind<Adder, SimpleAdder>();
 }

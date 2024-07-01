@@ -32,6 +32,7 @@
 using std::cout;
 using std::endl;
 
+namespace Poco{
 namespace Fruit {
 namespace impl {
 
@@ -515,4 +516,5 @@ void BindingNormalization::handlePreexistingLazyComponentWithNoArgsReplacement(
 
 } // namespace impl
 // We need a LCOV_EXCL_BR_LINE below because for some reason gcov/lcov think there's a branch there.
-} // namespace Fruit LCOV_EXCL_BR_LINE
+} // namespace Fruit
+} // namespace Poco LCOV_EXCL_BR_LINE

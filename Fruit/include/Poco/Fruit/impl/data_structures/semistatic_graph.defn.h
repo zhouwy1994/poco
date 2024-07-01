@@ -19,6 +19,7 @@
 
 #include <Poco/Fruit/impl/data_structures/semistatic_graph.h>
 
+namespace Poco{
 namespace Fruit {
 namespace impl {
 
@@ -194,5 +195,6 @@ SemistaticGraph<NodeId, Node>::nodeAtId(const NodeData* nodes_begin, InternalNod
 
 } // namespace impl
 } // namespace Fruit
+} // namespace Poco
 
 #endif // SEMISTATIC_GRAPH_INLINES_H

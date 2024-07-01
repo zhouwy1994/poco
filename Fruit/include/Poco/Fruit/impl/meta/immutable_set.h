@@ -21,6 +21,7 @@
 #include <Poco/Fruit/impl/meta/basics.h>
 #include <Poco/Fruit/impl/meta/vector.h>
 
+namespace Poco{
 namespace Fruit {
 namespace impl {
 namespace meta {
@@ -60,5 +61,6 @@ struct SizeOfImmutableSet {
 } // namespace meta
 } // namespace impl
 } // namespace Fruit
+} // namespace Poco
 
 #endif // FRUIT_META_IMMUTABLE_SET_H

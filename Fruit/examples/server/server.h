@@ -26,10 +26,10 @@
 
 class Server {
 public:
-  virtual void run(Fruit::Component<Fruit::Required<Request, ServerContext>, RequestDispatcher> (
+  virtual void run(Poco::Fruit::Component<Poco::Fruit::Required<Request, ServerContext>, RequestDispatcher> (
       *getrequestDispatcherComponent)()) = 0;
 };
 
-Fruit::Component<Server> getServerComponent();
+Poco::Fruit::Component<Server> getServerComponent();
 
 #endif // SERVER_H

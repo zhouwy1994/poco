@@ -17,7 +17,7 @@
 #ifndef FRUIT_CACHED_H
 #define FRUIT_CACHED_H
 
-// Used to annotate (using Fruit::Annotated<>) types that have a cached implementation.
+// Used to annotate (using Poco::Fruit::Annotated<>) types that have a cached implementation.
 struct Cached {};
 
 #endif // FRUIT_CACHED_H

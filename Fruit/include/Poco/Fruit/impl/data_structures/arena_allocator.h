@@ -19,6 +19,7 @@
 
 #include <Poco/Fruit/impl/data_structures/memory_pool.h>
 
+namespace Poco{
 namespace Fruit {
 namespace impl {
 
@@ -70,6 +71,7 @@ bool operator!=(const ArenaAllocator<T>&, const ArenaAllocator<U>&);
 
 } // namespace impl
 } // namespace Fruit
+} // namespace Poco
 
 #include <Poco/Fruit/impl/data_structures/arena_allocator.defn.h>
 

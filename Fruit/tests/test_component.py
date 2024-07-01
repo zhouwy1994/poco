@@ -22,16 +22,16 @@ COMMON_DEFINITIONS = '''
     struct X;
 
     struct Annotation1 {};
-    using XAnnot1 = Fruit::Annotated<Annotation1, X>;
+    using XAnnot1 = Poco::Fruit::Annotated<Annotation1, X>;
 
     struct Annotation2 {};
-    using XAnnot2 = Fruit::Annotated<Annotation2, X>;
+    using XAnnot2 = Poco::Fruit::Annotated<Annotation2, X>;
     '''
 
 class TestComponent(parameterized.TestCase):
     @parameterized.parameters([
         'X',
-        'Fruit::Annotated<Annotation1, X>',
+        'Poco::Fruit::Annotated<Annotation1, X>',
     ])
     def test_move(self, XAnnot):
         source = '''
@@ -39,14 +39,14 @@ class TestComponent(parameterized.TestCase):
               using Inject = X();
             };
     
-            Fruit::Component<XAnnot> getComponent() {
-              Fruit::Component<XAnnot> c = Fruit::createComponent();
-              Fruit::Component<XAnnot> c2 = std::move(c);
-              return Fruit::Component<XAnnot>(std::move(c2));
+            Poco::Fruit::Component<XAnnot> getComponent() {
+              Poco::Fruit::Component<XAnnot> c = Poco::Fruit::createComponent();
+              Poco::Fruit::Component<XAnnot> c2 = std::move(c);
+              return Poco::Fruit::Component<XAnnot>(std::move(c2));
             }
     
             int main() {
-              Fruit::Injector<XAnnot> injector(getComponent);
+              Poco::Fruit::Injector<XAnnot> injector(getComponent);
               injector.get<XAnnot>();
             }
             '''
@@ -57,7 +57,7 @@ class TestComponent(parameterized.TestCase):
 
     @parameterized.parameters([
         'X',
-        'Fruit::Annotated<Annotation1, X>',
+        'Poco::Fruit::Annotated<Annotation1, X>',
     ])
     def test_move_partial_component(self, XAnnot):
         source = '''
@@ -65,24 +65,24 @@ class TestComponent(parameterized.TestCase):
               using Inject = X();
             };
     
-            Fruit::Component<XAnnot> getComponent() {
-              auto c = Fruit::createComponent();
+            Poco::Fruit::Component<XAnnot> getComponent() {
+              auto c = Poco::Fruit::createComponent();
               auto c1 = std::move(c);
               return std::move(c1);
             }
     
             int main() {
-              Fruit::Injector<XAnnot> injector(getComponent);
+              Poco::Fruit::Injector<XAnnot> injector(getComponent);
               injector.get<XAnnot>();
             }
             '''
         expect_generic_compile_error(
-            r'error: use of deleted function .Fruit::PartialComponent<Bindings>::PartialComponent\(Fruit::PartialComponent<Bindings>&&\).'
-            r'|error: call to deleted constructor of .(Fruit::)?PartialComponent<>.'
+            r'error: use of deleted function .Poco::Fruit::PartialComponent<Bindings>::PartialComponent\(Poco::Fruit::PartialComponent<Bindings>&&\).'
+            r'|error: call to deleted constructor of .(Poco::Fruit::)?PartialComponent<>.'
             # MSVC 2017
-            r'|error C2280: .Fruit::PartialComponent<>::PartialComponent\(Fruit::PartialComponent<> &&\).: attempting to reference a deleted function'
+            r'|error C2280: .Poco::Fruit::PartialComponent<>::PartialComponent\(Poco::Fruit::PartialComponent<> &&\).: attempting to reference a deleted function'
             # MSVC 2015
-            r'|error C2248: .Fruit::PartialComponent<>::PartialComponent.: cannot access private member declared in class .Fruit::PartialComponent<>.',
+            r'|error C2248: .Poco::Fruit::PartialComponent<>::PartialComponent.: cannot access private member declared in class .Poco::Fruit::PartialComponent<>.',
             COMMON_DEFINITIONS,
             source,
             locals())
@@ -90,15 +90,15 @@ class TestComponent(parameterized.TestCase):
     @parameterized.parameters([
         ('X', 'X'),
         ('X', 'const X'),
-        ('Fruit::Annotated<Annotation1, X>', 'Fruit::Annotated<Annotation1, X>'),
-        ('Fruit::Annotated<Annotation1, X>', 'Fruit::Annotated<Annotation1, const X>'),
+        ('Poco::Fruit::Annotated<Annotation1, X>', 'Poco::Fruit::Annotated<Annotation1, X>'),
+        ('Poco::Fruit::Annotated<Annotation1, X>', 'Poco::Fruit::Annotated<Annotation1, const X>'),
     ])
     def test_error_no_binding_found(self, XAnnot, ConstXAnnot):
         source = '''
             struct X {};
     
-            Fruit::Component<ConstXAnnot> getComponent() {
-              return Fruit::createComponent();
+            Poco::Fruit::Component<ConstXAnnot> getComponent() {
+              return Poco::Fruit::createComponent();
             }
             '''
         expect_compile_error(
@@ -111,8 +111,8 @@ class TestComponent(parameterized.TestCase):
     @parameterized.parameters([
         ('X', 'X'),
         ('X', 'const X'),
-        ('Fruit::Annotated<Annotation1, X>', 'Fruit::Annotated<Annotation1, X>'),
-        ('Fruit::Annotated<Annotation1, X>', 'Fruit::Annotated<Annotation1, const X>'),
+        ('Poco::Fruit::Annotated<Annotation1, X>', 'Poco::Fruit::Annotated<Annotation1, X>'),
+        ('Poco::Fruit::Annotated<Annotation1, X>', 'Poco::Fruit::Annotated<Annotation1, const X>'),
     ])
     def test_error_no_binding_found_abstract_class(self, XAnnot, ConstXAnnot):
         source = '''
@@ -120,8 +120,8 @@ class TestComponent(parameterized.TestCase):
               virtual void f() = 0;
             };
     
-            Fruit::Component<ConstXAnnot> getComponent() {
-              return Fruit::createComponent();
+            Poco::Fruit::Component<ConstXAnnot> getComponent() {
+              return Poco::Fruit::createComponent();
             }
             '''
         expect_compile_error(
@@ -139,8 +139,8 @@ class TestComponent(parameterized.TestCase):
         source = '''
             struct X {};
     
-            Fruit::Component<MaybeConst std::function<std::unique_ptr<X>()>> getComponent() {
-              return Fruit::createComponent();
+            Poco::Fruit::Component<MaybeConst std::function<std::unique_ptr<X>()>> getComponent() {
+              return Poco::Fruit::createComponent();
             }
             '''
         expect_compile_error(
@@ -158,12 +158,12 @@ class TestComponent(parameterized.TestCase):
         source = '''
             struct X {};
     
-            Fruit::Component<Fruit::Annotated<Annotation1, MaybeConst std::function<std::unique_ptr<X>()>>> getComponent() {
-              return Fruit::createComponent();
+            Poco::Fruit::Component<Poco::Fruit::Annotated<Annotation1, MaybeConst std::function<std::unique_ptr<X>()>>> getComponent() {
+              return Poco::Fruit::createComponent();
             }
             '''
         expect_compile_error(
-            r'NoBindingFoundError<Fruit::Annotated<Annotation1,std::function<std::unique_ptr<X(,std::default_delete<X>)?>\((void)?\)>>',
+            r'NoBindingFoundError<Poco::Fruit::Annotated<Annotation1,std::function<std::unique_ptr<X(,std::default_delete<X>)?>\((void)?\)>>',
             'No explicit binding nor C::Inject definition was found for T.',
             COMMON_DEFINITIONS,
             source,

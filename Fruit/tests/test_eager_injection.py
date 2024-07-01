@@ -56,15 +56,15 @@ COMMON_DEFINITIONS = '''
 class TestEagerInjection(parameterized.TestCase):
     def test_eager_injection_deprecated(self):
         source = '''
-            Fruit::Component<X> getComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<X> getComponent() {
+              return Poco::Fruit::createComponent()
                 .addMultibindingProvider([](){return new Y();})
                 .registerConstructor<Z()>();
             }
             
             int main() {
               
-              Fruit::Injector<X> injector(getComponent);
+              Poco::Fruit::Injector<X> injector(getComponent);
               
               Assert(!X::constructed);
               Assert(!Y::constructed);
@@ -87,15 +87,15 @@ class TestEagerInjection(parameterized.TestCase):
 
     def test_eager_injection(self):
         source = '''
-            Fruit::Component<X> getComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<X> getComponent() {
+              return Poco::Fruit::createComponent()
                 .addMultibindingProvider([](){return new Y();})
                 .registerConstructor<Z()>();
             }
             
             int main() {
               
-              Fruit::Injector<X> injector(getComponent);
+              Poco::Fruit::Injector<X> injector(getComponent);
               
               Assert(!X::constructed);
               Assert(!Y::constructed);

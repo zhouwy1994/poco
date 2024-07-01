@@ -7,7 +7,7 @@
 * **TODO** Check what happens with non-normalized types (all kinds)
 
 #### Binding to an instance
-* Using `bind(x)` or `bind<Fruit::Annotated<A, T>>(x)`.
+* Using `bind(x)` or `bind<Poco::Fruit::Annotated<A, T>>(x)`.
 * Check that calling bindInstance with a non-normalized type (e.g. const pointer, nonconst ptr, etc.) causes an error
 * Abstract class (ok)
 * Mismatched type arguments
@@ -80,7 +80,7 @@
 * Injecting a std::function<std::unique_ptr<T>(...)> with T not movable
 
 #### Annotated bindings
-* **TODO** Using `Fruit::Annotated<>`
+* **TODO** Using `Poco::Fruit::Annotated<>`
 * **TODO** Using the ANNOTATED macro (only in constructors using INJECT)
 * **TODO** Check possibly-misleading behavior of binding Annotated<A1, I> and Annotated<A2, I> to C (only 1 C instance is created and shared)  
 * **TODO** With assisted params of all kinds of non-normalized types (especially in ANNOTATED)

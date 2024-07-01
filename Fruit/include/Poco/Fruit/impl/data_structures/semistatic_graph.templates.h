@@ -32,6 +32,7 @@
 #include <iostream>
 #endif
 
+namespace Poco{
 namespace Fruit {
 namespace impl {
 
@@ -231,5 +232,6 @@ SemistaticGraph<NodeId, Node>::~SemistaticGraph() {}
 
 } // namespace impl
 } // namespace Fruit
+} // namespace Poco
 
 #endif // SEMISTATIC_GRAPH_TEMPLATES_H

@@ -19,6 +19,7 @@
 
 #include <Poco/Fruit/impl/data_structures/semistatic_map.h>
 
+namespace Poco{
 namespace Fruit {
 namespace impl {
 
@@ -37,5 +38,6 @@ inline typename SemistaticMap<Key, Value>::Unsigned SemistaticMap<Key, Value>::h
 
 } // namespace impl
 } // namespace Fruit
+} // namespace Poco
 
 #endif // SEMISTATIC_MAP_DEFN_H

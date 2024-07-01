@@ -21,6 +21,7 @@
 #include <Poco/Fruit/impl/util/call_with_tuple.h>
 #include <Poco/Fruit/impl/component_install_arg_checks.h>
 
+namespace Poco{
 namespace Fruit {
 
 template <typename ComponentType, typename... ComponentFunctionArgs>
@@ -28,7 +29,7 @@ inline ComponentFunction<ComponentType, ComponentFunctionArgs...>::ComponentFunc
         ComponentType (*getComponent)(ComponentFunctionArgs...), ComponentFunctionArgs... args)
     : getComponent(getComponent), args_tuple{args...} {
     using IntCollector = int[];
-    (void)IntCollector{0, Fruit::impl::checkAcceptableComponentInstallArg<ComponentFunctionArgs>()...};
+    (void)IntCollector{0, Poco::Fruit::impl::checkAcceptableComponentInstallArg<ComponentFunctionArgs>()...};
 }
 
 template <typename ComponentType, typename... ComponentFunctionArgs>
@@ -41,17 +42,18 @@ ComponentFunction<ComponentType, ComponentFunctionArgs...>::create(
 
 template <typename ComponentType, typename... ComponentFunctionArgs>
 inline ComponentType ComponentFunction<ComponentType, ComponentFunctionArgs...>::operator()() {
-    return Fruit::impl::callWithTuple(getComponent, args_tuple);
+    return Poco::Fruit::impl::callWithTuple(getComponent, args_tuple);
 }
 
 template <typename... ComponentParams, typename... FormalArgs, typename... ActualArgs>
-inline ComponentFunction<Fruit::Component<ComponentParams...>, FormalArgs...> componentFunction(
-        Fruit::Component<ComponentParams...> (*getComponent)(FormalArgs...),
+inline ComponentFunction<Poco::Fruit::Component<ComponentParams...>, FormalArgs...> componentFunction(
+        Poco::Fruit::Component<ComponentParams...> (*getComponent)(FormalArgs...),
         ActualArgs&&... args) {
-    return ComponentFunction<Fruit::Component<ComponentParams...>, FormalArgs...>::create(
+    return ComponentFunction<Poco::Fruit::Component<ComponentParams...>, FormalArgs...>::create(
         getComponent, std::forward<ActualArgs>(args)...);
 }
 
+}
 }
 
 #endif // FRUIT_COMPONENT_FUNCTION_DEFN_H

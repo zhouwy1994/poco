@@ -19,6 +19,7 @@
 
 #include <Poco/Fruit/impl/meta/basics.h>
 
+namespace Poco{
 namespace Fruit {
 namespace impl {
 namespace meta {
@@ -47,5 +48,6 @@ struct GetThird {
 } // namespace meta
 } // namespace impl
 } // namespace Fruit
+} // namespace Poco
 
 #endif // FRUIT_META_TRIPLET_H

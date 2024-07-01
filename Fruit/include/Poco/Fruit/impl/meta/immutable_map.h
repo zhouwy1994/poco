@@ -22,6 +22,7 @@
 #include <Poco/Fruit/impl/meta/pair.h>
 #include <Poco/Fruit/impl/meta/set.h>
 
+namespace Poco{
 namespace Fruit {
 namespace impl {
 namespace meta {
@@ -87,5 +88,6 @@ struct GetImmutableMapKeys {
 } // namespace meta
 } // namespace impl
 } // namespace Fruit
+} // namespace Poco
 
 #endif // FRUIT_META_IMMUTABLE_MAP_H

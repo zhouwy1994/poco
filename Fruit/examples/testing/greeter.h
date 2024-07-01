@@ -25,6 +25,6 @@ public:
   virtual std::string greet() = 0;
 };
 
-Fruit::Component<Greeter> getGreeterComponent();
+Poco::Fruit::Component<Greeter> getGreeterComponent();
 
 #endif // FRUIT_GREETER_H

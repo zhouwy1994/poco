@@ -19,6 +19,6 @@
 #include "incrementer_impl.h"
 #include "simple_adder.h"
 
-Fruit::Component<Incrementer> getSimpleIncrementerComponent() {
-  return Fruit::createComponent().install(getIncrementerImplComponent).install(getSimpleAdderComponent);
+Poco::Fruit::Component<Incrementer> getSimpleIncrementerComponent() {
+  return Poco::Fruit::createComponent().install(getIncrementerImplComponent).install(getSimpleAdderComponent);
 }

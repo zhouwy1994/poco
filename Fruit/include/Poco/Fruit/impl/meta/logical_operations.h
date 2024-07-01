@@ -19,6 +19,7 @@
 
 #include <Poco/Fruit/impl/meta/basics.h>
 
+namespace Poco{
 namespace Fruit {
 namespace impl {
 namespace meta {
@@ -35,5 +36,6 @@ using StaticOr = Bool<!std::is_same<BoolVector<bs...>, BoolVector<(false && bs).
 } // namespace meta
 } // namespace impl
 } // namespace Fruit
+} // namespace Poco
 
 #endif // FRUIT_META_LOGICAL_OPERATIONS_H

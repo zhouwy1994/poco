@@ -17,8 +17,8 @@
 #include <Poco/Fruit/fruit.h>
 #include <iostream>
 
-using Fruit::Component;
-using Fruit::Injector;
+using Poco::Fruit::Component;
+using Poco::Fruit::Injector;
 
 class Listener {
 public:
@@ -64,7 +64,7 @@ public:
 Component<> getListenersComponent() {
   // Here they are in the same component to keep it simple, but Fruit collects all multibindings in installed
   // components.
-  return Fruit::createComponent()
+  return Poco::Fruit::createComponent()
       .bind<Writer, StdoutWriter>()
       .addMultibinding<Listener, Listener1>()
       .addMultibinding<Listener, Listener2>();

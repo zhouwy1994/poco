@@ -34,6 +34,7 @@
   }
 *********************************************************************************************************************************/
 
+namespace Poco{
 namespace Fruit {
 namespace impl {
 namespace meta {
@@ -759,7 +760,7 @@ struct InstallComponentFunctions {
     };
 
     template <typename Comp, typename... ComponentParams, typename... ComponentFunctionArgs, typename... ComponentFunctions>
-    struct apply<Comp, Type<Fruit::ComponentFunction<Fruit::Component<ComponentParams...>, ComponentFunctionArgs...>>, ComponentFunctions...> {
+    struct apply<Comp, Type<Poco::Fruit::ComponentFunction<Poco::Fruit::Component<ComponentParams...>, ComponentFunctionArgs...>>, ComponentFunctions...> {
       using type =
           Call(
               Compose2ComponentFunctors(
@@ -1126,25 +1127,25 @@ struct AutoRegister {
   template <typename Comp, typename TargetRequirements, typename TargetNonConstRequirements, typename Annotation,
             typename NakedC, typename... NakedArgs>
   struct apply<Comp, TargetRequirements, TargetNonConstRequirements,
-               Type<Fruit::Annotated<Annotation, std::function<NakedC(NakedArgs...)>>>> {
+               Type<Poco::Fruit::Annotated<Annotation, std::function<NakedC(NakedArgs...)>>>> {
     using type = AutoRegisterFactoryHelper(Comp, TargetRequirements, TargetNonConstRequirements,
                                            FindInMap(typename Comp::InterfaceBindings,
-                                                     Type<Fruit::Annotated<Annotation, NakedC>>),
+                                                     Type<Poco::Fruit::Annotated<Annotation, NakedC>>),
                                            HasInjectAnnotation(Type<NakedC>), IsAbstract(Type<NakedC>), Type<NakedC>,
-                                           Type<Fruit::Annotated<Annotation, NakedC>(NakedArgs...)>,
+                                           Type<Poco::Fruit::Annotated<Annotation, NakedC>(NakedArgs...)>,
                                            Id<RemoveAnnotations(Type<NakedArgs>)>...);
   };
 
   template <typename Comp, typename TargetRequirements, typename TargetNonConstRequirements, typename Annotation,
             typename NakedC, typename... NakedArgs>
   struct apply<Comp, TargetRequirements, TargetNonConstRequirements,
-               Type<Fruit::Annotated<Annotation, std::function<std::unique_ptr<NakedC>(NakedArgs...)>>>> {
+               Type<Poco::Fruit::Annotated<Annotation, std::function<std::unique_ptr<NakedC>(NakedArgs...)>>>> {
     using type = AutoRegisterFactoryHelper(Comp, TargetRequirements, TargetNonConstRequirements,
                                            FindInMap(typename Comp::InterfaceBindings,
-                                                     Type<Fruit::Annotated<Annotation, NakedC>>),
+                                                     Type<Poco::Fruit::Annotated<Annotation, NakedC>>),
                                            HasInjectAnnotation(Type<NakedC>), IsAbstract(Type<NakedC>),
                                            Type<std::unique_ptr<NakedC>>,
-                                           Type<Fruit::Annotated<Annotation, std::unique_ptr<NakedC>>(NakedArgs...)>,
+                                           Type<Poco::Fruit::Annotated<Annotation, std::unique_ptr<NakedC>>(NakedArgs...)>,
                                            Id<RemoveAnnotations(Type<NakedArgs>)>...);
   };
 };
@@ -1229,77 +1230,77 @@ struct ProcessBinding {
   struct apply;
 
   template <typename I, typename C>
-  struct apply<Fruit::impl::Bind<I, C>> {
+  struct apply<Poco::Fruit::impl::Bind<I, C>> {
     using type = ComponentFunctor(AddDeferredInterfaceBinding, Type<I>, Type<C>);
   };
 
   template <typename Signature>
-  struct apply<Fruit::impl::RegisterConstructor<Signature>> {
+  struct apply<Poco::Fruit::impl::RegisterConstructor<Signature>> {
     using type = ComponentFunctor(DeferredRegisterConstructor, Type<Signature>);
   };
 
   template <typename AnnotatedC, typename C>
-  struct apply<Fruit::impl::BindInstance<AnnotatedC, C>> {
+  struct apply<Poco::Fruit::impl::BindInstance<AnnotatedC, C>> {
     using type = ComponentFunctor(RegisterInstance, Type<AnnotatedC>, Type<C>, Bool<true>);
   };
 
   template <typename AnnotatedC, typename C>
-  struct apply<Fruit::impl::BindConstInstance<AnnotatedC, C>> {
+  struct apply<Poco::Fruit::impl::BindConstInstance<AnnotatedC, C>> {
     using type = ComponentFunctor(RegisterInstance, Type<AnnotatedC>, Type<C>, Bool<false>);
   };
 
   template <typename Lambda>
-  struct apply<Fruit::impl::RegisterProvider<Lambda>> {
+  struct apply<Poco::Fruit::impl::RegisterProvider<Lambda>> {
     using type = ComponentFunctor(DeferredRegisterProvider, Type<Lambda>);
   };
 
   template <typename AnnotatedSignature, typename Lambda>
-  struct apply<Fruit::impl::RegisterProvider<AnnotatedSignature, Lambda>> {
+  struct apply<Poco::Fruit::impl::RegisterProvider<AnnotatedSignature, Lambda>> {
     using type = ComponentFunctor(DeferredRegisterProviderWithAnnotations, Type<AnnotatedSignature>, Type<Lambda>);
   };
 
   template <typename AnnotatedC>
-  struct apply<Fruit::impl::AddInstanceMultibinding<AnnotatedC>> {
+  struct apply<Poco::Fruit::impl::AddInstanceMultibinding<AnnotatedC>> {
     using type = ComponentFunctorIdentity;
   };
 
   template <typename AnnotatedC>
-  struct apply<Fruit::impl::AddInstanceVectorMultibindings<AnnotatedC>> {
+  struct apply<Poco::Fruit::impl::AddInstanceVectorMultibindings<AnnotatedC>> {
     using type = ComponentFunctorIdentity;
   };
 
   template <typename I, typename C>
-  struct apply<Fruit::impl::AddMultibinding<I, C>> {
+  struct apply<Poco::Fruit::impl::AddMultibinding<I, C>> {
     using type = ComponentFunctor(AddInterfaceMultibinding, Type<I>, Type<C>);
   };
 
   template <typename Lambda>
-  struct apply<Fruit::impl::AddMultibindingProvider<Lambda>> {
+  struct apply<Poco::Fruit::impl::AddMultibindingProvider<Lambda>> {
     using type = ComponentFunctor(RegisterMultibindingProvider, Type<Lambda>);
   };
 
   template <typename AnnotatedSignature, typename Lambda>
-  struct apply<Fruit::impl::AddMultibindingProvider<AnnotatedSignature, Lambda>> {
+  struct apply<Poco::Fruit::impl::AddMultibindingProvider<AnnotatedSignature, Lambda>> {
     using type = ComponentFunctor(RegisterMultibindingProviderWithAnnotations, Type<AnnotatedSignature>, Type<Lambda>);
   };
 
   template <typename DecoratedSignature, typename Lambda>
-  struct apply<Fruit::impl::RegisterFactory<DecoratedSignature, Lambda>> {
+  struct apply<Poco::Fruit::impl::RegisterFactory<DecoratedSignature, Lambda>> {
     using type = ComponentFunctor(RegisterFactory, Type<DecoratedSignature>, Type<Lambda>);
   };
 
   template <typename... Params, typename... Args>
-  struct apply<Fruit::impl::InstallComponent<Fruit::Component<Params...>(Args...)>> {
+  struct apply<Poco::Fruit::impl::InstallComponent<Poco::Fruit::Component<Params...>(Args...)>> {
     using type = ComponentFunctor(InstallComponentHelper, Type<Params>...);
   };
 
   template <typename... ComponentFunctions>
-  struct apply<Fruit::impl::InstallComponentFunctions<ComponentFunctions...>> {
+  struct apply<Poco::Fruit::impl::InstallComponentFunctions<ComponentFunctions...>> {
     using type = ComponentFunctor(InstallComponentFunctions, Type<ComponentFunctions>...);
   };
 
   template <typename GetReplacedComponent, typename GetReplacementComponent>
-  struct apply<Fruit::impl::ReplaceComponent<GetReplacedComponent, GetReplacementComponent>> {
+  struct apply<Poco::Fruit::impl::ReplaceComponent<GetReplacedComponent, GetReplacementComponent>> {
     using type = ComponentFunctorIdentity;
   };
 };
@@ -1307,5 +1308,6 @@ struct ProcessBinding {
 } // namespace meta
 } // namespace impl
 } // namespace Fruit
+} // namespace Poco
 
 #endif // FRUIT_COMPONENT_FUNCTORS_DEFN_H

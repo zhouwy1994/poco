@@ -19,6 +19,7 @@
 
 #include <Poco/Fruit/impl/fruit-config.h>
 
+namespace Poco{
 namespace Fruit {
 namespace impl {
 
@@ -27,6 +28,7 @@ int checkAcceptableComponentInstallArg();
 
 } // namespace impl
 } // namespace Fruit
+} // namespace Poco
 
 #include <Poco/Fruit/impl/component_install_arg_checks.defn.h>
 

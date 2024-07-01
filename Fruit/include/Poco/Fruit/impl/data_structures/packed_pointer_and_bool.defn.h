@@ -19,6 +19,7 @@
 
 #include <Poco/Fruit/impl/data_structures/packed_pointer_and_bool.h>
 
+namespace Poco{
 namespace Fruit {
 namespace impl {
 
@@ -73,6 +74,7 @@ inline bool PackedPointerAndBool<T>::operator!=(const PackedPointerAndBool<T>& o
 }
 
 } // namespace Fruit
+} // namespace Poco
 } // namespace impl
 
 #endif // FRUIT_PACKED_POINTER_AND_BOOL_DEFN_H

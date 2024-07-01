@@ -25,18 +25,18 @@ COMMON_DEFINITIONS = '''
         
     struct Annotation {};
     struct Annotation1 {};
-    using ListenerAnnot = Fruit::Annotated<Annotation, Listener>;
+    using ListenerAnnot = Poco::Fruit::Annotated<Annotation, Listener>;
     '''
 
 class TestMultibindingsMisc(parameterized.TestCase):
     def test_get_none(self):
         source = '''
-            Fruit::Component<> getComponent() {
-              return Fruit::createComponent();
+            Poco::Fruit::Component<> getComponent() {
+              return Poco::Fruit::createComponent();
             }
     
             int main() {
-              Fruit::Injector<> injector(getComponent);
+              Poco::Fruit::Injector<> injector(getComponent);
     
               std::vector<X*> multibindings = injector.getMultibindings<X>();
               (void) multibindings;
@@ -119,8 +119,8 @@ class TestMultibindingsMisc(parameterized.TestCase):
               }
             };
     
-            Fruit::Component<> getListenersComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<> getListenersComponent() {
+              return Poco::Fruit::createComponent()
                 .bind<Writer, StdoutWriter>()
                 // Note: this is just to exercise the other method, but in real code you should split this in
                 // an addMultibinding<Listener, Listener1> and a registerProvider with the lambda.
@@ -133,7 +133,7 @@ class TestMultibindingsMisc(parameterized.TestCase):
             }
     
             int main() {
-              Fruit::Injector<> injector(getListenersComponent);
+              Poco::Fruit::Injector<> injector(getListenersComponent);
               std::vector<Listener*> listeners = injector.getMultibindings<Listener>();
               for (Listener* listener : listeners) {
                 listener->notify();
@@ -194,16 +194,16 @@ class TestMultibindingsMisc(parameterized.TestCase):
             // |-- C (won't be expanded)
             // `-- 18
             
-            Fruit::Component<> getRootComponent();
-            Fruit::Component<> getComponentA();
-            Fruit::Component<> getComponentB();
-            Fruit::Component<> getComponentC();
-            Fruit::Component<> getComponentD();
-            Fruit::Component<> getComponentE();
-            Fruit::Component<> getComponentF();
+            Poco::Fruit::Component<> getRootComponent();
+            Poco::Fruit::Component<> getComponentA();
+            Poco::Fruit::Component<> getComponentB();
+            Poco::Fruit::Component<> getComponentC();
+            Poco::Fruit::Component<> getComponentD();
+            Poco::Fruit::Component<> getComponentE();
+            Poco::Fruit::Component<> getComponentF();
     
-            Fruit::Component<> getRootComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<> getRootComponent() {
+              return Poco::Fruit::createComponent()
                 .addInstanceMultibinding(numbers[0])
                 .install(getComponentA)
                 .addInstanceMultibinding(numbers[17])
@@ -211,8 +211,8 @@ class TestMultibindingsMisc(parameterized.TestCase):
                 .addInstanceMultibinding(numbers[18]);
             }
             
-            Fruit::Component<> getComponentA() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<> getComponentA() {
+              return Poco::Fruit::createComponent()
                 .addInstanceMultibinding(numbers[1])
                 .install(getComponentB)
                 .addInstanceMultibinding(numbers[4])
@@ -222,14 +222,14 @@ class TestMultibindingsMisc(parameterized.TestCase):
                 .addInstanceMultibinding(numbers[16]);
             }
     
-            Fruit::Component<> getComponentB() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<> getComponentB() {
+              return Poco::Fruit::createComponent()
                 .addInstanceMultibinding(numbers[2])
                 .addInstanceMultibinding(numbers[3]);
             }
     
-            Fruit::Component<> getComponentC() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<> getComponentC() {
+              return Poco::Fruit::createComponent()
                 .addInstanceMultibinding(numbers[5])
                 .addInstanceMultibinding(numbers[6])
                 .install(getComponentD)
@@ -238,27 +238,27 @@ class TestMultibindingsMisc(parameterized.TestCase):
                 .addInstanceMultibinding(numbers[14]);
             }
     
-            Fruit::Component<> getComponentD() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<> getComponentD() {
+              return Poco::Fruit::createComponent()
                 .addInstanceMultibinding(numbers[7])
                 .install(getComponentE)
                 .addInstanceMultibinding(numbers[10]);
             }
     
-            Fruit::Component<> getComponentE() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<> getComponentE() {
+              return Poco::Fruit::createComponent()
                 .addInstanceMultibinding(numbers[8])
                 .addInstanceMultibinding(numbers[9]);
             }
     
-            Fruit::Component<> getComponentF() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<> getComponentF() {
+              return Poco::Fruit::createComponent()
                 .addInstanceMultibinding(numbers[12])
                 .addInstanceMultibinding(numbers[13]);
             }
     
             int main() {
-              Fruit::Injector<> injector(getRootComponent);
+              Poco::Fruit::Injector<> injector(getRootComponent);
               std::vector<int*> result_ptrs = injector.getMultibindings<int>();
               std::vector<int> results;
               std::cout << "Results: ";
@@ -338,24 +338,24 @@ class TestMultibindingsMisc(parameterized.TestCase):
             // |-- C2 (won't be expanded)
             // `-- 37
     
-            Fruit::Component<> getRootComponent();
-            Fruit::Component<> getComponentA();
-            Fruit::Component<> getComponentB();
-            Fruit::Component<> getComponentC();
-            Fruit::Component<> getComponentD();
-            Fruit::Component<> getComponentE();
-            Fruit::Component<> getComponentF();
+            Poco::Fruit::Component<> getRootComponent();
+            Poco::Fruit::Component<> getComponentA();
+            Poco::Fruit::Component<> getComponentB();
+            Poco::Fruit::Component<> getComponentC();
+            Poco::Fruit::Component<> getComponentD();
+            Poco::Fruit::Component<> getComponentE();
+            Poco::Fruit::Component<> getComponentF();
             
-            Fruit::Component<> getRootComponent2();
-            Fruit::Component<> getComponentA2();
-            Fruit::Component<> getComponentB2();
-            Fruit::Component<> getComponentC2();
-            Fruit::Component<> getComponentD2();
-            Fruit::Component<> getComponentE2();
-            Fruit::Component<> getComponentF2();
+            Poco::Fruit::Component<> getRootComponent2();
+            Poco::Fruit::Component<> getComponentA2();
+            Poco::Fruit::Component<> getComponentB2();
+            Poco::Fruit::Component<> getComponentC2();
+            Poco::Fruit::Component<> getComponentD2();
+            Poco::Fruit::Component<> getComponentE2();
+            Poco::Fruit::Component<> getComponentF2();
     
-            Fruit::Component<> getRootComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<> getRootComponent() {
+              return Poco::Fruit::createComponent()
                 .addInstanceMultibinding(numbers[0])
                 .install(getComponentA)
                 .addInstanceMultibinding(numbers[17])
@@ -363,8 +363,8 @@ class TestMultibindingsMisc(parameterized.TestCase):
                 .addInstanceMultibinding(numbers[18]);
             }
             
-            Fruit::Component<> getComponentA() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<> getComponentA() {
+              return Poco::Fruit::createComponent()
                 .addInstanceMultibinding(numbers[1])
                 .install(getComponentB)
                 .addInstanceMultibinding(numbers[4])
@@ -374,14 +374,14 @@ class TestMultibindingsMisc(parameterized.TestCase):
                 .addInstanceMultibinding(numbers[16]);
             }
     
-            Fruit::Component<> getComponentB() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<> getComponentB() {
+              return Poco::Fruit::createComponent()
                 .addInstanceMultibinding(numbers[2])
                 .addInstanceMultibinding(numbers[3]);
             }
     
-            Fruit::Component<> getComponentC() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<> getComponentC() {
+              return Poco::Fruit::createComponent()
                 .addInstanceMultibinding(numbers[5])
                 .addInstanceMultibinding(numbers[6])
                 .install(getComponentD)
@@ -390,27 +390,27 @@ class TestMultibindingsMisc(parameterized.TestCase):
                 .addInstanceMultibinding(numbers[14]);
             }
     
-            Fruit::Component<> getComponentD() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<> getComponentD() {
+              return Poco::Fruit::createComponent()
                 .addInstanceMultibinding(numbers[7])
                 .install(getComponentE)
                 .addInstanceMultibinding(numbers[10]);
             }
     
-            Fruit::Component<> getComponentE() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<> getComponentE() {
+              return Poco::Fruit::createComponent()
                 .addInstanceMultibinding(numbers[8])
                 .addInstanceMultibinding(numbers[9]);
             }
     
-            Fruit::Component<> getComponentF() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<> getComponentF() {
+              return Poco::Fruit::createComponent()
                 .addInstanceMultibinding(numbers[12])
                 .addInstanceMultibinding(numbers[13]);
             }
             
-            Fruit::Component<> getRootComponent2() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<> getRootComponent2() {
+              return Poco::Fruit::createComponent()
                 .addInstanceMultibinding(numbers[19])
                 .install(getComponentA2)
                 .addInstanceMultibinding(numbers[36])
@@ -418,8 +418,8 @@ class TestMultibindingsMisc(parameterized.TestCase):
                 .addInstanceMultibinding(numbers[37]);
             }
             
-            Fruit::Component<> getComponentA2() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<> getComponentA2() {
+              return Poco::Fruit::createComponent()
                 .addInstanceMultibinding(numbers[20])
                 .install(getComponentB2)
                 .addInstanceMultibinding(numbers[23])
@@ -429,14 +429,14 @@ class TestMultibindingsMisc(parameterized.TestCase):
                 .addInstanceMultibinding(numbers[35]);
             }
     
-            Fruit::Component<> getComponentB2() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<> getComponentB2() {
+              return Poco::Fruit::createComponent()
                 .addInstanceMultibinding(numbers[21])
                 .addInstanceMultibinding(numbers[22]);
             }
     
-            Fruit::Component<> getComponentC2() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<> getComponentC2() {
+              return Poco::Fruit::createComponent()
                 .addInstanceMultibinding(numbers[24])
                 .addInstanceMultibinding(numbers[25])
                 .install(getComponentD2)
@@ -445,28 +445,28 @@ class TestMultibindingsMisc(parameterized.TestCase):
                 .addInstanceMultibinding(numbers[33]);
             }
     
-            Fruit::Component<> getComponentD2() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<> getComponentD2() {
+              return Poco::Fruit::createComponent()
                 .addInstanceMultibinding(numbers[26])
                 .install(getComponentE2)
                 .addInstanceMultibinding(numbers[29]);
             }
     
-            Fruit::Component<> getComponentE2() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<> getComponentE2() {
+              return Poco::Fruit::createComponent()
                 .addInstanceMultibinding(numbers[27])
                 .addInstanceMultibinding(numbers[28]);
             }
     
-            Fruit::Component<> getComponentF2() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<> getComponentF2() {
+              return Poco::Fruit::createComponent()
                 .addInstanceMultibinding(numbers[31])
                 .addInstanceMultibinding(numbers[32]);
             }        
     
             int main() {
-              Fruit::NormalizedComponent<> normalizedComponent(getRootComponent);
-              Fruit::Injector<> injector(normalizedComponent, getRootComponent2);
+              Poco::Fruit::NormalizedComponent<> normalizedComponent(getRootComponent);
+              Poco::Fruit::Injector<> injector(normalizedComponent, getRootComponent2);
               std::vector<int*> result_ptrs = injector.getMultibindings<int>();
               std::vector<int> results;
               std::cout << "Results: ";
@@ -495,11 +495,11 @@ class TestMultibindingsMisc(parameterized.TestCase):
             // |-- A (lazy, won't be expanded)
             // `-- 4
             
-            Fruit::Component<> getRootComponent();
-            Fruit::Component<> getComponentA();
+            Poco::Fruit::Component<> getRootComponent();
+            Poco::Fruit::Component<> getComponentA();
             
-            Fruit::Component<> getRootComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<> getRootComponent() {
+              return Poco::Fruit::createComponent()
                 .addInstanceMultibinding(numbers[0])
                 .install(getComponentA)
                 .addInstanceMultibinding(numbers[3])
@@ -507,15 +507,15 @@ class TestMultibindingsMisc(parameterized.TestCase):
                 .addInstanceMultibinding(numbers[4]);
             }
             
-            Fruit::Component<> getComponentA() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<> getComponentA() {
+              return Poco::Fruit::createComponent()
                 .addInstanceMultibinding(numbers[1])
                 .addInstanceMultibinding(numbers[2]);
             }
     
             int main() {
-              Fruit::NormalizedComponent<> normalizedComponent(getRootComponent);
-              Fruit::Injector<> injector(normalizedComponent, getRootComponent);
+              Poco::Fruit::NormalizedComponent<> normalizedComponent(getRootComponent);
+              Poco::Fruit::Injector<> injector(normalizedComponent, getRootComponent);
               std::vector<int*> result_ptrs = injector.getMultibindings<int>();
               std::vector<int> results;
               std::cout << "Results: ";
@@ -537,14 +537,14 @@ class TestMultibindingsMisc(parameterized.TestCase):
         ('X*', r'X\*'),
         ('const X*', r'const X\*'),
         ('std::shared_ptr<X>', r'std::shared_ptr<X>'),
-        ('Fruit::Annotated<Annotation1, const X>', r'const X'),
-        ('Fruit::Annotated<Annotation1, X*>', r'X\*'),
-        ('Fruit::Annotated<Annotation1, const X*>', r'const X\*'),
-        ('Fruit::Annotated<Annotation1, std::shared_ptr<X>>', r'std::shared_ptr<X>'),
+        ('Poco::Fruit::Annotated<Annotation1, const X>', r'const X'),
+        ('Poco::Fruit::Annotated<Annotation1, X*>', r'X\*'),
+        ('Poco::Fruit::Annotated<Annotation1, const X*>', r'const X\*'),
+        ('Poco::Fruit::Annotated<Annotation1, std::shared_ptr<X>>', r'std::shared_ptr<X>'),
     ])
     def test_multibindings_get_error_non_class_type(self, XVariantAnnot, XVariantRegexp):
         source = '''
-            void f(Fruit::Injector<> injector) {
+            void f(Poco::Fruit::Injector<> injector) {
               injector.getMultibindings<XVariantAnnot>();
             }
             '''
@@ -558,19 +558,19 @@ class TestMultibindingsMisc(parameterized.TestCase):
     @parameterized.parameters([
         ('X&', 'X&'),
         ('const X&', 'const X&'),
-        ('Fruit::Annotated<Annotation1, X&>', 'X&'),
-        ('Fruit::Annotated<Annotation1, const X&>', 'const X&'),
+        ('Poco::Fruit::Annotated<Annotation1, X&>', 'X&'),
+        ('Poco::Fruit::Annotated<Annotation1, const X&>', 'const X&'),
     ])
     def test_multibindings_get_error_reference_type(self, XVariantAnnot, XVariantRegexp):
         source = '''
-            void f(Fruit::Injector<> injector) {
+            void f(Poco::Fruit::Injector<> injector) {
               injector.getMultibindings<XVariantAnnot>();
             }
             '''
         expect_generic_compile_error(
             'declared as a pointer to a reference of type'
             '|forming pointer to reference type'
-            '|Fruit::Injector<.*>::getMultibindings.: no matching overloaded function found',
+            '|Poco::Fruit::Injector<.*>::getMultibindings.: no matching overloaded function found',
             COMMON_DEFINITIONS,
             source,
             locals())

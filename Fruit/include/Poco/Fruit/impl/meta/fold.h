@@ -19,6 +19,7 @@
 
 #include <functional>
 
+namespace Poco{
 namespace Fruit {
 namespace impl {
 namespace meta {
@@ -120,5 +121,6 @@ struct Fold {
 } // namespace meta
 } // namespace impl
 } // namespace Fruit
+} // namespace Poco
 
 #endif // FRUIT_META_FOLD_H

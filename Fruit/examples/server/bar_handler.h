@@ -29,6 +29,6 @@ public:
   virtual void handleRequest() = 0;
 };
 
-Fruit::Component<Fruit::Required<Request, ServerContext>, BarHandler> getBarHandlerComponent();
+Poco::Fruit::Component<Poco::Fruit::Required<Request, ServerContext>, BarHandler> getBarHandlerComponent();
 
 #endif // BAR_HANDLER_H

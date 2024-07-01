@@ -22,20 +22,21 @@
 // Redundant, but makes KDevelop happy.
 #include <Poco/Fruit/injector.h>
 
+namespace Poco{
 namespace Fruit {
 
 template <typename... P>
 template <typename... FormalArgs, typename... Args>
 inline Injector<P...>::Injector(Component<P...> (*getComponent)(FormalArgs...), Args&&... args) {
-  Component<P...> component = Fruit::createComponent().install(getComponent, std::forward<Args>(args)...);
+  Component<P...> component = Poco::Fruit::createComponent().install(getComponent, std::forward<Args>(args)...);
 
-  Fruit::impl::MemoryPool memory_pool;
-  using exposed_types_t = std::vector<Fruit::impl::TypeId, Fruit::impl::ArenaAllocator<Fruit::impl::TypeId>>;
+  Poco::Fruit::impl::MemoryPool memory_pool;
+  using exposed_types_t = std::vector<Poco::Fruit::impl::TypeId, Poco::Fruit::impl::ArenaAllocator<Poco::Fruit::impl::TypeId>>;
   exposed_types_t exposed_types =
-      exposed_types_t(std::initializer_list<Fruit::impl::TypeId>{Fruit::impl::getTypeId<P>()...},
-                      Fruit::impl::ArenaAllocator<Fruit::impl::TypeId>(memory_pool));
-  storage = std::unique_ptr<Fruit::impl::InjectorStorage>(
-      new Fruit::impl::InjectorStorage(std::move(component.storage), exposed_types, memory_pool));
+      exposed_types_t(std::initializer_list<Poco::Fruit::impl::TypeId>{Poco::Fruit::impl::getTypeId<P>()...},
+                      Poco::Fruit::impl::ArenaAllocator<Poco::Fruit::impl::TypeId>(memory_pool));
+  storage = std::unique_ptr<Poco::Fruit::impl::InjectorStorage>(
+      new Poco::Fruit::impl::InjectorStorage(std::move(component.storage), exposed_types, memory_pool));
 }
 
 namespace impl {
@@ -93,30 +94,30 @@ template <typename... P>
 template <typename... NormalizedComponentParams, typename... ComponentParams, typename... FormalArgs, typename... Args>
 inline Injector<P...>::Injector(const NormalizedComponent<NormalizedComponentParams...>& normalized_component,
                                 Component<ComponentParams...> (*getComponent)(FormalArgs...), Args&&... args) {
-  Component<ComponentParams...> component = Fruit::createComponent().install(getComponent, std::forward<Args>(args)...);
+  Component<ComponentParams...> component = Poco::Fruit::createComponent().install(getComponent, std::forward<Args>(args)...);
 
-  Fruit::impl::MemoryPool memory_pool;
-  storage = std::unique_ptr<Fruit::impl::InjectorStorage>(new Fruit::impl::InjectorStorage(
+  Poco::Fruit::impl::MemoryPool memory_pool;
+  storage = std::unique_ptr<Poco::Fruit::impl::InjectorStorage>(new Poco::Fruit::impl::InjectorStorage(
       *(normalized_component.storage.storage), std::move(component.storage), memory_pool));
 
   using NormalizedComp =
-      Fruit::impl::meta::ConstructComponentImpl(Fruit::impl::meta::Type<NormalizedComponentParams>...);
-  using Comp1 = Fruit::impl::meta::ConstructComponentImpl(Fruit::impl::meta::Type<ComponentParams>...);
+      Poco::Fruit::impl::meta::ConstructComponentImpl(Poco::Fruit::impl::meta::Type<NormalizedComponentParams>...);
+  using Comp1 = Poco::Fruit::impl::meta::ConstructComponentImpl(Poco::Fruit::impl::meta::Type<ComponentParams>...);
   // We don't check whether the construction of NormalizedComp or Comp resulted in errors here; if they did, the
   // instantiation
   // of NormalizedComponent<NormalizedComponentParams...> or Component<ComponentParams...> would have resulted in an
   // error already.
 
-  using E = typename Fruit::impl::meta::InjectorImplHelper<P...>::template CheckConstructionFromNormalizedComponent<
+  using E = typename Poco::Fruit::impl::meta::InjectorImplHelper<P...>::template CheckConstructionFromNormalizedComponent<
       NormalizedComp, Comp1>::type;
-  (void)typename Fruit::impl::meta::CheckIfError<E>::type();
+  (void)typename Poco::Fruit::impl::meta::CheckIfError<E>::type();
 }
 
 template <typename... P>
 template <typename T>
-inline Fruit::impl::RemoveAnnotations<T> Injector<P...>::get() {
-  using E = typename Fruit::impl::meta::InjectorImplHelper<P...>::template CheckGet<T>::type;
-  (void)typename Fruit::impl::meta::CheckIfError<E>::type();
+inline Poco::Fruit::impl::RemoveAnnotations<T> Injector<P...>::get() {
+  using E = typename Poco::Fruit::impl::meta::InjectorImplHelper<P...>::template CheckGet<T>::type;
+  (void)typename Poco::Fruit::impl::meta::CheckIfError<E>::type();
   return storage->template get<T>();
 }
 
@@ -128,11 +129,11 @@ inline Injector<P...>::operator T() {
 
 template <typename... P>
 template <typename AnnotatedC>
-inline const std::vector<Fruit::impl::RemoveAnnotations<AnnotatedC>*>& Injector<P...>::getMultibindings() {
+inline const std::vector<Poco::Fruit::impl::RemoveAnnotations<AnnotatedC>*>& Injector<P...>::getMultibindings() {
 
-  using Op = Fruit::impl::meta::Eval<Fruit::impl::meta::CheckNormalizedTypes(
-      Fruit::impl::meta::Vector<Fruit::impl::meta::Type<AnnotatedC>>)>;
-  (void)typename Fruit::impl::meta::CheckIfError<Op>::type();
+  using Op = Poco::Fruit::impl::meta::Eval<Poco::Fruit::impl::meta::CheckNormalizedTypes(
+      Poco::Fruit::impl::meta::Vector<Poco::Fruit::impl::meta::Type<AnnotatedC>>)>;
+  (void)typename Poco::Fruit::impl::meta::CheckIfError<Op>::type();
 
   return storage->template getMultibindings<AnnotatedC>();
 }
@@ -141,13 +142,14 @@ template <typename... P>
 FRUIT_DEPRECATED_DEFINITION(inline void Injector<P...>::eagerlyInjectAll()) {
   // Eagerly inject normal bindings.
   void* unused[] = {reinterpret_cast<void*>(
-      storage->template get<Fruit::impl::meta::UnwrapType<
-          Fruit::impl::meta::Eval<Fruit::impl::meta::AddPointerInAnnotatedType(Fruit::impl::meta::Type<P>)>>>())...};
+      storage->template get<Poco::Fruit::impl::meta::UnwrapType<
+          Poco::Fruit::impl::meta::Eval<Poco::Fruit::impl::meta::AddPointerInAnnotatedType(Poco::Fruit::impl::meta::Type<P>)>>>())...};
   (void)unused;
 
   storage->eagerlyInjectMultibindings();
 }
 
 } // namespace Fruit
+} // namespace Poco
 
 #endif // FRUIT_INJECTOR_DEFN_H

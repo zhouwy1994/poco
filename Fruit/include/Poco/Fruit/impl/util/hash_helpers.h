@@ -33,6 +33,7 @@
 #include <unordered_set>
 #endif
 
+namespace Poco{
 namespace Fruit {
 namespace impl {
 
@@ -96,6 +97,7 @@ createHashMapWithArenaAllocatorAndCustomFunctors(size_t capacity, MemoryPool& me
 
 } // namespace impl
 } // namespace Fruit
+} // namespace Poco
 
 #include <Poco/Fruit/impl/util/hash_helpers.defn.h>
 

@@ -19,6 +19,7 @@
 #include <Poco/Fruit/impl/data_structures/fixed_size_allocator.h>
 #include <Poco/Fruit/impl/data_structures/fixed_size_vector.templates.h>
 
+namespace Poco{
 namespace Fruit {
 namespace impl {
 
@@ -34,3 +35,4 @@ FixedSizeAllocator::~FixedSizeAllocator() {
 
 } // namespace impl
 } // namespace Fruit
+} // namespace Poco

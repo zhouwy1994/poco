@@ -41,12 +41,12 @@ COMMON_DEFINITIONS = '''
 class TestTypeAlignment(parameterized.TestCase):
     def test_everything(self):
         source = '''
-            Fruit::Component<X, Y, Z> getComponent() {
-              return Fruit::createComponent();
+            Poco::Fruit::Component<X, Y, Z> getComponent() {
+              return Poco::Fruit::createComponent();
             }
             
             int main() {
-              Fruit::Injector<X, Y, Z> injector(getComponent);
+              Poco::Fruit::Injector<X, Y, Z> injector(getComponent);
               
               injector.get<X*>();
               injector.get<Y*>();

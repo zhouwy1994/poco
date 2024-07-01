@@ -19,7 +19,7 @@
 #include "checked_incrementer.h"
 #include "simple_incrementer.h"
 
-Fruit::Component<Incrementer> getIncrementerComponent(bool checked) {
+Poco::Fruit::Component<Incrementer> getIncrementerComponent(bool checked) {
   if (checked)
     return getCheckedIncrementerComponent();
   else

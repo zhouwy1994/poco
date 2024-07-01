@@ -19,6 +19,7 @@
 
 #include <tuple>
 
+namespace Poco{
 namespace Fruit {
 namespace impl {
 
@@ -29,6 +30,7 @@ std::size_t combineHashes(std::size_t h1, std::size_t h2);
 
 } // namespace impl
 } // namespace Fruit
+} // namespace Poco
 
 #include <Poco/Fruit/impl/util/hash_codes.defn.h>
 

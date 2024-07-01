@@ -20,6 +20,7 @@
 // This header contains forward declarations of all types in the `fruit' namespace.
 // Avoid writing forward declarations yourself; use this header instead.
 
+namespace Poco{
 namespace Fruit {
 
 /**
@@ -64,5 +65,6 @@ template <typename ComponentType, typename... ComponentFunctionArgs>
 class ComponentFunction;
 
 } // namespace Fruit
+} // namespace Poco
 
 #endif // FRUIT_FRUIT_FORWARD_DECLS_H

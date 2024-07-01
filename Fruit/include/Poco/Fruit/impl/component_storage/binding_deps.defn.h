@@ -19,6 +19,7 @@
 
 #include <Poco/Fruit/impl/component_storage/binding_deps.h>
 
+namespace Poco{
 namespace Fruit {
 namespace impl {
 
@@ -26,7 +27,7 @@ template <typename L>
 struct GetBindingDepsHelper;
 
 template <typename... Ts>
-struct GetBindingDepsHelper<Fruit::impl::meta::Vector<Fruit::impl::meta::Type<Ts>...>> {
+struct GetBindingDepsHelper<Poco::Fruit::impl::meta::Vector<Poco::Fruit::impl::meta::Type<Ts>...>> {
   inline const BindingDeps* operator()() {
     static const TypeId types[] = {getTypeId<Ts>()..., TypeId{nullptr}}; // LCOV_EXCL_BR_LINE
     static const BindingDeps deps = {types, sizeof...(Ts)};
@@ -36,7 +37,7 @@ struct GetBindingDepsHelper<Fruit::impl::meta::Vector<Fruit::impl::meta::Type<Ts
 
 // We specialize the "no Ts" case to avoid declaring types[] as an array of length 0.
 template <>
-struct GetBindingDepsHelper<Fruit::impl::meta::Vector<>> {
+struct GetBindingDepsHelper<Poco::Fruit::impl::meta::Vector<>> {
   inline const BindingDeps* operator()() {
     static const TypeId types[] = {TypeId{nullptr}};
     static const BindingDeps deps = {types, 0};
@@ -51,5 +52,6 @@ inline const BindingDeps* getBindingDeps() {
 
 } // namespace impl
 } // namespace Fruit
+} // namespace Poco
 
 #endif // FRUIT_BINDING_DEPS_DEFN_H

@@ -25,6 +25,7 @@
 
 #include <Poco/Fruit/impl/fruit_assert.h>
 
+namespace Poco{
 namespace Fruit {
 namespace impl {
 
@@ -52,5 +53,6 @@ FixedSizeVector<T, Allocator>::FixedSizeVector(std::size_t size, const T& value,
 
 } // namespace impl
 } // namespace Fruit
+} // namespace Poco
 
 #endif // FRUIT_FIXED_SIZE_VECTOR_TEMPLATES_H

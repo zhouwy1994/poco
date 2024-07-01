@@ -20,7 +20,7 @@
 #if FRUIT_EXTRA_DEBUG
 #include <cassert>
 // Usage: FruitStaticAssert(MetaExpr)
-#define FruitStaticAssert(...) static_assert(Fruit::impl::meta::Eval<__VA_ARGS__>::value, "")
+#define FruitStaticAssert(...) static_assert(Poco::Fruit::impl::meta::Eval<__VA_ARGS__>::value, "")
 #define FruitAssert(...) assert(__VA_ARGS__)
 
 #else
@@ -31,7 +31,7 @@
 
 #endif
 
-#define FruitDelegateCheck(...) static_assert(true || sizeof(Fruit::impl::meta::Eval<__VA_ARGS__>), "")
-#define FruitDisplayErrorForType(...) static_assert(false && sizeof(Fruit::impl::meta::Eval<__VA_ARGS__>), "")
+#define FruitDelegateCheck(...) static_assert(true || sizeof(Poco::Fruit::impl::meta::Eval<__VA_ARGS__>), "")
+#define FruitDisplayErrorForType(...) static_assert(false && sizeof(Poco::Fruit::impl::meta::Eval<__VA_ARGS__>), "")
 
 #endif // FRUIT_ASSERT_H

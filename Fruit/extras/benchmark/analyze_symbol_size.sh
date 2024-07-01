@@ -24,7 +24,7 @@ fi
 
 FILE1=$(mktemp)
 nm --print-size --size-sort --radix=d "$1" | sort -k 2 | c++filt \
-| sed 's/[^ ]* //;s/Fruit::impl:://g;s/InvokeConstructorWithInjectedArgVector<.*>::operator()/InvokeConstructorWithInjectedArgVector<...>::operator()/' \
+| sed 's/[^ ]* //;s/Poco::Fruit::impl:://g;s/InvokeConstructorWithInjectedArgVector<.*>::operator()/InvokeConstructorWithInjectedArgVector<...>::operator()/' \
 | sed 's/getComponent[0-9]\+/getComponent$N/' \
 | sed 's/X[0-9]\+/X$N/g' \
 | sed 's/Interface[0-9]\+/Interface$N/g' \

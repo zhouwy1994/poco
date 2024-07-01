@@ -34,6 +34,7 @@
 #include <memory>
 #include <unordered_map>
 
+namespace Poco{
 namespace Fruit {
 namespace impl {
 
@@ -162,6 +163,7 @@ public:
 
 } // namespace impl
 } // namespace Fruit
+} // namespace Poco
 
 #include <Poco/Fruit/impl/normalized_component_storage/normalized_component_storage.defn.h>
 

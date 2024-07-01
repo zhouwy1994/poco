@@ -26,7 +26,7 @@ COMMON_DEFINITIONS = '''
     using WithNoAnnot = T;
     
     template <typename T>
-    using WithAnnot1 = Fruit::Annotated<Annotation1, T>;
+    using WithAnnot1 = Poco::Fruit::Annotated<Annotation1, T>;
     '''
 
 class TestMultibindingsBindProvider(parameterized.TestCase):
@@ -40,13 +40,13 @@ class TestMultibindingsBindProvider(parameterized.TestCase):
               INJECT(X()) = default;
             };
     
-            Fruit::Component<> getComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<> getComponent() {
+              return Poco::Fruit::createComponent()
                 .addMultibindingProvider([](){return ConstructX;});
             }
     
             int main() {
-              Fruit::Injector<> injector(getComponent);
+              Poco::Fruit::Injector<> injector(getComponent);
     
               Assert(X::num_objects_constructed == 0);
               Assert(injector.getMultibindings<X>().size() == 1);
@@ -75,13 +75,13 @@ class TestMultibindingsBindProvider(parameterized.TestCase):
               }
             };
     
-            Fruit::Component<> getComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<> getComponent() {
+              return Poco::Fruit::createComponent()
                 .addMultibindingProvider<WithAnnot<I*>()>([](){return static_cast<I*>(new X());});
             }
     
             int main() {
-              Fruit::Injector<> injector(getComponent);
+              Poco::Fruit::Injector<> injector(getComponent);
     
               Assert(injector.getMultibindings<WithAnnot<I>>().size() == 1);
               Assert(injector.getMultibindings<WithAnnot<I>>()[0]->foo() == 5);
@@ -108,8 +108,8 @@ class TestMultibindingsBindProvider(parameterized.TestCase):
               }
             };
     
-            Fruit::Component<> getComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<> getComponent() {
+              return Poco::Fruit::createComponent()
                 .addMultibindingProvider<WithAnnot<I*>()>([](){return static_cast<I*>(new X());});
             }
             '''
@@ -134,8 +134,8 @@ class TestMultibindingsBindProvider(parameterized.TestCase):
         'Y&',
         'const Y&',
         'std::shared_ptr<Y>',
-        'Fruit::Provider<Y>',
-        'Fruit::Provider<const Y>',
+        'Poco::Fruit::Provider<Y>',
+        'Poco::Fruit::Provider<const Y>',
     ])
     def test_bind_multibinding_provider_with_param_success(self, ConstructX, XPtr, WithAnnot, YVariant):
         source = '''
@@ -143,19 +143,19 @@ class TestMultibindingsBindProvider(parameterized.TestCase):
         
             struct X : public ConstructionTracker<X> {};
             
-            Fruit::Component<WithAnnot<Y>> getYComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<WithAnnot<Y>> getYComponent() {
+              return Poco::Fruit::createComponent()
                 .registerConstructor<WithAnnot<Y>()>();
             }
     
-            Fruit::Component<> getComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<> getComponent() {
+              return Poco::Fruit::createComponent()
                 .install(getYComponent)
                 .addMultibindingProvider<XPtr(WithAnnot<YVariant>)>([](YVariant){ return ConstructX; });
             }
     
             int main() {
-              Fruit::Injector<> injector(getComponent);
+              Poco::Fruit::Injector<> injector(getComponent);
     
               Assert(X::num_objects_constructed == 0);
               Assert(injector.getMultibindings<X>().size() == 1);
@@ -178,7 +178,7 @@ class TestMultibindingsBindProvider(parameterized.TestCase):
         'const Y',
         'const Y*',
         'const Y&',
-        'Fruit::Provider<const Y>',
+        'Poco::Fruit::Provider<const Y>',
     ])
     def test_bind_multibinding_provider_with_param_const_binding_success(self, ConstructX, XPtr, WithAnnot, YVariant):
         source = '''
@@ -188,19 +188,19 @@ class TestMultibindingsBindProvider(parameterized.TestCase):
             
             const Y y{};
             
-            Fruit::Component<WithAnnot<const Y>> getYComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<WithAnnot<const Y>> getYComponent() {
+              return Poco::Fruit::createComponent()
                 .bindInstance<WithAnnot<Y>, Y>(y);
             }
     
-            Fruit::Component<> getComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<> getComponent() {
+              return Poco::Fruit::createComponent()
                 .install(getYComponent)
                 .addMultibindingProvider<XPtr(WithAnnot<YVariant>)>([](YVariant){ return ConstructX; });
             }
     
             int main() {
-              Fruit::Injector<> injector(getComponent);
+              Poco::Fruit::Injector<> injector(getComponent);
     
               Assert(X::num_objects_constructed == 0);
               Assert(injector.getMultibindings<X>().size() == 1);
@@ -217,22 +217,22 @@ class TestMultibindingsBindProvider(parameterized.TestCase):
         ('new X()', 'X*'),
     ], [
         ('WithNoAnnot', 'Y'),
-        ('WithAnnot1', 'Fruit::Annotated<Annotation1, Y>'),
+        ('WithAnnot1', 'Poco::Fruit::Annotated<Annotation1, Y>'),
     ], [
         'Y*',
         'Y&',
         'std::shared_ptr<Y>',
-        'Fruit::Provider<Y>',
+        'Poco::Fruit::Provider<Y>',
     ])
     def test_bind_multibinding_provider_with_param_error_nonconst_param_required(self, ConstructX, XPtr, WithAnnot, YAnnotRegex, YVariant):
         source = '''
             struct Y {};
             struct X {};
             
-            Fruit::Component<WithAnnot<const Y>> getYComponent();
+            Poco::Fruit::Component<WithAnnot<const Y>> getYComponent();
     
-            Fruit::Component<> getComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<> getComponent() {
+              return Poco::Fruit::createComponent()
                 .install(getYComponent)
                 .addMultibindingProvider<XPtr(WithAnnot<YVariant>)>([](YVariant){ return ConstructX; });
             }
@@ -249,22 +249,22 @@ class TestMultibindingsBindProvider(parameterized.TestCase):
         ('new X()', 'X*'),
     ], [
         ('WithNoAnnot', 'Y'),
-        ('WithAnnot1', 'Fruit::Annotated<Annotation1, Y>'),
+        ('WithAnnot1', 'Poco::Fruit::Annotated<Annotation1, Y>'),
     ], [
         'Y*',
         'Y&',
         'std::shared_ptr<Y>',
-        'Fruit::Provider<Y>',
+        'Poco::Fruit::Provider<Y>',
     ])
     def test_bind_multibinding_provider_with_param_error_nonconst_param_required_install_after(self, ConstructX, XPtr, WithAnnot, YAnnotRegex, YVariant):
         source = '''
             struct Y {};
             struct X {};
             
-            Fruit::Component<WithAnnot<const Y>> getYComponent();
+            Poco::Fruit::Component<WithAnnot<const Y>> getYComponent();
     
-            Fruit::Component<> getComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<> getComponent() {
+              return Poco::Fruit::createComponent()
                 .addMultibindingProvider<XPtr(WithAnnot<YVariant>)>([](YVariant){ return ConstructX; })
                 .install(getYComponent);
             }
@@ -281,15 +281,15 @@ class TestMultibindingsBindProvider(parameterized.TestCase):
             struct X {};
             struct Y {};
     
-            Fruit::Component<> getRootComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<> getRootComponent() {
+              return Poco::Fruit::createComponent()
                 .addMultibindingProvider([](X&) { return Y(); })
                 .addMultibindingProvider([](const X&) { return Y(); })
                 .registerConstructor<X()>();
             }
             
             int main() {
-              Fruit::Injector<> injector(getRootComponent);
+              Poco::Fruit::Injector<> injector(getRootComponent);
               injector.getMultibindings<Y>();
             }
             '''
@@ -303,8 +303,8 @@ class TestMultibindingsBindProvider(parameterized.TestCase):
             struct X {};
             struct Y {};
     
-            Fruit::Component<Fruit::Required<const X>> getRootComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<Poco::Fruit::Required<const X>> getRootComponent() {
+              return Poco::Fruit::createComponent()
                 .addMultibindingProvider([](X&) { return Y(); })
                 .addMultibindingProvider([](const X&) { return Y(); });
             }
@@ -321,15 +321,15 @@ class TestMultibindingsBindProvider(parameterized.TestCase):
             struct X {};
             struct Y {};
     
-            Fruit::Component<> getRootComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<> getRootComponent() {
+              return Poco::Fruit::createComponent()
                 .addMultibindingProvider([](const X&) { return Y(); })
                 .addMultibindingProvider([](X&) { return Y(); })
                 .registerConstructor<X()>();
             }
             
             int main() {
-              Fruit::Injector<> injector(getRootComponent);
+              Poco::Fruit::Injector<> injector(getRootComponent);
               injector.getMultibindings<Y>();
             }
             '''
@@ -343,8 +343,8 @@ class TestMultibindingsBindProvider(parameterized.TestCase):
             struct X {};
             struct Y {};
     
-            Fruit::Component<Fruit::Required<const X>> getRootComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<Poco::Fruit::Required<const X>> getRootComponent() {
+              return Poco::Fruit::createComponent()
                 .addMultibindingProvider([](const X&) { return Y(); })
                 .addMultibindingProvider([](X&) { return Y(); });
             }
@@ -364,16 +364,16 @@ class TestMultibindingsBindProvider(parameterized.TestCase):
         ('Y', 'Y', 'std::shared_ptr<Y>*', r'std::shared_ptr<Y>\*'),
         ('Y', 'const Y', 'Y**', r'Y\*\*'),
         ('Y', 'const Y', 'std::shared_ptr<Y>*', r'std::shared_ptr<Y>\*'),
-        ('Fruit::Annotated<Annotation1, Y>', 'Fruit::Annotated<Annotation1, Y>', 'Y**', r'Y\*\*'),
-        ('Fruit::Annotated<Annotation1, Y>', 'Fruit::Annotated<Annotation1, const Y>', 'Y**', r'Y\*\*'),
+        ('Poco::Fruit::Annotated<Annotation1, Y>', 'Poco::Fruit::Annotated<Annotation1, Y>', 'Y**', r'Y\*\*'),
+        ('Poco::Fruit::Annotated<Annotation1, Y>', 'Poco::Fruit::Annotated<Annotation1, const Y>', 'Y**', r'Y\*\*'),
     ])
     def test_bind_multibinding_provider_with_param_error_type_not_injectable(self, ConstructX, XPtr, YAnnot, ConstYAnnot, YVariant, YVariantRegex):
         source = '''
             struct Y {};
             struct X {};
             
-            Fruit::Component<> getComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<> getComponent() {
+              return Poco::Fruit::createComponent()
                 .addMultibindingProvider<XPtr(YVariant)>([](YVariant){ return ConstructX; });
             }
             '''
@@ -386,9 +386,9 @@ class TestMultibindingsBindProvider(parameterized.TestCase):
 
     @parameterized.parameters([
         ('X()', 'X', 'X'),
-        ('X()', 'Fruit::Annotated<Annotation1, X>', 'Fruit::Annotated<Annotation1, X>'),
+        ('X()', 'Poco::Fruit::Annotated<Annotation1, X>', 'Poco::Fruit::Annotated<Annotation1, X>'),
         ('new X()', 'X', 'X*'),
-        ('new X()', 'Fruit::Annotated<Annotation1, X>', 'Fruit::Annotated<Annotation1, X*>'),
+        ('new X()', 'Poco::Fruit::Annotated<Annotation1, X>', 'Poco::Fruit::Annotated<Annotation1, X*>'),
     ])
     def test_bind_multibinding_provider_explicit_signature_success(self, ConstructX, XAnnot, XPtrAnnot):
         source = '''
@@ -398,13 +398,13 @@ class TestMultibindingsBindProvider(parameterized.TestCase):
               static bool constructed;
             };
     
-            Fruit::Component<> getComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<> getComponent() {
+              return Poco::Fruit::createComponent()
                 .addMultibindingProvider<XPtrAnnot()>([](){return ConstructX;});
             }
     
             int main() {
-              Fruit::Injector<> injector(getComponent);
+              Poco::Fruit::Injector<> injector(getComponent);
     
               Assert(X::num_objects_constructed == 0);
               Assert(injector.getMultibindings<XAnnot>().size() == 1);
@@ -418,9 +418,9 @@ class TestMultibindingsBindProvider(parameterized.TestCase):
 
     @parameterized.parameters([
         ('X()', 'X', 'X'),
-        ('X()', 'Fruit::Annotated<Annotation1, X>', 'Fruit::Annotated<Annotation1, X>'),
+        ('X()', 'Poco::Fruit::Annotated<Annotation1, X>', 'Poco::Fruit::Annotated<Annotation1, X>'),
         ('new X()', 'X', 'X*'),
-        ('new X()', 'Fruit::Annotated<Annotation1, X>', 'Fruit::Annotated<Annotation1, X*>'),
+        ('new X()', 'Poco::Fruit::Annotated<Annotation1, X>', 'Poco::Fruit::Annotated<Annotation1, X*>'),
     ])
     def test_bind_multibinding_provider_explicit_signature_with_normalized_component_success(self, ConstructX, XAnnot, XPtrAnnot):
         source = '''
@@ -430,18 +430,18 @@ class TestMultibindingsBindProvider(parameterized.TestCase):
               static bool constructed;
             };
     
-            Fruit::Component<> getComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<> getComponent() {
+              return Poco::Fruit::createComponent()
                 .addMultibindingProvider<XPtrAnnot()>([](){return ConstructX;});
             }
             
-            Fruit::Component<> getEmptyComponent() {
-              return Fruit::createComponent();
+            Poco::Fruit::Component<> getEmptyComponent() {
+              return Poco::Fruit::createComponent();
             }
     
             int main() {
-              Fruit::NormalizedComponent<> normalizedComponent(getComponent);
-              Fruit::Injector<> injector(normalizedComponent, getEmptyComponent);
+              Poco::Fruit::NormalizedComponent<> normalizedComponent(getComponent);
+              Poco::Fruit::Injector<> injector(normalizedComponent, getEmptyComponent);
     
               Assert(X::num_objects_constructed == 0);
               Assert(injector.getMultibindings<XAnnot>().size() == 1);
@@ -455,21 +455,21 @@ class TestMultibindingsBindProvider(parameterized.TestCase):
 
     @parameterized.parameters([
         ('X', 'X*', 'int'),
-        ('Fruit::Annotated<Annotation1, X>', 'Fruit::Annotated<Annotation1, X*>', 'Fruit::Annotated<Annotation2, int>'),
+        ('Poco::Fruit::Annotated<Annotation1, X>', 'Poco::Fruit::Annotated<Annotation1, X*>', 'Poco::Fruit::Annotated<Annotation2, int>'),
     ])
     def test_multiple_providers(self, XAnnot, XPtrAnnot, intAnnot):
         source = '''
             struct X {};
     
-            Fruit::Component<> getComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<> getComponent() {
+              return Poco::Fruit::createComponent()
                 .registerProvider<intAnnot()>([](){return 42;})
                 .addMultibindingProvider<XAnnot(intAnnot)>([](int){return X();})
                 .addMultibindingProvider<XPtrAnnot(intAnnot)>([](int){return new X();});
             }
     
             int main() {
-              Fruit::Injector<> injector(getComponent);
+              Poco::Fruit::Injector<> injector(getComponent);
     
               std::vector<X*> multibindings = injector.getMultibindings<XAnnot>();
               Assert(multibindings.size() == 2);
@@ -485,14 +485,14 @@ class TestMultibindingsBindProvider(parameterized.TestCase):
         'new X()',
     ], [
         'X',
-        'Fruit::Annotated<Annotation1, X>',
+        'Poco::Fruit::Annotated<Annotation1, X>',
     ])
     def test_bind_multibinding_provider_malformed_signature(self, ConstructX, XAnnot):
         source = '''
             struct X {};
     
-            Fruit::Component<> getComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<> getComponent() {
+              return Poco::Fruit::createComponent()
                 .addMultibindingProvider<XAnnot>([](){return ConstructX;});
             }
             '''
@@ -508,7 +508,7 @@ class TestMultibindingsBindProvider(parameterized.TestCase):
         'new X(n)',
     ], [
         'X',
-        'Fruit::Annotated<Annotation1, X>',
+        'Poco::Fruit::Annotated<Annotation1, X>',
     ])
     def test_bind_multibinding_provider_lambda_with_captures_error(self, ConstructX, XAnnot):
         source = '''
@@ -516,9 +516,9 @@ class TestMultibindingsBindProvider(parameterized.TestCase):
               X(int) {}
             };
     
-            Fruit::Component<> getComponent() {
+            Poco::Fruit::Component<> getComponent() {
               int n = 3;
-              return Fruit::createComponent()
+              return Poco::Fruit::createComponent()
                 .addMultibindingProvider<XAnnot()>([=]{return ConstructX;});
             }
             '''
@@ -533,19 +533,19 @@ class TestMultibindingsBindProvider(parameterized.TestCase):
     # Make sure the behavior here is consistent with registerProvider() and registerFactory().
     @parameterized.parameters([
         ('X', 'X*', '(struct )?X'),
-        ('Fruit::Annotated<Annotation1, X>', 'Fruit::Annotated<Annotation1, X*>', '(struct )?Fruit::Annotated<(struct )?Annotation1, ?(struct )?X>'),
+        ('Poco::Fruit::Annotated<Annotation1, X>', 'Poco::Fruit::Annotated<Annotation1, X*>', '(struct )?Poco::Fruit::Annotated<(struct )?Annotation1, ?(struct )?X>'),
     ])
     def test_provider_returns_nullptr_error(self, XAnnot, XPtrAnnot, XAnnotRegex):
         source = '''
             struct X {};
     
-            Fruit::Component<> getComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<> getComponent() {
+              return Poco::Fruit::createComponent()
                   .addMultibindingProvider<XPtrAnnot()>([](){return (X*)nullptr;});
             }
     
             int main() {
-              Fruit::Injector<> injector(getComponent);
+              Poco::Fruit::Injector<> injector(getComponent);
               injector.getMultibindings<XAnnot>();
             }
             '''

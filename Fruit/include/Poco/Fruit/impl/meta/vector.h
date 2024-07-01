@@ -24,6 +24,7 @@
 #include <Poco/Fruit/impl/meta/numeric_operations.h>
 #include <functional>
 
+namespace Poco{
 namespace Fruit {
 namespace impl {
 namespace meta {
@@ -270,5 +271,6 @@ struct ConstructErrorWithArgVector {
 } // namespace meta
 } // namespace impl
 } // namespace Fruit
+} // namespace Poco
 
 #endif // FRUIT_META_VECTOR_H

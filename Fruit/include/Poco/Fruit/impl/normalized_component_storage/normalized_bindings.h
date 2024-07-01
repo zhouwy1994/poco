@@ -20,6 +20,7 @@
 #include <Poco/Fruit/impl/component_storage/component_storage_entry.h>
 #include <memory>
 
+namespace Poco{
 namespace Fruit {
 namespace impl {
 
@@ -79,6 +80,7 @@ struct NormalizedMultibindingSet {
 
 } // namespace impl
 } // namespace Fruit
+} // namespace Poco
 
 #include <Poco/Fruit/impl/normalized_component_storage/normalized_bindings.defn.h>
 

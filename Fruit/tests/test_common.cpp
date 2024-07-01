@@ -21,16 +21,18 @@
 #include <Poco/Fruit/impl/data_structures/semistatic_graph.templates.h>
 
 // Clang requires the following instantiation to be in its namespace.
+namespace Poco{
 namespace Fruit {
 namespace impl {
 
 template class SemistaticGraph<int, const char*>;
 template SemistaticGraph<int, char const*>::SemistaticGraph(std::vector<SimpleNode>::iterator first, std::vector<SimpleNode>::iterator last, MemoryPool& memory_pool);
-template SemistaticGraph<int, char const*>::SemistaticGraph(const Fruit::impl::SemistaticGraph<int, char const*>& graph, std::vector<SimpleNode>::iterator first, std::vector<SimpleNode>::iterator last, MemoryPool& memory_pool);
+template SemistaticGraph<int, char const*>::SemistaticGraph(const Poco::Fruit::impl::SemistaticGraph<int, char const*>& graph, std::vector<SimpleNode>::iterator first, std::vector<SimpleNode>::iterator last, MemoryPool& memory_pool);
 template class SemistaticMap<int, SemistaticGraphInternalNodeId>;
 
 } // namespace impl
 } // namespace Fruit
+} // namespace Poco
 
 
 

@@ -20,6 +20,6 @@
 #include "incrementer.h"
 #include <Poco/Fruit/fruit.h>
 
-Fruit::Component<Incrementer> getCheckedIncrementerComponent();
+Poco::Fruit::Component<Incrementer> getCheckedIncrementerComponent();
 
 #endif // CHECKED_INCREMENTER_H

@@ -19,6 +19,7 @@
 
 #include <Poco/Fruit/impl/normalized_component_storage/normalized_component_storage.h>
 
+namespace Poco{
 namespace Fruit {
 namespace impl {
 
@@ -52,5 +53,6 @@ NormalizedComponentStorage::createLazyComponentWithArgsReplacementMap(size_t cap
 
 } // namespace impl
 } // namespace Fruit
+} // namespace Poco
 
 #endif // FRUIT_NORMALIZED_COMPONENT_STORAGE_DEFN_H

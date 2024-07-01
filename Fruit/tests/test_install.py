@@ -22,15 +22,15 @@ COMMON_DEFINITIONS = '''
     struct X;
 
     struct Annotation1 {};
-    using XAnnot1 = Fruit::Annotated<Annotation1, X>;
+    using XAnnot1 = Poco::Fruit::Annotated<Annotation1, X>;
     '''
 
 class TestInstall(parameterized.TestCase):
     @parameterized.parameters([
         ('X', 'X'),
         ('X', 'const X'),
-        ('Fruit::Annotated<Annotation1, X>', 'Fruit::Annotated<Annotation1, X>'),
-        ('Fruit::Annotated<Annotation1, X>', 'Fruit::Annotated<Annotation1, const X>'),
+        ('Poco::Fruit::Annotated<Annotation1, X>', 'Poco::Fruit::Annotated<Annotation1, X>'),
+        ('Poco::Fruit::Annotated<Annotation1, X>', 'Poco::Fruit::Annotated<Annotation1, const X>'),
     ])
     def test_success(self, XParamInChildComponent, XParamInRootComponent):
         source = '''
@@ -39,18 +39,18 @@ class TestInstall(parameterized.TestCase):
               X(int n) : n(n) {}
             };
     
-            Fruit::Component<XParamInChildComponent> getChildComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<XParamInChildComponent> getChildComponent() {
+              return Poco::Fruit::createComponent()
                 .registerProvider<XParamInChildComponent()>([]() { return X(5); });
             }
     
-            Fruit::Component<XParamInRootComponent> getRootComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<XParamInRootComponent> getRootComponent() {
+              return Poco::Fruit::createComponent()
                 .install(getChildComponent);
             }
     
             int main() {
-              Fruit::Injector<XParamInRootComponent> injector(getRootComponent);
+              Poco::Fruit::Injector<XParamInRootComponent> injector(getRootComponent);
               X x = injector.get<XParamInRootComponent>();
               Assert(x.n == 5);
             }
@@ -62,16 +62,16 @@ class TestInstall(parameterized.TestCase):
 
     @parameterized.parameters([
         ('const X', 'X'),
-        ('Fruit::Annotated<Annotation1, const X>', 'Fruit::Annotated<Annotation1, X>'),
+        ('Poco::Fruit::Annotated<Annotation1, const X>', 'Poco::Fruit::Annotated<Annotation1, X>'),
     ])
     def test_install_error_child_component_provides_const(self, XParamInChildComponent, XParamInRootComponent):
         source = '''
             struct X {};
     
-            Fruit::Component<XParamInChildComponent> getChildComponent();
+            Poco::Fruit::Component<XParamInChildComponent> getChildComponent();
     
-            Fruit::Component<XParamInRootComponent> getRootComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<XParamInRootComponent> getRootComponent() {
+              return Poco::Fruit::createComponent()
                 .install(getChildComponent);
             }
             '''
@@ -86,9 +86,9 @@ class TestInstall(parameterized.TestCase):
         ('X', 'X'),
         ('X', 'const X'),
         ('const X', 'const X'),
-        ('Fruit::Annotated<Annotation1, X>', 'Fruit::Annotated<Annotation1, X>'),
-        ('Fruit::Annotated<Annotation1, X>', 'Fruit::Annotated<Annotation1, const X>'),
-        ('Fruit::Annotated<Annotation1, const X>', 'Fruit::Annotated<Annotation1, const X>'),
+        ('Poco::Fruit::Annotated<Annotation1, X>', 'Poco::Fruit::Annotated<Annotation1, X>'),
+        ('Poco::Fruit::Annotated<Annotation1, X>', 'Poco::Fruit::Annotated<Annotation1, const X>'),
+        ('Poco::Fruit::Annotated<Annotation1, const X>', 'Poco::Fruit::Annotated<Annotation1, const X>'),
     ])
     def test_with_requirements_success(self, ProvidedXParam, RequiredXParam):
         ProvidedXParamWithoutConst = ProvidedXParam.replace('const ', '')
@@ -103,24 +103,24 @@ class TestInstall(parameterized.TestCase):
               Y(X x): x(x) {}
             };
     
-            Fruit::Component<Fruit::Required<RequiredXParam>, Y> getChildComponent1() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<Poco::Fruit::Required<RequiredXParam>, Y> getChildComponent1() {
+              return Poco::Fruit::createComponent()
                 .registerProvider<Y(RequiredXParam)>([](X x) { return Y(x); });
             }
     
-            Fruit::Component<ProvidedXParam> getChildComponent2() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<ProvidedXParam> getChildComponent2() {
+              return Poco::Fruit::createComponent()
                 .registerProvider<ProvidedXParamWithoutConst()>([]() { return X(5); });
             }
     
-            Fruit::Component<Y> getRootComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<Y> getRootComponent() {
+              return Poco::Fruit::createComponent()
                 .install(getChildComponent1)
                 .install(getChildComponent2);
             }
     
             int main() {
-              Fruit::Injector<Y> injector(getRootComponent);
+              Poco::Fruit::Injector<Y> injector(getRootComponent);
               Y y = injector.get<Y>();
               Assert(y.x.n == 5);
             }
@@ -132,19 +132,19 @@ class TestInstall(parameterized.TestCase):
 
     @parameterized.parameters([
         ('const X', 'X'),
-        ('Fruit::Annotated<Annotation1, const X>', 'Fruit::Annotated<Annotation1, X>'),
+        ('Poco::Fruit::Annotated<Annotation1, const X>', 'Poco::Fruit::Annotated<Annotation1, X>'),
     ])
     def test_with_requirements_error_only_nonconst_provided(self, ProvidedXParam, RequiredXParam):
         source = '''
             struct X {};
             struct Y {};
     
-            Fruit::Component<Fruit::Required<RequiredXParam>, Y> getChildComponent1();
+            Poco::Fruit::Component<Poco::Fruit::Required<RequiredXParam>, Y> getChildComponent1();
     
-            Fruit::Component<ProvidedXParam> getChildComponent2();
+            Poco::Fruit::Component<ProvidedXParam> getChildComponent2();
     
-            Fruit::Component<Y> getRootComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<Y> getRootComponent() {
+              return Poco::Fruit::createComponent()
                 .install(getChildComponent1)
                 .install(getChildComponent2);
             }
@@ -158,19 +158,19 @@ class TestInstall(parameterized.TestCase):
 
     @parameterized.parameters([
         ('const X', 'X'),
-        ('Fruit::Annotated<Annotation1, const X>', 'Fruit::Annotated<Annotation1, X>'),
+        ('Poco::Fruit::Annotated<Annotation1, const X>', 'Poco::Fruit::Annotated<Annotation1, X>'),
     ])
     def test_with_requirements_error_only_nonconst_provided_reversed_install_order(self, ProvidedXParam, RequiredXParam):
         source = '''
             struct X {};
             struct Y {};
     
-            Fruit::Component<Fruit::Required<RequiredXParam>, Y> getChildComponent1();
+            Poco::Fruit::Component<Poco::Fruit::Required<RequiredXParam>, Y> getChildComponent1();
     
-            Fruit::Component<ProvidedXParam> getChildComponent2();
+            Poco::Fruit::Component<ProvidedXParam> getChildComponent2();
     
-            Fruit::Component<Y> getRootComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<Y> getRootComponent() {
+              return Poco::Fruit::createComponent()
                 .install(getChildComponent2)
                 .install(getChildComponent1);
             }
@@ -194,14 +194,14 @@ class TestInstall(parameterized.TestCase):
               Y(X x): x(x) {}
             };
     
-            Fruit::Component<Fruit::Required<X>, Y> getParentYComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<Poco::Fruit::Required<X>, Y> getParentYComponent() {
+              return Poco::Fruit::createComponent()
                 .registerProvider([](X x) { return Y(x); });
             }
     
-            // We intentionally don't have Fruit::Required<X> here, we want to test that this results in an error.
-            Fruit::Component<Y> getYComponent() {
-              return Fruit::createComponent()
+            // We intentionally don't have Poco::Fruit::Required<X> here, we want to test that this results in an error.
+            Poco::Fruit::Component<Y> getYComponent() {
+              return Poco::Fruit::createComponent()
                 .install(getParentYComponent);
             }
             '''
@@ -213,7 +213,7 @@ class TestInstall(parameterized.TestCase):
 
     @parameterized.parameters([
         ('X', 'const X'),
-        ('Fruit::Annotated<Annotation1, X>', 'Fruit::Annotated<Annotation1, const X>'),
+        ('Poco::Fruit::Annotated<Annotation1, X>', 'Poco::Fruit::Annotated<Annotation1, const X>'),
     ])
     def test_install_requiring_nonconst_then_install_requiring_const_ok(self, XAnnot, ConstXAnnot):
         source = '''
@@ -221,25 +221,25 @@ class TestInstall(parameterized.TestCase):
             struct Y {};
             struct Z {};
     
-            Fruit::Component<Fruit::Required<XAnnot>, Y> getChildComponent1() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<Poco::Fruit::Required<XAnnot>, Y> getChildComponent1() {
+              return Poco::Fruit::createComponent()
                   .registerConstructor<Y()>();
             }
             
-            Fruit::Component<Fruit::Required<ConstXAnnot>, Z> getChildComponent2() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<Poco::Fruit::Required<ConstXAnnot>, Z> getChildComponent2() {
+              return Poco::Fruit::createComponent()
                   .registerConstructor<Z()>();
             }
     
-            Fruit::Component<Y, Z> getRootComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<Y, Z> getRootComponent() {
+              return Poco::Fruit::createComponent()
                 .install(getChildComponent1)
                 .install(getChildComponent2)
                 .registerConstructor<XAnnot()>();
             }
             
             int main() {
-              Fruit::Injector<Y, Z> injector(getRootComponent);
+              Poco::Fruit::Injector<Y, Z> injector(getRootComponent);
               injector.get<Y>();
               injector.get<Z>();
             }
@@ -255,11 +255,11 @@ class TestInstall(parameterized.TestCase):
             struct Y {};
             struct Z {};
     
-            Fruit::Component<Fruit::Required<X>, Y> getChildComponent1();
-            Fruit::Component<Fruit::Required<const X>, Z> getChildComponent2();
+            Poco::Fruit::Component<Poco::Fruit::Required<X>, Y> getChildComponent1();
+            Poco::Fruit::Component<Poco::Fruit::Required<const X>, Z> getChildComponent2();
     
-            Fruit::Component<Fruit::Required<const X>, Y, Z> getRootComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<Poco::Fruit::Required<const X>, Y, Z> getRootComponent() {
+              return Poco::Fruit::createComponent()
                 .install(getChildComponent1)
                 .install(getChildComponent2);
             }
@@ -277,25 +277,25 @@ class TestInstall(parameterized.TestCase):
             struct Y {};
             struct Z {};
     
-            Fruit::Component<Fruit::Required<const X>, Y> getChildComponent1() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<Poco::Fruit::Required<const X>, Y> getChildComponent1() {
+              return Poco::Fruit::createComponent()
                   .registerConstructor<Y()>();
             }
             
-            Fruit::Component<Fruit::Required<X>, Z> getChildComponent2() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<Poco::Fruit::Required<X>, Z> getChildComponent2() {
+              return Poco::Fruit::createComponent()
                   .registerConstructor<Z()>();
             }
     
-            Fruit::Component<Y, Z> getRootComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<Y, Z> getRootComponent() {
+              return Poco::Fruit::createComponent()
                 .install(getChildComponent1)
                 .install(getChildComponent2)
                 .registerConstructor<X()>();
             }
             
             int main() {
-              Fruit::Injector<Y, Z> injector(getRootComponent);
+              Poco::Fruit::Injector<Y, Z> injector(getRootComponent);
               injector.get<Y>();
               injector.get<Z>();
             }
@@ -311,11 +311,11 @@ class TestInstall(parameterized.TestCase):
             struct Y {};
             struct Z {};
     
-            Fruit::Component<Fruit::Required<const X>, Y> getChildComponent1();
-            Fruit::Component<Fruit::Required<X>, Z> getChildComponent2();
+            Poco::Fruit::Component<Poco::Fruit::Required<const X>, Y> getChildComponent1();
+            Poco::Fruit::Component<Poco::Fruit::Required<X>, Z> getChildComponent2();
     
-            Fruit::Component<Fruit::Required<const X>, Y, Z> getRootComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<Poco::Fruit::Required<const X>, Y, Z> getRootComponent() {
+              return Poco::Fruit::createComponent()
                 .install(getChildComponent1)
                 .install(getChildComponent2);
             }
@@ -356,18 +356,18 @@ class TestInstall(parameterized.TestCase):
               };
             }
     
-            Fruit::Component<X> getParentComponent(int, std::string, Arg, Arg) {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<X> getParentComponent(int, std::string, Arg, Arg) {
+              return Poco::Fruit::createComponent()
                 .registerProvider([]() { return X(5); });
             }
     
-            Fruit::Component<X> getComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<X> getComponent() {
+              return Poco::Fruit::createComponent()
                 .install(getParentComponent, 5, std::string("Hello"), Arg{}, 15);
             }
     
             int main() {
-              Fruit::Injector<X> injector(getComponent);
+              Poco::Fruit::Injector<X> injector(getComponent);
               X x = injector.get<X>();
               Assert(x.n == 5);
             }
@@ -393,10 +393,10 @@ class TestInstall(parameterized.TestCase):
               };
             }
     
-            Fruit::Component<X> getParentComponent(int, std::string, Arg);
+            Poco::Fruit::Component<X> getParentComponent(int, std::string, Arg);
     
-            Fruit::Component<X> getComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<X> getComponent() {
+              return Poco::Fruit::createComponent()
                 .install(getParentComponent, 5, std::string("Hello"), Arg{});
             }
             '''
@@ -428,10 +428,10 @@ class TestInstall(parameterized.TestCase):
               };
             }
     
-            Fruit::Component<X> getParentComponent(int, std::string, Arg);
+            Poco::Fruit::Component<X> getParentComponent(int, std::string, Arg);
     
-            Fruit::Component<X> getComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<X> getComponent() {
+              return Poco::Fruit::createComponent()
                 .install(getParentComponent, 5, std::string("Hello"), 15);
             }
             '''
@@ -466,10 +466,10 @@ class TestInstall(parameterized.TestCase):
               };
             }
     
-            Fruit::Component<X> getParentComponent(int, std::string, Arg);
+            Poco::Fruit::Component<X> getParentComponent(int, std::string, Arg);
     
-            Fruit::Component<X> getComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<X> getComponent() {
+              return Poco::Fruit::createComponent()
                 .install(getParentComponent, 5, std::string("Hello"), Arg{});
             }
             '''
@@ -505,10 +505,10 @@ class TestInstall(parameterized.TestCase):
               };
             }
     
-            Fruit::Component<X> getParentComponent(int, std::string, Arg);
+            Poco::Fruit::Component<X> getParentComponent(int, std::string, Arg);
     
-            Fruit::Component<X> getComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<X> getComponent() {
+              return Poco::Fruit::createComponent()
                 .install(getParentComponent, 5, std::string("Hello"), 15);
             }
             '''
@@ -538,10 +538,10 @@ class TestInstall(parameterized.TestCase):
               };
             }
     
-            Fruit::Component<X> getParentComponent(int, std::string, Arg);
+            Poco::Fruit::Component<X> getParentComponent(int, std::string, Arg);
     
-            Fruit::Component<X> getComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<X> getComponent() {
+              return Poco::Fruit::createComponent()
                 .install(getParentComponent, 5, std::string("Hello"), Arg{});
             }
             '''
@@ -572,10 +572,10 @@ class TestInstall(parameterized.TestCase):
               };
             }
     
-            Fruit::Component<X> getParentComponent(int, std::string, Arg);
+            Poco::Fruit::Component<X> getParentComponent(int, std::string, Arg);
     
-            Fruit::Component<X> getComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<X> getComponent() {
+              return Poco::Fruit::createComponent()
                 .install(getParentComponent, 5, std::string("Hello"), 15);
             }
             '''
@@ -610,10 +610,10 @@ class TestInstall(parameterized.TestCase):
               };
             }
     
-            Fruit::Component<X> getParentComponent(int, std::string, Arg);
+            Poco::Fruit::Component<X> getParentComponent(int, std::string, Arg);
     
-            Fruit::Component<X> getComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<X> getComponent() {
+              return Poco::Fruit::createComponent()
                 .install(getParentComponent, 5, std::string("Hello"), Arg{});
             }
             '''
@@ -649,10 +649,10 @@ class TestInstall(parameterized.TestCase):
               };
             }
     
-            Fruit::Component<X> getParentComponent(int, std::string, Arg);
+            Poco::Fruit::Component<X> getParentComponent(int, std::string, Arg);
     
-            Fruit::Component<X> getComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<X> getComponent() {
+              return Poco::Fruit::createComponent()
                 .install(getParentComponent, 5, std::string("Hello"), 15);
             }
             '''
@@ -685,10 +685,10 @@ class TestInstall(parameterized.TestCase):
               };
             }
     
-            Fruit::Component<X> getParentComponent(int, std::string, Arg);
+            Poco::Fruit::Component<X> getParentComponent(int, std::string, Arg);
     
-            Fruit::Component<X> getComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<X> getComponent() {
+              return Poco::Fruit::createComponent()
                 .install(getParentComponent, 5, std::string("Hello"), Arg{});
             }
             '''
@@ -722,10 +722,10 @@ class TestInstall(parameterized.TestCase):
               };
             }
     
-            Fruit::Component<X> getParentComponent(int, std::string, Arg);
+            Poco::Fruit::Component<X> getParentComponent(int, std::string, Arg);
     
-            Fruit::Component<X> getComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<X> getComponent() {
+              return Poco::Fruit::createComponent()
                 .install(getParentComponent, 5, std::string("Hello"), 15);
             }
             '''
@@ -748,10 +748,10 @@ class TestInstall(parameterized.TestCase):
             
             bool operator==(const Arg&, const Arg&);
             
-            Fruit::Component<X> getParentComponent(int, std::string, Arg);
+            Poco::Fruit::Component<X> getParentComponent(int, std::string, Arg);
     
-            Fruit::Component<X> getComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<X> getComponent() {
+              return Poco::Fruit::createComponent()
                 .install(getParentComponent, 5, std::string("Hello"), Arg{});
             }
             '''
@@ -778,10 +778,10 @@ class TestInstall(parameterized.TestCase):
             
             bool operator==(const Arg&, const Arg&);
             
-            Fruit::Component<X> getParentComponent(int, std::string, Arg);
+            Poco::Fruit::Component<X> getParentComponent(int, std::string, Arg);
     
-            Fruit::Component<X> getComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<X> getComponent() {
+              return Poco::Fruit::createComponent()
                 .install(getParentComponent, 5, std::string("Hello"), 15);
             }
             '''
@@ -797,7 +797,7 @@ class TestInstall(parameterized.TestCase):
 
     @parameterized.parameters([
         'X',
-        'Fruit::Annotated<Annotation1, X>',
+        'Poco::Fruit::Annotated<Annotation1, X>',
     ])
     def test_install_component_functions_deduped(self, XAnnot):
         source = '''
@@ -805,29 +805,29 @@ class TestInstall(parameterized.TestCase):
     
             X x;
     
-            Fruit::Component<> getComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<> getComponent() {
+              return Poco::Fruit::createComponent()
                 .addInstanceMultibinding<XAnnot, X>(x);
             }
     
-            Fruit::Component<> getComponent2() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<> getComponent2() {
+              return Poco::Fruit::createComponent()
                 .install(getComponent);
             }
     
-            Fruit::Component<> getComponent3() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<> getComponent3() {
+              return Poco::Fruit::createComponent()
                 .install(getComponent);
             }
     
-            Fruit::Component<> getComponent4() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<> getComponent4() {
+              return Poco::Fruit::createComponent()
                 .install(getComponent2)
                 .install(getComponent3);
             }
     
             int main() {
-              Fruit::Injector<> injector(getComponent4);
+              Poco::Fruit::Injector<> injector(getComponent4);
     
               // We test multibindings because the effect on other bindings is not user-visible (that only affects
               // performance).
@@ -843,7 +843,7 @@ class TestInstall(parameterized.TestCase):
 
     @parameterized.parameters([
         'X',
-        'Fruit::Annotated<Annotation1, X>',
+        'Poco::Fruit::Annotated<Annotation1, X>',
     ])
     def test_install_component_functions_deduped_across_normalized_component(self, XAnnot):
         source = '''
@@ -851,24 +851,24 @@ class TestInstall(parameterized.TestCase):
     
             X x;
     
-            Fruit::Component<> getComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<> getComponent() {
+              return Poco::Fruit::createComponent()
                 .addInstanceMultibinding<XAnnot, X>(x);
             }
     
-            Fruit::Component<> getComponent2() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<> getComponent2() {
+              return Poco::Fruit::createComponent()
                 .install(getComponent);
             }
     
-            Fruit::Component<> getComponent3() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<> getComponent3() {
+              return Poco::Fruit::createComponent()
                 .install(getComponent);
             }
     
             int main() {
-              Fruit::NormalizedComponent<> normalizedComponent(getComponent2);
-              Fruit::Injector<> injector(normalizedComponent, getComponent3);
+              Poco::Fruit::NormalizedComponent<> normalizedComponent(getComponent2);
+              Poco::Fruit::Injector<> injector(normalizedComponent, getComponent3);
     
               // We test multibindings because the effect on other bindings is not user-visible (that only affects
               // performance).
@@ -884,7 +884,7 @@ class TestInstall(parameterized.TestCase):
 
     @parameterized.parameters([
         'X',
-        'Fruit::Annotated<Annotation1, X>',
+        'Poco::Fruit::Annotated<Annotation1, X>',
     ])
     def test_install_component_functions_with_args_deduped(self, XAnnot):
         source = '''
@@ -892,29 +892,29 @@ class TestInstall(parameterized.TestCase):
     
             X x;
     
-            Fruit::Component<> getComponent(int) {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<> getComponent(int) {
+              return Poco::Fruit::createComponent()
                 .addInstanceMultibinding<XAnnot, X>(x);
             }
     
-            Fruit::Component<> getComponent2() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<> getComponent2() {
+              return Poco::Fruit::createComponent()
                 .install(getComponent, 1);
             }
     
-            Fruit::Component<> getComponent3() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<> getComponent3() {
+              return Poco::Fruit::createComponent()
                 .install(getComponent, 1);
             }
     
-            Fruit::Component<> getComponent4() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<> getComponent4() {
+              return Poco::Fruit::createComponent()
                 .install(getComponent2)
                 .install(getComponent3);
             }
     
             int main() {
-              Fruit::Injector<> injector(getComponent4);
+              Poco::Fruit::Injector<> injector(getComponent4);
     
               // We test multibindings because the effect on other bindings is not user-visible (that only affects
               // performance).
@@ -930,7 +930,7 @@ class TestInstall(parameterized.TestCase):
 
     @parameterized.parameters([
         'X',
-        'Fruit::Annotated<Annotation1, X>',
+        'Poco::Fruit::Annotated<Annotation1, X>',
     ])
     def test_install_component_functions_different_args_not_deduped(self, XAnnot):
         source = '''
@@ -938,29 +938,29 @@ class TestInstall(parameterized.TestCase):
     
             X x;
     
-            Fruit::Component<> getComponent(int) {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<> getComponent(int) {
+              return Poco::Fruit::createComponent()
                 .addInstanceMultibinding<XAnnot, X>(x);
             }
     
-            Fruit::Component<> getComponent2() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<> getComponent2() {
+              return Poco::Fruit::createComponent()
                 .install(getComponent, 1);
             }
     
-            Fruit::Component<> getComponent3() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<> getComponent3() {
+              return Poco::Fruit::createComponent()
                 .install(getComponent, 2);
             }
     
-            Fruit::Component<> getComponent4() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<> getComponent4() {
+              return Poco::Fruit::createComponent()
                 .install(getComponent2)
                 .install(getComponent3);
             }
     
             int main() {
-              Fruit::Injector<> injector(getComponent4);
+              Poco::Fruit::Injector<> injector(getComponent4);
     
               // We test multibindings because the effect on other bindings is not user-visible (it only affects
               // performance).
@@ -983,40 +983,40 @@ class TestInstall(parameterized.TestCase):
             
             // X -> Y -> Z -> Y
             
-            Fruit::Component<X> getXComponent();
-            Fruit::Component<Y> getYComponent();
-            Fruit::Component<Z> getZComponent();
+            Poco::Fruit::Component<X> getXComponent();
+            Poco::Fruit::Component<Y> getYComponent();
+            Poco::Fruit::Component<Z> getZComponent();
     
-            Fruit::Component<X> getXComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<X> getXComponent() {
+              return Poco::Fruit::createComponent()
                   .registerConstructor<X()>()
                   .install(getYComponent);
             }
     
-            Fruit::Component<Y> getYComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<Y> getYComponent() {
+              return Poco::Fruit::createComponent()
                   .registerConstructor<Y()>()
                   .install(getZComponent);
             }
     
-            Fruit::Component<Z> getZComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<Z> getZComponent() {
+              return Poco::Fruit::createComponent()
                   .registerConstructor<Z()>()
                   .install(getYComponent);
             }
     
             int main() {
-              Fruit::Injector<X> injector(getXComponent);
+              Poco::Fruit::Injector<X> injector(getXComponent);
               (void)injector;
             }
             '''
         expect_runtime_error(
             r'Component installation trace \(from top-level to the most deeply-nested\):\n'
-            r'(class )?Fruit::Component<(struct )?X> ?\((__cdecl)?\*\)\((void)?\)\n'
+            r'(class )?Poco::Fruit::Component<(struct )?X> ?\((__cdecl)?\*\)\((void)?\)\n'
             r'<-- The loop starts here\n'
-            r'(class )?Fruit::Component<(struct )?Y> ?\((__cdecl)?\*\)\((void)?\)\n'
-            r'(class )?Fruit::Component<(struct )?Z> ?\((__cdecl)?\*\)\((void)?\)\n'
-            r'(class )?Fruit::Component<(struct )?Y> ?\((__cdecl)?\*\)\((void)?\)\n',
+            r'(class )?Poco::Fruit::Component<(struct )?Y> ?\((__cdecl)?\*\)\((void)?\)\n'
+            r'(class )?Poco::Fruit::Component<(struct )?Z> ?\((__cdecl)?\*\)\((void)?\)\n'
+            r'(class )?Poco::Fruit::Component<(struct )?Y> ?\((__cdecl)?\*\)\((void)?\)\n',
             COMMON_DEFINITIONS,
             source,
             locals())
@@ -1029,35 +1029,35 @@ class TestInstall(parameterized.TestCase):
             
             // X -> Y(1) -> Z -> Y(2)
             
-            Fruit::Component<X> getXComponent();
-            Fruit::Component<Y> getYComponent(int);
-            Fruit::Component<Z> getZComponent();
+            Poco::Fruit::Component<X> getXComponent();
+            Poco::Fruit::Component<Y> getYComponent(int);
+            Poco::Fruit::Component<Z> getZComponent();
     
-            Fruit::Component<X> getXComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<X> getXComponent() {
+              return Poco::Fruit::createComponent()
                   .registerConstructor<X()>()
                   .install(getYComponent, 1);
             }
     
-            Fruit::Component<Y> getYComponent(int n) {
+            Poco::Fruit::Component<Y> getYComponent(int n) {
                 if (n == 1) {
-                    return Fruit::createComponent()
+                    return Poco::Fruit::createComponent()
                         .registerConstructor<Y()>()
                         .install(getZComponent);
                 } else {
-                    return Fruit::createComponent()
+                    return Poco::Fruit::createComponent()
                         .registerConstructor<Y()>();
                 }
             }
     
-            Fruit::Component<Z> getZComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<Z> getZComponent() {
+              return Poco::Fruit::createComponent()
                   .registerConstructor<Z()>()
                   .install(getYComponent, 2);
             }
     
             int main() {
-              Fruit::Injector<X> injector(getXComponent);
+              Poco::Fruit::Injector<X> injector(getXComponent);
               injector.get<X>();
             }
             '''

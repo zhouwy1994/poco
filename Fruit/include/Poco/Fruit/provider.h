@@ -22,6 +22,7 @@
 
 #include <Poco/Fruit/component.h>
 
+namespace Poco{
 namespace Fruit {
 
 /**
@@ -74,14 +75,14 @@ template <typename C>
 class Provider {
 private:
   using Check1 =
-      typename Fruit::impl::meta::CheckIfError<Fruit::impl::meta::Eval<Fruit::impl::meta::CheckNormalizedTypes(
-          Fruit::impl::meta::RemoveConstFromTypes(Fruit::impl::meta::Vector<Fruit::impl::meta::Type<C>>))>>::type;
+      typename Poco::Fruit::impl::meta::CheckIfError<Poco::Fruit::impl::meta::Eval<Poco::Fruit::impl::meta::CheckNormalizedTypes(
+          Poco::Fruit::impl::meta::RemoveConstFromTypes(Poco::Fruit::impl::meta::Vector<Poco::Fruit::impl::meta::Type<C>>))>>::type;
   // Force instantiation of Check1.
   static_assert(true || sizeof(Check1), "");
 
   using Check2 =
-      typename Fruit::impl::meta::CheckIfError<Fruit::impl::meta::Eval<Fruit::impl::meta::CheckNotAnnotatedTypes(
-          Fruit::impl::meta::Vector<Fruit::impl::meta::Type<C>>)>>::type;
+      typename Poco::Fruit::impl::meta::CheckIfError<Poco::Fruit::impl::meta::Eval<Poco::Fruit::impl::meta::CheckNotAnnotatedTypes(
+          Poco::Fruit::impl::meta::Vector<Poco::Fruit::impl::meta::Type<C>>)>>::type;
   // Force instantiation of Check2.
   static_assert(true || sizeof(Check2), "");
 
@@ -135,21 +136,22 @@ public:
 private:
   // This is NOT owned by the provider object. It is not deleted on destruction.
   // This is never nullptr.
-  Fruit::impl::InjectorStorage* storage;
-  Fruit::impl::InjectorStorage::Graph::node_iterator itr;
+  Poco::Fruit::impl::InjectorStorage* storage;
+  Poco::Fruit::impl::InjectorStorage::Graph::node_iterator itr;
 
-  Provider(Fruit::impl::InjectorStorage* storage, Fruit::impl::InjectorStorage::Graph::node_iterator itr);
+  Provider(Poco::Fruit::impl::InjectorStorage* storage, Poco::Fruit::impl::InjectorStorage::Graph::node_iterator itr);
 
-  friend class Fruit::impl::InjectorStorage;
+  friend class Poco::Fruit::impl::InjectorStorage;
 
   template <typename T>
-  friend struct Fruit::impl::GetFirstStage;
+  friend struct Poco::Fruit::impl::GetFirstStage;
 
   template <typename... OtherPs>
   friend class Injector;
 };
 
 } // namespace Fruit
+} // namespace Poco
 
 #include <Poco/Fruit/impl/provider.defn.h>
 

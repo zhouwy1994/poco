@@ -23,6 +23,7 @@
 #include <Poco/Fruit/impl/meta/graph.h>
 #include <Poco/Fruit/impl/meta/set.h>
 
+namespace Poco{
 namespace Fruit {
 namespace impl {
 namespace meta {
@@ -80,5 +81,6 @@ struct AddProofTreeSetToForest {
 } // namespace meta
 } // namespace impl
 } // namespace Fruit
+} // namespace Poco
 
 #endif // FRUIT_META_PROOF_TREES_H

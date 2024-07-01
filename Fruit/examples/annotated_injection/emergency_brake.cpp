@@ -25,6 +25,6 @@ public:
   }
 };
 
-Fruit::Component<Fruit::Annotated<EmergencyBrake, Brake>> getEmergencyBrakeComponent() {
-  return Fruit::createComponent().bind<Fruit::Annotated<EmergencyBrake, Brake>, EmergencyBrakeImpl>();
+Poco::Fruit::Component<Poco::Fruit::Annotated<EmergencyBrake, Brake>> getEmergencyBrakeComponent() {
+  return Poco::Fruit::createComponent().bind<Poco::Fruit::Annotated<EmergencyBrake, Brake>, EmergencyBrakeImpl>();
 }

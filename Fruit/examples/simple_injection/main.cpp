@@ -17,8 +17,8 @@
 #include "incrementer_component.h"
 #include <iostream>
 
-using Fruit::Component;
-using Fruit::Injector;
+using Poco::Fruit::Component;
+using Poco::Fruit::Injector;
 
 // Try e.g.:
 // echo 5 | ./incrementer

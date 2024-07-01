@@ -25,7 +25,7 @@ COMMON_DEFINITIONS = '''
     using WithNoAnnot = T;
 
     template <typename T>
-    using WithAnnot1 = Fruit::Annotated<Annotation1, T>;
+    using WithAnnot1 = Poco::Fruit::Annotated<Annotation1, T>;
     '''
 
 class TestRegisterProvider(parameterized.TestCase):
@@ -42,13 +42,13 @@ class TestRegisterProvider(parameterized.TestCase):
               int value = 5;
             };
     
-            Fruit::Component<WithAnnot<X>> getComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<WithAnnot<X>> getComponent() {
+              return Poco::Fruit::createComponent()
                 .registerProvider<WithAnnot<XPtr>()>([](){return ConstructX;});
             }
     
             int main() {
-              Fruit::Injector<WithAnnot<X>> injector(getComponent);
+              Poco::Fruit::Injector<WithAnnot<X>> injector(getComponent);
     
               Assert((injector.get<WithAnnot<X                 >>(). value == 5));
               Assert((injector.get<WithAnnot<X*                >>()->value == 5));
@@ -83,13 +83,13 @@ class TestRegisterProvider(parameterized.TestCase):
               }
             };
     
-            Fruit::Component<WithAnnot<I>> getComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<WithAnnot<I>> getComponent() {
+              return Poco::Fruit::createComponent()
                 .registerProvider<WithAnnot<I*>()>([](){return static_cast<I*>(new X());});
             }
     
             int main() {
-              Fruit::Injector<WithAnnot<I>> injector(getComponent);
+              Poco::Fruit::Injector<WithAnnot<I>> injector(getComponent);
     
               Assert(injector.get<WithAnnot<I*>>()->foo() == 5);
             }
@@ -115,8 +115,8 @@ class TestRegisterProvider(parameterized.TestCase):
               }
             };
     
-            Fruit::Component<WithAnnot<I>> getComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<WithAnnot<I>> getComponent() {
+              return Poco::Fruit::createComponent()
                 .registerProvider<WithAnnot<I*>()>([](){return static_cast<I*>(new X());});
             }
             '''
@@ -139,13 +139,13 @@ class TestRegisterProvider(parameterized.TestCase):
               X(const X&) = delete;
             };
     
-            Fruit::Component<X> getComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<X> getComponent() {
+              return Poco::Fruit::createComponent()
                 .registerProvider([](){return ConstructX;});
             }
     
             int main() {
-              Fruit::Injector<X> injector(getComponent);
+              Poco::Fruit::Injector<X> injector(getComponent);
               injector.get<X*>();
             }
             '''
@@ -162,13 +162,13 @@ class TestRegisterProvider(parameterized.TestCase):
               X(const X&) = delete;
             };
     
-            Fruit::Component<X> getComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<X> getComponent() {
+              return Poco::Fruit::createComponent()
                 .registerProvider([](){return new X();});
             }
     
             int main() {
-              Fruit::Injector<X> injector(getComponent);
+              Poco::Fruit::Injector<X> injector(getComponent);
               injector.get<X*>();
             }
             '''
@@ -178,7 +178,7 @@ class TestRegisterProvider(parameterized.TestCase):
 
     @parameterized.parameters([
         'X',
-        'Fruit::Annotated<Annotation1, X>',
+        'Poco::Fruit::Annotated<Annotation1, X>',
     ])
     def test_register_provider_error_not_function(self, XAnnot):
         source = '''
@@ -186,9 +186,9 @@ class TestRegisterProvider(parameterized.TestCase):
               X(int) {}
             };
     
-            Fruit::Component<XAnnot> getComponent() {
+            Poco::Fruit::Component<XAnnot> getComponent() {
               int n = 3;
-              return Fruit::createComponent()
+              return Poco::Fruit::createComponent()
                 .registerProvider<XAnnot()>([=]{return X(n);});
             }
             '''
@@ -201,12 +201,12 @@ class TestRegisterProvider(parameterized.TestCase):
 
     @parameterized.parameters([
         'int',
-        'Fruit::Annotated<Annotation1, int>',
+        'Poco::Fruit::Annotated<Annotation1, int>',
     ])
     def test_register_provider_error_malformed_signature(self, intAnnot):
         source = '''
-            Fruit::Component<intAnnot> getComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<intAnnot> getComponent() {
+              return Poco::Fruit::createComponent()
                 .registerProvider<intAnnot>([](){return 42;});
             }
             '''
@@ -219,19 +219,19 @@ class TestRegisterProvider(parameterized.TestCase):
 
     @parameterized.parameters([
         ('X', 'X*', '(struct )?X'),
-        ('Fruit::Annotated<Annotation1, X>', 'Fruit::Annotated<Annotation1, X*>', '(struct )?Fruit::Annotated<(struct )?Annotation1, ?(struct )?X>'),
+        ('Poco::Fruit::Annotated<Annotation1, X>', 'Poco::Fruit::Annotated<Annotation1, X*>', '(struct )?Poco::Fruit::Annotated<(struct )?Annotation1, ?(struct )?X>'),
     ])
     def test_register_provider_error_returned_nullptr(self, XAnnot, XPtrAnnot, XAnnotRegex):
         source = '''
             struct X {};
     
-            Fruit::Component<XAnnot> getComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<XAnnot> getComponent() {
+              return Poco::Fruit::createComponent()
                   .registerProvider<XPtrAnnot()>([](){return (X*)nullptr;});
             }
     
             int main() {
-              Fruit::Injector<XAnnot> injector(getComponent);
+              Poco::Fruit::Injector<XAnnot> injector(getComponent);
               injector.get<XAnnot>();
             }
             '''
@@ -255,27 +255,27 @@ class TestRegisterProvider(parameterized.TestCase):
         'Y&',
         'const Y&',
         'std::shared_ptr<Y>',
-        'Fruit::Provider<Y>',
-        'Fruit::Provider<const Y>',
+        'Poco::Fruit::Provider<Y>',
+        'Poco::Fruit::Provider<const Y>',
     ])
     def test_register_provider_with_param_success(self, ConstructX, XPtr, WithAnnot, YVariant):
         source = '''
             struct Y {};
             struct X {};
             
-            Fruit::Component<WithAnnot<Y>> getYComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<WithAnnot<Y>> getYComponent() {
+              return Poco::Fruit::createComponent()
                 .registerConstructor<WithAnnot<Y>()>();
             }
     
-            Fruit::Component<X> getComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<X> getComponent() {
+              return Poco::Fruit::createComponent()
                 .install(getYComponent)
                 .registerProvider<XPtr(WithAnnot<YVariant>)>([](YVariant){ return ConstructX; });
             }
     
             int main() {
-              Fruit::Injector<X> injector(getComponent);
+              Poco::Fruit::Injector<X> injector(getComponent);
               injector.get<X>();
             }
             '''
@@ -295,7 +295,7 @@ class TestRegisterProvider(parameterized.TestCase):
         'const Y',
         'const Y*',
         'const Y&',
-        'Fruit::Provider<const Y>',
+        'Poco::Fruit::Provider<const Y>',
     ])
     def test_register_provider_with_param_const_binding_success(self, ConstructX, XPtr, WithAnnot, YVariant):
         source = '''
@@ -304,19 +304,19 @@ class TestRegisterProvider(parameterized.TestCase):
             
             const Y y{};
             
-            Fruit::Component<WithAnnot<const Y>> getYComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<WithAnnot<const Y>> getYComponent() {
+              return Poco::Fruit::createComponent()
                 .bindInstance<WithAnnot<Y>, Y>(y);
             }
     
-            Fruit::Component<X> getComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<X> getComponent() {
+              return Poco::Fruit::createComponent()
                 .install(getYComponent)
                 .registerProvider<XPtr(WithAnnot<YVariant>)>([](YVariant){ return ConstructX; });
             }
     
             int main() {
-              Fruit::Injector<X> injector(getComponent);
+              Poco::Fruit::Injector<X> injector(getComponent);
               injector.get<X>();
             }
             '''
@@ -330,22 +330,22 @@ class TestRegisterProvider(parameterized.TestCase):
         ('new X()', 'X*'),
     ], [
         ('WithNoAnnot', 'Y'),
-        ('WithAnnot1', 'Fruit::Annotated<Annotation1, Y>'),
+        ('WithAnnot1', 'Poco::Fruit::Annotated<Annotation1, Y>'),
     ], [
         'Y*',
         'Y&',
         'std::shared_ptr<Y>',
-        'Fruit::Provider<Y>',
+        'Poco::Fruit::Provider<Y>',
     ])
     def test_register_provider_with_param_error_nonconst_param_required(self, ConstructX, XPtr, WithAnnot, YAnnotRegex, YVariant):
         source = '''
             struct Y {};
             struct X {};
             
-            Fruit::Component<WithAnnot<const Y>> getYComponent();
+            Poco::Fruit::Component<WithAnnot<const Y>> getYComponent();
     
-            Fruit::Component<> getComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<> getComponent() {
+              return Poco::Fruit::createComponent()
                 .install(getYComponent)
                 .registerProvider<XPtr(WithAnnot<YVariant>)>([](YVariant){ return ConstructX; });
             }
@@ -362,22 +362,22 @@ class TestRegisterProvider(parameterized.TestCase):
         ('new X()', 'X*'),
     ], [
         ('WithNoAnnot', 'Y'),
-        ('WithAnnot1', 'Fruit::Annotated<Annotation1, Y>'),
+        ('WithAnnot1', 'Poco::Fruit::Annotated<Annotation1, Y>'),
     ], [
         'Y*',
         'Y&',
         'std::shared_ptr<Y>',
-        'Fruit::Provider<Y>',
+        'Poco::Fruit::Provider<Y>',
     ])
     def test_register_provider_with_param_error_nonconst_param_required_install_after(self, ConstructX, XPtr, WithAnnot, YAnnotRegex, YVariant):
         source = '''
             struct Y {};
             struct X {};
             
-            Fruit::Component<WithAnnot<const Y>> getYComponent();
+            Poco::Fruit::Component<WithAnnot<const Y>> getYComponent();
     
-            Fruit::Component<> getComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<> getComponent() {
+              return Poco::Fruit::createComponent()
                 .registerProvider<XPtr(WithAnnot<YVariant>)>([](YVariant){ return ConstructX; })
                 .install(getYComponent);
             }
@@ -395,15 +395,15 @@ class TestRegisterProvider(parameterized.TestCase):
             struct Y {};
             struct Z {};
     
-            Fruit::Component<Y, Z> getRootComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<Y, Z> getRootComponent() {
+              return Poco::Fruit::createComponent()
                 .registerProvider([](X&) { return Y();})
                 .registerProvider([](const X&) { return Z();})
                 .registerConstructor<X()>();
             }
             
             int main() {
-              Fruit::Injector<Y, Z> injector(getRootComponent);
+              Poco::Fruit::Injector<Y, Z> injector(getRootComponent);
               injector.get<Y>();
               injector.get<Z>();
             }
@@ -419,8 +419,8 @@ class TestRegisterProvider(parameterized.TestCase):
             struct Y {};
             struct Z {};
     
-            Fruit::Component<Fruit::Required<const X>, Y, Z> getRootComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<Poco::Fruit::Required<const X>, Y, Z> getRootComponent() {
+              return Poco::Fruit::createComponent()
                 .registerProvider([](X&) { return Y();})
                 .registerProvider([](const X&) { return Z();});
             }
@@ -438,15 +438,15 @@ class TestRegisterProvider(parameterized.TestCase):
             struct Y {};
             struct Z {};
     
-            Fruit::Component<Y, Z> getRootComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<Y, Z> getRootComponent() {
+              return Poco::Fruit::createComponent()
                 .registerProvider([](const X&) { return Y();})
                 .registerProvider([](X&) { return Z();})
                 .registerConstructor<X()>();
             }
             
             int main() {
-              Fruit::Injector<Y, Z> injector(getRootComponent);
+              Poco::Fruit::Injector<Y, Z> injector(getRootComponent);
               injector.get<Y>();
               injector.get<Z>();
             }
@@ -462,8 +462,8 @@ class TestRegisterProvider(parameterized.TestCase):
             struct Y {};
             struct Z {};
     
-            Fruit::Component<Fruit::Required<const X>, Y, Z> getRootComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<Poco::Fruit::Required<const X>, Y, Z> getRootComponent() {
+              return Poco::Fruit::createComponent()
                 .registerProvider([](const X&) { return Y();})
                 .registerProvider([](X&) { return Z();});
             }
@@ -490,8 +490,8 @@ class TestRegisterProvider(parameterized.TestCase):
             struct Y {};
             struct X {};
             
-            Fruit::Component<> getComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<> getComponent() {
+              return Poco::Fruit::createComponent()
                 .registerProvider<XPtr(YVariant)>([](YVariant){ return ConstructX; });
             }
             '''

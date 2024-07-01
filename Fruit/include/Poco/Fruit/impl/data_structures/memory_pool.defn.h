@@ -23,6 +23,7 @@
 
 #include <cstdint>
 
+namespace Poco{
 namespace Fruit {
 namespace impl {
 
@@ -93,5 +94,6 @@ FRUIT_ALWAYS_INLINE inline T* MemoryPool::allocate(std::size_t n) {
 
 } // namespace impl
 } // namespace Fruit
+} // namespace Poco
 
 #endif // FRUIT_MEMORY_POOL_DEFN_H

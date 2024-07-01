@@ -18,7 +18,7 @@
 
 #include <Poco/Fruit/impl/data_structures/memory_pool.h>
 
-void Fruit::impl::MemoryPool::destroy() {
+void Poco::Fruit::impl::MemoryPool::destroy() {
   for (void* p : allocated_chunks) {
     operator delete(p);
   }

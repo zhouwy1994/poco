@@ -22,6 +22,7 @@
 #include <Poco/Fruit/impl/util/hash_codes.h>
 #include <Poco/Fruit/component_function.h>
 
+namespace Poco{
 namespace Fruit {
 namespace impl {
 
@@ -105,7 +106,7 @@ public:
   }
 
   inline TypeId getFunTypeId() const final {
-    return Fruit::impl::getTypeId<Component (*)(Args...)>();
+    return Poco::Fruit::impl::getTypeId<Component (*)(Args...)>();
   }
 };
 
@@ -122,7 +123,7 @@ inline ComponentStorageEntry ComponentStorageEntry::LazyComponentWithArgs::creat
 
 template <typename Component, typename Arg, typename... Args>
 inline ComponentStorageEntry ComponentStorageEntry::LazyComponentWithArgs::create(
-    Fruit::ComponentFunction<Component, Arg, Args...> component_function) {
+    Poco::Fruit::ComponentFunction<Component, Arg, Args...> component_function) {
   return LazyComponentWithArgs::create(component_function.getComponent, component_function.args_tuple);
 }
 
@@ -185,7 +186,7 @@ inline ComponentStorageEntry ComponentStorageEntry::LazyComponentWithNoArgs::cre
 
 template <typename Component>
 inline ComponentStorageEntry ComponentStorageEntry::LazyComponentWithNoArgs::create(
-        Fruit::ComponentFunction<Component> component_function) {
+        Poco::Fruit::ComponentFunction<Component> component_function) {
   return LazyComponentWithNoArgs::create(component_function.getComponent);
 }
 
@@ -241,5 +242,6 @@ inline std::size_t ComponentStorageEntry::LazyComponentWithNoArgs::hashCode() co
 
 } // namespace impl
 } // namespace Fruit
+} // namespace Poco
 
 #endif // FRUIT_COMPONENT_STORAGE_ENTRY_DEFN_H

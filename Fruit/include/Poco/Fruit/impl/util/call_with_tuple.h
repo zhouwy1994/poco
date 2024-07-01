@@ -19,6 +19,7 @@
 
 #include <Poco/Fruit/impl/meta/vector.h>
 
+namespace Poco{
 namespace Fruit {
 namespace impl {
 
@@ -26,19 +27,20 @@ template <typename IntVector, typename Result, typename ArgsTuple>
 struct CallWithTupleHelper;
 
 template <typename... Ints, typename Result, typename... Args>
-struct CallWithTupleHelper<Fruit::impl::meta::Vector<Ints...>, Result, std::tuple<Args...>> {
+struct CallWithTupleHelper<Poco::Fruit::impl::meta::Vector<Ints...>, Result, std::tuple<Args...>> {
   Result operator()(Result (*fun)(Args...), std::tuple<Args...> args) {
     // This parameter *is* used, but when the tuple is empty some compilers report is as unused.
     (void)args;
-    return fun(std::get<Fruit::impl::meta::getIntValue<Ints>()>(args)...);
+    return fun(std::get<Poco::Fruit::impl::meta::getIntValue<Ints>()>(args)...);
   }
 };
 
 template <typename Result, typename... Args>
 inline Result callWithTuple(Result (*fun)(Args...), std::tuple<Args...> args) {
   using IntVector =
-      Fruit::impl::meta::Eval<Fruit::impl::meta::GenerateIntSequence(Fruit::impl::meta::Int<sizeof...(Args)>)>;
+      Poco::Fruit::impl::meta::Eval<Poco::Fruit::impl::meta::GenerateIntSequence(Poco::Fruit::impl::meta::Int<sizeof...(Args)>)>;
   return CallWithTupleHelper<IntVector, Result, std::tuple<Args...>>()(fun, args);
+}
 }
 }
 }

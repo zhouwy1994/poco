@@ -24,20 +24,20 @@ COMMON_DEFINITIONS = '''
     struct Z;
 
     struct Annotation1 {};
-    using XAnnot1 = Fruit::Annotated<Annotation1, X>;
-    using YAnnot1 = Fruit::Annotated<Annotation1, Y>;
-    using ZAnnot1 = Fruit::Annotated<Annotation1, Z>;
-    using ConstXAnnot1 = Fruit::Annotated<Annotation1, const X>;
-    using ConstYAnnot1 = Fruit::Annotated<Annotation1, const Y>;
-    using ConstZAnnot1 = Fruit::Annotated<Annotation1, const Z>;
+    using XAnnot1 = Poco::Fruit::Annotated<Annotation1, X>;
+    using YAnnot1 = Poco::Fruit::Annotated<Annotation1, Y>;
+    using ZAnnot1 = Poco::Fruit::Annotated<Annotation1, Z>;
+    using ConstXAnnot1 = Poco::Fruit::Annotated<Annotation1, const X>;
+    using ConstYAnnot1 = Poco::Fruit::Annotated<Annotation1, const Y>;
+    using ConstZAnnot1 = Poco::Fruit::Annotated<Annotation1, const Z>;
 
     struct Annotation2 {};
-    using XAnnot2 = Fruit::Annotated<Annotation2, X>;
-    using YAnnot2 = Fruit::Annotated<Annotation2, Y>;
-    using ZAnnot2 = Fruit::Annotated<Annotation2, Z>;
-    using ConstXAnnot2 = Fruit::Annotated<Annotation2, const X>;
-    using ConstYAnnot2 = Fruit::Annotated<Annotation2, const Y>;
-    using ConstZAnnot2 = Fruit::Annotated<Annotation2, const Z>;
+    using XAnnot2 = Poco::Fruit::Annotated<Annotation2, X>;
+    using YAnnot2 = Poco::Fruit::Annotated<Annotation2, Y>;
+    using ZAnnot2 = Poco::Fruit::Annotated<Annotation2, Z>;
+    using ConstXAnnot2 = Poco::Fruit::Annotated<Annotation2, const X>;
+    using ConstYAnnot2 = Poco::Fruit::Annotated<Annotation2, const Y>;
+    using ConstZAnnot2 = Poco::Fruit::Annotated<Annotation2, const Z>;
 
     struct Annotation3 {};
     '''
@@ -63,32 +63,32 @@ INTERFACE_BINDING2 = (
     ''')
 INSTALL = (
     '''
-        Fruit::Component<XAnnot> getParentComponent() {
-          return Fruit::createComponent()
+        Poco::Fruit::Component<XAnnot> getParentComponent() {
+          return Poco::Fruit::createComponent()
             .registerConstructor<XAnnot()>();
         }
     ''',
     '.install(getParentComponent)')
 INSTALL2 = (
     '''
-        Fruit::Component<XAnnot> getParentComponent2() {
-          return Fruit::createComponent()
+        Poco::Fruit::Component<XAnnot> getParentComponent2() {
+          return Poco::Fruit::createComponent()
             .registerConstructor<XAnnot()>();
         }
     ''',
     '.install(getParentComponent2)')
 CONST_BINDING_FROM_INSTALL = (
     '''
-        Fruit::Component<const XAnnot> getParentComponent() {
-          return Fruit::createComponent()
+        Poco::Fruit::Component<const XAnnot> getParentComponent() {
+          return Poco::Fruit::createComponent()
             .registerConstructor<XAnnot()>();
         }
     ''',
     '.install(getParentComponent)')
 CONST_BINDING_FROM_INSTALL2 = (
     '''
-        Fruit::Component<const XAnnot> getParentComponent2() {
-          return Fruit::createComponent()
+        Poco::Fruit::Component<const XAnnot> getParentComponent2() {
+          return Poco::Fruit::createComponent()
             .registerConstructor<XAnnot()>();
         }
     ''',
@@ -118,7 +118,7 @@ class TestBindingClash(parameterized.TestCase):
         ('CONST_BINDING + CONST_BINDING_FROM_INSTALL',) + CONST_BINDING + CONST_BINDING_FROM_INSTALL,
     ], [
         ('No annotation', 'X', 'Y', 'Y2'),
-        ('With annotation', 'Fruit::Annotated<Annotation1, X>', 'Fruit::Annotated<Annotation2, Y>', 'Fruit::Annotated<Annotation3, Y2>'),
+        ('With annotation', 'Poco::Fruit::Annotated<Annotation1, X>', 'Poco::Fruit::Annotated<Annotation2, Y>', 'Poco::Fruit::Annotated<Annotation3, Y2>'),
     ])
     def test_clash_with_install(self,
             binding1_preparation, binding1, binding2_preparation, binding2, XAnnot, YAnnot, Y2Annot):
@@ -128,8 +128,8 @@ class TestBindingClash(parameterized.TestCase):
             %s
             %s
     
-            Fruit::Component<XAnnot> getComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<XAnnot> getComponent() {
+              return Poco::Fruit::createComponent()
                   %s
                   %s;
             }
@@ -159,7 +159,7 @@ class TestBindingClash(parameterized.TestCase):
         ('CONST_BINDING + CONST_BINDING2',) + CONST_BINDING + CONST_BINDING2,
     ], [
         ('No annotation', 'X', 'Y', 'Y2'),
-        ('With annotation', 'Fruit::Annotated<Annotation1, X>', 'Fruit::Annotated<Annotation2, Y>', 'Fruit::Annotated<Annotation3, Y2>'),
+        ('With annotation', 'Poco::Fruit::Annotated<Annotation1, X>', 'Poco::Fruit::Annotated<Annotation2, Y>', 'Poco::Fruit::Annotated<Annotation3, Y2>'),
     ])
     def test_clash_with_binding(self, binding1_preparation, binding1, binding2_preparation, binding2, XAnnot, YAnnot, Y2Annot):
         source = '''
@@ -168,8 +168,8 @@ class TestBindingClash(parameterized.TestCase):
             %s
             %s
     
-            Fruit::Component<XAnnot> getComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<XAnnot> getComponent() {
+              return Poco::Fruit::createComponent()
                   %s
                   %s;
             }
@@ -206,32 +206,32 @@ class TestBindingClash(parameterized.TestCase):
         ''')
     INSTALL_ANNOT1 = (
         '''
-            Fruit::Component<XAnnot1> getParentComponent1() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<XAnnot1> getParentComponent1() {
+              return Poco::Fruit::createComponent()
                 .registerConstructor<XAnnot1()>();
             }
         ''',
         '.install(getParentComponent1)')
     INSTALL_ANNOT2 = (
         '''
-            Fruit::Component<XAnnot2> getParentComponent2() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<XAnnot2> getParentComponent2() {
+              return Poco::Fruit::createComponent()
                 .registerConstructor<XAnnot2()>();
             }
         ''',
         '.install(getParentComponent2)')
     CONST_BINDING_FROM_INSTALL_ANNOT1 = (
         '''
-            Fruit::Component<ConstXAnnot1> getParentComponent1() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<ConstXAnnot1> getParentComponent1() {
+              return Poco::Fruit::createComponent()
                 .registerConstructor<XAnnot1()>();
             }
         ''',
         '.install(getParentComponent1)')
     CONST_BINDING_FROM_INSTALL_ANNOT2 = (
         '''
-            Fruit::Component<ConstXAnnot2> getParentComponent2() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<ConstXAnnot2> getParentComponent2() {
+              return Poco::Fruit::createComponent()
                 .registerConstructor<XAnnot2()>();
             }
         ''',
@@ -280,14 +280,14 @@ class TestBindingClash(parameterized.TestCase):
             %s
             %s
     
-            Fruit::Component<const XAnnot1, const XAnnot2> getComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<const XAnnot1, const XAnnot2> getComponent() {
+              return Poco::Fruit::createComponent()
                   %s
                   %s;
             }
     
             int main() {
-                Fruit::Injector<const XAnnot1, const XAnnot2> injector(getComponent);
+                Poco::Fruit::Injector<const XAnnot1, const XAnnot2> injector(getComponent);
                 injector.get<XAnnot1>();
                 injector.get<XAnnot2>();
             }
@@ -301,28 +301,28 @@ class TestBindingClash(parameterized.TestCase):
         ('const X', 'X', 'X'),
         ('X', 'const X', 'X'),
         ('const X', 'const X', 'X'),
-        ('Fruit::Annotated<Annotation1, X>', 'Fruit::Annotated<Annotation1, X>', 'Fruit::Annotated<Annotation1, X>'),
-        ('Fruit::Annotated<Annotation1, const X>', 'Fruit::Annotated<Annotation1, X>', 'Fruit::Annotated<Annotation1, X>'),
-        ('Fruit::Annotated<Annotation1, X>', 'Fruit::Annotated<Annotation1, const X>', 'Fruit::Annotated<Annotation1, X>'),
-        ('Fruit::Annotated<Annotation1, const X>', 'Fruit::Annotated<Annotation1, const X>', 'Fruit::Annotated<Annotation1, X>'),
+        ('Poco::Fruit::Annotated<Annotation1, X>', 'Poco::Fruit::Annotated<Annotation1, X>', 'Poco::Fruit::Annotated<Annotation1, X>'),
+        ('Poco::Fruit::Annotated<Annotation1, const X>', 'Poco::Fruit::Annotated<Annotation1, X>', 'Poco::Fruit::Annotated<Annotation1, X>'),
+        ('Poco::Fruit::Annotated<Annotation1, X>', 'Poco::Fruit::Annotated<Annotation1, const X>', 'Poco::Fruit::Annotated<Annotation1, X>'),
+        ('Poco::Fruit::Annotated<Annotation1, const X>', 'Poco::Fruit::Annotated<Annotation1, const X>', 'Poco::Fruit::Annotated<Annotation1, X>'),
     ])
     def test_during_component_merge(self, NormalizedComponentXAnnot, ComponentXAnnot, XAnnot):
         source = '''
             struct X {};
     
-            Fruit::Component<NormalizedComponentXAnnot> getComponent1() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<NormalizedComponentXAnnot> getComponent1() {
+              return Poco::Fruit::createComponent()
                 .registerConstructor<XAnnot()>();
             }
     
-            Fruit::Component<ComponentXAnnot> getComponent2() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<ComponentXAnnot> getComponent2() {
+              return Poco::Fruit::createComponent()
                 .registerConstructor<XAnnot()>();
             }
     
             void f() {
-              Fruit::NormalizedComponent<NormalizedComponentXAnnot> nc(getComponent1);
-              Fruit::Injector<> injector(nc, getComponent2);
+              Poco::Fruit::NormalizedComponent<NormalizedComponentXAnnot> nc(getComponent1);
+              Poco::Fruit::Injector<> injector(nc, getComponent2);
               (void) injector;
             }
             '''
@@ -337,19 +337,19 @@ class TestBindingClash(parameterized.TestCase):
         source = '''
             struct X {};
     
-            Fruit::Component<XAnnot1> getComponent1() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<XAnnot1> getComponent1() {
+              return Poco::Fruit::createComponent()
                 .registerConstructor<XAnnot1()>();
             }
     
-            Fruit::Component<XAnnot2> getComponent2() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<XAnnot2> getComponent2() {
+              return Poco::Fruit::createComponent()
                 .registerConstructor<XAnnot2()>();
             }
     
             int main() {
-              Fruit::NormalizedComponent<XAnnot1> nc(getComponent1);
-              Fruit::Injector<XAnnot1, XAnnot2> injector(nc, getComponent2);
+              Poco::Fruit::NormalizedComponent<XAnnot1> nc(getComponent1);
+              Poco::Fruit::Injector<XAnnot1, XAnnot2> injector(nc, getComponent2);
               injector.get<XAnnot1>();
               injector.get<XAnnot2>();
             }
@@ -360,27 +360,27 @@ class TestBindingClash(parameterized.TestCase):
 
     @parameterized.parameters([
         ('X', '(struct )?X'),
-        ('Fruit::Annotated<Annotation1, X>', '(struct )?Fruit::Annotated<(struct )?Annotation1, ?(struct )?X>'),
+        ('Poco::Fruit::Annotated<Annotation1, X>', '(struct )?Poco::Fruit::Annotated<(struct )?Annotation1, ?(struct )?X>'),
     ])
     def test_bind_instance_and_bind_instance_runtime(self, XAnnot, XAnnotRegex):
         source = '''
             struct X {};
     
-            Fruit::Component<> getComponentForInstanceHelper() {
+            Poco::Fruit::Component<> getComponentForInstanceHelper() {
               // Note: don't do this in real code, leaks memory.
-              return Fruit::createComponent()
+              return Poco::Fruit::createComponent()
                 .bindInstance<XAnnot, X>(*(new X()));
             }
             
-            Fruit::Component<XAnnot> getComponentForInstance() {
+            Poco::Fruit::Component<XAnnot> getComponentForInstance() {
               // Note: don't do this in real code, leaks memory.
-              return Fruit::createComponent()
+              return Poco::Fruit::createComponent()
                 .install(getComponentForInstanceHelper)
                 .bindInstance<XAnnot, X>(*(new X()));
             }
     
             int main() {
-              Fruit::Injector<XAnnot> injector(getComponentForInstance);
+              Poco::Fruit::Injector<XAnnot> injector(getComponentForInstance);
               injector.get<XAnnot>();
             }
             '''
@@ -392,26 +392,26 @@ class TestBindingClash(parameterized.TestCase):
 
     @parameterized.parameters([
         ('X', '(struct )?X'),
-        ('Fruit::Annotated<Annotation1, X>', '(struct )?Fruit::Annotated<(struct )?Annotation1, ?(struct )?X>'),
+        ('Poco::Fruit::Annotated<Annotation1, X>', '(struct )?Poco::Fruit::Annotated<(struct )?Annotation1, ?(struct )?X>'),
     ])
     def test_bind_instance_and_binding_runtime(self, XAnnot, XAnnotRegex):
         source = '''
             struct X {};
     
-            Fruit::Component<> getComponentForInstanceHelper(X* x) {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<> getComponentForInstanceHelper(X* x) {
+              return Poco::Fruit::createComponent()
                 .bindInstance<XAnnot, X>(*x);
             }
             
-            Fruit::Component<XAnnot> getComponentForInstance(X* x) {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<XAnnot> getComponentForInstance(X* x) {
+              return Poco::Fruit::createComponent()
                 .install(getComponentForInstanceHelper, x)
                 .registerConstructor<XAnnot()>();
             }
     
             int main() {
               X x;
-              Fruit::Injector<XAnnot> injector(getComponentForInstance, &x);
+              Poco::Fruit::Injector<XAnnot> injector(getComponentForInstance, &x);
               injector.get<XAnnot>();
             }
             '''
@@ -423,7 +423,7 @@ class TestBindingClash(parameterized.TestCase):
 
     @parameterized.parameters([
         'X',
-        'Fruit::Annotated<Annotation1, X>',
+        'Poco::Fruit::Annotated<Annotation1, X>',
     ])
     def test_during_component_merge_consistent_ok(self, XAnnot):
         source = '''
@@ -431,18 +431,18 @@ class TestBindingClash(parameterized.TestCase):
               using Inject = X();
             };
     
-            Fruit::Component<XAnnot> getComponent() {
-              return Fruit::createComponent();
+            Poco::Fruit::Component<XAnnot> getComponent() {
+              return Poco::Fruit::createComponent();
             }
     
-            Fruit::Component<> getRootComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<> getRootComponent() {
+              return Poco::Fruit::createComponent()
                   .install(getComponent);
             }
     
             int main() {
-              Fruit::NormalizedComponent<> normalizedComponent(getRootComponent);
-              Fruit::Injector<XAnnot> injector(normalizedComponent, getComponent);
+              Poco::Fruit::NormalizedComponent<> normalizedComponent(getRootComponent);
+              Poco::Fruit::Injector<XAnnot> injector(normalizedComponent, getComponent);
     
               Assert(X::num_objects_constructed == 0);
               injector.get<XAnnot>();

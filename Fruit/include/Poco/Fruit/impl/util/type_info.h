@@ -23,6 +23,7 @@
 
 #include <vector>
 
+namespace Poco{
 namespace Fruit {
 namespace impl {
 
@@ -84,11 +85,13 @@ std::vector<TypeId> getTypeIdsForList();
 
 } // namespace impl
 } // namespace Fruit
+} // namespace Poco
 
 #if FRUIT_EXTRA_DEBUG
 
 #include <ostream>
 
+namespace Poco{
 namespace Fruit {
 namespace impl {
 
@@ -96,14 +99,15 @@ inline std::ostream& operator<<(std::ostream& os, TypeId type);
 
 } // namespace impl
 } // namespace Fruit
+} // namespace Poco
 
 #endif // FRUIT_EXTRA_DEBUG
 
 namespace std {
 
 template <>
-struct hash<Fruit::impl::TypeId> {
-  std::size_t operator()(Fruit::impl::TypeId type) const;
+struct hash<Poco::Fruit::impl::TypeId> {
+  std::size_t operator()(Poco::Fruit::impl::TypeId type) const;
 };
 
 } // namespace std

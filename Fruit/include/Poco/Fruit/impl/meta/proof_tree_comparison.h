@@ -21,6 +21,7 @@
 #error "This file should only be included in debug mode or in tests."
 #endif
 
+namespace Poco{
 namespace Fruit {
 namespace impl {
 namespace meta {
@@ -121,5 +122,6 @@ struct CheckForestEqualTo {
 } // namespace meta
 } // namespace impl
 } // namespace Fruit
+} // namespace Poco
 
 #endif // FRUIT_PROOF_TREE_COMPARISON_H

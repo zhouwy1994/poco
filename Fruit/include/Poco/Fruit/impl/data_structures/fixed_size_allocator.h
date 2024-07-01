@@ -25,6 +25,7 @@
 #include <unordered_map>
 #endif
 
+namespace Poco{
 namespace Fruit {
 namespace impl {
 
@@ -104,8 +105,8 @@ public:
   // Allocates an object of type T, constructing it with the specified arguments. Similar to:
   // new C(args...)
   template <typename AnnotatedT, typename... Args>
-  Fruit::impl::meta::UnwrapType<
-      Fruit::impl::meta::Eval<Fruit::impl::meta::RemoveAnnotations(Fruit::impl::meta::Type<AnnotatedT>)>>*
+  Poco::Fruit::impl::meta::UnwrapType<
+      Poco::Fruit::impl::meta::Eval<Poco::Fruit::impl::meta::RemoveAnnotations(Poco::Fruit::impl::meta::Type<AnnotatedT>)>>*
   constructObject(Args&&... args);
 
   template <typename T>
@@ -114,6 +115,7 @@ public:
 
 } // namespace impl
 } // namespace Fruit
+} // namespace Poco
 
 #include <Poco/Fruit/impl/data_structures/fixed_size_allocator.defn.h>
 

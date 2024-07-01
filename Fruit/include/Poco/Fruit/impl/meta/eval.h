@@ -23,6 +23,7 @@
 
 #include <functional>
 
+namespace Poco{
 namespace Fruit {
 namespace impl {
 namespace meta {
@@ -255,5 +256,6 @@ using Eval = typename DoEval<MetaExpr>::type;
 } // namespace meta
 } // namespace impl
 } // namespace Fruit
+} // namespace Poco
 
 #endif // FRUIT_META_EVAL_H

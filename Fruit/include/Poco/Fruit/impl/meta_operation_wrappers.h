@@ -19,18 +19,20 @@
 
 #include <Poco/Fruit/impl/meta/basics.h>
 
+namespace Poco{
 namespace Fruit {
 namespace impl {
 
 template <typename T>
 struct RemoveAnnotationsHelper {
-  using type = Fruit::impl::meta::UnwrapType<
-      Fruit::impl::meta::Eval<Fruit::impl::meta::RemoveAnnotations(Fruit::impl::meta::Type<T>)>>;
+  using type = Poco::Fruit::impl::meta::UnwrapType<
+      Poco::Fruit::impl::meta::Eval<Poco::Fruit::impl::meta::RemoveAnnotations(Poco::Fruit::impl::meta::Type<T>)>>;
 };
 template <typename T>
 using RemoveAnnotations = typename RemoveAnnotationsHelper<T>::type;
 
 } // namespace impl
 } // namespace Fruit
+} // namespace Poco
 
 #endif // FRUIT_META_OPERATION_WRAPPERS_H

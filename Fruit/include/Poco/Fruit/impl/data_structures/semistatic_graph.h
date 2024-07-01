@@ -24,6 +24,7 @@
 #include <iostream>
 #endif
 
+namespace Poco{
 namespace Fruit {
 namespace impl {
 
@@ -234,6 +235,7 @@ public:
 
 } // namespace impl
 } // namespace Fruit
+} // namespace Poco
 
 #include <Poco/Fruit/impl/data_structures/semistatic_graph.defn.h>
 

@@ -25,6 +25,6 @@
 // This marks a the Brake instance that represents the main brake.
 struct MainBrake {};
 
-Fruit::Component<Fruit::Annotated<MainBrake, Brake>> getMainBrakeComponent();
+Poco::Fruit::Component<Poco::Fruit::Annotated<MainBrake, Brake>> getMainBrakeComponent();
 
 #endif // MAIN_BRAKE_H

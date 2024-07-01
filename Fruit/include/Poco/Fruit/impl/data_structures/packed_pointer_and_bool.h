@@ -17,6 +17,7 @@
 #ifndef FRUIT_PACKED_POINTER_AND_BOOL_H
 #define FRUIT_PACKED_POINTER_AND_BOOL_H
 
+namespace Poco{
 namespace Fruit {
 namespace impl {
 
@@ -58,6 +59,7 @@ public:
 
 } // namespace impl
 } // namespace Fruit
+} // namespace Poco
 
 #include <Poco/Fruit/impl/data_structures/packed_pointer_and_bool.defn.h>
 

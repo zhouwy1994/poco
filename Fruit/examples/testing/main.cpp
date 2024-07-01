@@ -19,8 +19,8 @@
 #include <iostream>
 
 int main() {
-  Fruit::Injector<Fruit::Annotated<Cached, Greeter>> injector(getCachedGreeterComponent);
-  Greeter* greeter = injector.get<Fruit::Annotated<Cached, Greeter*>>();
+  Poco::Fruit::Injector<Poco::Fruit::Annotated<Cached, Greeter>> injector(getCachedGreeterComponent);
+  Greeter* greeter = injector.get<Poco::Fruit::Annotated<Cached, Greeter*>>();
   std::cout << greeter->greet() << std::endl;
 
   return 0;

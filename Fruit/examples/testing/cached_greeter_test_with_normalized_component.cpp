@@ -19,32 +19,32 @@
 
 #include <gtest/gtest.h>
 
-Fruit::Component<Fruit::Annotated<Cached, Greeter>> getMainComponent() {
-  return Fruit::createComponent()
+Poco::Fruit::Component<Poco::Fruit::Annotated<Cached, Greeter>> getMainComponent() {
+  return Poco::Fruit::createComponent()
       // Note: order matters here. This replace().with() must be before the install. Otherwise Fruit will report the
       // wrong order as a run-time error.
       .replace(getKeyValueStorageComponent).with(getFakeKeyValueStorageComponent)
       .install(getCachedGreeterComponent);
 }
 
-Fruit::Component<> getEmptyComponent() {
-  return Fruit::createComponent();
+Poco::Fruit::Component<> getEmptyComponent() {
+  return Poco::Fruit::createComponent();
 }
 
-Fruit::Injector<Fruit::Annotated<Cached, Greeter>> createInjector() {
-  static Fruit::NormalizedComponent<Fruit::Annotated<Cached, Greeter>> normalizedComponent(getMainComponent);
-  return Fruit::Injector<Fruit::Annotated<Cached, Greeter>>(normalizedComponent, getEmptyComponent);
+Poco::Fruit::Injector<Poco::Fruit::Annotated<Cached, Greeter>> createInjector() {
+  static Poco::Fruit::NormalizedComponent<Poco::Fruit::Annotated<Cached, Greeter>> normalizedComponent(getMainComponent);
+  return Poco::Fruit::Injector<Poco::Fruit::Annotated<Cached, Greeter>>(normalizedComponent, getEmptyComponent);
 }
 
 TEST(CachedGreeter, NotYetCached) {
-  Fruit::Injector<Fruit::Annotated<Cached, Greeter>> injector = createInjector();
-  Greeter* greeter = injector.get<Fruit::Annotated<Cached, Greeter*>>();
+  Poco::Fruit::Injector<Poco::Fruit::Annotated<Cached, Greeter>> injector = createInjector();
+  Greeter* greeter = injector.get<Poco::Fruit::Annotated<Cached, Greeter*>>();
   ASSERT_EQ(greeter->greet(), "Hello, world!");
 }
 
 TEST(CachedGreeter, Cached) {
-  Fruit::Injector<Fruit::Annotated<Cached, Greeter>> injector = createInjector();
-  Greeter* greeter = injector.get<Fruit::Annotated<Cached, Greeter*>>();
+  Poco::Fruit::Injector<Poco::Fruit::Annotated<Cached, Greeter>> injector = createInjector();
+  Greeter* greeter = injector.get<Poco::Fruit::Annotated<Cached, Greeter*>>();
   greeter->greet();
   ASSERT_EQ(greeter->greet(), "Hello, world!");
 }

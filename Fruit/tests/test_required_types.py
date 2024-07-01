@@ -22,7 +22,7 @@ COMMON_DEFINITIONS = '''
     struct X;
 
     struct Annotation1 {};
-    using XAnnot1 = Fruit::Annotated<Annotation1, X>;
+    using XAnnot1 = Poco::Fruit::Annotated<Annotation1, X>;
     '''
 
 class TestRequiredTypes(parameterized.TestCase):
@@ -45,24 +45,24 @@ class TestRequiredTypes(parameterized.TestCase):
                     xFactory()->foo();
                 }
             };
-            Fruit::Component<Fruit::Required<XFactory>, Y> getYComponent() {
-                return Fruit::createComponent();
+            Poco::Fruit::Component<Poco::Fruit::Required<XFactory>, Y> getYComponent() {
+                return Poco::Fruit::createComponent();
             }
             struct XImpl : public X {
                 INJECT(XImpl()) = default;
                 void foo() override {}
             };
-            Fruit::Component<XFactory> getXFactoryComponent() {
-                return Fruit::createComponent()
+            Poco::Fruit::Component<XFactory> getXFactoryComponent() {
+                return Poco::Fruit::createComponent()
                     .bind<X, XImpl>();
             }
-            Fruit::Component<Y> getComponent() {
-                return Fruit::createComponent()
+            Poco::Fruit::Component<Y> getComponent() {
+                return Poco::Fruit::createComponent()
                     .install(getYComponent)
                     .install(getXFactoryComponent);
             }
             int main() {
-                Fruit::Injector<Y> injector(getComponent);
+                Poco::Fruit::Injector<Y> injector(getComponent);
                 Y* y(injector);
                 y->doStuff();
             }
@@ -76,7 +76,7 @@ class TestRequiredTypes(parameterized.TestCase):
                 virtual ~X() = default;
             };
             using XFactory = std::function<std::unique_ptr<X>()>;
-            using XFactoryAnnot = Fruit::Annotated<Annotation1, XFactory>;
+            using XFactoryAnnot = Poco::Fruit::Annotated<Annotation1, XFactory>;
             struct Y {
                 XFactory xFactory;
     
@@ -88,24 +88,24 @@ class TestRequiredTypes(parameterized.TestCase):
                     xFactory()->foo();
                 }
             };
-            Fruit::Component<Fruit::Required<XFactoryAnnot>, Y> getYComponent() {
-                return Fruit::createComponent();
+            Poco::Fruit::Component<Poco::Fruit::Required<XFactoryAnnot>, Y> getYComponent() {
+                return Poco::Fruit::createComponent();
             }
             struct XImpl : public X {
                 INJECT(XImpl()) = default;
                 void foo() override {}
             };
-            Fruit::Component<XFactoryAnnot> getXFactoryComponent() {
-                return Fruit::createComponent()
-                    .bind<Fruit::Annotated<Annotation1, X>, Fruit::Annotated<Annotation1, XImpl>>();
+            Poco::Fruit::Component<XFactoryAnnot> getXFactoryComponent() {
+                return Poco::Fruit::createComponent()
+                    .bind<Poco::Fruit::Annotated<Annotation1, X>, Poco::Fruit::Annotated<Annotation1, XImpl>>();
             }
-            Fruit::Component<Y> getComponent() {
-                return Fruit::createComponent()
+            Poco::Fruit::Component<Y> getComponent() {
+                return Poco::Fruit::createComponent()
                     .install(getYComponent)
                     .install(getXFactoryComponent);
             }
             int main() {
-                Fruit::Injector<Y> injector(getComponent);
+                Poco::Fruit::Injector<Y> injector(getComponent);
                 Y* y(injector);
                 y->doStuff();
             }
@@ -125,17 +125,17 @@ class TestRequiredTypes(parameterized.TestCase):
     
                 void doStuff();
             };
-            Fruit::Component<Fruit::Required<XFactory>, Y> getYComponent() {
-                return Fruit::createComponent();
+            Poco::Fruit::Component<Poco::Fruit::Required<XFactory>, Y> getYComponent() {
+                return Poco::Fruit::createComponent();
             }
-            Fruit::Component<XFactory> getXFactoryComponent();
-            Fruit::Component<Y> getComponent() {
-                return Fruit::createComponent()
+            Poco::Fruit::Component<XFactory> getXFactoryComponent();
+            Poco::Fruit::Component<Y> getComponent() {
+                return Poco::Fruit::createComponent()
                     .install(getYComponent)
                     .install(getXFactoryComponent);
             }
             int main() {
-                Fruit::Injector<Y> injector(getComponent);
+                Poco::Fruit::Injector<Y> injector(getComponent);
                 Y* y(injector);
                 y->doStuff();
             }
@@ -152,8 +152,8 @@ class TestRequiredTypes(parameterized.TestCase):
                 INJECT(XImpl()) = default;
                 void foo() override {}
             };
-            Fruit::Component<XFactory> getXFactoryComponent() {
-                return Fruit::createComponent()
+            Poco::Fruit::Component<XFactory> getXFactoryComponent() {
+                return Poco::Fruit::createComponent()
                     .bind<X, XImpl>();
             }
             '''
@@ -163,7 +163,7 @@ class TestRequiredTypes(parameterized.TestCase):
         source = '''
             struct X;
             using XFactory = std::function<std::unique_ptr<X>()>;
-            using XFactoryAnnot = Fruit::Annotated<Annotation1, XFactory>;
+            using XFactoryAnnot = Poco::Fruit::Annotated<Annotation1, XFactory>;
             struct Y {
                 XFactory xFactory;
     
@@ -173,17 +173,17 @@ class TestRequiredTypes(parameterized.TestCase):
     
                 void doStuff();
             };
-            Fruit::Component<Fruit::Required<XFactoryAnnot>, Y> getYComponent() {
-                return Fruit::createComponent();
+            Poco::Fruit::Component<Poco::Fruit::Required<XFactoryAnnot>, Y> getYComponent() {
+                return Poco::Fruit::createComponent();
             }
-            Fruit::Component<XFactoryAnnot> getXFactoryComponent();
-            Fruit::Component<Y> getComponent() {
-                return Fruit::createComponent()
+            Poco::Fruit::Component<XFactoryAnnot> getXFactoryComponent();
+            Poco::Fruit::Component<Y> getComponent() {
+                return Poco::Fruit::createComponent()
                     .install(getYComponent)
                     .install(getXFactoryComponent);
             }
             int main() {
-                Fruit::Injector<Y> injector(getComponent);
+                Poco::Fruit::Injector<Y> injector(getComponent);
                 Y* y(injector);
                 y->doStuff();
             }
@@ -200,9 +200,9 @@ class TestRequiredTypes(parameterized.TestCase):
                 INJECT(XImpl()) = default;
                 void foo() override {}
             };
-            Fruit::Component<XFactoryAnnot> getXFactoryComponent() {
-                return Fruit::createComponent()
-                    .bind<Fruit::Annotated<Annotation1, X>, Fruit::Annotated<Annotation1, XImpl>>();
+            Poco::Fruit::Component<XFactoryAnnot> getXFactoryComponent() {
+                return Poco::Fruit::createComponent()
+                    .bind<Poco::Fruit::Annotated<Annotation1, X>, Poco::Fruit::Annotated<Annotation1, XImpl>>();
             }
             '''
         expect_success(COMMON_DEFINITIONS, source)
@@ -220,17 +220,17 @@ class TestRequiredTypes(parameterized.TestCase):
     
                 void doStuff();
             };
-            Fruit::Component<Fruit::Required<const XFactory>, Y> getYComponent() {
-                return Fruit::createComponent();
+            Poco::Fruit::Component<Poco::Fruit::Required<const XFactory>, Y> getYComponent() {
+                return Poco::Fruit::createComponent();
             }
-            Fruit::Component<const XFactory> getXFactoryComponent();
-            Fruit::Component<Y> getComponent() {
-                return Fruit::createComponent()
+            Poco::Fruit::Component<const XFactory> getXFactoryComponent();
+            Poco::Fruit::Component<Y> getComponent() {
+                return Poco::Fruit::createComponent()
                     .install(getYComponent)
                     .install(getXFactoryComponent);
             }
             int main() {
-                Fruit::Injector<Y> injector(getComponent);
+                Poco::Fruit::Injector<Y> injector(getComponent);
                 Y* y(injector);
                 y->doStuff();
             }
@@ -247,8 +247,8 @@ class TestRequiredTypes(parameterized.TestCase):
                 INJECT(XImpl()) = default;
                 void foo() override {}
             };
-            Fruit::Component<const XFactory> getXFactoryComponent() {
-                return Fruit::createComponent()
+            Poco::Fruit::Component<const XFactory> getXFactoryComponent() {
+                return Poco::Fruit::createComponent()
                     .bind<X, XImpl>();
             }
             '''
@@ -258,7 +258,7 @@ class TestRequiredTypes(parameterized.TestCase):
         source = '''
             struct X;
             using XFactory = std::function<std::unique_ptr<X>()>;
-            using ConstXFactoryAnnot = Fruit::Annotated<Annotation1, const XFactory>;
+            using ConstXFactoryAnnot = Poco::Fruit::Annotated<Annotation1, const XFactory>;
             struct Y {
                 XFactory xFactory;
     
@@ -268,17 +268,17 @@ class TestRequiredTypes(parameterized.TestCase):
     
                 void doStuff();
             };
-            Fruit::Component<Fruit::Required<ConstXFactoryAnnot>, Y> getYComponent() {
-                return Fruit::createComponent();
+            Poco::Fruit::Component<Poco::Fruit::Required<ConstXFactoryAnnot>, Y> getYComponent() {
+                return Poco::Fruit::createComponent();
             }
-            Fruit::Component<ConstXFactoryAnnot> getXFactoryComponent();
-            Fruit::Component<Y> getComponent() {
-                return Fruit::createComponent()
+            Poco::Fruit::Component<ConstXFactoryAnnot> getXFactoryComponent();
+            Poco::Fruit::Component<Y> getComponent() {
+                return Poco::Fruit::createComponent()
                     .install(getYComponent)
                     .install(getXFactoryComponent);
             }
             int main() {
-                Fruit::Injector<Y> injector(getComponent);
+                Poco::Fruit::Injector<Y> injector(getComponent);
                 Y* y(injector);
                 y->doStuff();
             }
@@ -295,9 +295,9 @@ class TestRequiredTypes(parameterized.TestCase):
                 INJECT(XImpl()) = default;
                 void foo() override {}
             };
-            Fruit::Component<ConstXFactoryAnnot> getXFactoryComponent() {
-                return Fruit::createComponent()
-                    .bind<Fruit::Annotated<Annotation1, X>, Fruit::Annotated<Annotation1, XImpl>>();
+            Poco::Fruit::Component<ConstXFactoryAnnot> getXFactoryComponent() {
+                return Poco::Fruit::createComponent()
+                    .bind<Poco::Fruit::Annotated<Annotation1, X>, Poco::Fruit::Annotated<Annotation1, XImpl>>();
             }
             '''
         expect_success(COMMON_DEFINITIONS, source)

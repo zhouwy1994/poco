@@ -23,7 +23,7 @@ COMMON_DEFINITIONS = '''
     #include <Poco/Fruit/impl/data_structures/semistatic_map.templates.h>
     
     using namespace std;
-    using namespace Fruit::impl;
+    using namespace Poco::Fruit::impl;
     '''
 
 class TestSemistaticMap(parameterized.TestCase):

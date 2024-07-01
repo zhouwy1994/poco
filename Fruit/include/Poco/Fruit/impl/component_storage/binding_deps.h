@@ -19,6 +19,7 @@
 
 #include <Poco/Fruit/impl/util/type_info.h>
 
+namespace Poco{
 namespace Fruit {
 namespace impl {
 
@@ -35,6 +36,7 @@ const BindingDeps* getBindingDeps();
 
 } // namespace impl
 } // namespace Fruit
+} // namespace Poco
 
 #include <Poco/Fruit/impl/component_storage/binding_deps.defn.h>
 

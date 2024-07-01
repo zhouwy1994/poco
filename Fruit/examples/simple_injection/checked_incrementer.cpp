@@ -19,6 +19,6 @@
 #include "checked_adder.h"
 #include "incrementer_impl.h"
 
-Fruit::Component<Incrementer> getCheckedIncrementerComponent() {
-  return Fruit::createComponent().install(getIncrementerImplComponent).install(getCheckedAdderComponent);
+Poco::Fruit::Component<Incrementer> getCheckedIncrementerComponent() {
+  return Poco::Fruit::createComponent().install(getIncrementerImplComponent).install(getCheckedAdderComponent);
 }

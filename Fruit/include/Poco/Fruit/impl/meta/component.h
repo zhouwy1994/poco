@@ -34,6 +34,7 @@
 #include <memory>
 #include <type_traits>
 
+namespace Poco{
 namespace Fruit {
 namespace impl {
 namespace meta {
@@ -101,7 +102,7 @@ struct GetClassForType {
   };
 
   template <typename Annotation, typename T>
-  struct apply<Type<Fruit::Annotated<Annotation, T>>> {
+  struct apply<Type<Poco::Fruit::Annotated<Annotation, T>>> {
     using type = Type<T>;
   };
 };
@@ -171,8 +172,8 @@ struct NormalizeType {
   };
 
   template <typename Annotation, typename T>
-  struct apply<Type<Fruit::Annotated<Annotation, T>>> {
-    using type = Type<Fruit::Annotated<Annotation, UnwrapType<Eval<NormalizeType(Type<T>)>>>>;
+  struct apply<Type<Poco::Fruit::Annotated<Annotation, T>>> {
+    using type = Type<Poco::Fruit::Annotated<Annotation, UnwrapType<Eval<NormalizeType(Type<T>)>>>>;
   };
 };
 
@@ -245,7 +246,7 @@ struct TypeInjectionRequiresNonConstBinding {
   };
 
   template <typename Annotation, typename T>
-  struct apply<Type<Fruit::Annotated<Annotation, T>>> {
+  struct apply<Type<Poco::Fruit::Annotated<Annotation, T>>> {
     using type = TypeInjectionRequiresNonConstBinding(Type<T>);
   };
 };
@@ -261,8 +262,8 @@ struct CopyAnnotation {
   };
 
   template <typename Annotation, typename T, typename U>
-  struct apply<Type<Fruit::Annotated<Annotation, T>>, Type<U>> {
-    using type = Type<Fruit::Annotated<Annotation, U>>;
+  struct apply<Type<Poco::Fruit::Annotated<Annotation, T>>, Type<U>> {
+    using type = Type<Poco::Fruit::Annotated<Annotation, U>>;
   };
 };
 
@@ -289,7 +290,7 @@ struct RemoveAnnotations {
   };
 
   template <typename Annotation, typename T>
-  struct apply<Type<Fruit::Annotated<Annotation, T>>> {
+  struct apply<Type<Poco::Fruit::Annotated<Annotation, T>>> {
     using type = Type<T>;
   };
 };
@@ -326,8 +327,8 @@ struct AddPointerInAnnotatedType {
   };
 
   template <typename Annotation, typename T>
-  struct apply<Type<Fruit::Annotated<Annotation, T>>> {
-    using type = Type<Fruit::Annotated<Annotation, T*>>;
+  struct apply<Type<Poco::Fruit::Annotated<Annotation, T>>> {
+    using type = Type<Poco::Fruit::Annotated<Annotation, T*>>;
   };
 };
 
@@ -611,7 +612,7 @@ struct IsInjectableBareType {
   };
 
   template <typename Annotation, typename T>
-  struct apply<Type<Fruit::Annotated<Annotation, T>>> {
+  struct apply<Type<Poco::Fruit::Annotated<Annotation, T>>> {
     using type = Bool<false>;
   };
 
@@ -699,7 +700,7 @@ struct CheckNotAnnotatedTypes {
   };
 };
 
-// Check that there are no Fruit::Required<> types in Component/NormalizedComponent's arguments.
+// Check that there are no Poco::Fruit::Required<> types in Component/NormalizedComponent's arguments.
 // If there aren't any, this returns None.
 struct CheckNoRequiredTypesInComponentArguments {
   template <typename V>
@@ -716,12 +717,12 @@ struct CheckNoRequiredTypesInComponentArguments {
   };
 
   template <typename... RequiredArgs, typename... OtherTypes>
-  struct apply<Vector<Type<Fruit::Required<RequiredArgs...>>, OtherTypes...>> {
-    using type = ConstructError(RequiredTypesInComponentArgumentsErrorTag, Type<Fruit::Required<RequiredArgs...>>);
+  struct apply<Vector<Type<Poco::Fruit::Required<RequiredArgs...>>, OtherTypes...>> {
+    using type = ConstructError(RequiredTypesInComponentArgumentsErrorTag, Type<Poco::Fruit::Required<RequiredArgs...>>);
   };
 };
 
-// Check that there are no Fruit::Required<> types in Injector's arguments.
+// Check that there are no Poco::Fruit::Required<> types in Injector's arguments.
 // If there aren't any, this returns None.
 struct CheckNoRequiredTypesInInjectorArguments {
   template <typename... Types>
@@ -735,7 +736,7 @@ struct CheckNoRequiredTypesInInjectorArguments {
   };
 
   template <typename... RequiredArgs, typename... Types>
-  struct apply<Type<Fruit::Required<RequiredArgs...>>, Types...> {
+  struct apply<Type<Poco::Fruit::Required<RequiredArgs...>>, Types...> {
     using type = ConstructError(InjectorWithRequirementsErrorTag, Type<RequiredArgs>...);
   };
 };
@@ -767,13 +768,13 @@ struct RemoveConstFromType {
   };
 
   template <typename Annotation, typename T>
-  struct apply<Type<Fruit::Annotated<Annotation, T>>> {
-    using type = Type<Fruit::Annotated<Annotation, T>>;
+  struct apply<Type<Poco::Fruit::Annotated<Annotation, T>>> {
+    using type = Type<Poco::Fruit::Annotated<Annotation, T>>;
   };
 
   template <typename Annotation, typename T>
-  struct apply<Type<Fruit::Annotated<Annotation, const T>>> {
-    using type = Type<Fruit::Annotated<Annotation, T>>;
+  struct apply<Type<Poco::Fruit::Annotated<Annotation, const T>>> {
+    using type = Type<Poco::Fruit::Annotated<Annotation, T>>;
   };
 };
 
@@ -803,13 +804,13 @@ struct RemoveConstTypes {
     };
 
     template <typename... AccContent, typename Annotation, typename T>
-    struct apply<Vector<AccContent...>, Type<Fruit::Annotated<Annotation, const T>>> {
+    struct apply<Vector<AccContent...>, Type<Poco::Fruit::Annotated<Annotation, const T>>> {
       using type = Vector<AccContent...>;
     };
 
     template <typename... AccContent, typename Annotation, typename T>
-    struct apply<Vector<AccContent...>, Type<Fruit::Annotated<Annotation, T>>> {
-      using type = Vector<AccContent..., Type<Fruit::Annotated<Annotation, T>>>;
+    struct apply<Vector<AccContent...>, Type<Poco::Fruit::Annotated<Annotation, T>>> {
+      using type = Vector<AccContent..., Type<Poco::Fruit::Annotated<Annotation, T>>>;
     };
   };
 
@@ -1008,5 +1009,6 @@ struct ConstructNoBindingFoundError {
 } // namespace meta
 } // namespace impl
 } // namespace Fruit
+} // namespace Poco
 
 #endif // FRUIT_META_COMPONENT_H

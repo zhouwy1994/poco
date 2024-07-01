@@ -29,9 +29,9 @@ COMMON_DEFINITIONS = '''
 class TestMultibindingsBindInterface(parameterized.TestCase):
     @parameterized.parameters([
         ('X', 'XImpl'),
-        ('X', 'Fruit::Annotated<Annotation2, XImpl>'),
-        ('Fruit::Annotated<Annotation1, X>', 'XImpl'),
-        ('Fruit::Annotated<Annotation1, X>', 'Fruit::Annotated<Annotation2, XImpl>'),
+        ('X', 'Poco::Fruit::Annotated<Annotation2, XImpl>'),
+        ('Poco::Fruit::Annotated<Annotation1, X>', 'XImpl'),
+        ('Poco::Fruit::Annotated<Annotation1, X>', 'Poco::Fruit::Annotated<Annotation2, XImpl>'),
     ])
     def test_add_interface_multibinding_success(self, XAnnot, XImplAnnot):
         source = '''
@@ -47,13 +47,13 @@ class TestMultibindingsBindInterface(parameterized.TestCase):
               }
             };
     
-            Fruit::Component<> getComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<> getComponent() {
+              return Poco::Fruit::createComponent()
                 .addMultibinding<XAnnot, XImplAnnot>();
             }
             
             int main() {
-              Fruit::Injector<> injector(getComponent);
+              Poco::Fruit::Injector<> injector(getComponent);
     
               std::vector<X*> multibindings = injector.getMultibindings<XAnnot>();
               Assert(multibindings.size() == 1);
@@ -67,7 +67,7 @@ class TestMultibindingsBindInterface(parameterized.TestCase):
 
     @parameterized.parameters([
         ('X', 'XImpl', 'const XImpl'),
-        ('X', 'Fruit::Annotated<Annotation2, XImpl>', 'Fruit::Annotated<Annotation2, const XImpl>'),
+        ('X', 'Poco::Fruit::Annotated<Annotation2, XImpl>', 'Poco::Fruit::Annotated<Annotation2, const XImpl>'),
     ])
     def test_add_interface_multibinding_const_target_error_install_first(self, XAnnot, XImplAnnot, ConstXImplAnnot):
         source = '''
@@ -81,10 +81,10 @@ class TestMultibindingsBindInterface(parameterized.TestCase):
               }
             };
             
-            Fruit::Component<ConstXImplAnnot> getXImplComponent();
+            Poco::Fruit::Component<ConstXImplAnnot> getXImplComponent();
     
-            Fruit::Component<> getComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<> getComponent() {
+              return Poco::Fruit::createComponent()
                 .install(getXImplComponent)
                 .addMultibinding<XAnnot, XImplAnnot>();
             }
@@ -98,7 +98,7 @@ class TestMultibindingsBindInterface(parameterized.TestCase):
 
     @parameterized.parameters([
         ('X', 'XImpl', 'const XImpl'),
-        ('X', 'Fruit::Annotated<Annotation2, XImpl>', 'Fruit::Annotated<Annotation2, const XImpl>'),
+        ('X', 'Poco::Fruit::Annotated<Annotation2, XImpl>', 'Poco::Fruit::Annotated<Annotation2, const XImpl>'),
     ])
     def test_add_interface_multibinding_const_target_error_binding_first(self, XAnnot, XImplAnnot, ConstXImplAnnot):
         source = '''
@@ -112,10 +112,10 @@ class TestMultibindingsBindInterface(parameterized.TestCase):
               }
             };
             
-            Fruit::Component<ConstXImplAnnot> getXImplComponent();
+            Poco::Fruit::Component<ConstXImplAnnot> getXImplComponent();
     
-            Fruit::Component<> getComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<> getComponent() {
+              return Poco::Fruit::createComponent()
                 .addMultibinding<XAnnot, XImplAnnot>()
                 .install(getXImplComponent);
             }
@@ -129,14 +129,14 @@ class TestMultibindingsBindInterface(parameterized.TestCase):
 
     @parameterized.parameters([
         ('X', 'int'),
-        ('Fruit::Annotated<Annotation1, X>', 'Fruit::Annotated<Annotation2, int>'),
+        ('Poco::Fruit::Annotated<Annotation1, X>', 'Poco::Fruit::Annotated<Annotation2, int>'),
     ])
     def test_error_not_base(self, XAnnot, intAnnot):
         source = '''
             struct X {};
     
-            Fruit::Component<> getComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<> getComponent() {
+              return Poco::Fruit::createComponent()
                 .addMultibinding<XAnnot, intAnnot>();
             }
             '''
@@ -149,7 +149,7 @@ class TestMultibindingsBindInterface(parameterized.TestCase):
 
     @parameterized.parameters([
         ('Scaler', 'ScalerImpl'),
-        ('Fruit::Annotated<Annotation1, Scaler>', 'Fruit::Annotated<Annotation2, ScalerImpl>'),
+        ('Poco::Fruit::Annotated<Annotation1, Scaler>', 'Poco::Fruit::Annotated<Annotation2, ScalerImpl>'),
     ])
     def test_error_abstract_class(self, ScalerAnnot, ScalerImplAnnot):
         source = '''
@@ -161,8 +161,8 @@ class TestMultibindingsBindInterface(parameterized.TestCase):
               // Note: here we "forgot" to implement scale() (on purpose, for this test) so ScalerImpl is an abstract class.
             };
     
-            Fruit::Component<> getComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<> getComponent() {
+              return Poco::Fruit::createComponent()
                 .addMultibinding<ScalerAnnot, ScalerImplAnnot>();
             }
             '''
@@ -175,7 +175,7 @@ class TestMultibindingsBindInterface(parameterized.TestCase):
 
     @parameterized.parameters([
         ('Scaler', 'ScalerImpl'),
-        ('Fruit::Annotated<Annotation1, Scaler>', 'Fruit::Annotated<Annotation2, ScalerImpl>'),
+        ('Poco::Fruit::Annotated<Annotation1, Scaler>', 'Poco::Fruit::Annotated<Annotation2, ScalerImpl>'),
     ])
     def test_error_abstract_class_clang(self, ScalerAnnot, ScalerImplAnnot):
         if re.search('Clang', CXX_COMPILER_NAME) is None:
@@ -193,8 +193,8 @@ class TestMultibindingsBindInterface(parameterized.TestCase):
               // Note: here we "forgot" to implement scale() (on purpose, for this test) so ScalerImpl is an abstract class.
             };
     
-            Fruit::Component<> getComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<> getComponent() {
+              return Poco::Fruit::createComponent()
                 .addMultibinding<ScalerAnnot, ScalerImplAnnot>();
             }
             '''

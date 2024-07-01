@@ -23,6 +23,6 @@ public:
   }
 };
 
-Fruit::Component<Multiplier> getMultiplierComponent() {
-  return Fruit::createComponent().bind<Multiplier, MultiplierImpl>().registerConstructor<MultiplierImpl()>();
+Poco::Fruit::Component<Multiplier> getMultiplierComponent() {
+  return Poco::Fruit::createComponent().bind<Multiplier, MultiplierImpl>().registerConstructor<MultiplierImpl()>();
 }

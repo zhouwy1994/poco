@@ -22,16 +22,16 @@ COMMON_DEFINITIONS = '''
     struct X;
 
     struct Annotation1 {};
-    using XAnnot1 = Fruit::Annotated<Annotation1, X>;
+    using XAnnot1 = Poco::Fruit::Annotated<Annotation1, X>;
 
     struct Annotation2 {};
-    using XAnnot2 = Fruit::Annotated<Annotation2, X>;
+    using XAnnot2 = Poco::Fruit::Annotated<Annotation2, X>;
     '''
 
 class TestNormalizedComponent(parameterized.TestCase):
     @parameterized.parameters([
         ('X', 'X', 'Y'),
-        ('Fruit::Annotated<Annotation1, X>', 'ANNOTATED(Annotation1, X)', 'Fruit::Annotated<Annotation2, Y>'),
+        ('Poco::Fruit::Annotated<Annotation1, X>', 'ANNOTATED(Annotation1, X)', 'Poco::Fruit::Annotated<Annotation2, Y>'),
     ])
     def test_success_normalized_component_provides_unused(self, XAnnot, X_ANNOT, YAnnot):
         source = '''
@@ -41,21 +41,21 @@ class TestNormalizedComponent(parameterized.TestCase):
               INJECT(Y(X_ANNOT)) {};
             };
     
-            Fruit::Component<Fruit::Required<XAnnot>, YAnnot> getComponent() {
-              return Fruit::createComponent();
+            Poco::Fruit::Component<Poco::Fruit::Required<XAnnot>, YAnnot> getComponent() {
+              return Poco::Fruit::createComponent();
             }
     
-            Fruit::Component<XAnnot> getXComponent(X* x) {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<XAnnot> getXComponent(X* x) {
+              return Poco::Fruit::createComponent()
                 .bindInstance<XAnnot, X>(*x);
             }
     
             int main() {
-              Fruit::NormalizedComponent<Fruit::Required<XAnnot>, YAnnot> normalizedComponent(getComponent);
+              Poco::Fruit::NormalizedComponent<Poco::Fruit::Required<XAnnot>, YAnnot> normalizedComponent(getComponent);
     
               X x{};
     
-              Fruit::Injector<XAnnot> injector(normalizedComponent, getXComponent, &x);
+              Poco::Fruit::Injector<XAnnot> injector(normalizedComponent, getXComponent, &x);
               injector.get<XAnnot>();
             }
             '''
@@ -66,7 +66,7 @@ class TestNormalizedComponent(parameterized.TestCase):
 
     @parameterized.parameters([
         ('X', 'X', 'Y'),
-        ('Fruit::Annotated<Annotation1, X>', 'ANNOTATED(Annotation1, X)', 'Fruit::Annotated<Annotation2, Y>'),
+        ('Poco::Fruit::Annotated<Annotation1, X>', 'ANNOTATED(Annotation1, X)', 'Poco::Fruit::Annotated<Annotation2, Y>'),
     ])
     def test_success(self, XAnnot, X_ANNOT, YAnnot):
         source = '''
@@ -76,21 +76,21 @@ class TestNormalizedComponent(parameterized.TestCase):
               INJECT(Y(X_ANNOT)) {};
             };
     
-            Fruit::Component<Fruit::Required<XAnnot>, YAnnot> getComponent() {
-              return Fruit::createComponent();
+            Poco::Fruit::Component<Poco::Fruit::Required<XAnnot>, YAnnot> getComponent() {
+              return Poco::Fruit::createComponent();
             }
     
-            Fruit::Component<XAnnot> getXComponent(X* x) {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<XAnnot> getXComponent(X* x) {
+              return Poco::Fruit::createComponent()
                 .bindInstance<XAnnot, X>(*x);
             }
     
             int main() {
-              Fruit::NormalizedComponent<Fruit::Required<XAnnot>, YAnnot> normalizedComponent(getComponent);
+              Poco::Fruit::NormalizedComponent<Poco::Fruit::Required<XAnnot>, YAnnot> normalizedComponent(getComponent);
     
               X x{};
     
-              Fruit::Injector<YAnnot> injector(normalizedComponent, getXComponent, &x);
+              Poco::Fruit::Injector<YAnnot> injector(normalizedComponent, getXComponent, &x);
               injector.get<YAnnot>();
             }
             '''
@@ -101,7 +101,7 @@ class TestNormalizedComponent(parameterized.TestCase):
 
     @parameterized.parameters([
         ('X', 'X', 'Y'),
-        ('Fruit::Annotated<Annotation1, X>', 'ANNOTATED(Annotation1, X)', 'Fruit::Annotated<Annotation2, Y>'),
+        ('Poco::Fruit::Annotated<Annotation1, X>', 'ANNOTATED(Annotation1, X)', 'Poco::Fruit::Annotated<Annotation2, Y>'),
     ])
     def test_success_inline_component(self, XAnnot, X_ANNOT, YAnnot):
         source = '''
@@ -111,21 +111,21 @@ class TestNormalizedComponent(parameterized.TestCase):
               INJECT(Y(X_ANNOT)) {};
             };
     
-            Fruit::Component<Fruit::Required<XAnnot>, YAnnot> getComponent() {
-              return Fruit::createComponent();
+            Poco::Fruit::Component<Poco::Fruit::Required<XAnnot>, YAnnot> getComponent() {
+              return Poco::Fruit::createComponent();
             }
             
-            Fruit::Component<XAnnot> getAdditionalComponent(X* x) {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<XAnnot> getAdditionalComponent(X* x) {
+              return Poco::Fruit::createComponent()
                 .bindInstance<XAnnot, X>(*x);
             }
     
             int main() {
-              Fruit::NormalizedComponent<Fruit::Required<XAnnot>, YAnnot> normalizedComponent(getComponent);
+              Poco::Fruit::NormalizedComponent<Poco::Fruit::Required<XAnnot>, YAnnot> normalizedComponent(getComponent);
     
               X x{};
     
-              Fruit::Injector<YAnnot> injector(normalizedComponent, getAdditionalComponent, &x);
+              Poco::Fruit::Injector<YAnnot> injector(normalizedComponent, getAdditionalComponent, &x);
               injector.get<YAnnot>();
             }
             '''
@@ -136,18 +136,18 @@ class TestNormalizedComponent(parameterized.TestCase):
 
     @parameterized.parameters([
         'X',
-        'Fruit::Annotated<Annotation1, X>',
+        'Poco::Fruit::Annotated<Annotation1, X>',
     ])
     def test_injector_from_normalized_component_unsatisfied_requirements(self, XAnnot):
         source = '''
             struct X {};
     
-            Fruit::Component<Fruit::Required<XAnnot>> getComponent();
-            Fruit::Component<> getEmptyComponent();
+            Poco::Fruit::Component<Poco::Fruit::Required<XAnnot>> getComponent();
+            Poco::Fruit::Component<> getEmptyComponent();
     
             int main() {
-              Fruit::NormalizedComponent<Fruit::Required<XAnnot>> normalizedComponent(getComponent);
-              Fruit::Injector<> injector(normalizedComponent, getEmptyComponent);
+              Poco::Fruit::NormalizedComponent<Poco::Fruit::Required<XAnnot>> normalizedComponent(getComponent);
+              Poco::Fruit::Injector<> injector(normalizedComponent, getEmptyComponent);
             }
             '''
         expect_compile_error(
@@ -159,24 +159,24 @@ class TestNormalizedComponent(parameterized.TestCase):
 
     @parameterized.parameters([
         ('X', 'const X'),
-        ('Fruit::Annotated<Annotation1, X>', 'Fruit::Annotated<Annotation1, const X>'),
+        ('Poco::Fruit::Annotated<Annotation1, X>', 'Poco::Fruit::Annotated<Annotation1, const X>'),
     ])
     def test_normalized_component_providing_nonconst_from_component_providing_const_error(self, XAnnot, ConstXAnnot):
         source = '''
             struct X {};
             
-            Fruit::Component<XAnnot> getComponent();
+            Poco::Fruit::Component<XAnnot> getComponent();
     
             int main() {
-              Fruit::NormalizedComponent<ConstXAnnot> normalizedComponent(getComponent);
+              Poco::Fruit::NormalizedComponent<ConstXAnnot> normalizedComponent(getComponent);
               (void) normalizedComponent;
             }
             '''
         expect_generic_compile_error(
-            r'no matching function for call to .Fruit::NormalizedComponent<ConstXAnnot>::NormalizedComponent\(Fruit::Component<XAnnot> \(&\)\(\)\).'
-            r'|no matching constructor for initialization of .Fruit::NormalizedComponent<ConstXAnnot>.'
-            r'|.Fruit::NormalizedComponent<ConstXAnnot>::NormalizedComponent.: no overloaded function could convert all the argument types'
-            r'|.Fruit::NormalizedComponent<ConstXAnnot>::NormalizedComponent.: none of the .* overloads could convert all the argument types',
+            r'no matching function for call to .Poco::Fruit::NormalizedComponent<ConstXAnnot>::NormalizedComponent\(Poco::Fruit::Component<XAnnot> \(&\)\(\)\).'
+            r'|no matching constructor for initialization of .Poco::Fruit::NormalizedComponent<ConstXAnnot>.'
+            r'|.Poco::Fruit::NormalizedComponent<ConstXAnnot>::NormalizedComponent.: no overloaded function could convert all the argument types'
+            r'|.Poco::Fruit::NormalizedComponent<ConstXAnnot>::NormalizedComponent.: none of the .* overloads could convert all the argument types',
             COMMON_DEFINITIONS,
             source,
             locals())
@@ -184,17 +184,17 @@ class TestNormalizedComponent(parameterized.TestCase):
     # TODO: we should probably return a more specific error here.
     @parameterized.parameters([
         ('X', 'Y'),
-        ('Fruit::Annotated<Annotation1, X>', 'Fruit::Annotated<Annotation2, Y>'),
+        ('Poco::Fruit::Annotated<Annotation1, X>', 'Poco::Fruit::Annotated<Annotation2, Y>'),
     ])
     def test_injector_from_normalized_component_nonconst_requirements_provided_as_const_error(self, XAnnot, YAnnot):
         source = '''
             struct X {};
             struct Y {};
             
-            Fruit::Component<const XAnnot> getXComponent();
+            Poco::Fruit::Component<const XAnnot> getXComponent();
             
-            void f(Fruit::NormalizedComponent<Fruit::Required<XAnnot>, YAnnot> normalizedComponent) {
-              Fruit::Injector<YAnnot> injector(normalizedComponent, getXComponent);
+            void f(Poco::Fruit::NormalizedComponent<Poco::Fruit::Required<XAnnot>, YAnnot> normalizedComponent) {
+              Poco::Fruit::Injector<YAnnot> injector(normalizedComponent, getXComponent);
             }
             '''
         expect_compile_error(

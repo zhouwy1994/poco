@@ -22,11 +22,12 @@
 // Redundant, but makes KDevelop happy.
 #include <Poco/Fruit/provider.h>
 
+namespace Poco{
 namespace Fruit {
 
 template <typename C>
-inline Provider<C>::Provider(Fruit::impl::InjectorStorage* storage,
-                             Fruit::impl::InjectorStorage::Graph::node_iterator itr)
+inline Provider<C>::Provider(Poco::Fruit::impl::InjectorStorage* storage,
+                             Poco::Fruit::impl::InjectorStorage::Graph::node_iterator itr)
     : storage(storage), itr(itr) {}
 
 template <typename C>
@@ -55,8 +56,8 @@ struct ProviderImplHelper {
 template <typename C>
 template <typename T>
 inline T Provider<C>::get() {
-  using E = typename Fruit::impl::meta::ProviderImplHelper<C>::template CheckGet<T>;
-  (void)typename Fruit::impl::meta::CheckIfError<E>::type();
+  using E = typename Poco::Fruit::impl::meta::ProviderImplHelper<C>::template CheckGet<T>;
+  (void)typename Poco::Fruit::impl::meta::CheckIfError<E>::type();
   return storage->template get<T>(itr);
 }
 
@@ -67,5 +68,6 @@ inline Provider<C>::operator T() {
 }
 
 } // namespace Fruit
+} // namespace Poco
 
 #endif // FRUIT_PROVIDER_DEFN_H

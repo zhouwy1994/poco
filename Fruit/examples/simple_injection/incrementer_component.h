@@ -21,6 +21,6 @@
 
 #include <Poco/Fruit/fruit.h>
 
-Fruit::Component<Incrementer> getIncrementerComponent(bool checked);
+Poco::Fruit::Component<Incrementer> getIncrementerComponent(bool checked);
 
 #endif // INCREMENTER_COMPONENT_H

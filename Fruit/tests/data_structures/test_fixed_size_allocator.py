@@ -23,7 +23,7 @@ COMMON_DEFINITIONS = '''
     #include <Poco/Fruit/impl/data_structures/fixed_size_vector.templates.h>
     
     using namespace std;
-    using namespace Fruit::impl;
+    using namespace Poco::Fruit::impl;
     
     struct X {
       int y;

@@ -28,6 +28,7 @@
 #include <thread>
 #include <Poco/Fruit/impl/normalized_component_storage/normalized_component_storage_holder.h>
 
+namespace Poco{
 namespace Fruit {
 namespace impl {
 
@@ -50,8 +51,8 @@ public:
   using Graph = SemistaticGraph<TypeId, NormalizedBinding>;
 
   template <typename AnnotatedT>
-  using RemoveAnnotations = Fruit::impl::meta::UnwrapType<
-      Fruit::impl::meta::Eval<Fruit::impl::meta::RemoveAnnotations(Fruit::impl::meta::Type<AnnotatedT>)>>;
+  using RemoveAnnotations = Poco::Fruit::impl::meta::UnwrapType<
+      Poco::Fruit::impl::meta::Eval<Poco::Fruit::impl::meta::RemoveAnnotations(Poco::Fruit::impl::meta::Type<AnnotatedT>)>>;
 
   // MSVC 14 has trouble specializing alias templates using expanded pack elements.
   // This is a known issue:
@@ -63,8 +64,8 @@ public:
   };
 
   template <typename T>
-  using NormalizeType = Fruit::impl::meta::UnwrapType<
-      Fruit::impl::meta::Eval<Fruit::impl::meta::NormalizeType(Fruit::impl::meta::Type<T>)>>;
+  using NormalizeType = Poco::Fruit::impl::meta::UnwrapType<
+      Poco::Fruit::impl::meta::Eval<Poco::Fruit::impl::meta::NormalizeType(Poco::Fruit::impl::meta::Type<T>)>>;
 
   template <typename T>
   struct TypeNormalizer {
@@ -72,12 +73,12 @@ public:
   };
 
   template <typename Signature>
-  using SignatureType = Fruit::impl::meta::UnwrapType<
-      Fruit::impl::meta::Eval<Fruit::impl::meta::SignatureType(Fruit::impl::meta::Type<Signature>)>>;
+  using SignatureType = Poco::Fruit::impl::meta::UnwrapType<
+      Poco::Fruit::impl::meta::Eval<Poco::Fruit::impl::meta::SignatureType(Poco::Fruit::impl::meta::Type<Signature>)>>;
 
   template <typename Signature>
-  using NormalizedSignatureArgs = Fruit::impl::meta::Eval<Fruit::impl::meta::NormalizeTypeVector(
-      Fruit::impl::meta::SignatureArgs(Fruit::impl::meta::Type<Signature>))>;
+  using NormalizedSignatureArgs = Poco::Fruit::impl::meta::Eval<Poco::Fruit::impl::meta::NormalizeTypeVector(
+      Poco::Fruit::impl::meta::SignatureArgs(Poco::Fruit::impl::meta::Type<Signature>))>;
 
   // Prints the specified error and calls exit(1).
   static void fatal(const std::string& error);
@@ -176,7 +177,7 @@ private:
   friend struct GetFirstStage;
 
   template <typename T>
-  friend class Fruit::Provider;
+  friend class Poco::Fruit::Provider;
 
   using object_ptr_t = void*;
   using const_object_ptr_t = const void*;
@@ -281,6 +282,7 @@ public:
 
 } // namespace impl
 } // namespace Fruit
+} // namespace Poco
 
 #include <Poco/Fruit/impl/injector/injector_storage.defn.h>
 

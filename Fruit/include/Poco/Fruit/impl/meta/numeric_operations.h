@@ -19,6 +19,7 @@
 
 #include <Poco/Fruit/impl/meta/basics.h>
 
+namespace Poco{
 namespace Fruit {
 namespace impl {
 namespace meta {
@@ -74,5 +75,6 @@ struct GreaterThan {
 } // namespace meta
 } // namespace impl
 } // namespace Fruit
+} // namespace Poco
 
 #endif // FRUIT_META_NUMERIC_OPERATIONS_H

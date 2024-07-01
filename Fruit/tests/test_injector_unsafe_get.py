@@ -27,7 +27,7 @@ COMMON_DEFINITIONS = '''
 class TestInjectorUnsafeGet(parameterized.TestCase):
     @parameterized.parameters([
         ('X', 'Y', 'Z'),
-        ('Fruit::Annotated<Annotation1, X>', 'Fruit::Annotated<Annotation2, Y>', 'Fruit::Annotated<Annotation3, Z>'),
+        ('Poco::Fruit::Annotated<Annotation1, X>', 'Poco::Fruit::Annotated<Annotation2, Y>', 'Poco::Fruit::Annotated<Annotation3, Z>'),
     ])
     def test_success(self, XAnnot, YAnnot, ZAnnot):
         source = '''
@@ -44,20 +44,20 @@ class TestInjectorUnsafeGet(parameterized.TestCase):
     
             struct Z {};
     
-            Fruit::Component<XAnnot> getComponent() {
-              return Fruit::createComponent();
+            Poco::Fruit::Component<XAnnot> getComponent() {
+              return Poco::Fruit::createComponent();
             }
     
-            Fruit::Component<> getRootComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<> getRootComponent() {
+              return Poco::Fruit::createComponent()
                   .install(getComponent);
             }
     
             int main() {
-              Fruit::Injector<> injector(getRootComponent);
-              const X* x = Fruit::impl::InjectorAccessorForTests::unsafeGet<XAnnot>(injector);
-              const Y* y = Fruit::impl::InjectorAccessorForTests::unsafeGet<YAnnot>(injector);
-              const Z* z = Fruit::impl::InjectorAccessorForTests::unsafeGet<ZAnnot>(injector);
+              Poco::Fruit::Injector<> injector(getRootComponent);
+              const X* x = Poco::Fruit::impl::InjectorAccessorForTests::unsafeGet<XAnnot>(injector);
+              const Y* y = Poco::Fruit::impl::InjectorAccessorForTests::unsafeGet<YAnnot>(injector);
+              const Z* z = Poco::Fruit::impl::InjectorAccessorForTests::unsafeGet<ZAnnot>(injector);
     
               (void) x;
               (void) y;

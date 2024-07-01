@@ -25,6 +25,7 @@
 #include <Poco/Fruit/provider.h>
 #include <Poco/Fruit/impl/meta_operation_wrappers.h>
 
+namespace Poco{
 namespace Fruit {
 
 /**
@@ -95,7 +96,7 @@ public:
    *
    * // In the global scope.
    * Component<Request> getRequestComponent(Request* request) {
-   *   return Fruit::createComponent()
+   *   return Poco::Fruit::createComponent()
    *       .bindInstance(*request);
    * }
    *
@@ -167,7 +168,7 @@ public:
    * Calling get<> repeatedly for the same class with the same injector will return the same instance.
    */
   template <typename T>
-  Fruit::impl::RemoveAnnotations<T> get();
+  Poco::Fruit::impl::RemoveAnnotations<T> get();
 
   /**
    * This is a convenient way to call get(). E.g.:
@@ -180,12 +181,12 @@ public:
    *
    * Note that this can't be used to inject an annotated type, i.e. this does NOT work:
    *
-   * Fruit::Annotated<SomeAnnotation, SomeClass> foo(injector);
+   * Poco::Fruit::Annotated<SomeAnnotation, SomeClass> foo(injector);
    *
-   * Because foo would be of type Fruit::Annotated, not of type SomeClass. In that case you must use get() instead,
+   * Because foo would be of type Poco::Fruit::Annotated, not of type SomeClass. In that case you must use get() instead,
    * e.g.:
    *
-   * SomeClass* foo = injector.get<Fruit::Annotated<SomeAnnotation, SomeClass*>>();;
+   * SomeClass* foo = injector.get<Poco::Fruit::Annotated<SomeAnnotation, SomeClass*>>();;
    */
   template <typename T>
   explicit operator T();
@@ -200,7 +201,7 @@ public:
    * With an annotated parameter AnnotatedT=Annotated<Annotation, T>, this returns a const std::vector<T*>&.
    */
   template <typename T>
-  const std::vector<Fruit::impl::RemoveAnnotations<T>*>& getMultibindings();
+  const std::vector<Poco::Fruit::impl::RemoveAnnotations<T>*>& getMultibindings();
 
   /**
    * This method is deprecated since Fruit injectors can now be accessed concurrently by multiple threads. This will be
@@ -220,31 +221,32 @@ public:
   FRUIT_DEPRECATED_DECLARATION(void eagerlyInjectAll());
 
 private:
-  using Check1 = typename Fruit::impl::meta::CheckIfError<Fruit::impl::meta::Eval<
-      Fruit::impl::meta::CheckNoRequiredTypesInInjectorArguments(Fruit::impl::meta::Type<P>...)>>::type;
+  using Check1 = typename Poco::Fruit::impl::meta::CheckIfError<Poco::Fruit::impl::meta::Eval<
+      Poco::Fruit::impl::meta::CheckNoRequiredTypesInInjectorArguments(Poco::Fruit::impl::meta::Type<P>...)>>::type;
   // Force instantiation of Check1.
   static_assert(true || sizeof(Check1), "");
 
-  using Comp = Fruit::impl::meta::Eval<Fruit::impl::meta::ConstructComponentImpl(Fruit::impl::meta::Type<P>...)>;
+  using Comp = Poco::Fruit::impl::meta::Eval<Poco::Fruit::impl::meta::ConstructComponentImpl(Poco::Fruit::impl::meta::Type<P>...)>;
 
-  using Check2 = typename Fruit::impl::meta::CheckIfError<Comp>::type;
-  using VoidType = Fruit::impl::meta::Type<void>;
+  using Check2 = typename Poco::Fruit::impl::meta::CheckIfError<Comp>::type;
+  using VoidType = Poco::Fruit::impl::meta::Type<void>;
   // Force instantiation of Check2.
   static_assert(true || sizeof(Check2), "");
-  using Check3 = typename Fruit::impl::meta::CheckIfError<Fruit::impl::meta::Eval<Fruit::impl::meta::If(
-      Fruit::impl::meta::Not(Fruit::impl::meta::IsEmptySet(typename Comp::RsSuperset)),
-      Fruit::impl::meta::ConstructErrorWithArgVector(Fruit::impl::InjectorWithRequirementsErrorTag,
-                                                     Fruit::impl::meta::SetToVector(typename Comp::RsSuperset)),
+  using Check3 = typename Poco::Fruit::impl::meta::CheckIfError<Poco::Fruit::impl::meta::Eval<Poco::Fruit::impl::meta::If(
+      Poco::Fruit::impl::meta::Not(Poco::Fruit::impl::meta::IsEmptySet(typename Comp::RsSuperset)),
+      Poco::Fruit::impl::meta::ConstructErrorWithArgVector(Poco::Fruit::impl::InjectorWithRequirementsErrorTag,
+                                                     Poco::Fruit::impl::meta::SetToVector(typename Comp::RsSuperset)),
       VoidType)>>::type;
   // Force instantiation of Check3.
   static_assert(true || sizeof(Check3), "");
 
-  friend struct Fruit::impl::InjectorAccessorForTests;
+  friend struct Poco::Fruit::impl::InjectorAccessorForTests;
 
-  std::unique_ptr<Fruit::impl::InjectorStorage> storage;
+  std::unique_ptr<Poco::Fruit::impl::InjectorStorage> storage;
 };
 
 } // namespace Fruit
+} // namespace Poco
 
 #include <Poco/Fruit/impl/injector.defn.h>
 

@@ -28,6 +28,7 @@
 #include <functional>
 #include <type_traits>
 
+namespace Poco{
 namespace Fruit {
 namespace impl {
 
@@ -52,8 +53,8 @@ public:
     // strict aliasing between those types.
     alignas(SafeAlignmentOf<F>::value) static char buf[1];
 
-    FruitStaticAssert(Fruit::impl::meta::IsEmpty(Fruit::impl::meta::Type<F>));
-    FruitStaticAssert(Fruit::impl::meta::IsTriviallyCopyable(Fruit::impl::meta::Type<F>));
+    FruitStaticAssert(Poco::Fruit::impl::meta::IsEmpty(Poco::Fruit::impl::meta::Type<F>));
+    FruitStaticAssert(Poco::Fruit::impl::meta::IsTriviallyCopyable(Poco::Fruit::impl::meta::Type<F>));
     // Since `F' is empty, a valid value of type F is already stored at the beginning of buf.
     F* f = reinterpret_cast<F*>((char*)buf);
     return (*f)(std::forward<Args>(args)...);
@@ -62,5 +63,6 @@ public:
 
 } // namespace impl
 } // namespace Fruit
+} // namespace Poco
 
 #endif // FRUIT_LAMBDA_INVOKER_H

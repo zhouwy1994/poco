@@ -35,6 +35,7 @@
 #include <Poco/Fruit/impl/data_structures/fixed_size_vector.templates.h>
 #include <Poco/Fruit/impl/fruit_assert.h>
 
+namespace Poco{
 namespace Fruit {
 namespace impl {
 
@@ -200,5 +201,6 @@ SemistaticMap<Key, Value>::~SemistaticMap() {}
 
 } // namespace impl
 } // namespace Fruit
+} // namespace Poco
 
 #endif // SEMISTATIC_MAP_TEMPLATES_H

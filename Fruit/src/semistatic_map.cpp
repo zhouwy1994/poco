@@ -23,6 +23,7 @@
 #include <Poco/Fruit/impl/util/type_info.h>
 
 // Clang requires the following instantiation to be in its namespace.
+namespace Poco{
 namespace Fruit {
 namespace impl {
 
@@ -30,3 +31,4 @@ template class SemistaticMap<TypeId, SemistaticGraphInternalNodeId>;
 
 } // namespace impl
 } // namespace Fruit
+} // namespace Poco

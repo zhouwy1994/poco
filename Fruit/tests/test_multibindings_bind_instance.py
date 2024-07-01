@@ -25,7 +25,7 @@ COMMON_DEFINITIONS = '''
 class TestMultibindingsBindInstance(parameterized.TestCase):
     @parameterized.parameters([
         'X',
-        'Fruit::Annotated<Annotation1, X>',
+        'Poco::Fruit::Annotated<Annotation1, X>',
     ])
     def test_multibindings_bind_instance_ok(self, XAnnot):
         source = '''
@@ -33,13 +33,13 @@ class TestMultibindingsBindInstance(parameterized.TestCase):
     
             X x;
     
-            Fruit::Component<> getComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<> getComponent() {
+              return Poco::Fruit::createComponent()
                 .addInstanceMultibinding<XAnnot, X>(x);
             }
     
             int main() {
-              Fruit::Injector<> injector(getComponent);
+              Poco::Fruit::Injector<> injector(getComponent);
     
               std::vector<X*> multibindings = injector.getMultibindings<XAnnot>();
               Assert(multibindings.size() == 1);
@@ -53,7 +53,7 @@ class TestMultibindingsBindInstance(parameterized.TestCase):
 
     @parameterized.parameters([
         'X',
-        'Fruit::Annotated<Annotation1, X>',
+        'Poco::Fruit::Annotated<Annotation1, X>',
     ])
     def test_multibindings_bind_const_instance_error(self, XAnnot):
         source = '''
@@ -61,14 +61,14 @@ class TestMultibindingsBindInstance(parameterized.TestCase):
     
             const X x{};
     
-            Fruit::Component<> getComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<> getComponent() {
+              return Poco::Fruit::createComponent()
                 .addInstanceMultibinding<XAnnot, X>(x);
             }
             '''
         expect_generic_compile_error(
             r'candidate function not viable: 1st argument \(.const X.\) would lose const qualifier'
-            r'|no matching function for call to .Fruit::PartialComponent<.*>::addInstanceMultibinding(<XAnnot,X>)?\(const X&\).'
+            r'|no matching function for call to .Poco::Fruit::PartialComponent<.*>::addInstanceMultibinding(<XAnnot,X>)?\(const X&\).'
             r'|error: no matching member function for call to .addInstanceMultibinding.'
             r'|cannot convert argument 1 from .const X. to .X &.',
             COMMON_DEFINITIONS,
@@ -77,7 +77,7 @@ class TestMultibindingsBindInstance(parameterized.TestCase):
 
     @parameterized.parameters([
         'X',
-        'Fruit::Annotated<Annotation1, X>',
+        'Poco::Fruit::Annotated<Annotation1, X>',
     ])
     def test_multibindings_bind_instance_vector(self, XAnnot):
         source = '''
@@ -85,13 +85,13 @@ class TestMultibindingsBindInstance(parameterized.TestCase):
     
             std::vector<X> values = {X(), X()};
     
-            Fruit::Component<> getComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<> getComponent() {
+              return Poco::Fruit::createComponent()
                 .addInstanceMultibindings<XAnnot, X>(values);
             }
     
             int main() {
-              Fruit::Injector<> injector(getComponent);
+              Poco::Fruit::Injector<> injector(getComponent);
     
               std::vector<X*> multibindings = injector.getMultibindings<XAnnot>();
               Assert(multibindings.size() == 2);
@@ -106,7 +106,7 @@ class TestMultibindingsBindInstance(parameterized.TestCase):
 
     @parameterized.parameters([
         'X',
-        'Fruit::Annotated<Annotation1, X>',
+        'Poco::Fruit::Annotated<Annotation1, X>',
     ])
     def test_multibindings_bind_const_instance_vector_error(self, XAnnot):
         source = '''
@@ -114,8 +114,8 @@ class TestMultibindingsBindInstance(parameterized.TestCase):
     
             const std::vector<X> values{};
     
-            Fruit::Component<> getComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<> getComponent() {
+              return Poco::Fruit::createComponent()
                 .addInstanceMultibindings<XAnnot, X>(values);
             }
             '''
@@ -130,7 +130,7 @@ class TestMultibindingsBindInstance(parameterized.TestCase):
 
     @parameterized.parameters([
         'X',
-        'Fruit::Annotated<Annotation1, X>',
+        'Poco::Fruit::Annotated<Annotation1, X>',
     ])
     def test_multibindings_bind_instance_vector_of_consts_error(self, XAnnot):
         source = '''
@@ -138,8 +138,8 @@ class TestMultibindingsBindInstance(parameterized.TestCase):
     
             std::vector<const X> values;
     
-            Fruit::Component<> getComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<> getComponent() {
+              return Poco::Fruit::createComponent()
                 .addInstanceMultibindings<XAnnot, X>(values);
             }
             '''
@@ -156,15 +156,15 @@ class TestMultibindingsBindInstance(parameterized.TestCase):
         ('X* const', r'X\* const'),
         ('const X* const', r'const X\* const'),
         ('X*&', r'X\*&'),
-        ('Fruit::Annotated<Annotation1, X**>', r'X\*\*'),
+        ('Poco::Fruit::Annotated<Annotation1, X**>', r'X\*\*'),
     ])
     def test_multibindings_bind_instance_non_class_type_error(self, XVariant, XVariantRegex):
         source = '''
             struct X {};
     
             using XVariantT = XVariant;
-            Fruit::Component<> getComponent(XVariantT x) {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<> getComponent(XVariantT x) {
+              return Poco::Fruit::createComponent()
                 .addInstanceMultibinding<XVariant, XVariant>(x);
             }
             '''
@@ -184,8 +184,8 @@ class TestMultibindingsBindInstance(parameterized.TestCase):
             struct X {};
     
             using XVariantT = XVariant;
-            Fruit::Component<> getComponent(XVariantT x) {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<> getComponent(XVariantT x) {
+              return Poco::Fruit::createComponent()
                 .addInstanceMultibinding<XVariant, XVariant>(x);
             }
             '''

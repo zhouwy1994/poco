@@ -24,25 +24,25 @@ COMMON_DEFINITIONS = '''
     struct ScalerImpl;
 
     struct Annotation1 {};
-    using ScalerAnnot1 = Fruit::Annotated<Annotation1, Scaler>;
-    using ScalerImplAnnot1 = Fruit::Annotated<Annotation1, ScalerImpl>;
+    using ScalerAnnot1 = Poco::Fruit::Annotated<Annotation1, Scaler>;
+    using ScalerImplAnnot1 = Poco::Fruit::Annotated<Annotation1, ScalerImpl>;
 
     struct Annotation2 {};
-    using ScalerAnnot2 = Fruit::Annotated<Annotation2, Scaler>;
-    using ScalerImplAnnot2 = Fruit::Annotated<Annotation2, ScalerImpl>;
+    using ScalerAnnot2 = Poco::Fruit::Annotated<Annotation2, Scaler>;
+    using ScalerImplAnnot2 = Poco::Fruit::Annotated<Annotation2, ScalerImpl>;
     
     template <typename T>
     using WithNoAnnotation = T;
     
     template <typename T>
-    using WithAnnotation1 = Fruit::Annotated<Annotation1, T>;
+    using WithAnnotation1 = Poco::Fruit::Annotated<Annotation1, T>;
     '''
 
 class TestRegisterFactory(parameterized.TestCase):
 
     @parameterized.parameters([
         'std::function<X()>',
-        'Fruit::Annotated<Annotation1, std::function<X()>>',
+        'Poco::Fruit::Annotated<Annotation1, std::function<X()>>',
     ])
     def test_register_factory_success_no_params_autoinject(self, XFactoryAnnot):
         source = '''
@@ -50,12 +50,12 @@ class TestRegisterFactory(parameterized.TestCase):
               INJECT(X()) = default;
             };
     
-            Fruit::Component<XFactoryAnnot> getComponent() {
-              return Fruit::createComponent();
+            Poco::Fruit::Component<XFactoryAnnot> getComponent() {
+              return Poco::Fruit::createComponent();
             }
     
             int main() {
-              Fruit::Injector<XFactoryAnnot> injector(getComponent);
+              Poco::Fruit::Injector<XFactoryAnnot> injector(getComponent);
               injector.get<XFactoryAnnot>()();
             }
             '''
@@ -66,21 +66,21 @@ class TestRegisterFactory(parameterized.TestCase):
 
     @parameterized.parameters([
         ('X()', 'X', 'std::function<X()>'),
-        ('X()', 'Fruit::Annotated<Annotation1, X>', 'Fruit::Annotated<Annotation1, std::function<X()>>'),
+        ('X()', 'Poco::Fruit::Annotated<Annotation1, X>', 'Poco::Fruit::Annotated<Annotation1, std::function<X()>>'),
         ('std::unique_ptr<X>()', 'std::unique_ptr<X>', 'std::function<std::unique_ptr<X>()>'),
-        ('std::unique_ptr<X>()', 'Fruit::Annotated<Annotation1, std::unique_ptr<X>>', 'Fruit::Annotated<Annotation1, std::function<std::unique_ptr<X>()>>'),
+        ('std::unique_ptr<X>()', 'Poco::Fruit::Annotated<Annotation1, std::unique_ptr<X>>', 'Poco::Fruit::Annotated<Annotation1, std::function<std::unique_ptr<X>()>>'),
     ])
     def test_register_factory_success_no_params(self, ConstructX, XPtrAnnot, XPtrFactoryAnnot):
         source = '''
             struct X {};
     
-            Fruit::Component<XPtrFactoryAnnot> getComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<XPtrFactoryAnnot> getComponent() {
+              return Poco::Fruit::createComponent()
                 .registerFactory<XPtrAnnot()>([](){return ConstructX;});
             }
     
             int main() {
-              Fruit::Injector<XPtrFactoryAnnot> injector(getComponent);
+              Poco::Fruit::Injector<XPtrFactoryAnnot> injector(getComponent);
               injector.get<XPtrFactoryAnnot>()();
             }
             '''
@@ -116,13 +116,13 @@ class TestRegisterFactory(parameterized.TestCase):
     
             using ScalerFactory = std::function<std::unique_ptr<Scaler>(double)>;
     
-            Fruit::Component<MaybeConst ScalerFactory> getScalerComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<MaybeConst ScalerFactory> getScalerComponent() {
+              return Poco::Fruit::createComponent()
                 .bind<Scaler, ScalerImpl>();
             }
     
             int main() {
-              Fruit::Injector<MaybeConst ScalerFactory> injector(getScalerComponent);
+              Poco::Fruit::Injector<MaybeConst ScalerFactory> injector(getScalerComponent);
               ScalerFactory scalerFactory(injector);
               std::unique_ptr<Scaler> scaler = scalerFactory(12.1);
               std::cout << scaler->scale(3) << std::endl;
@@ -151,8 +151,8 @@ class TestRegisterFactory(parameterized.TestCase):
     
             using ScalerFactory = std::function<std::unique_ptr<Scaler>(double)>;
     
-            Fruit::Component<ScalerFactory> getScalerComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<ScalerFactory> getScalerComponent() {
+              return Poco::Fruit::createComponent()
                 .bind<Scaler, ScalerImpl>();
             }
             '''
@@ -176,8 +176,8 @@ class TestRegisterFactory(parameterized.TestCase):
     
             using ScalerFactory = std::function<std::unique_ptr<Scaler>(double)>;
     
-            Fruit::Component<ScalerFactory> getScalerComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<ScalerFactory> getScalerComponent() {
+              return Poco::Fruit::createComponent()
                 .bind<Scaler, ScalerImpl>();
             }
             '''
@@ -195,12 +195,12 @@ class TestRegisterFactory(parameterized.TestCase):
         ('Scaler',
          'std::function<std::unique_ptr<Scaler>(double)>',
          'const std::function<std::unique_ptr<Scaler>(double)>'),
-        ('Fruit::Annotated<Annotation1, Scaler>',
-         'Fruit::Annotated<Annotation1, std::function<std::unique_ptr<Scaler>(double)>>',
-         'Fruit::Annotated<Annotation1, std::function<std::unique_ptr<Scaler>(double)>>'),
-        ('Fruit::Annotated<Annotation1, Scaler>',
-         'Fruit::Annotated<Annotation1, std::function<std::unique_ptr<Scaler>(double)>>',
-         'Fruit::Annotated<Annotation1, const std::function<std::unique_ptr<Scaler>(double)>>'),
+        ('Poco::Fruit::Annotated<Annotation1, Scaler>',
+         'Poco::Fruit::Annotated<Annotation1, std::function<std::unique_ptr<Scaler>(double)>>',
+         'Poco::Fruit::Annotated<Annotation1, std::function<std::unique_ptr<Scaler>(double)>>'),
+        ('Poco::Fruit::Annotated<Annotation1, Scaler>',
+         'Poco::Fruit::Annotated<Annotation1, std::function<std::unique_ptr<Scaler>(double)>>',
+         'Poco::Fruit::Annotated<Annotation1, const std::function<std::unique_ptr<Scaler>(double)>>'),
     ])
     def test_autoinject(self, ScalerAnnot, ScalerFactoryAnnot, MaybeConstScalerFactoryAnnot):
         source = '''
@@ -225,13 +225,13 @@ class TestRegisterFactory(parameterized.TestCase):
     
             using ScalerFactory = std::function<std::unique_ptr<Scaler>(double)>;
     
-            Fruit::Component<MaybeConstScalerFactoryAnnot> getScalerComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<MaybeConstScalerFactoryAnnot> getScalerComponent() {
+              return Poco::Fruit::createComponent()
                 .bind<ScalerAnnot, ScalerImpl>();
             }
     
             int main() {
-              Fruit::Injector<MaybeConstScalerFactoryAnnot> injector(getScalerComponent);
+              Poco::Fruit::Injector<MaybeConstScalerFactoryAnnot> injector(getScalerComponent);
               ScalerFactory scalerFactory = injector.get<ScalerFactoryAnnot>();
               std::unique_ptr<Scaler> scaler = scalerFactory(12.1);
               std::cout << scaler->scale(3) << std::endl;
@@ -268,12 +268,12 @@ class TestRegisterFactory(parameterized.TestCase):
     
             using ScalerFactory = std::function<Scaler(double)>;
     
-            Fruit::Component<MaybeConst ScalerFactory> getScalerComponent() {
-              return Fruit::createComponent();
+            Poco::Fruit::Component<MaybeConst ScalerFactory> getScalerComponent() {
+              return Poco::Fruit::createComponent();
             }
     
             int main() {
-              Fruit::Injector<MaybeConst ScalerFactory> injector(getScalerComponent);
+              Poco::Fruit::Injector<MaybeConst ScalerFactory> injector(getScalerComponent);
               ScalerFactory scalerFactory(injector);
               Scaler scaler = scalerFactory(12.1);
               std::cout << scaler.scale(3) << std::endl;
@@ -290,10 +290,10 @@ class TestRegisterFactory(parameterized.TestCase):
          'std::function<std::unique_ptr<Scaler>(double)>',
          r'std::function<std::unique_ptr<ScalerImpl(,std::default_delete<ScalerImpl>)?>\(double\)>',
          ),
-        ('Fruit::Annotated<Annotation1, Scaler>',
-         'Fruit::Annotated<Annotation2, ScalerImpl>',
-         'Fruit::Annotated<Annotation1, std::function<std::unique_ptr<Scaler>(double)>>',
-         r'Fruit::Annotated<Annotation2,std::function<std::unique_ptr<ScalerImpl(,std::default_delete<ScalerImpl>)?>\(double\)>>',
+        ('Poco::Fruit::Annotated<Annotation1, Scaler>',
+         'Poco::Fruit::Annotated<Annotation2, ScalerImpl>',
+         'Poco::Fruit::Annotated<Annotation1, std::function<std::unique_ptr<Scaler>(double)>>',
+         r'Poco::Fruit::Annotated<Annotation2,std::function<std::unique_ptr<ScalerImpl(,std::default_delete<ScalerImpl>)?>\(double\)>>',
          ),
     ])
     def test_autoinject_error_abstract_class(self, ScalerAnnot, ScalerImplAnnot, ScalerFactoryAnnot, ScalerImplFactoryAnnotRegex):
@@ -314,8 +314,8 @@ class TestRegisterFactory(parameterized.TestCase):
               // Note: here we "forgot" to implement scale() (on purpose, for this test) so ScalerImpl is an abstract class.
             };
     
-            Fruit::Component<ScalerFactoryAnnot> getScalerComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<ScalerFactoryAnnot> getScalerComponent() {
+              return Poco::Fruit::createComponent()
                 .bind<ScalerAnnot, ScalerImplAnnot>();
             }
             '''
@@ -343,13 +343,13 @@ class TestRegisterFactory(parameterized.TestCase):
     
             using IFactory = std::function<std::unique_ptr<I>()>;
     
-            Fruit::Component<IFactory> getIFactory() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<IFactory> getIFactory() {
+              return Poco::Fruit::createComponent()
                   .bind<I, C>();
             }
     
             int main() {
-              Fruit::Injector<IFactory> injector(getIFactory);
+              Poco::Fruit::Injector<IFactory> injector(getIFactory);
               IFactory iFactory(injector);
               std::unique_ptr<I> i = iFactory();
               (void)i;
@@ -379,16 +379,16 @@ class TestRegisterFactory(parameterized.TestCase):
     
             using FooFactory = std::function<Foo(Bar&&)>;
     
-            Fruit::Component<FooFactory> getComponent() {
-              return Fruit::createComponent()
-                  .registerFactory<Foo(Fruit::Assisted<Bar&&>)>(
+            Poco::Fruit::Component<FooFactory> getComponent() {
+              return Poco::Fruit::createComponent()
+                  .registerFactory<Foo(Poco::Fruit::Assisted<Bar&&>)>(
                       [](Bar&& bar) {
                         return Foo(std::move(bar));
                       });
             }
     
             int main() {
-              Fruit::Injector<FooFactory> injector(getComponent);
+              Poco::Fruit::Injector<FooFactory> injector(getComponent);
               FooFactory fooFactory(injector);
               Foo foo = fooFactory(Bar());
               (void)foo;
@@ -417,16 +417,16 @@ class TestRegisterFactory(parameterized.TestCase):
     
             using FooFactory = std::function<Foo(Bar&)>;
     
-            Fruit::Component<FooFactory> getComponent() {
-              return Fruit::createComponent()
-                  .registerFactory<Foo(Fruit::Assisted<Bar&>)>(
+            Poco::Fruit::Component<FooFactory> getComponent() {
+              return Poco::Fruit::createComponent()
+                  .registerFactory<Foo(Poco::Fruit::Assisted<Bar&>)>(
                       [](Bar& bar) {
                         return Foo(bar);
                       });
             }
     
             int main() {
-              Fruit::Injector<FooFactory> injector(getComponent);
+              Poco::Fruit::Injector<FooFactory> injector(getComponent);
               FooFactory fooFactory(injector);
               Bar bar;
               Foo foo = fooFactory(bar);
@@ -448,16 +448,16 @@ class TestRegisterFactory(parameterized.TestCase):
     
             using FooFactory = std::function<Foo(int, float)>;
     
-            Fruit::Component<FooFactory> getComponent() {
-              return Fruit::createComponent()
-                  .registerFactory<Foo(Fruit::Assisted<int>, Fruit::Assisted<float>)>(
+            Poco::Fruit::Component<FooFactory> getComponent() {
+              return Poco::Fruit::createComponent()
+                  .registerFactory<Foo(Poco::Fruit::Assisted<int>, Poco::Fruit::Assisted<float>)>(
                       [](int x, float y) {
                         return Foo(x, y);
                       });
             }
     
             int main() {
-              Fruit::Injector<FooFactory> injector(getComponent);
+              Poco::Fruit::Injector<FooFactory> injector(getComponent);
               FooFactory fooFactory(injector);
               Foo foo = fooFactory(1, 2.3f);
               (void)foo;
@@ -479,16 +479,16 @@ class TestRegisterFactory(parameterized.TestCase):
     
             using FooFactory = std::function<Foo(int&, float&&, char)>;
     
-            Fruit::Component<FooFactory> getComponent() {
-              return Fruit::createComponent()
-                  .registerFactory<Foo(Fruit::Assisted<int&>, Fruit::Assisted<float&&>, Fruit::Assisted<char>)>(
+            Poco::Fruit::Component<FooFactory> getComponent() {
+              return Poco::Fruit::createComponent()
+                  .registerFactory<Foo(Poco::Fruit::Assisted<int&>, Poco::Fruit::Assisted<float&&>, Poco::Fruit::Assisted<char>)>(
                       [](int& x, float&& y, char z) {
                         return Foo(x, std::move(y), z);
                       });
             }
     
             int main() {
-              Fruit::Injector<FooFactory> injector(getComponent);
+              Poco::Fruit::Injector<FooFactory> injector(getComponent);
               FooFactory fooFactory(injector);
               int x = 1;
               Foo foo = fooFactory(x, 2.3f, 'z');
@@ -510,16 +510,16 @@ class TestRegisterFactory(parameterized.TestCase):
     
             using FooFactory = std::function<Foo(int, float)>;
     
-            Fruit::Component<FooFactory> getComponent() {
-              return Fruit::createComponent()
-                  .registerFactory<Foo(Fruit::Assisted<int>, Fruit::Assisted<float>)>(
+            Poco::Fruit::Component<FooFactory> getComponent() {
+              return Poco::Fruit::createComponent()
+                  .registerFactory<Foo(Poco::Fruit::Assisted<int>, Poco::Fruit::Assisted<float>)>(
                       [](int x, float y) {
                         return Foo(x, y);
                       });
             }
     
             int main() {
-              Fruit::Injector<FooFactory> injector(getComponent);
+              Poco::Fruit::Injector<FooFactory> injector(getComponent);
               FooFactory fooFactory(injector);
               Foo foo = fooFactory(1, 2.3f);
               (void)foo;
@@ -543,10 +543,10 @@ class TestRegisterFactory(parameterized.TestCase):
     
             using FooFactory = std::function<Foo()>;
     
-            Fruit::Component<FooFactory> getComponent() {
+            Poco::Fruit::Component<FooFactory> getComponent() {
               static X x = X();
               static Y y = Y();
-              return Fruit::createComponent()
+              return Poco::Fruit::createComponent()
                   .bindInstance(x)
                   .bindInstance(y)
                   .registerFactory<Foo(X, Y)>(
@@ -557,7 +557,7 @@ class TestRegisterFactory(parameterized.TestCase):
     
     
             int main() {
-              Fruit::Injector<FooFactory> injector(getComponent);
+              Poco::Fruit::Injector<FooFactory> injector(getComponent);
               FooFactory fooFactory(injector);
               Foo foo = fooFactory();
               (void)foo;
@@ -580,22 +580,22 @@ class TestRegisterFactory(parameterized.TestCase):
     
             using FooPtrFactory = std::function<std::unique_ptr<Foo>(int, float)>;
     
-            Fruit::Component<FooPtrFactory> getComponent() {
+            Poco::Fruit::Component<FooPtrFactory> getComponent() {
               static X x = X();
               static Y y = Y();
               static Z z = Z();
-              return Fruit::createComponent()
+              return Poco::Fruit::createComponent()
                   .bindInstance(x)
                   .bindInstance(y)
                   .bindInstance(z)
-                  .registerFactory<std::unique_ptr<Foo>(X, Y, Fruit::Assisted<int>, Fruit::Assisted<float>, Z)>(
+                  .registerFactory<std::unique_ptr<Foo>(X, Y, Poco::Fruit::Assisted<int>, Poco::Fruit::Assisted<float>, Z)>(
                       [](X x, Y y, int n, float a, Z z) {
                         return std::unique_ptr<Foo>(new Foo(x, y, n, a, z));
                       });
             }
     
             int main() {
-              Fruit::Injector<FooPtrFactory> injector(getComponent);
+              Poco::Fruit::Injector<FooPtrFactory> injector(getComponent);
               FooPtrFactory fooPtrFactory(injector);
               std::unique_ptr<Foo> foo = fooPtrFactory(1, 3.4f);
               (void)foo;
@@ -618,22 +618,22 @@ class TestRegisterFactory(parameterized.TestCase):
     
             using FooFactory = std::function<Foo(int, float)>;
     
-            Fruit::Component<FooFactory> getComponent() {
+            Poco::Fruit::Component<FooFactory> getComponent() {
               static X x = X();
               static Y y = Y();
               static Z z = Z();
-              return Fruit::createComponent()
+              return Poco::Fruit::createComponent()
                   .bindInstance(x)
                   .bindInstance(y)
                   .bindInstance(z)
-                  .registerFactory<Foo(X, Y, Fruit::Assisted<int>, Fruit::Assisted<float>, Z)>(
+                  .registerFactory<Foo(X, Y, Poco::Fruit::Assisted<int>, Poco::Fruit::Assisted<float>, Z)>(
                       [](X x, Y y, int n, float a, Z z) {
                         return Foo(x, y, n, a, z);
                       });
             }
     
             int main() {
-              Fruit::Injector<FooFactory> injector(getComponent);
+              Poco::Fruit::Injector<FooFactory> injector(getComponent);
               FooFactory fooFactory(injector);
               Foo foo = fooFactory(1, 3.4f);
               (void)foo;
@@ -655,20 +655,20 @@ class TestRegisterFactory(parameterized.TestCase):
     
             using FooFactory = std::function<Foo(int, float, double)>;
     
-            Fruit::Component<FooFactory> getComponent() {
+            Poco::Fruit::Component<FooFactory> getComponent() {
               static X x = X();
               static Y y = Y();
-              return Fruit::createComponent()
+              return Poco::Fruit::createComponent()
                   .bindInstance(x)
                   .bindInstance(y)
-                  .registerFactory<Foo(Fruit::Assisted<int>, Fruit::Assisted<float>, X, Y, Fruit::Assisted<double>)>(
+                  .registerFactory<Foo(Poco::Fruit::Assisted<int>, Poco::Fruit::Assisted<float>, X, Y, Poco::Fruit::Assisted<double>)>(
                       [](int n, float a, X x, Y y, double d) {
                         return Foo(n, a, x, y, d);
                       });
             }
     
             int main() {
-              Fruit::Injector<FooFactory> injector(getComponent);
+              Poco::Fruit::Injector<FooFactory> injector(getComponent);
               FooFactory fooFactory(injector);
               Foo foo = fooFactory(1, 3.4f, 3.456);
               (void)foo;
@@ -681,11 +681,11 @@ class TestRegisterFactory(parameterized.TestCase):
     def test_autoinject_annotation_in_signature_return_type(self):
         source = '''
             struct X {
-              using Inject = Fruit::Annotated<Annotation1, X>();
+              using Inject = Poco::Fruit::Annotated<Annotation1, X>();
             };
     
-            Fruit::Component<Fruit::Annotated<Annotation1, std::function<std::unique_ptr<X>()>>> getComponent() {
-              return Fruit::createComponent();
+            Poco::Fruit::Component<Poco::Fruit::Annotated<Annotation1, std::function<std::unique_ptr<X>()>>> getComponent() {
+              return Poco::Fruit::createComponent();
             }
             '''
         expect_compile_error(
@@ -697,11 +697,11 @@ class TestRegisterFactory(parameterized.TestCase):
     def test_autoinject_annotation_in_signature_return_type_returning_value(self):
         source = '''
             struct X {
-              using Inject = Fruit::Annotated<Annotation1, X>();
+              using Inject = Poco::Fruit::Annotated<Annotation1, X>();
             };
     
-            Fruit::Component<Fruit::Annotated<Annotation1, std::function<X()>>> getComponent() {
-              return Fruit::createComponent();
+            Poco::Fruit::Component<Poco::Fruit::Annotated<Annotation1, std::function<X()>>> getComponent() {
+              return Poco::Fruit::createComponent();
             }
             '''
         expect_compile_error(
@@ -737,8 +737,8 @@ class TestRegisterFactory(parameterized.TestCase):
     
             using ScalerFactory = std::function<std::unique_ptr<Scaler>(double)>;
     
-            Fruit::Component<ScalerFactory> getScalerComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<ScalerFactory> getScalerComponent() {
+              return Poco::Fruit::createComponent()
                 .registerProvider([](X x) {
                   return std::function<std::unique_ptr<ScalerImpl>(double)>([x](double n){
                     return std::unique_ptr<ScalerImpl>(new ScalerImpl(n, x));
@@ -748,7 +748,7 @@ class TestRegisterFactory(parameterized.TestCase):
             }
     
             int main() {
-              Fruit::Injector<ScalerFactory> injector(getScalerComponent);
+              Poco::Fruit::Injector<ScalerFactory> injector(getScalerComponent);
               ScalerFactory scalerFactory(injector);
               std::unique_ptr<Scaler> scaler = scalerFactory(12.1);
               std::cout << scaler->scale(3) << std::endl;
@@ -769,16 +769,16 @@ class TestRegisterFactory(parameterized.TestCase):
          'const std::function<std::unique_ptr<Scaler>(double)>',
          'ScalerImpl',
          'std::function<std::unique_ptr<ScalerImpl>(double)>'),
-        ('Fruit::Annotated<Annotation1, Scaler>',
-         'Fruit::Annotated<Annotation1, std::function<std::unique_ptr<Scaler>(double)>>',
-         'Fruit::Annotated<Annotation1, std::function<std::unique_ptr<Scaler>(double)>>',
-         'Fruit::Annotated<Annotation2, ScalerImpl>',
-         'Fruit::Annotated<Annotation2, std::function<std::unique_ptr<ScalerImpl>(double)>>'),
-        ('Fruit::Annotated<Annotation1, Scaler>',
-         'Fruit::Annotated<Annotation1, std::function<std::unique_ptr<Scaler>(double)>>',
-         'Fruit::Annotated<Annotation1, const std::function<std::unique_ptr<Scaler>(double)>>',
-         'Fruit::Annotated<Annotation2, ScalerImpl>',
-         'Fruit::Annotated<Annotation2, std::function<std::unique_ptr<ScalerImpl>(double)>>'),
+        ('Poco::Fruit::Annotated<Annotation1, Scaler>',
+         'Poco::Fruit::Annotated<Annotation1, std::function<std::unique_ptr<Scaler>(double)>>',
+         'Poco::Fruit::Annotated<Annotation1, std::function<std::unique_ptr<Scaler>(double)>>',
+         'Poco::Fruit::Annotated<Annotation2, ScalerImpl>',
+         'Poco::Fruit::Annotated<Annotation2, std::function<std::unique_ptr<ScalerImpl>(double)>>'),
+        ('Poco::Fruit::Annotated<Annotation1, Scaler>',
+         'Poco::Fruit::Annotated<Annotation1, std::function<std::unique_ptr<Scaler>(double)>>',
+         'Poco::Fruit::Annotated<Annotation1, const std::function<std::unique_ptr<Scaler>(double)>>',
+         'Poco::Fruit::Annotated<Annotation2, ScalerImpl>',
+         'Poco::Fruit::Annotated<Annotation2, std::function<std::unique_ptr<ScalerImpl>(double)>>'),
     ])
     def test_autoinject_from_provider(self, ScalerAnnot, ScalerFactoryAnnot, MaybeConstScalerFactoryAnnot, ScalerImplAnnot, ScalerImplFactoryAnnot):
         source = '''
@@ -808,8 +808,8 @@ class TestRegisterFactory(parameterized.TestCase):
             using ScalerFactory = std::function<std::unique_ptr<Scaler>(double)>;
             using ScalerImplFactory = std::function<std::unique_ptr<ScalerImpl>(double)>;
     
-            Fruit::Component<MaybeConstScalerFactoryAnnot> getScalerComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<MaybeConstScalerFactoryAnnot> getScalerComponent() {
+              return Poco::Fruit::createComponent()
                 .registerProvider<ScalerImplFactoryAnnot(X)>([](X x) {
                   return std::function<std::unique_ptr<ScalerImpl>(double)>([x](double n){
                     return std::unique_ptr<ScalerImpl>(new ScalerImpl(n, x));
@@ -819,7 +819,7 @@ class TestRegisterFactory(parameterized.TestCase):
             }
     
             int main() {
-              Fruit::Injector<MaybeConstScalerFactoryAnnot> injector(getScalerComponent);
+              Poco::Fruit::Injector<MaybeConstScalerFactoryAnnot> injector(getScalerComponent);
               ScalerFactory scalerFactory = injector.get<ScalerFactoryAnnot>();
               std::unique_ptr<Scaler> scaler = scalerFactory(12.1);
               std::cout << scaler->scale(3) << std::endl;
@@ -832,7 +832,7 @@ class TestRegisterFactory(parameterized.TestCase):
 
     @parameterized.parameters([
         'ScalerFactory',
-        'Fruit::Annotated<Annotation1, ScalerFactory>',
+        'Poco::Fruit::Annotated<Annotation1, ScalerFactory>',
     ])
     def test_autoinject_from_provider_returning_value(self, ScalerFactoryAnnot):
         source = '''
@@ -856,8 +856,8 @@ class TestRegisterFactory(parameterized.TestCase):
     
             using ScalerFactory = std::function<Scaler(double)>;
     
-            Fruit::Component<ScalerFactoryAnnot> getScalerComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<ScalerFactoryAnnot> getScalerComponent() {
+              return Poco::Fruit::createComponent()
                 .registerProvider<ScalerFactoryAnnot(X)>([](X x) {
                   return std::function<Scaler(double)>([x](double n){
                     return Scaler(n, x);
@@ -866,7 +866,7 @@ class TestRegisterFactory(parameterized.TestCase):
             }
     
             int main() {
-              Fruit::Injector<ScalerFactoryAnnot> injector(getScalerComponent);
+              Poco::Fruit::Injector<ScalerFactoryAnnot> injector(getScalerComponent);
               ScalerFactory scalerFactory = injector.get<ScalerFactoryAnnot>();
               Scaler scaler = scalerFactory(12.1);
               std::cout << scaler.scale(3) << std::endl;
@@ -912,13 +912,13 @@ class TestRegisterFactory(parameterized.TestCase):
     
             using ScalerFactory = std::function<std::unique_ptr<Scaler>(double)>;
     
-            Fruit::Component<MaybeConst ScalerFactory> getScalerComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<MaybeConst ScalerFactory> getScalerComponent() {
+              return Poco::Fruit::createComponent()
                 .bind<Scaler, ScalerImpl>();
             }
     
             int main() {
-              Fruit::Injector<MaybeConst ScalerFactory> injector(getScalerComponent);
+              Poco::Fruit::Injector<MaybeConst ScalerFactory> injector(getScalerComponent);
               ScalerFactory scalerFactory(injector);
               std::unique_ptr<Scaler> scaler = scalerFactory(12.1);
               std::cout << scaler->scale(3) << std::endl;
@@ -959,12 +959,12 @@ class TestRegisterFactory(parameterized.TestCase):
     
             using ScalerFactory = std::function<Scaler(double)>;
     
-            Fruit::Component<MaybeConst ScalerFactory> getScalerComponent() {
-              return Fruit::createComponent();
+            Poco::Fruit::Component<MaybeConst ScalerFactory> getScalerComponent() {
+              return Poco::Fruit::createComponent();
             }
     
             int main() {
-              Fruit::Injector<MaybeConst ScalerFactory> injector(getScalerComponent);
+              Poco::Fruit::Injector<MaybeConst ScalerFactory> injector(getScalerComponent);
               ScalerFactory scalerFactory(injector);
               Scaler scaler = scalerFactory(12.1);
               std::cout << scaler.scale(3) << std::endl;
@@ -1002,13 +1002,13 @@ class TestRegisterFactory(parameterized.TestCase):
     
             using ScalerFactory = std::function<std::unique_ptr<Scaler>(double)>;
     
-            Fruit::Component<ScalerFactory> getScalerComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<ScalerFactory> getScalerComponent() {
+              return Poco::Fruit::createComponent()
                 .bind<Scaler, ScalerImpl>();
             }
     
             int main() {
-              Fruit::Injector<ScalerFactory> injector(getScalerComponent);
+              Poco::Fruit::Injector<ScalerFactory> injector(getScalerComponent);
               ScalerFactory scalerFactory(injector);
               std::unique_ptr<Scaler> scaler = scalerFactory(12.1);
               std::cout << scaler->scale(3) << std::endl;
@@ -1040,12 +1040,12 @@ class TestRegisterFactory(parameterized.TestCase):
     
             using ScalerFactory = std::function<Scaler(double)>;
     
-            Fruit::Component<ScalerFactory> getScalerComponent() {
-              return Fruit::createComponent();
+            Poco::Fruit::Component<ScalerFactory> getScalerComponent() {
+              return Poco::Fruit::createComponent();
             }
     
             int main() {
-              Fruit::Injector<ScalerFactory> injector(getScalerComponent);
+              Poco::Fruit::Injector<ScalerFactory> injector(getScalerComponent);
               ScalerFactory scalerFactory(injector);
               Scaler scaler = scalerFactory(12.1);
               std::cout << scaler.scale(3) << std::endl;
@@ -1059,9 +1059,9 @@ class TestRegisterFactory(parameterized.TestCase):
         ('Scaler',
          'ScalerImpl',
          'std::function<std::unique_ptr<Scaler>(double)>'),
-        ('Fruit::Annotated<Annotation1, Scaler>',
-         'Fruit::Annotated<Annotation2, ScalerImpl>',
-         'Fruit::Annotated<Annotation1, std::function<std::unique_ptr<Scaler>(double)>>'),
+        ('Poco::Fruit::Annotated<Annotation1, Scaler>',
+         'Poco::Fruit::Annotated<Annotation2, ScalerImpl>',
+         'Poco::Fruit::Annotated<Annotation1, std::function<std::unique_ptr<Scaler>(double)>>'),
     ])
     def test_register_factory_success(self, ScalerAnnot, ScalerImplAnnot, ScalerFactoryAnnot):
         source = '''
@@ -1086,14 +1086,14 @@ class TestRegisterFactory(parameterized.TestCase):
     
             using ScalerFactory = std::function<std::unique_ptr<Scaler>(double)>;
     
-            Fruit::Component<ScalerFactoryAnnot> getScalerComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<ScalerFactoryAnnot> getScalerComponent() {
+              return Poco::Fruit::createComponent()
                 .bind<ScalerAnnot, ScalerImplAnnot>()
-                .registerFactory<ScalerImplAnnot(Fruit::Assisted<double>)>([](double factor) { return ScalerImpl(factor); });
+                .registerFactory<ScalerImplAnnot(Poco::Fruit::Assisted<double>)>([](double factor) { return ScalerImpl(factor); });
             }
     
             int main() {
-              Fruit::Injector<ScalerFactoryAnnot> injector(getScalerComponent);
+              Poco::Fruit::Injector<ScalerFactoryAnnot> injector(getScalerComponent);
               ScalerFactory scalerFactory = injector.get<ScalerFactoryAnnot>();
               std::unique_ptr<Scaler> scaler = scalerFactory(12.1);
               std::cout << scaler->scale(3) << std::endl;
@@ -1121,18 +1121,18 @@ class TestRegisterFactory(parameterized.TestCase):
             };
     
             using ScalerFactory = std::function<Scaler(double)>;
-            using ScalerFactoryAnnot1 = Fruit::Annotated<Annotation1, ScalerFactory>;
+            using ScalerFactoryAnnot1 = Poco::Fruit::Annotated<Annotation1, ScalerFactory>;
     
-            Fruit::Component<ScalerFactoryAnnot1> getScalerComponent() {
-              return Fruit::createComponent()
-                .registerFactory<ScalerAnnot1(Fruit::Assisted<double>)>(
+            Poco::Fruit::Component<ScalerFactoryAnnot1> getScalerComponent() {
+              return Poco::Fruit::createComponent()
+                .registerFactory<ScalerAnnot1(Poco::Fruit::Assisted<double>)>(
                   [](double factor) {
                       return Scaler(factor);
                   });
             }
     
             int main() {
-              Fruit::Injector<ScalerFactoryAnnot1> injector(getScalerComponent);
+              Poco::Fruit::Injector<ScalerFactoryAnnot1> injector(getScalerComponent);
               ScalerFactory scalerFactory = injector.get<ScalerFactoryAnnot1>();
               Scaler scaler = scalerFactory(12.1);
               std::cout << scaler.scale(3) << std::endl;
@@ -1164,19 +1164,19 @@ class TestRegisterFactory(parameterized.TestCase):
             };
     
             using ScalerFactory = std::function<std::unique_ptr<Scaler>(double)>;
-            using ScalerFactoryAnnot1 = Fruit::Annotated<Annotation1, ScalerFactory>;
+            using ScalerFactoryAnnot1 = Poco::Fruit::Annotated<Annotation1, ScalerFactory>;
     
-            Fruit::Component<ScalerFactoryAnnot1> getScalerComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<ScalerFactoryAnnot1> getScalerComponent() {
+              return Poco::Fruit::createComponent()
                 .bind<ScalerAnnot1, ScalerImplAnnot2>()
-                .registerFactory<ScalerImplAnnot2(Fruit::Assisted<double>)>(
+                .registerFactory<ScalerImplAnnot2(Poco::Fruit::Assisted<double>)>(
                     [](double factor) {
                         return ScalerImpl(factor);
                     });
             }
     
             int main() {
-              Fruit::Injector<ScalerFactoryAnnot1> injector(getScalerComponent);
+              Poco::Fruit::Injector<ScalerFactoryAnnot1> injector(getScalerComponent);
               ScalerFactory scalerFactory = injector.get<ScalerFactoryAnnot1>();
               std::unique_ptr<Scaler> scaler = scalerFactory(12.1);
               std::cout << scaler->scale(3) << std::endl;
@@ -1191,9 +1191,9 @@ class TestRegisterFactory(parameterized.TestCase):
         ('Scaler',
          'ScalerImpl',
          'std::function<std::unique_ptr<Scaler>(double, double)>'),
-        ('Fruit::Annotated<Annotation1, Scaler>',
-         'Fruit::Annotated<Annotation2, ScalerImpl>',
-         'Fruit::Annotated<Annotation1, std::function<std::unique_ptr<Scaler>(double, double)>>'),
+        ('Poco::Fruit::Annotated<Annotation1, Scaler>',
+         'Poco::Fruit::Annotated<Annotation2, ScalerImpl>',
+         'Poco::Fruit::Annotated<Annotation1, std::function<std::unique_ptr<Scaler>(double, double)>>'),
     ])
     def test_register_factory_2arg_success(self, ScalerAnnot, ScalerImplAnnot, ScalerFactoryAnnot):
         source = '''
@@ -1218,17 +1218,17 @@ class TestRegisterFactory(parameterized.TestCase):
     
             using ScalerFactory = std::function<std::unique_ptr<Scaler>(double, double)>;
     
-            Fruit::Component<ScalerFactoryAnnot> getScalerComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<ScalerFactoryAnnot> getScalerComponent() {
+              return Poco::Fruit::createComponent()
                 .bind<ScalerAnnot, ScalerImplAnnot>()
-                .registerFactory<ScalerImplAnnot(Fruit::Assisted<double>, Fruit::Assisted<double>)>(
+                .registerFactory<ScalerImplAnnot(Poco::Fruit::Assisted<double>, Poco::Fruit::Assisted<double>)>(
                     [](double factor, double) { 
                         return ScalerImpl(factor);
                     });
             }
     
             int main() {
-              Fruit::Injector<ScalerFactoryAnnot> injector(getScalerComponent);
+              Poco::Fruit::Injector<ScalerFactoryAnnot> injector(getScalerComponent);
               ScalerFactory scalerFactory = injector.get<ScalerFactoryAnnot>();
               std::unique_ptr<Scaler> scaler = scalerFactory(12.1, 34.2);
               std::cout << scaler->scale(3) << std::endl;
@@ -1260,23 +1260,23 @@ class TestRegisterFactory(parameterized.TestCase):
             };
     
             using ScalerFactory = std::function<std::unique_ptr<Scaler>(double)>;
-            using ScalerFactoryAnnot1 = Fruit::Annotated<Annotation1, ScalerFactory>;
+            using ScalerFactoryAnnot1 = Poco::Fruit::Annotated<Annotation1, ScalerFactory>;
     
-            Fruit::Component<ScalerFactoryAnnot1> getScalerComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<ScalerFactoryAnnot1> getScalerComponent() {
+              return Poco::Fruit::createComponent()
                 .bind<ScalerAnnot1, ScalerImplAnnot1>()
-                .registerFactory<ScalerImplAnnot2(Fruit::Assisted<double>)>([](double factor) { return ScalerImpl(factor); });
+                .registerFactory<ScalerImplAnnot2(Poco::Fruit::Assisted<double>)>([](double factor) { return ScalerImpl(factor); });
             }
     
             int main() {
-              Fruit::Injector<ScalerFactoryAnnot1> injector(getScalerComponent);
+              Poco::Fruit::Injector<ScalerFactoryAnnot1> injector(getScalerComponent);
               ScalerFactory scalerFactory = injector.get<ScalerFactoryAnnot1>();
               std::unique_ptr<Scaler> scaler = scalerFactory(12.1);
               std::cout << scaler->scale(3) << std::endl;
             }
             '''
         expect_compile_error(
-            r'NoBindingFoundError<Fruit::Annotated<Annotation1,std::function<std::unique_ptr<ScalerImpl(,std::default_delete<ScalerImpl>)?>\(double\)>>>',
+            r'NoBindingFoundError<Poco::Fruit::Annotated<Annotation1,std::function<std::unique_ptr<ScalerImpl(,std::default_delete<ScalerImpl>)?>\(double\)>>>',
             r'',
             COMMON_DEFINITIONS,
             source)
@@ -1305,18 +1305,18 @@ class TestRegisterFactory(parameterized.TestCase):
     
             using ScalerFactory = std::function<std::unique_ptr<Scaler>(double)>;
     
-            Fruit::Component<ScalerFactory> getScalerComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<ScalerFactory> getScalerComponent() {
+              return Poco::Fruit::createComponent()
                 .bind<Scaler, ScalerImpl>()
                 .registerProvider([](){return 23;})
-                .registerFactory<ScalerImpl(Fruit::Assisted<double>, Fruit::Provider<int>)>(
-                    [](double factor, Fruit::Provider<int> provider) {
+                .registerFactory<ScalerImpl(Poco::Fruit::Assisted<double>, Poco::Fruit::Provider<int>)>(
+                    [](double factor, Poco::Fruit::Provider<int> provider) {
                         return ScalerImpl(factor * provider.get<int>());
                     });
             }
     
             int main() {
-              Fruit::Injector<ScalerFactory> injector(getScalerComponent);
+              Poco::Fruit::Injector<ScalerFactory> injector(getScalerComponent);
               ScalerFactory scalerFactory(injector);
               std::unique_ptr<Scaler> scaler = scalerFactory(12.1);
               std::cout << scaler->scale(3) << std::endl;
@@ -1344,17 +1344,17 @@ class TestRegisterFactory(parameterized.TestCase):
     
             using ScalerFactory = std::function<Scaler(double)>;
     
-            Fruit::Component<ScalerFactory> getScalerComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<ScalerFactory> getScalerComponent() {
+              return Poco::Fruit::createComponent()
                 .registerProvider([](){return 23;})
-                .registerFactory<Scaler(Fruit::Assisted<double>, Fruit::Provider<int>)>(
-                    [](double factor, Fruit::Provider<int> provider) {
+                .registerFactory<Scaler(Poco::Fruit::Assisted<double>, Poco::Fruit::Provider<int>)>(
+                    [](double factor, Poco::Fruit::Provider<int> provider) {
                         return Scaler(factor * provider.get<int>());
                     });
             }
     
             int main() {
-              Fruit::Injector<ScalerFactory> injector(getScalerComponent);
+              Poco::Fruit::Injector<ScalerFactory> injector(getScalerComponent);
               ScalerFactory scalerFactory(injector);
               Scaler scaler = scalerFactory(12.1);
               std::cout << scaler.scale(3) << std::endl;
@@ -1384,10 +1384,10 @@ class TestRegisterFactory(parameterized.TestCase):
     
             using ScalerFactory = std::function<std::unique_ptr<Scaler>(double)>;
     
-            Fruit::Component<ScalerFactory> getScalerComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<ScalerFactory> getScalerComponent() {
+              return Poco::Fruit::createComponent()
                 .bind<Scaler, ScalerImpl>()
-                .registerFactory<Fruit::Annotated<Annotation1, ScalerImpl>(Fruit::Assisted<double>)>([](double) { return (ScalerImpl*)nullptr; });
+                .registerFactory<Poco::Fruit::Annotated<Annotation1, ScalerImpl>(Poco::Fruit::Assisted<double>)>([](double) { return (ScalerImpl*)nullptr; });
             }
             '''
         expect_compile_error(
@@ -1402,9 +1402,9 @@ class TestRegisterFactory(parameterized.TestCase):
               X(int) {}
             };
     
-            Fruit::Component<std::function<X()>> getComponent() {
+            Poco::Fruit::Component<std::function<X()>> getComponent() {
               int n = 3;
-              return Fruit::createComponent()
+              return Poco::Fruit::createComponent()
                 .registerFactory<X()>([=]{return X(n);});
             }
             '''
@@ -1419,12 +1419,12 @@ class TestRegisterFactory(parameterized.TestCase):
          'ScalerImpl',
          'ScalerImpl*',
          'std::function<std::unique_ptr<Scaler>(double)>',
-         r'ScalerImpl\*\(Fruit::Assisted<double>\)'),
-        ('Fruit::Annotated<Annotation1, Scaler>',
-         'Fruit::Annotated<Annotation2, ScalerImpl>',
-         'Fruit::Annotated<Annotation2, ScalerImpl*>',
-         'Fruit::Annotated<Annotation2, std::function<std::unique_ptr<Scaler>(double)>>',
-         r'Fruit::Annotated<Annotation2,ScalerImpl\*>\(Fruit::Assisted<double>\)')
+         r'ScalerImpl\*\(Poco::Fruit::Assisted<double>\)'),
+        ('Poco::Fruit::Annotated<Annotation1, Scaler>',
+         'Poco::Fruit::Annotated<Annotation2, ScalerImpl>',
+         'Poco::Fruit::Annotated<Annotation2, ScalerImpl*>',
+         'Poco::Fruit::Annotated<Annotation2, std::function<std::unique_ptr<Scaler>(double)>>',
+         r'Poco::Fruit::Annotated<Annotation2,ScalerImpl\*>\(Poco::Fruit::Assisted<double>\)')
     ])
     def test_register_factory_for_pointer(self, ScalerAnnot, ScalerImplAnnot, ScalerImplPtrAnnot, ScalerFactoryAnnot, ScalerImplFactorySignatureAnnotRegex):
         source = '''
@@ -1448,14 +1448,14 @@ class TestRegisterFactory(parameterized.TestCase):
     
             using ScalerFactory = std::function<std::unique_ptr<Scaler>(double)>;
     
-            Fruit::Component<ScalerFactoryAnnot> getScalerComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<ScalerFactoryAnnot> getScalerComponent() {
+              return Poco::Fruit::createComponent()
                 .bind<ScalerAnnot, ScalerImplAnnot>()
-                .registerFactory<ScalerImplPtrAnnot(Fruit::Assisted<double>)>([](double factor) { return new ScalerImpl(factor); });
+                .registerFactory<ScalerImplPtrAnnot(Poco::Fruit::Assisted<double>)>([](double factor) { return new ScalerImpl(factor); });
             }
     
             int main() {
-              Fruit::Injector<ScalerFactoryAnnot> injector(getScalerComponent);
+              Poco::Fruit::Injector<ScalerFactoryAnnot> injector(getScalerComponent);
               ScalerFactory scalerFactory = injector.get<ScalerFactoryAnnot>();
               std::unique_ptr<Scaler> scaler = scalerFactory(12.1);
               std::cout << scaler->scale(3) << std::endl;
@@ -1471,10 +1471,10 @@ class TestRegisterFactory(parameterized.TestCase):
     @parameterized.parameters([
         ('Scaler*',
          'std::function<Scaler(double)>',
-         r'Scaler\*\(Fruit::Assisted<double>\)'),
-        ('Fruit::Annotated<Annotation1, Scaler*>',
-         'Fruit::Annotated<Annotation1, std::function<Scaler(double)>>',
-         r'Fruit::Annotated<Annotation1,Scaler\*>\(Fruit::Assisted<double>\)'),
+         r'Scaler\*\(Poco::Fruit::Assisted<double>\)'),
+        ('Poco::Fruit::Annotated<Annotation1, Scaler*>',
+         'Poco::Fruit::Annotated<Annotation1, std::function<Scaler(double)>>',
+         r'Poco::Fruit::Annotated<Annotation1,Scaler\*>\(Poco::Fruit::Assisted<double>\)'),
     ])
     def test_register_factory_for_pointer_returning_value(self, ScalerPtrAnnot, ScalerFactoryAnnot, ScalerFactorySignatureAnnotRegex):
         source = '''
@@ -1494,13 +1494,13 @@ class TestRegisterFactory(parameterized.TestCase):
     
             using ScalerFactory = std::function<Scaler(double)>;
     
-            Fruit::Component<ScalerFactoryAnnot> getScalerComponent() {
-              return Fruit::createComponent()
-                .registerFactory<ScalerPtrAnnot(Fruit::Assisted<double>)>([](double factor) { return new Scaler(factor); });
+            Poco::Fruit::Component<ScalerFactoryAnnot> getScalerComponent() {
+              return Poco::Fruit::createComponent()
+                .registerFactory<ScalerPtrAnnot(Poco::Fruit::Assisted<double>)>([](double factor) { return new Scaler(factor); });
             }
     
             int main() {
-              Fruit::Injector<ScalerFactoryAnnot> injector(getScalerComponent);
+              Poco::Fruit::Injector<ScalerFactoryAnnot> injector(getScalerComponent);
               ScalerFactory scalerFactory = injector.get<ScalerFactoryAnnot>();
               Scaler scaler = scalerFactory(12.1);
               std::cout << scaler.scale(3) << std::endl;
@@ -1518,10 +1518,10 @@ class TestRegisterFactory(parameterized.TestCase):
          'ScalerImpl',
          'std::unique_ptr<ScalerImpl>',
          'std::function<std::unique_ptr<Scaler>(double)>'),
-        ('Fruit::Annotated<Annotation1, Scaler>',
-         'Fruit::Annotated<Annotation2, ScalerImpl>',
-         'Fruit::Annotated<Annotation2, std::unique_ptr<ScalerImpl>>',
-         'Fruit::Annotated<Annotation1, std::function<std::unique_ptr<Scaler>(double)>>'),
+        ('Poco::Fruit::Annotated<Annotation1, Scaler>',
+         'Poco::Fruit::Annotated<Annotation2, ScalerImpl>',
+         'Poco::Fruit::Annotated<Annotation2, std::unique_ptr<ScalerImpl>>',
+         'Poco::Fruit::Annotated<Annotation1, std::function<std::unique_ptr<Scaler>(double)>>'),
     ])
     def test_register_factory_for_unique_pointer(self, ScalerAnnot, ScalerImplAnnot, ScalerImplPtrAnnot, ScalerFactoryAnnot):
         source = '''
@@ -1546,17 +1546,17 @@ class TestRegisterFactory(parameterized.TestCase):
     
             using ScalerFactory = std::function<std::unique_ptr<Scaler>(double)>;
     
-            Fruit::Component<ScalerFactoryAnnot> getScalerComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<ScalerFactoryAnnot> getScalerComponent() {
+              return Poco::Fruit::createComponent()
                 .bind<ScalerAnnot, ScalerImplAnnot>()
-                .registerFactory<ScalerImplPtrAnnot(Fruit::Assisted<double>)>(
+                .registerFactory<ScalerImplPtrAnnot(Poco::Fruit::Assisted<double>)>(
                     [](double factor) {
                         return std::unique_ptr<ScalerImpl>(new ScalerImpl(factor));
                     });
             }
     
             int main() {
-              Fruit::Injector<ScalerFactoryAnnot> injector(getScalerComponent);
+              Poco::Fruit::Injector<ScalerFactoryAnnot> injector(getScalerComponent);
               ScalerFactory scalerFactory = injector.get<ScalerFactoryAnnot>();
               std::unique_ptr<Scaler> scaler = scalerFactory(12.1);
               std::cout << scaler->scale(3) << std::endl;
@@ -1572,10 +1572,10 @@ class TestRegisterFactory(parameterized.TestCase):
          'ScalerImpl',
          'std::unique_ptr<ScalerImpl>',
          'std::function<std::unique_ptr<Scaler>(double)>'),
-        ('Fruit::Annotated<Annotation1, Scaler>',
-         'Fruit::Annotated<Annotation2, ScalerImpl>',
-         'Fruit::Annotated<Annotation2, std::unique_ptr<ScalerImpl>>',
-         'Fruit::Annotated<Annotation1, std::function<std::unique_ptr<Scaler>(double)>>'),
+        ('Poco::Fruit::Annotated<Annotation1, Scaler>',
+         'Poco::Fruit::Annotated<Annotation2, ScalerImpl>',
+         'Poco::Fruit::Annotated<Annotation2, std::unique_ptr<ScalerImpl>>',
+         'Poco::Fruit::Annotated<Annotation1, std::function<std::unique_ptr<Scaler>(double)>>'),
     ])
     def test_register_factory_for_unique_pointer_returning_invalid_unique_ptr_ok(self, ScalerAnnot, ScalerImplAnnot, ScalerImplPtrAnnot, ScalerFactoryAnnot):
         source = '''
@@ -1600,17 +1600,17 @@ class TestRegisterFactory(parameterized.TestCase):
     
             using ScalerFactory = std::function<std::unique_ptr<Scaler>(double)>;
     
-            Fruit::Component<ScalerFactoryAnnot> getScalerComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<ScalerFactoryAnnot> getScalerComponent() {
+              return Poco::Fruit::createComponent()
                 .bind<ScalerAnnot, ScalerImplAnnot>()
-                .registerFactory<ScalerImplPtrAnnot(Fruit::Assisted<double>)>(
+                .registerFactory<ScalerImplPtrAnnot(Poco::Fruit::Assisted<double>)>(
                     [](double) {
                         return std::unique_ptr<ScalerImpl>(nullptr);
                     });
             }
     
             int main() {
-              Fruit::Injector<ScalerFactoryAnnot> injector(getScalerComponent);
+              Poco::Fruit::Injector<ScalerFactoryAnnot> injector(getScalerComponent);
               ScalerFactory scalerFactory = injector.get<ScalerFactoryAnnot>();
               std::unique_ptr<Scaler> scaler = scalerFactory(12.1);
               Assert(scaler.get() == nullptr);
@@ -1624,8 +1624,8 @@ class TestRegisterFactory(parameterized.TestCase):
     @parameterized.parameters([
         ('Scaler',
          'std::function<Scaler(double)>'),
-        ('Fruit::Annotated<Annotation1, Scaler>',
-         'Fruit::Annotated<Annotation1, std::function<Scaler(double)>>'),
+        ('Poco::Fruit::Annotated<Annotation1, Scaler>',
+         'Poco::Fruit::Annotated<Annotation1, std::function<Scaler(double)>>'),
     ])
     def test_register_factory_for_unique_pointer_returning_value(self, ScalerAnnot, ScalerFactoryAnnot):
         source = '''
@@ -1645,16 +1645,16 @@ class TestRegisterFactory(parameterized.TestCase):
     
             using ScalerFactory = std::function<Scaler(double)>;
     
-            Fruit::Component<ScalerFactoryAnnot> getScalerComponent() {
-              return Fruit::createComponent()
-                .registerFactory<ScalerAnnot(Fruit::Assisted<double>)>(
+            Poco::Fruit::Component<ScalerFactoryAnnot> getScalerComponent() {
+              return Poco::Fruit::createComponent()
+                .registerFactory<ScalerAnnot(Poco::Fruit::Assisted<double>)>(
                     [](double factor) {
                         return Scaler(factor);
                     });
             }
     
             int main() {
-              Fruit::Injector<ScalerFactoryAnnot> injector(getScalerComponent);
+              Poco::Fruit::Injector<ScalerFactoryAnnot> injector(getScalerComponent);
               ScalerFactory scalerFactory = injector.get<ScalerFactoryAnnot>();
               Scaler scaler = scalerFactory(12.1);
               std::cout << scaler.scale(3) << std::endl;
@@ -1667,7 +1667,7 @@ class TestRegisterFactory(parameterized.TestCase):
 
     @parameterized.parameters([
         'ScalerImpl',
-        'Fruit::Annotated<Annotation1, ScalerImpl>',
+        'Poco::Fruit::Annotated<Annotation1, ScalerImpl>',
     ])
     def test_register_factory_inconsistent_signature(self, ScalerImplAnnot):
         source = '''
@@ -1691,14 +1691,14 @@ class TestRegisterFactory(parameterized.TestCase):
     
             using ScalerFactory = std::function<std::unique_ptr<Scaler>(double)>;
     
-            Fruit::Component<ScalerFactory> getScalerComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<ScalerFactory> getScalerComponent() {
+              return Poco::Fruit::createComponent()
                 .bind<Scaler, ScalerImplAnnot>()
-                .registerFactory<ScalerImplAnnot(Fruit::Assisted<double>)>([](float factor) { return ScalerImpl(factor); });
+                .registerFactory<ScalerImplAnnot(Poco::Fruit::Assisted<double>)>([](float factor) { return ScalerImpl(factor); });
             }
     
             int main() {
-              Fruit::Injector<ScalerFactory> injector(getScalerComponent);
+              Poco::Fruit::Injector<ScalerFactory> injector(getScalerComponent);
               ScalerFactory scalerFactory(injector);
               std::unique_ptr<Scaler> scaler = scalerFactory(12.1);
               std::cout << scaler->scale(3) << std::endl;
@@ -1729,13 +1729,13 @@ class TestRegisterFactory(parameterized.TestCase):
     
             using ScalerFactory = std::function<Scaler(double)>;
     
-            Fruit::Component<ScalerFactory> getScalerComponent() {
-              return Fruit::createComponent()
-                .registerFactory<Scaler(Fruit::Assisted<double>)>([](float factor) { return Scaler(factor); });
+            Poco::Fruit::Component<ScalerFactory> getScalerComponent() {
+              return Poco::Fruit::createComponent()
+                .registerFactory<Scaler(Poco::Fruit::Assisted<double>)>([](float factor) { return Scaler(factor); });
             }
     
             int main() {
-              Fruit::Injector<ScalerFactory> injector(getScalerComponent);
+              Poco::Fruit::Injector<ScalerFactory> injector(getScalerComponent);
               ScalerFactory scalerFactory(injector);
               Scaler scaler = scalerFactory(12.1);
               std::cout << scaler.scale(3) << std::endl;
@@ -1760,12 +1760,12 @@ class TestRegisterFactory(parameterized.TestCase):
     
             using CFactory = std::function<std::unique_ptr<C>()>;
     
-            Fruit::Component<CFactory> getCFactory() {
-              return Fruit::createComponent();
+            Poco::Fruit::Component<CFactory> getCFactory() {
+              return Poco::Fruit::createComponent();
             }
     
             int main() {
-              Fruit::Injector<CFactory> injector(getCFactory);
+              Poco::Fruit::Injector<CFactory> injector(getCFactory);
               CFactory cFactory(injector);
               std::unique_ptr<C> c = cFactory();
               (void)c;
@@ -1780,8 +1780,8 @@ class TestRegisterFactory(parameterized.TestCase):
     @parameterized.parameters([
         ('X',
          'std::function<X(int)>'),
-        ('Fruit::Annotated<Annotation1, X>',
-         'Fruit::Annotated<Annotation1, std::function<X(int)>>'),
+        ('Poco::Fruit::Annotated<Annotation1, X>',
+         'Poco::Fruit::Annotated<Annotation1, std::function<X(int)>>'),
     ])
     def test_register_factory_not_existing_constructor1(self, XAnnot, XFactoryAnnot):
         source = '''
@@ -1789,8 +1789,8 @@ class TestRegisterFactory(parameterized.TestCase):
               INJECT(X()) = default;
             };
     
-            Fruit::Component<XFactoryAnnot> getComponent() {
-              return Fruit::createComponent();
+            Poco::Fruit::Component<XFactoryAnnot> getComponent() {
+              return Poco::Fruit::createComponent();
             }
             '''
         expect_compile_error(
@@ -1806,9 +1806,9 @@ class TestRegisterFactory(parameterized.TestCase):
         ('std::function<std::unique_ptr<X>(int)>',
          r'std::unique_ptr<X(,std::default_delete<X>)?>\(int\)',
          r'std::unique_ptr<X(,std::default_delete<X>)?>\((void)?\)'),
-        ('Fruit::Annotated<Annotation1, std::function<std::unique_ptr<X>(int)>>',
-         r'Fruit::Annotated<Annotation1,std::unique_ptr<X(,std::default_delete<X>)?>>\(int\)',
-         r'Fruit::Annotated<Annotation1,std::unique_ptr<X(,std::default_delete<X>)?>>\((void)?\)')
+        ('Poco::Fruit::Annotated<Annotation1, std::function<std::unique_ptr<X>(int)>>',
+         r'Poco::Fruit::Annotated<Annotation1,std::unique_ptr<X(,std::default_delete<X>)?>>\(int\)',
+         r'Poco::Fruit::Annotated<Annotation1,std::unique_ptr<X(,std::default_delete<X>)?>>\((void)?\)')
     ])
     def test_register_factory_not_existing_constructor2(self, XIntFactoryAnnot, XIntFactoryAnnotRegex, XVoidFactoryAnnotRegex):
         source = '''
@@ -1816,8 +1816,8 @@ class TestRegisterFactory(parameterized.TestCase):
               using Inject = X();
             };
     
-            Fruit::Component<XIntFactoryAnnot> getComponent() {
-              return Fruit::createComponent();
+            Poco::Fruit::Component<XIntFactoryAnnot> getComponent() {
+              return Poco::Fruit::createComponent();
             }
             '''
         expect_compile_error(
@@ -1832,8 +1832,8 @@ class TestRegisterFactory(parameterized.TestCase):
     @parameterized.parameters([
         ('X',
          'std::function<X(int)>'),
-        ('Fruit::Annotated<Annotation1, X>',
-         'Fruit::Annotated<Annotation1, std::function<X(int)>>'),
+        ('Poco::Fruit::Annotated<Annotation1, X>',
+         'Poco::Fruit::Annotated<Annotation1, std::function<X(int)>>'),
     ])
     def test_register_factory_not_existing_constructor2_returning_value(self, XAnnot, XFactoryAnnot):
         source = '''
@@ -1841,8 +1841,8 @@ class TestRegisterFactory(parameterized.TestCase):
               using Inject = X();
             };
     
-            Fruit::Component<XFactoryAnnot> getComponent() {
-              return Fruit::createComponent();
+            Poco::Fruit::Component<XFactoryAnnot> getComponent() {
+              return Poco::Fruit::createComponent();
             }
             '''
         expect_compile_error(
@@ -1855,7 +1855,7 @@ class TestRegisterFactory(parameterized.TestCase):
 
     @parameterized.parameters([
         'std::function<X()>',
-        'Fruit::Annotated<Annotation1, std::function<X()>>',
+        'Poco::Fruit::Annotated<Annotation1, std::function<X()>>',
     ])
     def test_register_factory_success_factory_movable_only_implicit(self, XFactoryAnnot):
         source = '''
@@ -1865,12 +1865,12 @@ class TestRegisterFactory(parameterized.TestCase):
               X(const X&) = delete;
             };
     
-            Fruit::Component<XFactoryAnnot> getComponent() {
-              return Fruit::createComponent();
+            Poco::Fruit::Component<XFactoryAnnot> getComponent() {
+              return Poco::Fruit::createComponent();
             }
     
             int main() {
-              Fruit::Injector<XFactoryAnnot> injector(getComponent);
+              Poco::Fruit::Injector<XFactoryAnnot> injector(getComponent);
               injector.get<XFactoryAnnot>()();
             }
             '''
@@ -1881,9 +1881,9 @@ class TestRegisterFactory(parameterized.TestCase):
 
     @parameterized.parameters([
         ('X', 'X()', 'std::function<X()>'),
-        ('Fruit::Annotated<Annotation1, X>', 'X()', 'Fruit::Annotated<Annotation1, std::function<X()>>'),
+        ('Poco::Fruit::Annotated<Annotation1, X>', 'X()', 'Poco::Fruit::Annotated<Annotation1, std::function<X()>>'),
         ('std::unique_ptr<X>', 'std::unique_ptr<X>(new X())', 'std::function<std::unique_ptr<X>()>'),
-        ('Fruit::Annotated<Annotation1, std::unique_ptr<X>>', 'std::unique_ptr<X>(new X())', 'Fruit::Annotated<Annotation1, std::function<std::unique_ptr<X>()>>'),
+        ('Poco::Fruit::Annotated<Annotation1, std::unique_ptr<X>>', 'std::unique_ptr<X>(new X())', 'Poco::Fruit::Annotated<Annotation1, std::function<std::unique_ptr<X>()>>'),
     ])
     def test_register_factory_success_factory_movable_only_explicit(self, XPtrAnnot, ConstructX, XPtrFactoryAnnot):
         source = '''
@@ -1893,13 +1893,13 @@ class TestRegisterFactory(parameterized.TestCase):
               X(const X&) = delete;
             };
     
-            Fruit::Component<XPtrFactoryAnnot> getComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<XPtrFactoryAnnot> getComponent() {
+              return Poco::Fruit::createComponent()
                 .registerFactory<XPtrAnnot()>([](){return ConstructX;});
             }
     
             int main() {
-              Fruit::Injector<XPtrFactoryAnnot> injector(getComponent);
+              Poco::Fruit::Injector<XPtrFactoryAnnot> injector(getComponent);
               injector.get<XPtrFactoryAnnot>()();
             }
             '''
@@ -1910,7 +1910,7 @@ class TestRegisterFactory(parameterized.TestCase):
 
     @parameterized.parameters([
         'std::function<std::unique_ptr<X>()>',
-        'Fruit::Annotated<Annotation1, std::function<std::unique_ptr<X>()>>',
+        'Poco::Fruit::Annotated<Annotation1, std::function<std::unique_ptr<X>()>>',
     ])
     def test_register_factory_success_factory_not_movable_implicit(self, XPtrFactoryAnnot):
         source = '''
@@ -1920,12 +1920,12 @@ class TestRegisterFactory(parameterized.TestCase):
               X(const X&) = delete;
             };
     
-            Fruit::Component<XPtrFactoryAnnot> getComponent() {
-              return Fruit::createComponent();
+            Poco::Fruit::Component<XPtrFactoryAnnot> getComponent() {
+              return Poco::Fruit::createComponent();
             }
     
             int main() {
-              Fruit::Injector<XPtrFactoryAnnot> injector(getComponent);
+              Poco::Fruit::Injector<XPtrFactoryAnnot> injector(getComponent);
               injector.get<XPtrFactoryAnnot>()();
             }
             '''
@@ -1936,7 +1936,7 @@ class TestRegisterFactory(parameterized.TestCase):
 
     @parameterized.parameters([
         ('std::unique_ptr<X>', 'std::function<std::unique_ptr<X>()>'),
-        ('Fruit::Annotated<Annotation1, std::unique_ptr<X>>', 'Fruit::Annotated<Annotation1, std::function<std::unique_ptr<X>()>>'),
+        ('Poco::Fruit::Annotated<Annotation1, std::unique_ptr<X>>', 'Poco::Fruit::Annotated<Annotation1, std::function<std::unique_ptr<X>()>>'),
     ])
     def test_register_factory_success_factory_not_movable_explicit_returning_pointer(self, XPtrAnnot, XPtrFactoryAnnot):
         source = '''
@@ -1946,13 +1946,13 @@ class TestRegisterFactory(parameterized.TestCase):
               X(const X&) = delete;
             };
     
-            Fruit::Component<XPtrFactoryAnnot> getComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<XPtrFactoryAnnot> getComponent() {
+              return Poco::Fruit::createComponent()
                 .registerFactory<XPtrAnnot()>([](){return std::unique_ptr<X>(new X());});
             }
     
             int main() {
-              Fruit::Injector<XPtrFactoryAnnot> injector(getComponent);
+              Poco::Fruit::Injector<XPtrFactoryAnnot> injector(getComponent);
               injector.get<XPtrFactoryAnnot>()();
             }
             '''
@@ -1974,27 +1974,27 @@ class TestRegisterFactory(parameterized.TestCase):
         'Y&',
         'const Y&',
         'std::shared_ptr<Y>',
-        'Fruit::Provider<Y>',
-        'Fruit::Provider<const Y>',
+        'Poco::Fruit::Provider<Y>',
+        'Poco::Fruit::Provider<const Y>',
     ])
     def test_register_factory_with_param_success(self, ConstructX, XPtr, WithAnnot, YVariant):
         source = '''
             struct Y {};
             struct X {};
             
-            Fruit::Component<WithAnnot<Y>> getYComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<WithAnnot<Y>> getYComponent() {
+              return Poco::Fruit::createComponent()
                 .registerConstructor<WithAnnot<Y>()>();
             }
     
-            Fruit::Component<std::function<XPtr()>> getComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<std::function<XPtr()>> getComponent() {
+              return Poco::Fruit::createComponent()
                 .install(getYComponent)
                 .registerFactory<XPtr(WithAnnot<YVariant>)>([](YVariant){ return ConstructX; });
             }
     
             int main() {
-              Fruit::Injector<std::function<XPtr()>> injector(getComponent);
+              Poco::Fruit::Injector<std::function<XPtr()>> injector(getComponent);
               XPtr x = injector.get<std::function<XPtr()>>()();
               (void) x;
             }
@@ -2014,7 +2014,7 @@ class TestRegisterFactory(parameterized.TestCase):
         'Y',
         'const Y*',
         'const Y&',
-        'Fruit::Provider<const Y>',
+        'Poco::Fruit::Provider<const Y>',
     ])
     def test_register_factory_with_param_const_binding_success(self, ConstructX, XPtr, WithAnnot, YVariant):
         source = '''
@@ -2023,19 +2023,19 @@ class TestRegisterFactory(parameterized.TestCase):
             
             const Y y{};
             
-            Fruit::Component<WithAnnot<const Y>> getYComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<WithAnnot<const Y>> getYComponent() {
+              return Poco::Fruit::createComponent()
                 .bindInstance<WithAnnot<Y>, Y>(y);
             }
     
-            Fruit::Component<std::function<XPtr()>> getComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<std::function<XPtr()>> getComponent() {
+              return Poco::Fruit::createComponent()
                 .install(getYComponent)
                 .registerFactory<XPtr(WithAnnot<YVariant>)>([](YVariant){ return ConstructX; });
             }
     
             int main() {
-              Fruit::Injector<std::function<XPtr()>> injector(getComponent);
+              Poco::Fruit::Injector<std::function<XPtr()>> injector(getComponent);
               XPtr x = injector.get<std::function<XPtr()>>()();
               (void) x;
             }
@@ -2050,7 +2050,7 @@ class TestRegisterFactory(parameterized.TestCase):
         ('std::unique_ptr<X>(new X())', 'std::unique_ptr<X>'),
     ], [
         ('WithNoAnnotation', 'Y'),
-        ('WithAnnotation1', 'Fruit::Annotated<Annotation1, Y>'),
+        ('WithAnnotation1', 'Poco::Fruit::Annotated<Annotation1, Y>'),
     ], [
         'X',
         'std::unique_ptr<X>',
@@ -2058,17 +2058,17 @@ class TestRegisterFactory(parameterized.TestCase):
         'Y*',
         'Y&',
         'std::shared_ptr<Y>',
-        'Fruit::Provider<Y>',
+        'Poco::Fruit::Provider<Y>',
     ])
     def test_register_factory_with_param_error_nonconst_param_required(self, ConstructX, XPtr, WithAnnot, YAnnotRegex, XFactoryResult, YVariant):
         source = '''
             struct Y {};
             struct X {};
             
-            Fruit::Component<WithAnnot<const Y>> getYComponent();
+            Poco::Fruit::Component<WithAnnot<const Y>> getYComponent();
     
-            Fruit::Component<std::function<XFactoryResult()>> getComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<std::function<XFactoryResult()>> getComponent() {
+              return Poco::Fruit::createComponent()
                 .install(getYComponent)
                 .registerFactory<XPtr(WithAnnot<YVariant>)>([](YVariant){ return ConstructX; });
             }
@@ -2088,22 +2088,22 @@ class TestRegisterFactory(parameterized.TestCase):
         'std::unique_ptr<X>',
     ], [
         ('WithNoAnnotation', 'Y'),
-        ('WithAnnotation1', 'Fruit::Annotated<Annotation1, Y>'),
+        ('WithAnnotation1', 'Poco::Fruit::Annotated<Annotation1, Y>'),
     ], [
         'Y*',
         'Y&',
         'std::shared_ptr<Y>',
-        'Fruit::Provider<Y>',
+        'Poco::Fruit::Provider<Y>',
     ])
     def test_register_factory_with_param_error_nonconst_param_required_install_after(self, ConstructX, XPtr, XFactoryResult, WithAnnot, YAnnotRegex, YVariant):
         source = '''
             struct Y {};
             struct X {};
             
-            Fruit::Component<WithAnnot<const Y>> getYComponent();
+            Poco::Fruit::Component<WithAnnot<const Y>> getYComponent();
     
-            Fruit::Component<std::function<XFactoryResult()>> getComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<std::function<XFactoryResult()>> getComponent() {
+              return Poco::Fruit::createComponent()
                 .registerFactory<XPtr(WithAnnot<YVariant>)>([](YVariant){ return ConstructX; })
                 .install(getYComponent);
             }
@@ -2134,19 +2134,19 @@ class TestRegisterFactory(parameterized.TestCase):
             };
             struct X {};
             
-            Fruit::Component<WithAnnot<Y>> getYComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<WithAnnot<Y>> getYComponent() {
+              return Poco::Fruit::createComponent()
                 .registerConstructor<WithAnnot<Y>()>();
             }
     
-            Fruit::Component<std::function<XPtr()>> getComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<std::function<XPtr()>> getComponent() {
+              return Poco::Fruit::createComponent()
                 .install(getYComponent)
                 .registerFactory<XPtr(WithAnnot<Y&>)>([](Y&){ return ConstructX; });
             }
     
             int main() {
-              Fruit::Injector<std::function<XPtr()>> injector(getComponent);
+              Poco::Fruit::Injector<std::function<XPtr()>> injector(getComponent);
               XPtr x = injector.get<std::function<XPtr()>>()();
               (void) x;
             }
@@ -2172,13 +2172,13 @@ class TestRegisterFactory(parameterized.TestCase):
             };
             struct X {};
             
-            Fruit::Component<std::function<XPtr(Y)>> getComponent() {
-              return Fruit::createComponent()
-                .registerFactory<XPtr(Fruit::Assisted<Y>)>([](Y){ return ConstructX; });
+            Poco::Fruit::Component<std::function<XPtr(Y)>> getComponent() {
+              return Poco::Fruit::createComponent()
+                .registerFactory<XPtr(Poco::Fruit::Assisted<Y>)>([](Y){ return ConstructX; });
             }
     
             int main() {
-              Fruit::Injector<std::function<XPtr(Y)>> injector(getComponent);
+              Poco::Fruit::Injector<std::function<XPtr(Y)>> injector(getComponent);
               XPtr x = injector.get<std::function<XPtr(Y)>>()(Y());
               (void) x;
             }
@@ -2194,15 +2194,15 @@ class TestRegisterFactory(parameterized.TestCase):
             struct Y {};
             struct Z {};
     
-            Fruit::Component<std::function<Y()>, std::function<Z()>> getRootComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<std::function<Y()>, std::function<Z()>> getRootComponent() {
+              return Poco::Fruit::createComponent()
                 .registerFactory<Y(X&)>([](X&) { return Y();})
                 .registerFactory<Z(const X&)>([](const X&) { return Z();})
                 .registerConstructor<X()>();
             }
             
             int main() {
-              Fruit::Injector<std::function<Y()>, std::function<Z()>> injector(getRootComponent);
+              Poco::Fruit::Injector<std::function<Y()>, std::function<Z()>> injector(getRootComponent);
               std::function<Y()> yFactory = injector.get<std::function<Y()>>();
               yFactory();
               std::function<Z()> zFactory = injector.get<std::function<Z()>>();
@@ -2220,8 +2220,8 @@ class TestRegisterFactory(parameterized.TestCase):
             struct Y {};
             struct Z {};
     
-            Fruit::Component<Fruit::Required<const X>, std::function<Y()>, std::function<Z()>> getRootComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<Poco::Fruit::Required<const X>, std::function<Y()>, std::function<Z()>> getRootComponent() {
+              return Poco::Fruit::createComponent()
                 .registerFactory<Y(X&)>([](X&) { return Y();})
                 .registerFactory<Z(const X&)>([](const X&) { return Z();});
             }
@@ -2239,15 +2239,15 @@ class TestRegisterFactory(parameterized.TestCase):
             struct Y {};
             struct Z {};
     
-            Fruit::Component<std::function<Y()>, std::function<Z()>> getRootComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<std::function<Y()>, std::function<Z()>> getRootComponent() {
+              return Poco::Fruit::createComponent()
                 .registerFactory<Y(const X&)>([](const X&) { return Y();})
                 .registerFactory<Z(X&)>([](X&) { return Z();})
                 .registerConstructor<X()>();
             }
             
             int main() {
-              Fruit::Injector<std::function<Y()>, std::function<Z()>> injector(getRootComponent);
+              Poco::Fruit::Injector<std::function<Y()>, std::function<Z()>> injector(getRootComponent);
               std::function<Y()> yFactory = injector.get<std::function<Y()>>();
               yFactory();
               std::function<Z()> zFactory = injector.get<std::function<Z()>>();
@@ -2265,8 +2265,8 @@ class TestRegisterFactory(parameterized.TestCase):
             struct Y {};
             struct Z {};
     
-            Fruit::Component<Fruit::Required<const X>, std::function<Y()>, std::function<Z()>> getRootComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<Poco::Fruit::Required<const X>, std::function<Y()>, std::function<Z()>> getRootComponent() {
+              return Poco::Fruit::createComponent()
                 .registerFactory<Y(const X&)>([](const X&) { return Y();})
                 .registerFactory<Z(X&)>([](X&) { return Z();});
             }
@@ -2282,7 +2282,7 @@ class TestRegisterFactory(parameterized.TestCase):
         source = '''
             struct X {};
     
-            void f(Fruit::Provider<X> provider) {
+            void f(Poco::Fruit::Provider<X> provider) {
               provider.get<std::unique_ptr<X>*>();
             }
             '''
@@ -2304,7 +2304,7 @@ class TestRegisterFactory(parameterized.TestCase):
         ('std::nullptr_t', r'(std::)?nullptr(_t)?'),
         ('Y*&', r'Y\*&'),
         ('Y(*)()', r'Y(\((__cdecl)?\*\))?\((void)?\)'),
-        ('Fruit::Annotated<Annotation1, Y**>', r'Y\*\*'),
+        ('Poco::Fruit::Annotated<Annotation1, Y**>', r'Y\*\*'),
     ])
     def test_register_factory_with_param_error_type_not_injectable(self,
             ConstructX, XPtr, XFactoryResult, YVariant, YVariantRegex):
@@ -2312,8 +2312,8 @@ class TestRegisterFactory(parameterized.TestCase):
             struct Y {};
             struct X {};
             
-            Fruit::Component<> getComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<> getComponent() {
+              return Poco::Fruit::createComponent()
                 .registerFactory<XPtr(YVariant)>([](YVariant){ return ConstructX; });
             }
             '''
@@ -2330,17 +2330,17 @@ class TestRegisterFactory(parameterized.TestCase):
               INJECT(X()) = default;
             };
         
-            Fruit::Component<const std::function<X()>> getChildComponent() {
-              return Fruit::createComponent();
+            Poco::Fruit::Component<const std::function<X()>> getChildComponent() {
+              return Poco::Fruit::createComponent();
             }
             
-            Fruit::Component<std::function<std::unique_ptr<X>()>> getRootComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<std::function<std::unique_ptr<X>()>> getRootComponent() {
+              return Poco::Fruit::createComponent()
                   .install(getChildComponent);
             }
             
             int main() {
-              Fruit::Injector<std::function<std::unique_ptr<X>()>> injector(getRootComponent);
+              Poco::Fruit::Injector<std::function<std::unique_ptr<X>()>> injector(getRootComponent);
               std::function<std::unique_ptr<X>()> xFactory(injector);
               xFactory();
             }
@@ -2364,18 +2364,18 @@ class TestRegisterFactory(parameterized.TestCase):
               }
             };
         
-            Fruit::Component<std::function<std::unique_ptr<Y>()>> getChildComponent() {
-              return Fruit::createComponent();
+            Poco::Fruit::Component<std::function<std::unique_ptr<Y>()>> getChildComponent() {
+              return Poco::Fruit::createComponent();
             }
             
-            Fruit::Component<const std::function<std::unique_ptr<X>()>> getRootComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<const std::function<std::unique_ptr<X>()>> getRootComponent() {
+              return Poco::Fruit::createComponent()
                   .install(getChildComponent)
                   .bind<X, Y>();
             }
             
             int main() {
-              Fruit::Injector<const std::function<std::unique_ptr<X>()>> injector(getRootComponent);
+              Poco::Fruit::Injector<const std::function<std::unique_ptr<X>()>> injector(getRootComponent);
               std::function<std::unique_ptr<X>()> xFactory(injector);
               xFactory();
             }
@@ -2399,18 +2399,18 @@ class TestRegisterFactory(parameterized.TestCase):
               }
             };
         
-            Fruit::Component<const std::function<std::unique_ptr<Y>()>> getChildComponent() {
-              return Fruit::createComponent();
+            Poco::Fruit::Component<const std::function<std::unique_ptr<Y>()>> getChildComponent() {
+              return Poco::Fruit::createComponent();
             }
             
-            Fruit::Component<std::function<std::unique_ptr<X>()>> getRootComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<std::function<std::unique_ptr<X>()>> getRootComponent() {
+              return Poco::Fruit::createComponent()
                   .install(getChildComponent)
                   .bind<X, Y>();
             }
             
             int main() {
-              Fruit::Injector<std::function<std::unique_ptr<X>()>> injector(getRootComponent);
+              Poco::Fruit::Injector<std::function<std::unique_ptr<X>()>> injector(getRootComponent);
               std::function<std::unique_ptr<X>()> xFactory(injector);
               xFactory();
             }
@@ -2437,13 +2437,13 @@ class TestRegisterFactory(parameterized.TestCase):
               }
             };
     
-            Fruit::Component<WithAnnot<std::function<std::unique_ptr<I>()>>> getComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<WithAnnot<std::function<std::unique_ptr<I>()>>> getComponent() {
+              return Poco::Fruit::createComponent()
                 .registerFactory<WithAnnot<std::unique_ptr<I>>()>([](){return std::unique_ptr<I>(static_cast<I*>(new X()));});
             }
     
             int main() {
-              Fruit::Injector<WithAnnot<std::function<std::unique_ptr<I>()>>> injector(getComponent);
+              Poco::Fruit::Injector<WithAnnot<std::function<std::unique_ptr<I>()>>> injector(getComponent);
     
               Assert(injector.get<WithAnnot<std::function<std::unique_ptr<I>()>>>()()->foo() == 5);
             }
@@ -2473,8 +2473,8 @@ class TestRegisterFactory(parameterized.TestCase):
               }
             };
     
-            Fruit::Component<WithAnnot<std::function<std::unique_ptr<I>()>>> getComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<WithAnnot<std::function<std::unique_ptr<I>()>>> getComponent() {
+              return Poco::Fruit::createComponent()
                 .registerFactory<WithAnnot<std::unique_ptr<I>>()>([](){return std::unique_ptr<I>(static_cast<I*>(new X()));});
             }
             '''

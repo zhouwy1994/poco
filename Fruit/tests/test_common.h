@@ -30,7 +30,7 @@
 // These are here because including Boost in test code would require depending on its headers but those files don't have
 // public visibility in the bazel repo.
 #include <Poco/Fruit/impl/data_structures/semistatic_graph.h>
-using Graph = Fruit::impl::SemistaticGraph<int, const char*>;
+using Graph = Poco::Fruit::impl::SemistaticGraph<int, const char*>;
 using node_iterator = Graph::node_iterator;
 using edge_iterator = Graph::edge_iterator;
 struct SimpleNode {

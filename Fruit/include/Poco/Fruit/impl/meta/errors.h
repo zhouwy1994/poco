@@ -20,6 +20,7 @@
 #include <Poco/Fruit/impl/meta/basics.h>
 #include <Poco/Fruit/impl/meta/logical_operations.h>
 
+namespace Poco{
 namespace Fruit {
 namespace impl {
 namespace meta {
@@ -63,5 +64,6 @@ struct ExtractFirstError {
 } // namespace meta
 } // namespace impl
 } // namespace Fruit
+} // namespace Poco
 
 #endif // FRUIT_META_ERRORS_H

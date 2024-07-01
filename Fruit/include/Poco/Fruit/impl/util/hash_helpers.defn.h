@@ -20,6 +20,7 @@
 #include <Poco/Fruit/impl/meta/vector.h>
 #include <Poco/Fruit/impl/util/hash_helpers.h>
 
+namespace Poco{
 namespace Fruit {
 namespace impl {
 
@@ -73,5 +74,6 @@ createHashMapWithArenaAllocatorAndCustomFunctors(size_t capacity, MemoryPool& me
 
 } // namespace impl
 } // namespace Fruit
+} // namespace Poco
 
 #endif // FRUIT_HASH_HELPERS_DEFN_H

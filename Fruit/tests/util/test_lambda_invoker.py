@@ -20,7 +20,7 @@ COMMON_DEFINITIONS = '''
     #include "test_common.h"
 
     using namespace std;
-    using namespace Fruit::impl;
+    using namespace Poco::Fruit::impl;
     '''
 
 class TestLambdaInvoker(parameterized.TestCase):

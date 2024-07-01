@@ -17,9 +17,9 @@
 #include "scaler.h"
 #include "multiplier.h"
 
-using Fruit::Component;
-using Fruit::Injector;
-using Fruit::createComponent;
+using Poco::Fruit::Component;
+using Poco::Fruit::Injector;
+using Poco::Fruit::createComponent;
 
 class ScalerImpl : public Scaler {
 private:

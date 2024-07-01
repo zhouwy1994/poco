@@ -28,6 +28,7 @@
 // Redundant, but makes KDevelop happy.
 #include <Poco/Fruit/impl/data_structures/fixed_size_allocator.h>
 
+namespace Poco{
 namespace Fruit {
 namespace impl {
 
@@ -63,11 +64,11 @@ inline std::size_t FixedSizeAllocator::FixedSizeAllocatorData::maximumRequiredSp
 }
 
 template <typename AnnotatedT, typename... Args>
-FRUIT_ALWAYS_INLINE inline Fruit::impl::meta::UnwrapType<
-    Fruit::impl::meta::Eval<Fruit::impl::meta::RemoveAnnotations(Fruit::impl::meta::Type<AnnotatedT>)>>*
+FRUIT_ALWAYS_INLINE inline Poco::Fruit::impl::meta::UnwrapType<
+    Poco::Fruit::impl::meta::Eval<Poco::Fruit::impl::meta::RemoveAnnotations(Poco::Fruit::impl::meta::Type<AnnotatedT>)>>*
 FixedSizeAllocator::constructObject(Args&&... args) {
-  using T = Fruit::impl::meta::UnwrapType<
-      Fruit::impl::meta::Eval<Fruit::impl::meta::RemoveAnnotations(Fruit::impl::meta::Type<AnnotatedT>)>>;
+  using T = Poco::Fruit::impl::meta::UnwrapType<
+      Poco::Fruit::impl::meta::Eval<Poco::Fruit::impl::meta::RemoveAnnotations(Poco::Fruit::impl::meta::Type<AnnotatedT>)>>;
 
   char* p = storage_last_used;
   size_t misalignment = std::uintptr_t(p) % alignof(T);
@@ -133,6 +134,7 @@ inline FixedSizeAllocator& FixedSizeAllocator::operator=(FixedSizeAllocator&& x)
 }
 
 } // namespace Fruit
+} // namespace Poco
 } // namespace impl
 
 #endif // FRUIT_FIXED_SIZE_ALLOTATOR_DEFN_H

@@ -34,7 +34,7 @@ public:
   }
 };
 
-Fruit::Component<KeyValueStorage> getFakeKeyValueStorageComponent() {
-  return Fruit::createComponent()
+Poco::Fruit::Component<KeyValueStorage> getFakeKeyValueStorageComponent() {
+  return Poco::Fruit::createComponent()
       .bind<KeyValueStorage, FakeKeyValueStorage>();
 }

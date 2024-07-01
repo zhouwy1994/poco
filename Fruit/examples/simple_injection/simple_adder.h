@@ -20,6 +20,6 @@
 #include "adder.h"
 #include <Poco/Fruit/fruit.h>
 
-Fruit::Component<Adder> getSimpleAdderComponent();
+Poco::Fruit::Component<Adder> getSimpleAdderComponent();
 
 #endif // SIMPLE_ADDER_H

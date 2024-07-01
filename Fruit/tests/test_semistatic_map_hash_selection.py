@@ -31,8 +31,8 @@ COMMON_DEFINITIONS = '''
 class TestSemistaticMapHashSelection(parameterized.TestCase):
     def test_semistatic_map_hash_selection(self):
         source = '''
-            Fruit::Component<> getComponent() {
-              return Fruit::createComponent()
+            Poco::Fruit::Component<> getComponent() {
+              return Poco::Fruit::createComponent()
                 .registerConstructor<X1()>()
                 .registerConstructor<X2()>()
                 .registerConstructor<X3()>()
@@ -46,7 +46,7 @@ class TestSemistaticMapHashSelection(parameterized.TestCase):
               // The component normalization generates a random hash. By looping 50 times it's very likely that we'll get at
               // least one hash with too many collisions (and we'll generate another).
               for (int i = 0; i < 50; i++) {
-                Fruit::NormalizedComponent<> normalizedComponent(getComponent);
+                Poco::Fruit::NormalizedComponent<> normalizedComponent(getComponent);
                 (void) normalizedComponent;
               }
             }

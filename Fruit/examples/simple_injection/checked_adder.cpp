@@ -70,6 +70,6 @@ public:
   }
 };
 
-Fruit::Component<Adder> getCheckedAdderComponent() {
-  return Fruit::createComponent().bind<Adder, CheckedAdder>();
+Poco::Fruit::Component<Adder> getCheckedAdderComponent() {
+  return Poco::Fruit::createComponent().bind<Adder, CheckedAdder>();
 }
