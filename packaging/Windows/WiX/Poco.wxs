@@ -1155,6 +1155,7 @@
                                 <File Id="SIMPLEFILECHANNEL.H" Name="SimpleFileChannel.h" Source="$(var.POCO)\Foundation\include\Poco\SimpleFileChannel.h" />
                                 <File Id="SIMPLEHASHTABLE.H" Name="SimpleHashTable.h" Source="$(var.POCO)\Foundation\include\Poco\SimpleHashTable.h" />
                                 <File Id="SINGLETONHOLDER.H" Name="SingletonHolder.h" Source="$(var.POCO)\Foundation\include\Poco\SingletonHolder.h" />
+                                <File Id="SINGLETON.H" Name="Singleton.h" Source="$(var.POCO)\Foundation\include\Poco\Singleton.h" />
                                 <File Id="SORTEDDIRECTORYITERATOR.H" Name="SortedDirectoryIterator.h" Source="$(var.POCO)\Foundation\include\Poco\SortedDirectoryIterator.h" />
                                 <File Id="SPLITTERCHANNEL.H" Name="SplitterChannel.h" Source="$(var.POCO)\Foundation\include\Poco\SplitterChannel.h" />
                                 <File Id="STOPWATCH.H" Name="Stopwatch.h" Source="$(var.POCO)\Foundation\include\Poco\Stopwatch.h" />
