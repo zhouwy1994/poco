@@ -98,7 +98,7 @@ void IniFileConfiguration::save(std::ostream& ostr) const
 	for (const auto &it : pmap) {
 		ostr << '[' << it.first << ']' << "\n";
 		for (const auto &vit : it.second) {
-			ostr << vit.first << " = " << vit.second << "\n";
+			ostr << vit.first << "=" << vit.second << "\n";
 		}
 	}
 }
