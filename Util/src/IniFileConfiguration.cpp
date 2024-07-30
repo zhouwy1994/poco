@@ -87,16 +87,21 @@ void IniFileConfiguration::save(std::ostream& ostr) const
 	IPairMap pmap;
 	for (const auto &it : _map) {
 		auto splitIndex = it.first.find_first_of('.');
-		if (splitIndex == std::string::npos) {
+		if (splitIndex != std::string::npos) {
+			std::string key = it.first.substr(0,splitIndex);
+			std::pair<std::string, std::string> value(it.first.substr(splitIndex+1,it.first.size()),it.second);
+			pmap[key].push_back(value);
 			continue;
 		}
-		std::string key = it.first.substr(0,splitIndex);
-		std::pair<std::string, std::string> value(it.first.substr(splitIndex+1,it.first.size()),it.second);
+		std::string key = "\0\0\0";
+		std::pair<std::string, std::string> value(it.first,it.second);
 		pmap[key].push_back(value);
 	}
 
 	for (const auto &it : pmap) {
-		ostr << '[' << it.first << ']' << "\n";
+		if (it.first != "\0\0\0") {
+			ostr << '[' << it.first << ']' << "\n";
+		}
 		for (const auto &vit : it.second) {
 			ostr << vit.first << "=" << vit.second << "\n";
 		}
