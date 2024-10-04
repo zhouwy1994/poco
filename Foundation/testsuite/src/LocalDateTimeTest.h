@@ -15,10 +15,10 @@
 
 
 #include "Poco/Foundation.h"
-#include "CppUnit/TestCase.h"
+#include "Poco/CppUnit/TestCase.h"
 
 
-class LocalDateTimeTest: public CppUnit::TestCase
+class LocalDateTimeTest: public Poco::CppUnit::TestCase
 {
 public:
 	LocalDateTimeTest(const std::string& name);
@@ -40,7 +40,7 @@ public:
 	void setUp();
 	void tearDown();
 
-	static CppUnit::Test* suite();
+	static Poco::CppUnit::Test* suite();
 
 private:
 };

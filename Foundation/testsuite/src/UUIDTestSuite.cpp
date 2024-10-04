@@ -13,9 +13,9 @@
 #include "UUIDGeneratorTest.h"
 
 
-CppUnit::Test* UUIDTestSuite::suite()
+Poco::CppUnit::Test* UUIDTestSuite::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("UUIDTestSuite");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("UUIDTestSuite");
 
 	pSuite->addTest(UUIDTest::suite());
 	pSuite->addTest(UUIDGeneratorTest::suite());

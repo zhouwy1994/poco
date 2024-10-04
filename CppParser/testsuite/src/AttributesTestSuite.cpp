@@ -12,9 +12,9 @@
 #include "AttributesParserTest.h"
 
 
-CppUnit::Test* AttributesTestSuite::suite()
+Poco::CppUnit::Test* AttributesTestSuite::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("CppParserTestSuite");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("CppParserTestSuite");
 
 	pSuite->addTest(AttributesParserTest::suite());
 

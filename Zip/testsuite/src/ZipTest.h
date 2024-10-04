@@ -16,10 +16,10 @@
 
 #include "Poco/Zip/Zip.h"
 #include "Poco/Zip/ZipLocalFileHeader.h"
-#include "CppUnit/TestCase.h"
+#include "Poco/CppUnit/TestCase.h"
 
 
-class ZipTest: public CppUnit::TestCase
+class ZipTest: public Poco::CppUnit::TestCase
 {
 public:
 	ZipTest(const std::string& name);
@@ -45,7 +45,7 @@ public:
 	void setUp();
 	void tearDown();
 
-	static CppUnit::Test* suite();
+	static Poco::CppUnit::Test* suite();
 
 	static std::string getTestFile(const std::string& directory, const std::string& type);
 

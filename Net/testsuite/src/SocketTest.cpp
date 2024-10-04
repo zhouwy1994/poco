@@ -9,8 +9,8 @@
 
 
 #include "SocketTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "EchoServer.h"
 #include "Poco/Net/StreamSocket.h"
 #include "Poco/Net/ServerSocket.h"
@@ -39,7 +39,7 @@ using Poco::FIFOBuffer;
 using Poco::delegate;
 
 
-SocketTest::SocketTest(const std::string& name): CppUnit::TestCase(name)
+SocketTest::SocketTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -589,9 +589,9 @@ void SocketTest::tearDown()
 }
 
 
-CppUnit::Test* SocketTest::suite()
+Poco::CppUnit::Test* SocketTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("SocketTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("SocketTest");
 
 	CppUnit_addTest(pSuite, SocketTest, testEcho);
 	CppUnit_addTest(pSuite, SocketTest, testMoveStreamSocket);

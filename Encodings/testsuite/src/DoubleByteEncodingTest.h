@@ -14,10 +14,10 @@
 #define DoubleByteEncodingTest_INCLUDED
 
 
-#include "CppUnit/TestCase.h"
+#include "Poco/CppUnit/TestCase.h"
 
 
-class DoubleByteEncodingTest: public CppUnit::TestCase
+class DoubleByteEncodingTest: public Poco::CppUnit::TestCase
 {
 public:
 	DoubleByteEncodingTest(const std::string& name);
@@ -31,7 +31,7 @@ public:
 	void setUp();
 	void tearDown();
 
-	static CppUnit::Test* suite();
+	static Poco::CppUnit::Test* suite();
 
 private:
 };

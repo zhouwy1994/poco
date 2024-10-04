@@ -9,8 +9,8 @@
 
 
 #include "MailStreamTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/Net/MailStream.h"
 #include "Poco/StreamCopier.h"
 #include <sstream>
@@ -21,7 +21,7 @@ using Poco::Net::MailOutputStream;
 using Poco::StreamCopier;
 
 
-MailStreamTest::MailStreamTest(const std::string& name): CppUnit::TestCase(name)
+MailStreamTest::MailStreamTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -110,9 +110,9 @@ void MailStreamTest::tearDown()
 }
 
 
-CppUnit::Test* MailStreamTest::suite()
+Poco::CppUnit::Test* MailStreamTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("MailStreamTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("MailStreamTest");
 
 	CppUnit_addTest(pSuite, MailStreamTest, testMailInputStream);
 	CppUnit_addTest(pSuite, MailStreamTest, testMailOutputStream);

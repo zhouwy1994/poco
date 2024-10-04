@@ -9,8 +9,8 @@
 
 
 #include "RegularExpressionTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/RegularExpression.h"
 #include "Poco/Exception.h"
 
@@ -19,7 +19,7 @@ using Poco::RegularExpression;
 using Poco::RegularExpressionException;
 
 
-RegularExpressionTest::RegularExpressionTest(const std::string& name): CppUnit::TestCase(name)
+RegularExpressionTest::RegularExpressionTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -284,9 +284,9 @@ void RegularExpressionTest::tearDown()
 }
 
 
-CppUnit::Test* RegularExpressionTest::suite()
+Poco::CppUnit::Test* RegularExpressionTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("RegularExpressionTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("RegularExpressionTest");
 
 	CppUnit_addTest(pSuite, RegularExpressionTest, testIndex);
 	CppUnit_addTest(pSuite, RegularExpressionTest, testMatch1);

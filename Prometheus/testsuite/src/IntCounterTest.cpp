@@ -9,8 +9,8 @@
 
 
 #include "IntCounterTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/Prometheus/IntCounter.h"
 #include "Poco/Prometheus/Registry.h"
 #include "Poco/Prometheus/TextExporter.h"
@@ -23,7 +23,7 @@ using namespace std::string_literals;
 
 
 IntCounterTest::IntCounterTest(const std::string& name):
-	CppUnit::TestCase("IntCounterTest"s)
+	Poco::CppUnit::TestCase("IntCounterTest"s)
 {
 }
 
@@ -79,9 +79,9 @@ void IntCounterTest::tearDown()
 }
 
 
-CppUnit::Test* IntCounterTest::suite()
+Poco::CppUnit::Test* IntCounterTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("IntCounterTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("IntCounterTest");
 
 	CppUnit_addTest(pSuite, IntCounterTest, testBasicBehavior);
 	CppUnit_addTest(pSuite, IntCounterTest, testExport);

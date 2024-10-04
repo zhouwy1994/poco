@@ -9,8 +9,8 @@
 
 
 #include "RandomTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/Random.h"
 #include <vector>
 #include <cmath>
@@ -19,7 +19,7 @@
 using Poco::UInt32;
 
 
-RandomTest::RandomTest(const std::string& name): CppUnit::TestCase(name)
+RandomTest::RandomTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -135,9 +135,9 @@ void RandomTest::tearDown()
 }
 
 
-CppUnit::Test* RandomTest::suite()
+Poco::CppUnit::Test* RandomTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("RandomTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("RandomTest");
 
 	CppUnit_addTest(pSuite, RandomTest, testSequence1);
 	CppUnit_addTest(pSuite, RandomTest, testSequence2);

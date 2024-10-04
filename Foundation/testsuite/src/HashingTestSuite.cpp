@@ -16,9 +16,9 @@
 #include "HashMapTest.h"
 
 
-CppUnit::Test* HashingTestSuite::suite()
+Poco::CppUnit::Test* HashingTestSuite::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("HashingTestSuite");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("HashingTestSuite");
 
 	pSuite->addTest(HashTableTest::suite());
 	pSuite->addTest(SimpleHashTableTest::suite());

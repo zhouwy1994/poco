@@ -9,8 +9,8 @@
 
 
 #include "TextConverterTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/TextConverter.h"
 #include "Poco/ASCIIEncoding.h"
 #include "Poco/Latin1Encoding.h"
@@ -25,7 +25,7 @@
 using namespace Poco;
 
 
-TextConverterTest::TextConverterTest(const std::string& name): CppUnit::TestCase(name)
+TextConverterTest::TextConverterTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -336,9 +336,9 @@ void TextConverterTest::tearDown()
 }
 
 
-CppUnit::Test* TextConverterTest::suite()
+Poco::CppUnit::Test* TextConverterTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("TextConverterTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("TextConverterTest");
 
 	CppUnit_addTest(pSuite, TextConverterTest, testIdentityASCII);
 	CppUnit_addTest(pSuite, TextConverterTest, testIdentityUTF8);

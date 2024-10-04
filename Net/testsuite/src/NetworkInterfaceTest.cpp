@@ -14,8 +14,8 @@
 #ifdef POCO_NET_HAS_INTERFACE
 
 
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/Net/NetworkInterface.h"
 #include "Poco/Net/IPAddress.h"
 #include <iostream>
@@ -27,7 +27,7 @@ using Poco::Net::IPAddress;
 using Poco::NotFoundException;
 
 
-NetworkInterfaceTest::NetworkInterfaceTest(const std::string& name): CppUnit::TestCase(name)
+NetworkInterfaceTest::NetworkInterfaceTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -317,9 +317,9 @@ void NetworkInterfaceTest::tearDown()
 }
 
 
-CppUnit::Test* NetworkInterfaceTest::suite()
+Poco::CppUnit::Test* NetworkInterfaceTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("NetworkInterfaceTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("NetworkInterfaceTest");
 
 	CppUnit_addTest(pSuite, NetworkInterfaceTest, testList);
 	CppUnit_addTest(pSuite, NetworkInterfaceTest, testMap);

@@ -9,8 +9,8 @@
 
 
 #include "SocketConnectorTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/Net/SocketReactor.h"
 #include "Poco/Net/SocketNotification.h"
 #include "Poco/Net/SocketConnector.h"
@@ -119,7 +119,7 @@ namespace
 	};
 }
 
-SocketConnectorTest::SocketConnectorTest(const std::string& name): CppUnit::TestCase(name)
+SocketConnectorTest::SocketConnectorTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -160,9 +160,9 @@ void SocketConnectorTest::tearDown()
 }
 
 
-CppUnit::Test* SocketConnectorTest::suite()
+Poco::CppUnit::Test* SocketConnectorTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("SocketConnectorTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("SocketConnectorTest");
 
 	CppUnit_addTest(pSuite, SocketConnectorTest, testUnregisterConnector);
 

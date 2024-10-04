@@ -15,10 +15,10 @@
 
 
 #include "Poco/Foundation.h"
-#include "CppUnit/TestCase.h"
+#include "Poco/CppUnit/TestCase.h"
 
 
-class LogStreamTest: public CppUnit::TestCase
+class LogStreamTest: public Poco::CppUnit::TestCase
 {
 public:
 	LogStreamTest(const std::string& name);
@@ -29,7 +29,7 @@ public:
 	void setUp();
 	void tearDown();
 
-	static CppUnit::Test* suite();
+	static Poco::CppUnit::Test* suite();
 
 private:
 };

@@ -15,10 +15,10 @@
 
 
 #include "Poco/Foundation.h"
-#include "CppUnit/TestCase.h"
+#include "Poco/CppUnit/TestCase.h"
 
 
-class AutoPtrTest: public CppUnit::TestCase
+class AutoPtrTest: public Poco::CppUnit::TestCase
 {
 public:
 	AutoPtrTest(const std::string& name);
@@ -31,7 +31,7 @@ public:
 	void setUp();
 	void tearDown();
 
-	static CppUnit::Test* suite();
+	static Poco::CppUnit::Test* suite();
 
 private:
 };

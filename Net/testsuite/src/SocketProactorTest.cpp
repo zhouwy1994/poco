@@ -10,8 +10,8 @@
 
 #include "SocketProactorTest.h"
 #include "UDPEchoServer.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/Net/StreamSocket.h"
 #include "Poco/Net/DatagramSocket.h"
 #include "Poco/Net/ServerSocket.h"
@@ -29,7 +29,7 @@ using Poco::Timestamp;
 using Poco::Stopwatch;
 
 
-SocketProactorTest::SocketProactorTest(const std::string& name): CppUnit::TestCase(name)
+SocketProactorTest::SocketProactorTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -341,9 +341,9 @@ void SocketProactorTest::tearDown()
 }
 
 
-CppUnit::Test* SocketProactorTest::suite()
+Poco::CppUnit::Test* SocketProactorTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("SocketProactorTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("SocketProactorTest");
 
 	CppUnit_addTest(pSuite, SocketProactorTest, testTCPSocketProactor);
 	CppUnit_addTest(pSuite, SocketProactorTest, testUDPSocketProactor);

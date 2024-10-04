@@ -24,9 +24,9 @@
 #include "JSONConfigurationTest.h"
 
 
-CppUnit::Test* ConfigurationTestSuite::suite()
+Poco::CppUnit::Test* ConfigurationTestSuite::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("ConfigurationTestSuite");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("ConfigurationTestSuite");
 
 	pSuite->addTest(ConfigurationViewTest::suite());
 	pSuite->addTest(LocalConfigurationViewTest::suite());

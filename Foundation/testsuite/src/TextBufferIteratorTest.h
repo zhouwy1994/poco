@@ -15,10 +15,10 @@
 
 
 #include "Poco/Foundation.h"
-#include "CppUnit/TestCase.h"
+#include "Poco/CppUnit/TestCase.h"
 
 
-class TextBufferIteratorTest: public CppUnit::TestCase
+class TextBufferIteratorTest: public Poco::CppUnit::TestCase
 {
 public:
 	TextBufferIteratorTest(const std::string& name);
@@ -37,7 +37,7 @@ public:
 	void setUp();
 	void tearDown();
 
-	static CppUnit::Test* suite();
+	static Poco::CppUnit::Test* suite();
 
 private:
 };

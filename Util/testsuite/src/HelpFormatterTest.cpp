@@ -9,8 +9,8 @@
 
 
 #include "HelpFormatterTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/Util/Option.h"
 #include "Poco/Util/OptionSet.h"
 #include "Poco/Util/HelpFormatter.h"
@@ -22,7 +22,7 @@ using Poco::Util::OptionSet;
 using Poco::Util::HelpFormatter;
 
 
-HelpFormatterTest::HelpFormatterTest(const std::string& name): CppUnit::TestCase(name)
+HelpFormatterTest::HelpFormatterTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -99,9 +99,9 @@ void HelpFormatterTest::tearDown()
 }
 
 
-CppUnit::Test* HelpFormatterTest::suite()
+Poco::CppUnit::Test* HelpFormatterTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("HelpFormatterTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("HelpFormatterTest");
 
 	CppUnit_addTest(pSuite, HelpFormatterTest, testHelpFormatter);
 

@@ -7,12 +7,13 @@
 #define CppUnit_TestCaller_INCLUDED
 
 
-#include "CppUnit/CppUnit.h"
+#include "Poco/CppUnit/CppUnit.h"
 #include "Guards.h"
 #include "TestCase.h"
 #include <memory>
 
 
+namespace Poco {
 namespace CppUnit {
 
 
@@ -86,18 +87,19 @@ private:
 
 
 } // namespace CppUnit
+} // namespace Poco
 
 
 #define CppUnit_addTest(suite, cls, mth) \
-	suite->addTest(new CppUnit::TestCaller<cls>(#mth, &cls::mth))
+	suite->addTest(new Poco::CppUnit::TestCaller<cls>(#mth, &cls::mth))
 
 #define CppUnit_addLongTest(suite, cls, mth) \
-	suite->addTest(new CppUnit::TestCaller<cls>(#mth, &cls::mth, CppUnit::Test::Long))
+	suite->addTest(new Poco::CppUnit::TestCaller<cls>(#mth, &cls::mth, Poco::CppUnit::Test::Long))
 
 #define CppUnit_addQualifiedTest(suite, cls, mth) \
-	suite->addTest(new CppUnit::TestCaller<cls>(#cls"::"#mth, &cls::mth))
+	suite->addTest(new Poco::CppUnit::TestCaller<cls>(#cls"::"#mth, &cls::mth))
 
 #define CppUnit_addLongQualifiedTest(suite, cls, mth) \
-	suite->addTest(new CppUnit::TestCaller<cls>(#cls"::"#mth, &cls::mth, CppUnit::Test::Long))
+	suite->addTest(new Poco::CppUnit::TestCaller<cls>(#cls"::"#mth, &cls::mth, Poco::CppUnit::Test::Long))
 
 #endif // CppUnit_TestCaller_INCLUDED

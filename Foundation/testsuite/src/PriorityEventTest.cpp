@@ -10,8 +10,8 @@
 
 #include "PriorityEventTest.h"
 #include "DummyDelegate.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/PriorityDelegate.h"
 #include "Poco/PriorityExpire.h"
 #include "Poco/Thread.h"
@@ -24,7 +24,7 @@ using namespace Poco;
 #define LARGEINC 100
 
 
-PriorityEventTest::PriorityEventTest(const std::string& name): CppUnit::TestCase(name)
+PriorityEventTest::PriorityEventTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -519,9 +519,9 @@ void PriorityEventTest::tearDown()
 }
 
 
-CppUnit::Test* PriorityEventTest::suite()
+Poco::CppUnit::Test* PriorityEventTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("PriorityEventTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("PriorityEventTest");
 
 	CppUnit_addTest(pSuite, PriorityEventTest, testNoDelegate);
 	CppUnit_addTest(pSuite, PriorityEventTest, testSingleDelegate);

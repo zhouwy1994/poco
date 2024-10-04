@@ -7,11 +7,12 @@
 #define CppUnit_TestFailure_INCLUDED
 
 
-#include "CppUnit/CppUnit.h"
-#include "CppUnit/CppUnitException.h"
-#include "CppUnit/Guards.h"
+#include "Poco/CppUnit/CppUnit.h"
+#include "Poco/CppUnit/CppUnitException.h"
+#include "Poco/CppUnit/Guards.h"
 
 
+namespace Poco {
 namespace CppUnit {
 
 
@@ -77,6 +78,7 @@ inline CppUnitException* TestFailure::thrownException()
 
 
 } // namespace CppUnit
+} // namespace Poco
 
 
 #endif // CppUnit_TestFailure_INCLUDED

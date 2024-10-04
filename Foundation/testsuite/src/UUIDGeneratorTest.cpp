@@ -9,8 +9,8 @@
 
 
 #include "UUIDGeneratorTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/UUIDGenerator.h"
 #include "Poco/UUID.h"
 #include "Poco/SHA1Engine.h"
@@ -21,7 +21,7 @@ using Poco::UUIDGenerator;
 using Poco::UUID;
 
 
-UUIDGeneratorTest::UUIDGeneratorTest(const std::string& name): CppUnit::TestCase(name)
+UUIDGeneratorTest::UUIDGeneratorTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -102,9 +102,9 @@ void UUIDGeneratorTest::tearDown()
 }
 
 
-CppUnit::Test* UUIDGeneratorTest::suite()
+Poco::CppUnit::Test* UUIDGeneratorTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("UUIDGeneratorTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("UUIDGeneratorTest");
 
 	CppUnit_addTest(pSuite, UUIDGeneratorTest, testTimeBased);
 	CppUnit_addTest(pSuite, UUIDGeneratorTest, testRandom);

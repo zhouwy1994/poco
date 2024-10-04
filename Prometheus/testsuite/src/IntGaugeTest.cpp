@@ -9,8 +9,8 @@
 
 
 #include "IntGaugeTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/Prometheus/IntGauge.h"
 #include "Poco/Prometheus/Registry.h"
 #include "Poco/Prometheus/TextExporter.h"
@@ -23,7 +23,7 @@ using namespace std::string_literals;
 
 
 IntGaugeTest::IntGaugeTest(const std::string& name):
-	CppUnit::TestCase("IntGaugeTest"s)
+	Poco::CppUnit::TestCase("IntGaugeTest"s)
 {
 }
 
@@ -85,9 +85,9 @@ void IntGaugeTest::tearDown()
 }
 
 
-CppUnit::Test* IntGaugeTest::suite()
+Poco::CppUnit::Test* IntGaugeTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("IntGaugeTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("IntGaugeTest");
 
 	CppUnit_addTest(pSuite, IntGaugeTest, testBasicBehavior);
 	CppUnit_addTest(pSuite, IntGaugeTest, testExport);

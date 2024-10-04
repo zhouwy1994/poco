@@ -15,10 +15,10 @@
 
 
 #include "Poco/XML/XML.h"
-#include "CppUnit/TestCase.h"
+#include "Poco/CppUnit/TestCase.h"
 
 
-class XMLStreamParserTest: public CppUnit::TestCase
+class XMLStreamParserTest: public Poco::CppUnit::TestCase
 {
 public:
 	XMLStreamParserTest(const std::string& name);
@@ -29,7 +29,7 @@ public:
 	void setUp();
 	void tearDown();
 
-	static CppUnit::Test* suite();
+	static Poco::CppUnit::Test* suite();
 
 private:
 };

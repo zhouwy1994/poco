@@ -17,9 +17,9 @@
 #include "QuotedPrintableTest.h"
 
 
-CppUnit::Test* MessagesTestSuite::suite()
+Poco::CppUnit::Test* MessagesTestSuite::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("MessagesTestSuite");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("MessagesTestSuite");
 
 	pSuite->addTest(NameValueCollectionTest::suite());
 	pSuite->addTest(MessageHeaderTest::suite());

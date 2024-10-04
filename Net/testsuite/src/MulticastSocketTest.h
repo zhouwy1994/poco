@@ -20,10 +20,10 @@
 #ifdef POCO_NET_HAS_INTERFACE
 
 
-#include "CppUnit/TestCase.h"
+#include "Poco/CppUnit/TestCase.h"
 
 
-class MulticastSocketTest: public CppUnit::TestCase
+class MulticastSocketTest: public Poco::CppUnit::TestCase
 {
 public:
 	MulticastSocketTest(const std::string& name);
@@ -34,7 +34,7 @@ public:
 	void setUp();
 	void tearDown();
 
-	static CppUnit::Test* suite();
+	static Poco::CppUnit::Test* suite();
 
 private:
 };

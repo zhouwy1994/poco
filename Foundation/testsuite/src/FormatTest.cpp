@@ -9,8 +9,8 @@
 
 
 #include "FormatTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/Any.h"
 #include "Poco/Format.h"
 #include "Poco/Exception.h"
@@ -23,7 +23,7 @@ using Poco::UInt64;
 using Poco::Any;
 
 
-FormatTest::FormatTest(const std::string& name): CppUnit::TestCase(name)
+FormatTest::FormatTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -485,9 +485,9 @@ void FormatTest::tearDown()
 }
 
 
-CppUnit::Test* FormatTest::suite()
+Poco::CppUnit::Test* FormatTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("FormatTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("FormatTest");
 
 	CppUnit_addTest(pSuite, FormatTest, testChar);
 	CppUnit_addTest(pSuite, FormatTest, testBool);

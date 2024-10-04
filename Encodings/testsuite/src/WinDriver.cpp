@@ -14,11 +14,11 @@
 #include "EncodingsTestSuite.h"
 
 
-class TestDriver: public CppUnit::WinTestRunnerApp
+class TestDriver: public Poco::CppUnit::WinTestRunnerApp
 {
 	void TestMain()
 	{
-		CppUnit::WinTestRunner runner;
+		Poco::CppUnit::WinTestRunner runner;
 		runner.addTest(EncodingsTestSuite::suite());
 		runner.run();
 	}

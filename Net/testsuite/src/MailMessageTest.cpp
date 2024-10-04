@@ -9,8 +9,8 @@
 
 
 #include "MailMessageTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/Net/MailMessage.h"
 #include "Poco/Net/MailStream.h"
 #include "Poco/Net/MailRecipient.h"
@@ -91,7 +91,7 @@ namespace
 }
 
 
-MailMessageTest::MailMessageTest(const std::string& name): CppUnit::TestCase(name)
+MailMessageTest::MailMessageTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -747,9 +747,9 @@ void MailMessageTest::tearDown()
 }
 
 
-CppUnit::Test* MailMessageTest::suite()
+Poco::CppUnit::Test* MailMessageTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("MailMessageTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("MailMessageTest");
 
 	CppUnit_addTest(pSuite, MailMessageTest, testWriteQP);
 	CppUnit_addTest(pSuite, MailMessageTest, testWrite8Bit);

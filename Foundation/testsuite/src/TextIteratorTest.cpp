@@ -9,8 +9,8 @@
 
 
 #include "TextIteratorTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/TextIterator.h"
 #include "Poco/Latin1Encoding.h"
 #include "Poco/UTF8Encoding.h"
@@ -23,7 +23,7 @@ using Poco::UTF8Encoding;
 using Poco::UTF16Encoding;
 
 
-TextIteratorTest::TextIteratorTest(const std::string& name): CppUnit::TestCase(name)
+TextIteratorTest::TextIteratorTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -252,9 +252,9 @@ void TextIteratorTest::tearDown()
 }
 
 
-CppUnit::Test* TextIteratorTest::suite()
+Poco::CppUnit::Test* TextIteratorTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("TextIteratorTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("TextIteratorTest");
 
 	CppUnit_addTest(pSuite, TextIteratorTest, testEmptyLatin1);
 	CppUnit_addTest(pSuite, TextIteratorTest, testOneLatin1);

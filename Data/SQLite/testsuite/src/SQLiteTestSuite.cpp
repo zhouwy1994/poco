@@ -12,9 +12,9 @@
 #include "SQLiteTest.h"
 
 
-CppUnit::Test* SQLiteTestSuite::suite()
+Poco::CppUnit::Test* SQLiteTestSuite::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("SQLiteTestSuite");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("SQLiteTestSuite");
 
 	pSuite->addTest(SQLiteTest::suite());
 

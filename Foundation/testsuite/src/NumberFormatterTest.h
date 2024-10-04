@@ -15,10 +15,10 @@
 
 
 #include "Poco/Foundation.h"
-#include "CppUnit/TestCase.h"
+#include "Poco/CppUnit/TestCase.h"
 
 
-class NumberFormatterTest: public CppUnit::TestCase
+class NumberFormatterTest: public Poco::CppUnit::TestCase
 {
 public:
 	NumberFormatterTest(const std::string& name);
@@ -34,7 +34,7 @@ public:
 	void setUp();
 	void tearDown();
 
-	static CppUnit::Test* suite();
+	static Poco::CppUnit::Test* suite();
 
 private:
 };

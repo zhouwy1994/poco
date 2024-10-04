@@ -14,16 +14,16 @@
 #define ODBCTestSuite_INCLUDED
 
 
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestSuite.h"
 
 
 class ODBCTestSuite
 {
 public:
-	static CppUnit::Test* suite();
+	static Poco::CppUnit::Test* suite();
 
 private:
-	static void addTest(CppUnit::TestSuite* pSuite, CppUnit::Test* pT);
+	static void addTest(Poco::CppUnit::TestSuite* pSuite, Poco::CppUnit::Test* pT);
 };
 
 

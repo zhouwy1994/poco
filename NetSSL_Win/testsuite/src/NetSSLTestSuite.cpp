@@ -15,9 +15,9 @@
 #include "HTTPSServerTestSuite.h"
 
 
-CppUnit::Test* NetSSLTestSuite::suite()
+Poco::CppUnit::Test* NetSSLTestSuite::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("NetSSLTestSuite");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("NetSSLTestSuite");
 
 	pSuite->addTest(HTTPSClientTestSuite::suite());
 	pSuite->addTest(TCPServerTestSuite::suite());

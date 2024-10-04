@@ -9,8 +9,8 @@
 
 
 #include "HistogramTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/Prometheus/Histogram.h"
 #include "Poco/Prometheus/Registry.h"
 #include "Poco/Prometheus/TextExporter.h"
@@ -23,7 +23,7 @@ using namespace std::string_literals;
 
 
 HistogramTest::HistogramTest(const std::string& name):
-	CppUnit::TestCase("HistogramTest"s)
+	Poco::CppUnit::TestCase("HistogramTest"s)
 {
 }
 
@@ -165,9 +165,9 @@ void HistogramTest::tearDown()
 }
 
 
-CppUnit::Test* HistogramTest::suite()
+Poco::CppUnit::Test* HistogramTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("HistogramTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("HistogramTest");
 
 	CppUnit_addTest(pSuite, HistogramTest, testNoBuckets);
 	CppUnit_addTest(pSuite, HistogramTest, testBuckets);

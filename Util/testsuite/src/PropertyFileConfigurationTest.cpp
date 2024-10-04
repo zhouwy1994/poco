@@ -9,8 +9,8 @@
 
 
 #include "PropertyFileConfigurationTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/Util/PropertyFileConfiguration.h"
 #include "Poco/AutoPtr.h"
 #include "Poco/Exception.h"
@@ -121,9 +121,9 @@ void PropertyFileConfigurationTest::tearDown()
 }
 
 
-CppUnit::Test* PropertyFileConfigurationTest::suite()
+Poco::CppUnit::Test* PropertyFileConfigurationTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("PropertyFileConfigurationTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("PropertyFileConfigurationTest");
 
 	AbstractConfigurationTest_addTests(pSuite, PropertyFileConfigurationTest);
 	CppUnit_addTest(pSuite, PropertyFileConfigurationTest, testLoad);

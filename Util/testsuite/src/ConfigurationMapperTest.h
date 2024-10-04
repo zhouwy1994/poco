@@ -32,7 +32,7 @@ public:
 	void setUp();
 	void tearDown();
 
-	static CppUnit::Test* suite();
+	static Poco::CppUnit::Test* suite();
 
 private:
 	virtual Poco::Util::AbstractConfiguration::Ptr allocConfiguration() const;

@@ -14,9 +14,9 @@
 #include "WinServiceTest.h"
 
 
-CppUnit::Test* WindowsTestSuite::suite()
+Poco::CppUnit::Test* WindowsTestSuite::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("WindowsTestSuite");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("WindowsTestSuite");
 
 	pSuite->addTest(WinRegistryTest::suite());
 	pSuite->addTest(WinConfigurationTest::suite());

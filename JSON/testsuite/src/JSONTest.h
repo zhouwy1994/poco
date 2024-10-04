@@ -15,7 +15,7 @@
 
 
 #include "Poco/JSON/JSON.h"
-#include "CppUnit/TestCase.h"
+#include "Poco/CppUnit/TestCase.h"
 #include "Poco/JSON/Object.h"
 #include "Poco/JSON/Parser.h"
 #include "Poco/JSON/Query.h"
@@ -27,7 +27,7 @@
 #include <sstream>
 
 
-class JSONTest: public CppUnit::TestCase
+class JSONTest: public Poco::CppUnit::TestCase
 {
 public:
 	JSONTest(const std::string& name);
@@ -87,7 +87,7 @@ public:
 	void setUp();
 	void tearDown();
 
-	static CppUnit::Test* suite();
+	static Poco::CppUnit::Test* suite();
 
 private:
 	std::string getTestFilesPath(const std::string& type);

@@ -9,15 +9,15 @@
 
 
 #include "AttributesImplTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/SAX/AttributesImpl.h"
 
 
 using Poco::XML::AttributesImpl;
 
 
-AttributesImplTest::AttributesImplTest(const std::string& name): CppUnit::TestCase(name)
+AttributesImplTest::AttributesImplTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -231,9 +231,9 @@ void AttributesImplTest::tearDown()
 }
 
 
-CppUnit::Test* AttributesImplTest::suite()
+Poco::CppUnit::Test* AttributesImplTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("AttributesImplTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("AttributesImplTest");
 
 	CppUnit_addTest(pSuite, AttributesImplTest, testNoNamespaces);
 	CppUnit_addTest(pSuite, AttributesImplTest, testNamespaces);

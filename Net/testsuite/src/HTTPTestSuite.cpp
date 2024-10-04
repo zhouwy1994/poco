@@ -16,9 +16,9 @@
 #include "NTLMCredentialsTest.h"
 
 
-CppUnit::Test* HTTPTestSuite::suite()
+Poco::CppUnit::Test* HTTPTestSuite::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("HTTPTestSuite");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("HTTPTestSuite");
 
 	pSuite->addTest(HTTPRequestTest::suite());
 	pSuite->addTest(HTTPResponseTest::suite());

@@ -9,8 +9,8 @@
 
 
 #include "NamedTuplesTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/NamedTuple.h"
 #include "Poco/Exception.h"
 
@@ -32,7 +32,7 @@ using Poco::NotFoundException;
 using Poco::InvalidArgumentException;
 
 
-NamedTuplesTest::NamedTuplesTest(const std::string& name): CppUnit::TestCase(name)
+NamedTuplesTest::NamedTuplesTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -3087,9 +3087,9 @@ void NamedTuplesTest::tearDown()
 }
 
 
-CppUnit::Test* NamedTuplesTest::suite()
+Poco::CppUnit::Test* NamedTuplesTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("NamedTuplesTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("NamedTuplesTest");
 
 	CppUnit_addTest(pSuite, NamedTuplesTest, testNamedTuple1);
 	CppUnit_addTest(pSuite, NamedTuplesTest, testNamedTuple2);

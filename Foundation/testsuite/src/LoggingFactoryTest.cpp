@@ -9,8 +9,8 @@
 
 
 #include "LoggingFactoryTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/LoggingFactory.h"
 #include "Poco/Instantiator.h"
 #include "Poco/Channel.h"
@@ -65,7 +65,7 @@ namespace
 }
 
 
-LoggingFactoryTest::LoggingFactoryTest(const std::string& name): CppUnit::TestCase(name)
+LoggingFactoryTest::LoggingFactoryTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -145,9 +145,9 @@ void LoggingFactoryTest::tearDown()
 }
 
 
-CppUnit::Test* LoggingFactoryTest::suite()
+Poco::CppUnit::Test* LoggingFactoryTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("LoggingFactoryTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("LoggingFactoryTest");
 
 	CppUnit_addTest(pSuite, LoggingFactoryTest, testBuiltins);
 	CppUnit_addTest(pSuite, LoggingFactoryTest, testCustom);

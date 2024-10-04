@@ -9,8 +9,8 @@
 
 
 #include "FileChannelTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/FileChannel.h"
 #include "Poco/Message.h"
 #include "Poco/AutoPtr.h"
@@ -46,7 +46,7 @@ using Poco::DirectoryIterator;
 using Poco::InvalidArgumentException;
 
 
-FileChannelTest::FileChannelTest(const std::string& name): CppUnit::TestCase(name)
+FileChannelTest::FileChannelTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -630,9 +630,9 @@ std::string FileChannelTest::rotation(TimeRotation rtype) const
 }
 
 
-CppUnit::Test* FileChannelTest::suite()
+Poco::CppUnit::Test* FileChannelTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("FileChannelTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("FileChannelTest");
 
 	CppUnit_addTest(pSuite, FileChannelTest, testRotateBySize);
 	CppUnit_addTest(pSuite, FileChannelTest, testRotateByAge);

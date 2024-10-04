@@ -9,8 +9,8 @@
 
 
 #include "HashMapTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/HashMap.h"
 #include "Poco/Exception.h"
 #include <map>
@@ -19,7 +19,7 @@
 using Poco::HashMap;
 
 
-HashMapTest::HashMapTest(const std::string& name): CppUnit::TestCase(name)
+HashMapTest::HashMapTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -208,9 +208,9 @@ void HashMapTest::tearDown()
 }
 
 
-CppUnit::Test* HashMapTest::suite()
+Poco::CppUnit::Test* HashMapTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("HashMapTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("HashMapTest");
 
 	CppUnit_addTest(pSuite, HashMapTest, testInsert);
 	CppUnit_addTest(pSuite, HashMapTest, testErase);

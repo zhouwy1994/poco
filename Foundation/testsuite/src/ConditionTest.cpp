@@ -9,8 +9,8 @@
 
 
 #include "ConditionTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/Thread.h"
 #include "Poco/Runnable.h"
 #include "Poco/Condition.h"
@@ -90,7 +90,7 @@ namespace
 }
 
 
-ConditionTest::ConditionTest(const std::string& name): CppUnit::TestCase(name)
+ConditionTest::ConditionTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -181,9 +181,9 @@ void ConditionTest::tearDown()
 }
 
 
-CppUnit::Test* ConditionTest::suite()
+Poco::CppUnit::Test* ConditionTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("ConditionTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("ConditionTest");
 
 	CppUnit_addTest(pSuite, ConditionTest, testSignal);
 	CppUnit_addTest(pSuite, ConditionTest, testBroadcast);

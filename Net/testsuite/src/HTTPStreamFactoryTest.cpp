@@ -9,8 +9,8 @@
 
 
 #include "HTTPStreamFactoryTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/Net/HTTPStreamFactory.h"
 #include "Poco/Net/NetException.h"
 #include "Poco/URI.h"
@@ -28,7 +28,7 @@ using Poco::URI;
 using Poco::StreamCopier;
 
 
-HTTPStreamFactoryTest::HTTPStreamFactoryTest(const std::string& name): CppUnit::TestCase(name)
+HTTPStreamFactoryTest::HTTPStreamFactoryTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -119,9 +119,9 @@ void HTTPStreamFactoryTest::tearDown()
 }
 
 
-CppUnit::Test* HTTPStreamFactoryTest::suite()
+Poco::CppUnit::Test* HTTPStreamFactoryTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("HTTPStreamFactoryTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("HTTPStreamFactoryTest");
 
 	CppUnit_addTest(pSuite, HTTPStreamFactoryTest, testNoRedirect);
 	CppUnit_addTest(pSuite, HTTPStreamFactoryTest, testEmptyPath);

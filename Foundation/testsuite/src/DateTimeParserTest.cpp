@@ -9,8 +9,8 @@
 
 
 #include "DateTimeParserTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/DateTimeParser.h"
 #include "Poco/DateTimeFormat.h"
 #include "Poco/DateTime.h"
@@ -25,7 +25,7 @@ using Poco::Timestamp;
 using Poco::SyntaxException;
 
 
-DateTimeParserTest::DateTimeParserTest(const std::string& name): CppUnit::TestCase(name)
+DateTimeParserTest::DateTimeParserTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -768,9 +768,9 @@ void DateTimeParserTest::tearDown()
 }
 
 
-CppUnit::Test* DateTimeParserTest::suite()
+Poco::CppUnit::Test* DateTimeParserTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("DateTimeParserTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("DateTimeParserTest");
 
 	CppUnit_addTest(pSuite, DateTimeParserTest, testISO8601);
 	CppUnit_addTest(pSuite, DateTimeParserTest, testISO8601Frac);

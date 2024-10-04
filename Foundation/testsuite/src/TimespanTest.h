@@ -15,10 +15,10 @@
 
 
 #include "Poco/Foundation.h"
-#include "CppUnit/TestCase.h"
+#include "Poco/CppUnit/TestCase.h"
 
 
-class TimespanTest: public CppUnit::TestCase
+class TimespanTest: public Poco::CppUnit::TestCase
 {
 public:
 	TimespanTest(const std::string& name);
@@ -32,7 +32,7 @@ public:
 	void setUp();
 	void tearDown();
 
-	static CppUnit::Test* suite();
+	static Poco::CppUnit::Test* suite();
 
 private:
 };

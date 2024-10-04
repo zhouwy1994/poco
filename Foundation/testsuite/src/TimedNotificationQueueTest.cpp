@@ -9,8 +9,8 @@
 
 
 #include "TimedNotificationQueueTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/TimedNotificationQueue.h"
 #include "Poco/Notification.h"
 #include "Poco/Timestamp.h"
@@ -45,7 +45,7 @@ namespace
 }
 
 
-TimedNotificationQueueTest::TimedNotificationQueueTest(const std::string& name): CppUnit::TestCase(name)
+TimedNotificationQueueTest::TimedNotificationQueueTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -278,9 +278,9 @@ void TimedNotificationQueueTest::tearDown()
 }
 
 
-CppUnit::Test* TimedNotificationQueueTest::suite()
+Poco::CppUnit::Test* TimedNotificationQueueTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("TimedNotificationQueueTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("TimedNotificationQueueTest");
 
 	CppUnit_addTest(pSuite, TimedNotificationQueueTest, testDequeue);
 	CppUnit_addTest(pSuite, TimedNotificationQueueTest, testDequeueNext);

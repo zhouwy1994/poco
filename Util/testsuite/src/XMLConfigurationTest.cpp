@@ -9,8 +9,8 @@
 
 
 #include "XMLConfigurationTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/Util/XMLConfiguration.h"
 #include "Poco/AutoPtr.h"
 #include "Poco/Exception.h"
@@ -310,9 +310,9 @@ void XMLConfigurationTest::tearDown()
 }
 
 
-CppUnit::Test* XMLConfigurationTest::suite()
+Poco::CppUnit::Test* XMLConfigurationTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("XMLConfigurationTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("XMLConfigurationTest");
 
 	AbstractConfigurationTest_addTests(pSuite, XMLConfigurationTest);
 	CppUnit_addTest(pSuite, XMLConfigurationTest, testLoad);

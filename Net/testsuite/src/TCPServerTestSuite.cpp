@@ -12,9 +12,9 @@
 #include "TCPServerTest.h"
 
 
-CppUnit::Test* TCPServerTestSuite::suite()
+Poco::CppUnit::Test* TCPServerTestSuite::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("TCPServerTestSuite");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("TCPServerTestSuite");
 
 	pSuite->addTest(TCPServerTest::suite());
 

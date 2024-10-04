@@ -9,8 +9,8 @@
 
 
 #include "SerializerTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/JWT/Serializer.h"
 
 
@@ -18,7 +18,7 @@ using namespace Poco::JWT;
 
 
 SerializerTest::SerializerTest(const std::string& name):
-	CppUnit::TestCase("SerializerTest")
+	Poco::CppUnit::TestCase("SerializerTest")
 {
 }
 
@@ -114,9 +114,9 @@ void SerializerTest::testSplitEmptySig()
 }
 
 
-CppUnit::Test* SerializerTest::suite()
+Poco::CppUnit::Test* SerializerTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("SerializerTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("SerializerTest");
 
 	CppUnit_addTest(pSuite, SerializerTest, testSerializeEmpty);
 	CppUnit_addTest(pSuite, SerializerTest, testSerializeAlgNone);

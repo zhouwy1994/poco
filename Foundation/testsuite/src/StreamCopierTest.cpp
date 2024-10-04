@@ -9,8 +9,8 @@
 
 
 #include "StreamCopierTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/StreamCopier.h"
 #include <sstream>
 
@@ -18,7 +18,7 @@
 using Poco::StreamCopier;
 
 
-StreamCopierTest::StreamCopierTest(const std::string& name): CppUnit::TestCase(name)
+StreamCopierTest::StreamCopierTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -170,9 +170,9 @@ void StreamCopierTest::tearDown()
 }
 
 
-CppUnit::Test* StreamCopierTest::suite()
+Poco::CppUnit::Test* StreamCopierTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("StreamCopierTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("StreamCopierTest");
 
 	CppUnit_addTest(pSuite, StreamCopierTest, testBufferedCopy);
 	CppUnit_addTest(pSuite, StreamCopierTest, testUnbufferedCopy);

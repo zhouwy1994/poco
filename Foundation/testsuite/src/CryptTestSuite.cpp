@@ -20,9 +20,9 @@
 #include "RandomStreamTest.h"
 
 
-CppUnit::Test* CryptTestSuite::suite()
+Poco::CppUnit::Test* CryptTestSuite::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("CryptTestSuite");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("CryptTestSuite");
 
 	pSuite->addTest(MD4EngineTest::suite());
 	pSuite->addTest(MD5EngineTest::suite());

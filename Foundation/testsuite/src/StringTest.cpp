@@ -14,8 +14,8 @@
 
 
 #include "StringTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/String.h"
 #include "Poco/JSONString.h"
 #include "Poco/Format.h"
@@ -76,7 +76,7 @@ using Poco::safeIntCast;
 using Poco::FPEnvironment;
 
 
-StringTest::StringTest(const std::string& rName): CppUnit::TestCase(rName)
+StringTest::StringTest(const std::string& rName): Poco::CppUnit::TestCase(rName)
 {
 }
 
@@ -1514,9 +1514,9 @@ void StringTest::tearDown()
 }
 
 
-CppUnit::Test* StringTest::suite()
+Poco::CppUnit::Test* StringTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("StringTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("StringTest");
 
 	CppUnit_addTest(pSuite, StringTest, testTrimLeft);
 	CppUnit_addTest(pSuite, StringTest, testTrimLeftInPlace);

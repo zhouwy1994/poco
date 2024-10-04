@@ -10,7 +10,7 @@
 //
 
 
-#include "CppUnit/TestRunner.h"
+#include "Poco/CppUnit/TestRunner.h"
 #include "NetSSLTestSuite.h"
 #include "Poco/Util/Application.h"
 #include "Poco/Net/HTTPStreamFactory.h"
@@ -35,7 +35,7 @@ public:
 
 	int main(const std::vector<std::string>& args)
 	{
-		CppUnit::TestRunner runner;
+		Poco::CppUnit::TestRunner runner;
 		runner.addTest("NetSSLTestSuite", NetSSLTestSuite::suite());
 		CppUnitPocoExceptionText (exc);
 		return runner.run(_targs, exc) ? 0 : 1;

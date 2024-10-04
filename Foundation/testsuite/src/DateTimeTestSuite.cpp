@@ -19,9 +19,9 @@
 #include "DateTimeParserTest.h"
 
 
-CppUnit::Test* DateTimeTestSuite::suite()
+Poco::CppUnit::Test* DateTimeTestSuite::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("DateTimeTestSuite");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("DateTimeTestSuite");
 
 	pSuite->addTest(TimestampTest::suite());
 	pSuite->addTest(ClockTest::suite());

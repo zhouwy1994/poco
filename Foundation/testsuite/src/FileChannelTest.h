@@ -15,10 +15,10 @@
 
 
 #include "Poco/Foundation.h"
-#include "CppUnit/TestCase.h"
+#include "Poco/CppUnit/TestCase.h"
 
 
-class FileChannelTest: public CppUnit::TestCase
+class FileChannelTest: public Poco::CppUnit::TestCase
 {
 public:
 	enum TimeRotation
@@ -48,7 +48,7 @@ public:
 	void setUp();
 	void tearDown();
 
-	static CppUnit::Test* suite();
+	static Poco::CppUnit::Test* suite();
 
 private:
 		template <class D> std::string rotation(TimeRotation rtype) const;

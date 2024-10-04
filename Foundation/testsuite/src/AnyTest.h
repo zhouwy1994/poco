@@ -14,10 +14,10 @@
 
 
 #include "Poco/Foundation.h"
-#include "CppUnit/TestCase.h"
+#include "Poco/CppUnit/TestCase.h"
 
 
-class AnyTest: public CppUnit::TestCase
+class AnyTest: public Poco::CppUnit::TestCase
 {
 public:
 	AnyTest(const std::string& name);
@@ -41,7 +41,7 @@ public:
 
 	void setUp();
 	void tearDown();
-	static CppUnit::Test* suite();
+	static Poco::CppUnit::Test* suite();
 };
 
 

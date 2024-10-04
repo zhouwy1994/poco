@@ -9,8 +9,8 @@
 
 
 #include "MultipartReaderTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/Net/MultipartReader.h"
 #include "Poco/Net/MessageHeader.h"
 #include "Poco/Net/NetException.h"
@@ -22,7 +22,7 @@ using Poco::Net::MessageHeader;
 using Poco::Net::MultipartException;
 
 
-MultipartReaderTest::MultipartReaderTest(const std::string& name): CppUnit::TestCase(name)
+MultipartReaderTest::MultipartReaderTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -360,9 +360,9 @@ void MultipartReaderTest::tearDown()
 }
 
 
-CppUnit::Test* MultipartReaderTest::suite()
+Poco::CppUnit::Test* MultipartReaderTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("MultipartReaderTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("MultipartReaderTest");
 
 	CppUnit_addTest(pSuite, MultipartReaderTest, testReadOnePart);
 	CppUnit_addTest(pSuite, MultipartReaderTest, testReadTwoParts);

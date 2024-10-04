@@ -9,8 +9,8 @@
 
 
 #include "FTPSClientSessionTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/Net/FTPSClientSession.h"
 #include "Poco/Net/DialogSocket.h"
 #include "Poco/Net/SocketAddress.h"
@@ -63,7 +63,7 @@ namespace
 };
 
 
-FTPSClientSessionTest::FTPSClientSessionTest(const std::string& name): CppUnit::TestCase(name)
+FTPSClientSessionTest::FTPSClientSessionTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -625,9 +625,9 @@ void FTPSClientSessionTest::tearDown()
 }
 
 
-CppUnit::Test* FTPSClientSessionTest::suite()
+Poco::CppUnit::Test* FTPSClientSessionTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("FTPSClientSessionTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("FTPSClientSessionTest");
 
 	CppUnit_addTest(pSuite, FTPSClientSessionTest, testLogin1);
 	CppUnit_addTest(pSuite, FTPSClientSessionTest, testLogin2);

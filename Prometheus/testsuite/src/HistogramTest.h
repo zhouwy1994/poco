@@ -14,10 +14,10 @@
 #define HistogramTest_INCLUDED
 
 
-#include "CppUnit/TestCase.h"
+#include "Poco/CppUnit/TestCase.h"
 
 
-class HistogramTest: public CppUnit::TestCase
+class HistogramTest: public Poco::CppUnit::TestCase
 {
 public:
 	HistogramTest(const std::string& name);
@@ -31,7 +31,7 @@ public:
 	void setUp();
 	void tearDown();
 
-	static CppUnit::Test* suite();
+	static Poco::CppUnit::Test* suite();
 };
 
 

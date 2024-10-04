@@ -9,15 +9,15 @@
 
 
 #include "NamespaceSupportTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/SAX/NamespaceSupport.h"
 
 
 using Poco::XML::NamespaceSupport;
 
 
-NamespaceSupportTest::NamespaceSupportTest(const std::string& name): CppUnit::TestCase(name)
+NamespaceSupportTest::NamespaceSupportTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -180,9 +180,9 @@ void NamespaceSupportTest::tearDown()
 }
 
 
-CppUnit::Test* NamespaceSupportTest::suite()
+Poco::CppUnit::Test* NamespaceSupportTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("NamespaceSupportTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("NamespaceSupportTest");
 
 	CppUnit_addTest(pSuite, NamespaceSupportTest, testNamespaceSupport);
 

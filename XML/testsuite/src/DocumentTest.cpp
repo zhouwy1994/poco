@@ -9,8 +9,8 @@
 
 
 #include "DocumentTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/DOM/Document.h"
 #include "Poco/DOM/Element.h"
 #include "Poco/DOM/Text.h"
@@ -29,7 +29,7 @@ using Poco::XML::XMLString;
 using Poco::XML::DOMException;
 
 
-DocumentTest::DocumentTest(const std::string& name): CppUnit::TestCase(name)
+DocumentTest::DocumentTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -272,9 +272,9 @@ void DocumentTest::tearDown()
 }
 
 
-CppUnit::Test* DocumentTest::suite()
+Poco::CppUnit::Test* DocumentTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("DocumentTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("DocumentTest");
 
 	CppUnit_addTest(pSuite, DocumentTest, testDocumentElement);
 	CppUnit_addTest(pSuite, DocumentTest, testImport);

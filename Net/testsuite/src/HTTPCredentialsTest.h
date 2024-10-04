@@ -15,10 +15,10 @@
 
 
 #include "Poco/Net/Net.h"
-#include "CppUnit/TestCase.h"
+#include "Poco/CppUnit/TestCase.h"
 
 
-class HTTPCredentialsTest: public CppUnit::TestCase
+class HTTPCredentialsTest: public Poco::CppUnit::TestCase
 {
 public:
 	HTTPCredentialsTest(const std::string& name);
@@ -46,7 +46,7 @@ public:
 	void setUp();
 	void tearDown();
 
-	static CppUnit::Test* suite();
+	static Poco::CppUnit::Test* suite();
 
 private:
 };

@@ -9,15 +9,15 @@
 
 
 #include "MediaTypeTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/Net/MediaType.h"
 
 
 using Poco::Net::MediaType;
 
 
-MediaTypeTest::MediaTypeTest(const std::string& name): CppUnit::TestCase(name)
+MediaTypeTest::MediaTypeTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -125,9 +125,9 @@ void MediaTypeTest::tearDown()
 }
 
 
-CppUnit::Test* MediaTypeTest::suite()
+Poco::CppUnit::Test* MediaTypeTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("MediaTypeTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("MediaTypeTest");
 
 	CppUnit_addTest(pSuite, MediaTypeTest, testParse);
 	CppUnit_addTest(pSuite, MediaTypeTest, testToString);

@@ -14,11 +14,11 @@
 #include "CppParserTestSuite.h"
 
 
-class TestDriver: public CppUnit::WinTestRunnerApp
+class TestDriver: public Poco::CppUnit::WinTestRunnerApp
 {
 	void TestMain()
 	{
-		CppUnit::WinTestRunner runner;
+		Poco::CppUnit::WinTestRunner runner;
 		runner.addTest(CppParserTestSuite::suite());
 		runner.run();
 	}

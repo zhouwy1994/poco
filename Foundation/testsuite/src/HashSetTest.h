@@ -15,10 +15,10 @@
 
 
 #include "Poco/Foundation.h"
-#include "CppUnit/TestCase.h"
+#include "Poco/CppUnit/TestCase.h"
 
 
-class HashSetTest: public CppUnit::TestCase
+class HashSetTest: public Poco::CppUnit::TestCase
 {
 public:
 	HashSetTest(const std::string& name);
@@ -32,7 +32,7 @@ public:
 	void setUp();
 	void tearDown();
 
-	static CppUnit::Test* suite();
+	static Poco::CppUnit::Test* suite();
 
 private:
 };

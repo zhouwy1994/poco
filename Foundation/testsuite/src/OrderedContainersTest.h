@@ -12,7 +12,7 @@
 
 
 #include "Poco/Foundation.h"
-#include "CppUnit/TestCase.h"
+#include "Poco/CppUnit/TestCase.h"
 #include "Poco/OrderedMap.h"
 #include "Poco/OrderedSet.h"
 #include "ordered_map_util.h"
@@ -25,7 +25,7 @@
 #pragma warning(disable : 4267)
 #endif // POCO_COMPILER_MSVC
 
-class OrderedContainersTest: public CppUnit::TestCase
+class OrderedContainersTest: public Poco::CppUnit::TestCase
 {
 public:
 	OrderedContainersTest(const std::string& name);
@@ -78,7 +78,7 @@ public:
 	void setUp();
 	void tearDown();
 
-	static CppUnit::Test* suite();
+	static Poco::CppUnit::Test* suite();
 
 private:
 

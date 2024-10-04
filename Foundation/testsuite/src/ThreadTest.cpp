@@ -9,8 +9,8 @@
 
 
 #include "ThreadTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/Thread.h"
 #include "Poco/Runnable.h"
 #include "Poco/ThreadTarget.h"
@@ -145,7 +145,7 @@ private:
 };
 
 
-ThreadTest::ThreadTest(const std::string& name): CppUnit::TestCase(name)
+ThreadTest::ThreadTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -457,9 +457,9 @@ void ThreadTest::tearDown()
 }
 
 
-CppUnit::Test* ThreadTest::suite()
+Poco::CppUnit::Test* ThreadTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("ThreadTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("ThreadTest");
 
 	CppUnit_addTest(pSuite, ThreadTest, testThread);
 	CppUnit_addTest(pSuite, ThreadTest, testNamedThread);

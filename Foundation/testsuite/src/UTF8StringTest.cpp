@@ -9,15 +9,15 @@
 
 
 #include "UTF8StringTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/UTF8String.h"
 
 
 using Poco::UTF8;
 
 
-UTF8StringTest::UTF8StringTest(const std::string& name): CppUnit::TestCase(name)
+UTF8StringTest::UTF8StringTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -114,9 +114,9 @@ void UTF8StringTest::tearDown()
 }
 
 
-CppUnit::Test* UTF8StringTest::suite()
+Poco::CppUnit::Test* UTF8StringTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("UTF8StringTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("UTF8StringTest");
 
 	CppUnit_addTest(pSuite, UTF8StringTest, testCompare);
 	CppUnit_addTest(pSuite, UTF8StringTest, testTransform);

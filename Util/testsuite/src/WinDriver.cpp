@@ -14,11 +14,11 @@
 #include "UtilTestSuite.h"
 
 
-class TestDriver: public CppUnit::WinTestRunnerApp
+class TestDriver: public Poco::CppUnit::WinTestRunnerApp
 {
 	void TestMain()
 	{
-		CppUnit::WinTestRunner runner;
+		Poco::CppUnit::WinTestRunner runner;
 		runner.addTest(UtilTestSuite::suite());
 		runner.run();
 	}

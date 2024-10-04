@@ -14,8 +14,8 @@
 
 
 #include "LocalDateTimeTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/LocalDateTime.h"
 #include "Poco/DateTime.h"
 #include "Poco/Timestamp.h"
@@ -40,7 +40,7 @@ using std::strftime;
 #endif
 
 
-LocalDateTimeTest::LocalDateTimeTest(const std::string& name): CppUnit::TestCase(name)
+LocalDateTimeTest::LocalDateTimeTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -499,9 +499,9 @@ void LocalDateTimeTest::tearDown()
 }
 
 
-CppUnit::Test* LocalDateTimeTest::suite()
+Poco::CppUnit::Test* LocalDateTimeTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("LocalDateTimeTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("LocalDateTimeTest");
 
 	CppUnit_addTest(pSuite, LocalDateTimeTest, testGregorian1);
 	CppUnit_addTest(pSuite, LocalDateTimeTest, testGregorian2);

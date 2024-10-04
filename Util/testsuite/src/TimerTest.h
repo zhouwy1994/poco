@@ -15,12 +15,12 @@
 
 
 #include "Poco/Util/Util.h"
-#include "CppUnit/TestCase.h"
+#include "Poco/CppUnit/TestCase.h"
 #include "Poco/Util/TimerTask.h"
 #include "Poco/Event.h"
 
 
-class TimerTest: public CppUnit::TestCase
+class TimerTest: public Poco::CppUnit::TestCase
 {
 public:
 	TimerTest(const std::string& name);
@@ -43,7 +43,7 @@ public:
 
 	void onTimer(Poco::Util::TimerTask& task);
 
-	static CppUnit::Test* suite();
+	static Poco::CppUnit::Test* suite();
 
 private:
 	Poco::Event _event;

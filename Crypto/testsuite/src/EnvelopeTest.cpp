@@ -9,8 +9,8 @@
 
 
 #include "EnvelopeTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/Crypto/Envelope.h"
 #include "Poco/Crypto/EVPPKey.h"
 #include <iostream>
@@ -20,7 +20,7 @@ using Poco::Crypto::Envelope;
 using Poco::Crypto::EVPPKey;
 
 
-EnvelopeTest::EnvelopeTest(const std::string& name): CppUnit::TestCase(name)
+EnvelopeTest::EnvelopeTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -134,9 +134,9 @@ void EnvelopeTest::tearDown()
 }
 
 
-CppUnit::Test* EnvelopeTest::suite()
+Poco::CppUnit::Test* EnvelopeTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("EnvelopeTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("EnvelopeTest");
 
 	CppUnit_addTest(pSuite, EnvelopeTest, testOneKeyRSA);
 	CppUnit_addTest(pSuite, EnvelopeTest, testMultiKeyRSA);

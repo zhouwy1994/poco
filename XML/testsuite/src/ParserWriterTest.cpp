@@ -9,8 +9,8 @@
 
 
 #include "ParserWriterTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/DOM/DOMParser.h"
 #include "Poco/DOM/DOMWriter.h"
 #include "Poco/DOM/Document.h"
@@ -30,7 +30,7 @@ using Poco::XML::AutoPtr;
 using Poco::XML::InputSource;
 
 
-ParserWriterTest::ParserWriterTest(const std::string& name): CppUnit::TestCase(name)
+ParserWriterTest::ParserWriterTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -114,9 +114,9 @@ void ParserWriterTest::tearDown()
 }
 
 
-CppUnit::Test* ParserWriterTest::suite()
+Poco::CppUnit::Test* ParserWriterTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("ParserWriterTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("ParserWriterTest");
 
 	CppUnit_addTest(pSuite, ParserWriterTest, testParseWriteXHTML);
 	CppUnit_addTest(pSuite, ParserWriterTest, testParseWriteXHTML2);

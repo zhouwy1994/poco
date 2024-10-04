@@ -7,11 +7,12 @@
 #define CppUnit_estring_INCLUDED
 
 
-#include "CppUnit/CppUnit.h"
+#include "Poco/CppUnit/CppUnit.h"
 #include <string>
 #include <cstdio>
 
 
+namespace Poco {
 namespace CppUnit {
 
 
@@ -66,6 +67,7 @@ inline std::string estring(const void* ptr)
 
 
 } // namespace CppUnit
+} // namespace Poco
 
 
 #endif // CppUnit_estring_INCLUDED

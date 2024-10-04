@@ -15,10 +15,10 @@
 
 
 #include "Poco/Foundation.h"
-#include "CppUnit/TestCase.h"
+#include "Poco/CppUnit/TestCase.h"
 
 
-class StreamConverterTest: public CppUnit::TestCase
+class StreamConverterTest: public Poco::CppUnit::TestCase
 {
 public:
 	StreamConverterTest(const std::string& name);
@@ -38,7 +38,7 @@ public:
 	void setUp();
 	void tearDown();
 
-	static CppUnit::Test* suite();
+	static Poco::CppUnit::Test* suite();
 
 private:
 };

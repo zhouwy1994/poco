@@ -15,10 +15,10 @@
 
 
 #include "Poco/Foundation.h"
-#include "CppUnit/TestCase.h"
+#include "Poco/CppUnit/TestCase.h"
 
 
-class HMACEngineTest: public CppUnit::TestCase
+class HMACEngineTest: public Poco::CppUnit::TestCase
 {
 public:
 	HMACEngineTest(const std::string& name);
@@ -33,7 +33,7 @@ public:
 	void setUp();
 	void tearDown();
 
-	static CppUnit::Test* suite();
+	static Poco::CppUnit::Test* suite();
 
 private:
 };

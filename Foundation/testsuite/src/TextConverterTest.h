@@ -15,10 +15,10 @@
 
 
 #include "Poco/Foundation.h"
-#include "CppUnit/TestCase.h"
+#include "Poco/CppUnit/TestCase.h"
 
 
-class TextConverterTest: public CppUnit::TestCase
+class TextConverterTest: public Poco::CppUnit::TestCase
 {
 public:
 	TextConverterTest(const std::string& name);
@@ -38,7 +38,7 @@ public:
 	void setUp();
 	void tearDown();
 
-	static CppUnit::Test* suite();
+	static Poco::CppUnit::Test* suite();
 
 private:
 };

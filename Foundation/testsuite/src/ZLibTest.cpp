@@ -9,8 +9,8 @@
 
 
 #include "ZLibTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/InflatingStream.h"
 #include "Poco/DeflatingStream.h"
 #include "Poco/MemoryStream.h"
@@ -28,7 +28,7 @@ using Poco::DeflatingStreamBuf;
 using Poco::StreamCopier;
 
 
-ZLibTest::ZLibTest(const std::string& name): CppUnit::TestCase(name)
+ZLibTest::ZLibTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -185,9 +185,9 @@ void ZLibTest::tearDown()
 }
 
 
-CppUnit::Test* ZLibTest::suite()
+Poco::CppUnit::Test* ZLibTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("ZLibTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("ZLibTest");
 
 	CppUnit_addTest(pSuite, ZLibTest, testDeflate1);
 	CppUnit_addTest(pSuite, ZLibTest, testDeflate2);

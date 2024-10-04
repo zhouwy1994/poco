@@ -13,9 +13,9 @@
 #include "URIStreamOpenerTest.h"
 
 
-CppUnit::Test* URITestSuite::suite()
+Poco::CppUnit::Test* URITestSuite::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("URITestSuite");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("URITestSuite");
 
 	pSuite->addTest(URITest::suite());
 	pSuite->addTest(URIStreamOpenerTest::suite());

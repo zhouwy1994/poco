@@ -15,10 +15,10 @@
 
 #include "Poco/Foundation.h"
 #include "Poco/KeyValueArgs.h"
-#include "CppUnit/TestCase.h"
+#include "Poco/CppUnit/TestCase.h"
 
 
-class LRUCacheTest: public CppUnit::TestCase
+class LRUCacheTest: public Poco::CppUnit::TestCase
 {
 public:
 	LRUCacheTest(const std::string& name);
@@ -35,7 +35,7 @@ public:
 
 	void setUp();
 	void tearDown();
-	static CppUnit::Test* suite();
+	static Poco::CppUnit::Test* suite();
 
 private:
 	void onUpdate(const void* pSender, const Poco::KeyValueArgs<int, int>& args);

@@ -9,8 +9,8 @@
 
 
 #include "MD4EngineTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/MD4Engine.h"
 
 
@@ -18,7 +18,7 @@ using Poco::MD4Engine;
 using Poco::DigestEngine;
 
 
-MD4EngineTest::MD4EngineTest(const std::string& name): CppUnit::TestCase(name)
+MD4EngineTest::MD4EngineTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -68,9 +68,9 @@ void MD4EngineTest::tearDown()
 }
 
 
-CppUnit::Test* MD4EngineTest::suite()
+Poco::CppUnit::Test* MD4EngineTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("MD4EngineTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("MD4EngineTest");
 
 	CppUnit_addTest(pSuite, MD4EngineTest, testMD4);
 

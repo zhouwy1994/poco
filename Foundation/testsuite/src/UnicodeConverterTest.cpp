@@ -13,8 +13,8 @@
 
 #include "Poco/UnicodeConverter.h"
 #include "UnicodeConverterTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/UTFString.h"
 
 
@@ -25,7 +25,7 @@ using Poco::UTF32Char;
 using Poco::UTF32String;
 
 
-UnicodeConverterTest::UnicodeConverterTest(const std::string& name): CppUnit::TestCase(name)
+UnicodeConverterTest::UnicodeConverterTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -58,9 +58,9 @@ void UnicodeConverterTest::tearDown()
 }
 
 
-CppUnit::Test* UnicodeConverterTest::suite()
+Poco::CppUnit::Test* UnicodeConverterTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("UnicodeConverterTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("UnicodeConverterTest");
 
 	CppUnit_addTest(pSuite, UnicodeConverterTest, testUTF16);
 	CppUnit_addTest(pSuite, UnicodeConverterTest, testUTF32);

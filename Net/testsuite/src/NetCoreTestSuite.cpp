@@ -15,9 +15,9 @@
 #include "NetworkInterfaceTest.h"
 
 
-CppUnit::Test* NetCoreTestSuite::suite()
+Poco::CppUnit::Test* NetCoreTestSuite::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("NetCoreTestSuite");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("NetCoreTestSuite");
 
 	pSuite->addTest(IPAddressTest::suite());
 	pSuite->addTest(SocketAddressTest::suite());

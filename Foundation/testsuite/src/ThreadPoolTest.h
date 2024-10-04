@@ -15,12 +15,12 @@
 
 
 #include "Poco/Foundation.h"
-#include "CppUnit/TestCase.h"
+#include "Poco/CppUnit/TestCase.h"
 #include "Poco/Event.h"
 #include "Poco/Mutex.h"
 
 
-class ThreadPoolTest: public CppUnit::TestCase
+class ThreadPoolTest: public Poco::CppUnit::TestCase
 {
 public:
 	ThreadPoolTest(const std::string& name);
@@ -31,7 +31,7 @@ public:
 	void setUp();
 	void tearDown();
 
-	static CppUnit::Test* suite();
+	static Poco::CppUnit::Test* suite();
 
 protected:
 	void count();

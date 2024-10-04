@@ -24,9 +24,9 @@
 #include "EnvelopeTest.h"
 
 
-CppUnit::Test* CryptoTestSuite::suite()
+Poco::CppUnit::Test* CryptoTestSuite::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("CryptoTestSuite");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("CryptoTestSuite");
 
 	pSuite->addTest(CryptoTest::suite());
 	pSuite->addTest(RSATest::suite());

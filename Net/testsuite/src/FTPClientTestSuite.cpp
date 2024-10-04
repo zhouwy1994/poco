@@ -13,9 +13,9 @@
 #include "FTPStreamFactoryTest.h"
 
 
-CppUnit::Test* FTPClientTestSuite::suite()
+Poco::CppUnit::Test* FTPClientTestSuite::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("FTPClientTestSuite");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("FTPClientTestSuite");
 
 	pSuite->addTest(FTPClientSessionTest::suite());
 	pSuite->addTest(FTPStreamFactoryTest::suite());

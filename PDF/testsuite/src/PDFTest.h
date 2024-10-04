@@ -15,10 +15,10 @@
 
 
 #include "Poco/PDF/PDF.h"
-#include "CppUnit/TestCase.h"
+#include "Poco/CppUnit/TestCase.h"
 
 
-class PDFTest: public CppUnit::TestCase
+class PDFTest: public Poco::CppUnit::TestCase
 {
 public:
 	PDFTest(const std::string& name);
@@ -36,7 +36,7 @@ public:
 	void setUp();
 	void tearDown();
 
-	static CppUnit::Test* suite();
+	static Poco::CppUnit::Test* suite();
 };
 
 

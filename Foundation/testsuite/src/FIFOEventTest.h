@@ -15,12 +15,12 @@
 
 
 #include "Poco/Foundation.h"
-#include "CppUnit/TestCase.h"
+#include "Poco/CppUnit/TestCase.h"
 #include "Poco/FIFOEvent.h"
 #include "Poco/EventArgs.h"
 
 
-class FIFOEventTest: public CppUnit::TestCase
+class FIFOEventTest: public Poco::CppUnit::TestCase
 {
 	Poco::FIFOEvent<void> Void;
 	Poco::FIFOEvent<int> Simple;
@@ -48,7 +48,7 @@ public:
 
 	void setUp();
 	void tearDown();
-	static CppUnit::Test* suite();
+	static Poco::CppUnit::Test* suite();
 
 protected:
 	void onVoid(const void* pSender);

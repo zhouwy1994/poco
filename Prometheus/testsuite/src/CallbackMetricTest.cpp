@@ -9,8 +9,8 @@
 
 
 #include "CallbackMetricTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/Prometheus/CallbackMetric.h"
 #include "Poco/Prometheus/Registry.h"
 #include "Poco/Prometheus/TextExporter.h"
@@ -23,7 +23,7 @@ using namespace std::string_literals;
 
 
 CallbackMetricTest::CallbackMetricTest(const std::string& name):
-	CppUnit::TestCase("CallbackMetricTest"s)
+	Poco::CppUnit::TestCase("CallbackMetricTest"s)
 {
 }
 
@@ -69,9 +69,9 @@ void CallbackMetricTest::tearDown()
 }
 
 
-CppUnit::Test* CallbackMetricTest::suite()
+Poco::CppUnit::Test* CallbackMetricTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("CallbackMetricTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("CallbackMetricTest");
 
 	CppUnit_addTest(pSuite, CallbackMetricTest, testExport);
 

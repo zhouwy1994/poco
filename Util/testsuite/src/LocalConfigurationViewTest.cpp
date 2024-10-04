@@ -11,8 +11,8 @@
 
 #include <algorithm>
 
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/AutoPtr.h"
 #include "Poco/Exception.h"
 #include "Poco/Util/MapConfiguration.h"
@@ -104,8 +104,8 @@ void LocalConfigurationViewTest::setUp() {
 void LocalConfigurationViewTest::tearDown() {
 }
 
-CppUnit::Test* LocalConfigurationViewTest::suite() {
-    CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("LocalConfigurationViewTest");
+Poco::CppUnit::Test* LocalConfigurationViewTest::suite() {
+    Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("LocalConfigurationViewTest");
 
     AbstractConfigurationTest_addTests(pSuite, LocalConfigurationViewTest);
     CppUnit_addTest(pSuite, LocalConfigurationViewTest, testLocalView);

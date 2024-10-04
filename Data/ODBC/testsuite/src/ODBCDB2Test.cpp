@@ -9,8 +9,8 @@
 
 
 #include "ODBCDB2Test.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/String.h"
 #include "Poco/Format.h"
 #include "Poco/Any.h"
@@ -583,7 +583,7 @@ void ODBCDB2Test::recreateLogTable()
 }
 
 
-CppUnit::Test* ODBCDB2Test::suite()
+Poco::CppUnit::Test* ODBCDB2Test::suite()
 {
 	if ((_pSession = init(_driver, _dsn, _uid, _pwd, _connectString)))
 	{
@@ -591,7 +591,7 @@ CppUnit::Test* ODBCDB2Test::suite()
 
 		_pExecutor = new SQLExecutor(_driver + " SQL Executor", _pSession);
 
-		CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("ODBCDB2Test");
+		Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("ODBCDB2Test");
 
 		CppUnit_addTest(pSuite, ODBCDB2Test, testBareboneODBC);
 		CppUnit_addTest(pSuite, ODBCDB2Test, testZeroRows);

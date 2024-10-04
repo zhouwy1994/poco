@@ -9,8 +9,8 @@
 
 
 #include "ClockTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/Clock.h"
 #include "Poco/Thread.h"
 #include <iostream>
@@ -20,7 +20,7 @@ using Poco::Clock;
 using Poco::Thread;
 
 
-ClockTest::ClockTest(const std::string& name): CppUnit::TestCase(name)
+ClockTest::ClockTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -75,9 +75,9 @@ void ClockTest::tearDown()
 }
 
 
-CppUnit::Test* ClockTest::suite()
+Poco::CppUnit::Test* ClockTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("ClockTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("ClockTest");
 
 	CppUnit_addTest(pSuite, ClockTest, testClock);
 

@@ -9,8 +9,8 @@
 
 
 #include "NotificationCenterTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/NotificationCenter.h"
 #include "Poco/Observer.h"
 #include "Poco/NObserver.h"
@@ -29,7 +29,7 @@ class TestNotification: public Notification
 };
 
 
-NotificationCenterTest::NotificationCenterTest(const std::string& name): CppUnit::TestCase(name)
+NotificationCenterTest::NotificationCenterTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -208,9 +208,9 @@ void NotificationCenterTest::tearDown()
 }
 
 
-CppUnit::Test* NotificationCenterTest::suite()
+Poco::CppUnit::Test* NotificationCenterTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("NotificationCenterTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("NotificationCenterTest");
 
 	CppUnit_addTest(pSuite, NotificationCenterTest, test1);
 	CppUnit_addTest(pSuite, NotificationCenterTest, test2);

@@ -8,7 +8,7 @@
 //
 
 
-#include "CppUnit/TestCase.h"
+#include "Poco/CppUnit/TestCase.h"
 #include "SQLExecutor.h"
 #include "Poco/String.h"
 #include "Poco/Format.h"
@@ -297,7 +297,7 @@ const std::string SQLExecutor::MULTI_SELECT =
 
 
 SQLExecutor::SQLExecutor(const std::string& name, Poco::Data::Session* pSession, Poco::Data::Session* pEncSession):
-	CppUnit::TestCase(name),
+	Poco::CppUnit::TestCase(name),
 	_pSession(pSession),
 	_pEncSession(pEncSession)
 {

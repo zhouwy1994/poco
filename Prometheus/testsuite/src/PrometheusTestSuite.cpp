@@ -17,9 +17,9 @@
 #include "HistogramTest.h"
 
 
-CppUnit::Test* PrometheusTestSuite::suite()
+Poco::CppUnit::Test* PrometheusTestSuite::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("PrometheusTestSuite");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("PrometheusTestSuite");
 
 	pSuite->addTest(CounterTest::suite());
 	pSuite->addTest(GaugeTest::suite());

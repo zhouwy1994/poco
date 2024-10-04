@@ -9,8 +9,8 @@
 
 
 #include "SocketAddressTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/Net/SocketAddress.h"
 #include "Poco/Net/NetException.h"
 #include <iostream>
@@ -26,7 +26,7 @@ using Poco::Net::AddressFamilyMismatchException;
 using Poco::InvalidArgumentException;
 
 
-SocketAddressTest::SocketAddressTest(const std::string& name): CppUnit::TestCase(name)
+SocketAddressTest::SocketAddressTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -217,9 +217,9 @@ void SocketAddressTest::tearDown()
 }
 
 
-CppUnit::Test* SocketAddressTest::suite()
+Poco::CppUnit::Test* SocketAddressTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("SocketAddressTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("SocketAddressTest");
 
 	CppUnit_addTest(pSuite, SocketAddressTest, testSocketAddress);
 	CppUnit_addTest(pSuite, SocketAddressTest, testSocketRelationals);

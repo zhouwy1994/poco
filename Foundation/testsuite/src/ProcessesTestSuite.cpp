@@ -15,9 +15,9 @@
 #include "SharedMemoryTest.h"
 
 
-CppUnit::Test* ProcessesTestSuite::suite()
+Poco::CppUnit::Test* ProcessesTestSuite::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("ProcessesTestSuite");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("ProcessesTestSuite");
 
 	pSuite->addTest(ProcessTest::suite());
 	pSuite->addTest(NamedMutexTest::suite());

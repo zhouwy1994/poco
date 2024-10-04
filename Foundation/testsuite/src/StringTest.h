@@ -15,14 +15,14 @@
 
 
 #include "Poco/Foundation.h"
-#include "CppUnit/TestCase.h"
+#include "Poco/CppUnit/TestCase.h"
 #include "Poco/NumericString.h"
 #include "Poco/MemoryStream.h"
 #include "Poco/NumberFormatter.h"
 #include <limits>
 
 
-class StringTest: public CppUnit::TestCase
+class StringTest: public Poco::CppUnit::TestCase
 {
 public:
 	StringTest(const std::string& name);
@@ -68,7 +68,7 @@ public:
 	void setUp();
 	void tearDown();
 
-	static CppUnit::Test* suite();
+	static Poco::CppUnit::Test* suite();
 
 private:
 

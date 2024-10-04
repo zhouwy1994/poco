@@ -16,10 +16,10 @@
 
 #include "Poco/Foundation.h"
 #include "Poco/Path.h"
-#include "CppUnit/TestCase.h"
+#include "Poco/CppUnit/TestCase.h"
 
 
-class DirectoryIteratorsTest: public CppUnit::TestCase
+class DirectoryIteratorsTest: public Poco::CppUnit::TestCase
 {
 public:
 	DirectoryIteratorsTest(const std::string& name);
@@ -33,7 +33,7 @@ public:
 	void setUp();
 	void tearDown();
 
-	static CppUnit::Test* suite();
+	static Poco::CppUnit::Test* suite();
 
 protected:
 	Poco::Path path() const;

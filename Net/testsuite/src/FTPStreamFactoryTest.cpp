@@ -9,8 +9,8 @@
 
 
 #include "FTPStreamFactoryTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "DialogServer.h"
 #include "Poco/Net/FTPStreamFactory.h"
 #include "Poco/Net/DialogSocket.h"
@@ -44,7 +44,7 @@ namespace
 }
 
 
-FTPStreamFactoryTest::FTPStreamFactoryTest(const std::string& name): CppUnit::TestCase(name)
+FTPStreamFactoryTest::FTPStreamFactoryTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -242,9 +242,9 @@ void FTPStreamFactoryTest::tearDown()
 }
 
 
-CppUnit::Test* FTPStreamFactoryTest::suite()
+Poco::CppUnit::Test* FTPStreamFactoryTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("FTPStreamFactoryTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("FTPStreamFactoryTest");
 
 	CppUnit_addTest(pSuite, FTPStreamFactoryTest, testDownload);
 	CppUnit_addTest(pSuite, FTPStreamFactoryTest, testList);

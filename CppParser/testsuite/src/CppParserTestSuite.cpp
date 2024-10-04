@@ -13,9 +13,9 @@
 #include "CppParserTest.h"
 
 
-CppUnit::Test* CppParserTestSuite::suite()
+Poco::CppUnit::Test* CppParserTestSuite::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("CppParserTestSuite");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("CppParserTestSuite");
 
 	pSuite->addTest(AttributesTestSuite::suite());
 	pSuite->addTest(CppParserTest::suite());

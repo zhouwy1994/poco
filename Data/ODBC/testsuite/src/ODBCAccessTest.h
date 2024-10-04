@@ -18,11 +18,11 @@
 #include "Poco/Data/Session.h"
 #include "Poco/Data/ODBC/Utility.h"
 #include "Poco/SharedPtr.h"
-#include "CppUnit/TestCase.h"
+#include "Poco/CppUnit/TestCase.h"
 #include "SQLExecutor.h"
 
 
-class ODBCAccessTest: public CppUnit::TestCase
+class ODBCAccessTest: public Poco::CppUnit::TestCase
 	/// MS Access ODBC test class
 	/// Tested:
 	///
@@ -39,7 +39,7 @@ public:
 	void setUp();
 	void tearDown();
 
-	static CppUnit::Test* suite();
+	static Poco::CppUnit::Test* suite();
 
 private:
 	void dropTable(const std::string& tableName);

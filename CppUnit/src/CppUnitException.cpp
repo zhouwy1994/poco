@@ -3,9 +3,10 @@
 //
 
 
-#include "CppUnit/CppUnitException.h"
+#include "Poco/CppUnit/CppUnitException.h"
 
 
+namespace Poco {
 namespace CppUnit {
 
 
@@ -14,3 +15,4 @@ const int CppUnitException::CPPUNIT_UNKNOWNLINENUMBER = -1;
 
 
 } // namespace CppUnit
+} // namespace Poco

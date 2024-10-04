@@ -15,12 +15,12 @@
 
 
 #include "Poco/Foundation.h"
-#include "CppUnit/TestCase.h"
+#include "Poco/CppUnit/TestCase.h"
 #include "Poco/PriorityEvent.h"
 #include "Poco/EventArgs.h"
 
 
-class PriorityEventTest: public CppUnit::TestCase
+class PriorityEventTest: public Poco::CppUnit::TestCase
 {
 	Poco::PriorityEvent<void> Void;
 	Poco::PriorityEvent<int> Simple;
@@ -48,7 +48,7 @@ public:
 
 	void setUp();
 	void tearDown();
-	static CppUnit::Test* suite();
+	static Poco::CppUnit::Test* suite();
 
 protected:
 	static void onStaticVoid(const void* pSender);

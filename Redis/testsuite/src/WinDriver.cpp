@@ -14,11 +14,11 @@
 #include "RedisTestSuite.h"
 
 
-class TestDriver: public CppUnit::WinTestRunnerApp
+class TestDriver: public Poco::CppUnit::WinTestRunnerApp
 {
 	void TestMain()
 	{
-		CppUnit::WinTestRunner runner;
+		Poco::CppUnit::WinTestRunner runner;
 		runner.addTest(RedisTestSuite::suite());
 		runner.run();
 	}

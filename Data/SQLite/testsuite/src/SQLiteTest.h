@@ -15,7 +15,7 @@
 
 
 #include "Poco/Data/SQLite/SQLite.h"
-#include "CppUnit/TestCase.h"
+#include "Poco/CppUnit/TestCase.h"
 
 
 namespace Poco {
@@ -26,7 +26,7 @@ class Session;
 } }
 
 
-class SQLiteTest: public CppUnit::TestCase
+class SQLiteTest: public Poco::CppUnit::TestCase
 {
 public:
 	SQLiteTest(const std::string& name);
@@ -153,7 +153,7 @@ public:
 	void onCommit(const void* pSender);
 	void onRollback(const void* pSender);
 
-	static CppUnit::Test* suite();
+	static Poco::CppUnit::Test* suite();
 
 private:
 	void setTransactionIsolation(Poco::Data::Session& session, Poco::UInt32 ti);

@@ -9,8 +9,8 @@
 
 
 #include "WebSocketTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/Net/WebSocket.h"
 #include "Poco/Net/SocketStream.h"
 #include "Poco/Net/HTTPSClientSession.h"
@@ -101,7 +101,7 @@ namespace
 }
 
 
-WebSocketTest::WebSocketTest(const std::string& name): CppUnit::TestCase(name)
+WebSocketTest::WebSocketTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -222,9 +222,9 @@ void WebSocketTest::tearDown()
 }
 
 
-CppUnit::Test* WebSocketTest::suite()
+Poco::CppUnit::Test* WebSocketTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("WebSocketTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("WebSocketTest");
 
 	CppUnit_addTest(pSuite, WebSocketTest, testWebSocket);
 	CppUnit_addTest(pSuite, WebSocketTest, testWebSocketLarge);

@@ -9,8 +9,8 @@
 
 
 #include "ActiveRecordTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/ActiveRecord/Context.h"
 #include "Poco/ActiveRecord/Query.h"
 #include "Poco/Data/SQLite/Connector.h"
@@ -32,7 +32,7 @@ const std::string ActiveRecordTest::CONNECTOR("SQLite");
 const std::string ActiveRecordTest::CONNECTION_STRING("ORM.sqlite");
 
 
-ActiveRecordTest::ActiveRecordTest(const std::string& name): CppUnit::TestCase(name)
+ActiveRecordTest::ActiveRecordTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -313,9 +313,9 @@ void ActiveRecordTest::createRoles(Poco::ActiveRecord::Context::Ptr pContext)
 }
 
 
-CppUnit::Test* ActiveRecordTest::suite()
+Poco::CppUnit::Test* ActiveRecordTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("ActiveRecordTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("ActiveRecordTest");
 
 	CppUnit_addTest(pSuite, ActiveRecordTest, testInsert);
 	CppUnit_addTest(pSuite, ActiveRecordTest, testFind);

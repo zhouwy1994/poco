@@ -14,10 +14,10 @@
 #define CallbackMetricTest_INCLUDED
 
 
-#include "CppUnit/TestCase.h"
+#include "Poco/CppUnit/TestCase.h"
 
 
-class CallbackMetricTest: public CppUnit::TestCase
+class CallbackMetricTest: public Poco::CppUnit::TestCase
 {
 public:
 	CallbackMetricTest(const std::string& name);
@@ -28,7 +28,7 @@ public:
 	void setUp();
 	void tearDown();
 
-	static CppUnit::Test* suite();
+	static Poco::CppUnit::Test* suite();
 };
 
 

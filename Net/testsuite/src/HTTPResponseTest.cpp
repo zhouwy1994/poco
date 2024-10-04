@@ -9,8 +9,8 @@
 
 
 #include "HTTPResponseTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/Net/HTTPResponse.h"
 #include "Poco/Net/HTTPCookie.h"
 #include "Poco/Net/NetException.h"
@@ -23,7 +23,7 @@ using Poco::Net::HTTPCookie;
 using Poco::Net::MessageException;
 
 
-HTTPResponseTest::HTTPResponseTest(const std::string& name): CppUnit::TestCase(name)
+HTTPResponseTest::HTTPResponseTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -211,9 +211,9 @@ void HTTPResponseTest::tearDown()
 }
 
 
-CppUnit::Test* HTTPResponseTest::suite()
+Poco::CppUnit::Test* HTTPResponseTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("HTTPResponseTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("HTTPResponseTest");
 
 	CppUnit_addTest(pSuite, HTTPResponseTest, testWrite1);
 	CppUnit_addTest(pSuite, HTTPResponseTest, testWrite2);

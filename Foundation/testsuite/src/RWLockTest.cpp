@@ -9,8 +9,8 @@
 
 
 #include "RWLockTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/RWLock.h"
 #include "Poco/Thread.h"
 #include "Poco/Runnable.h"
@@ -138,7 +138,7 @@ private:
 };
 
 
-RWLockTest::RWLockTest(const std::string& name): CppUnit::TestCase(name)
+RWLockTest::RWLockTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -224,9 +224,9 @@ void RWLockTest::tearDown()
 }
 
 
-CppUnit::Test* RWLockTest::suite()
+Poco::CppUnit::Test* RWLockTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("RWLockTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("RWLockTest");
 
 	CppUnit_addLongTest(pSuite, RWLockTest, testLock);
 	CppUnit_addLongTest(pSuite, RWLockTest, testTryLock);

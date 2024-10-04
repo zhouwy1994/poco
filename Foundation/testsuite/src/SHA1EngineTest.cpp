@@ -9,8 +9,8 @@
 
 
 #include "SHA1EngineTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/SHA1Engine.h"
 
 
@@ -18,7 +18,7 @@ using Poco::SHA1Engine;
 using Poco::DigestEngine;
 
 
-SHA1EngineTest::SHA1EngineTest(const std::string& name): CppUnit::TestCase(name)
+SHA1EngineTest::SHA1EngineTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -56,9 +56,9 @@ void SHA1EngineTest::tearDown()
 }
 
 
-CppUnit::Test* SHA1EngineTest::suite()
+Poco::CppUnit::Test* SHA1EngineTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("SHA1EngineTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("SHA1EngineTest");
 
 	CppUnit_addTest(pSuite, SHA1EngineTest, testSHA1);
 

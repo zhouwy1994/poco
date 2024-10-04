@@ -15,7 +15,7 @@
 
 
 #include "Poco/Data/ODBC/ODBC.h"
-#include "CppUnit/TestCase.h"
+#include "Poco/CppUnit/TestCase.h"
 #include "Poco/Data/Session.h"
 #include "Poco/Data/ODBC/Utility.h"
 #include "Poco/SharedPtr.h"
@@ -26,7 +26,7 @@
 #define POCO_ODBC_TEST_DATABASE_SERVER "localhost"
 
 
-class ODBCTest: public CppUnit::TestCase
+class ODBCTest: public Poco::CppUnit::TestCase
 {
 public:
 	typedef Poco::SharedPtr<Poco::Data::Session> SessionPtr;

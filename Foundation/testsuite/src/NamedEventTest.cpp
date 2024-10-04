@@ -9,8 +9,8 @@
 
 
 #include "NamedEventTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/NamedEvent.h"
 #include "Poco/Thread.h"
 #include "Poco/Runnable.h"
@@ -49,7 +49,7 @@ namespace
 }
 
 
-NamedEventTest::NamedEventTest(const std::string& name): CppUnit::TestCase(name)
+NamedEventTest::NamedEventTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -111,9 +111,9 @@ void NamedEventTest::tearDown()
 }
 
 
-CppUnit::Test* NamedEventTest::suite()
+Poco::CppUnit::Test* NamedEventTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("NamedEventTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("NamedEventTest");
 
 	CppUnit_addTest(pSuite, NamedEventTest, testNamedEvent);
 

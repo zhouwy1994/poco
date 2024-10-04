@@ -9,8 +9,8 @@
 
 
 #include "NotificationQueueTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/NotificationQueue.h"
 #include "Poco/Notification.h"
 #include "Poco/Thread.h"
@@ -47,7 +47,7 @@ namespace
 }
 
 
-NotificationQueueTest::NotificationQueueTest(const std::string& name): CppUnit::TestCase(name)
+NotificationQueueTest::NotificationQueueTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -216,9 +216,9 @@ void NotificationQueueTest::work()
 }
 
 
-CppUnit::Test* NotificationQueueTest::suite()
+Poco::CppUnit::Test* NotificationQueueTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("NotificationQueueTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("NotificationQueueTest");
 
 	CppUnit_addTest(pSuite, NotificationQueueTest, testQueueDequeue);
 	CppUnit_addTest(pSuite, NotificationQueueTest, testQueueDequeueUrgent);

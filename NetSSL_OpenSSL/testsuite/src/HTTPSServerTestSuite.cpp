@@ -12,9 +12,9 @@
 #include "HTTPSServerTest.h"
 
 
-CppUnit::Test* HTTPSServerTestSuite::suite()
+Poco::CppUnit::Test* HTTPSServerTestSuite::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("HTTPSServerTestSuite");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("HTTPSServerTestSuite");
 
 	pSuite->addTest(HTTPSServerTest::suite());
 

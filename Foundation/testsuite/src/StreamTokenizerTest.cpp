@@ -9,8 +9,8 @@
 
 
 #include "StreamTokenizerTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/StreamTokenizer.h"
 #include "Poco/Token.h"
 #include "Poco/Ascii.h"
@@ -103,7 +103,7 @@ public:
 };
 
 
-StreamTokenizerTest::StreamTokenizerTest(const std::string& name): CppUnit::TestCase(name)
+StreamTokenizerTest::StreamTokenizerTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -273,9 +273,9 @@ void StreamTokenizerTest::tearDown()
 }
 
 
-CppUnit::Test* StreamTokenizerTest::suite()
+Poco::CppUnit::Test* StreamTokenizerTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("StreamTokenizerTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("StreamTokenizerTest");
 
 	CppUnit_addTest(pSuite, StreamTokenizerTest, testTokenizer1);
 	CppUnit_addTest(pSuite, StreamTokenizerTest, testTokenizer2);

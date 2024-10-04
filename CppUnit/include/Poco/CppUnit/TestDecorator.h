@@ -7,11 +7,12 @@
 #define CppUnit_TestDecorator_INCLUDED
 
 
-#include "CppUnit/CppUnit.h"
-#include "CppUnit/Guards.h"
-#include "CppUnit/Test.h"
+#include "Poco/CppUnit/CppUnit.h"
+#include "Poco/CppUnit/Guards.h"
+#include "Poco/CppUnit/Test.h"
 
 
+namespace Poco {
 namespace CppUnit {
 
 
@@ -45,6 +46,7 @@ protected:
 
 
 } // namespace CppUnit
+} // namespace Poco
 
 
 #endif // CppUnit_TestDecorator_INCLUDED

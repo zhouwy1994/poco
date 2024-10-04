@@ -9,8 +9,8 @@
 
 
 #include "TCPServerTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/Net/TCPServer.h"
 #include "Poco/Net/TCPServerConnection.h"
 #include "Poco/Net/TCPServerConnectionFactory.h"
@@ -73,7 +73,7 @@ namespace
 }
 
 
-TCPServerTest::TCPServerTest(const std::string& name): CppUnit::TestCase(name)
+TCPServerTest::TCPServerTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -379,9 +379,9 @@ void TCPServerTest::tearDown()
 }
 
 
-CppUnit::Test* TCPServerTest::suite()
+Poco::CppUnit::Test* TCPServerTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("TCPServerTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("TCPServerTest");
 
 	CppUnit_addTest(pSuite, TCPServerTest, testOneConnection);
 	CppUnit_addTest(pSuite, TCPServerTest, testTwoConnections);

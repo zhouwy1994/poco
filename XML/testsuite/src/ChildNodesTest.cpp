@@ -9,8 +9,8 @@
 
 
 #include "ChildNodesTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/DOM/Document.h"
 #include "Poco/DOM/Element.h"
 #include "Poco/DOM/NodeList.h"
@@ -24,7 +24,7 @@ using Poco::XML::Node;
 using Poco::XML::AutoPtr;
 
 
-ChildNodesTest::ChildNodesTest(const std::string& name): CppUnit::TestCase(name)
+ChildNodesTest::ChildNodesTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -92,9 +92,9 @@ void ChildNodesTest::tearDown()
 }
 
 
-CppUnit::Test* ChildNodesTest::suite()
+Poco::CppUnit::Test* ChildNodesTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("ChildNodesTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("ChildNodesTest");
 
 	CppUnit_addTest(pSuite, ChildNodesTest, testChildNodes);
 

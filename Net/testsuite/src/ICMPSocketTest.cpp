@@ -9,8 +9,8 @@
 
 
 #include "ICMPSocketTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "UDPEchoServer.h"
 #include "Poco/Net/ICMPSocket.h"
 #include "Poco/Net/ICMPPacketImpl.h"
@@ -36,7 +36,7 @@ using Poco::Exception;
 using Poco::TimeoutException;
 
 
-ICMPSocketTest::ICMPSocketTest(const std::string& name): CppUnit::TestCase(name)
+ICMPSocketTest::ICMPSocketTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -112,9 +112,9 @@ void ICMPSocketTest::tearDown()
 }
 
 
-CppUnit::Test* ICMPSocketTest::suite()
+Poco::CppUnit::Test* ICMPSocketTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("ICMPSocketTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("ICMPSocketTest");
 
 	CppUnit_addTest(pSuite, ICMPSocketTest, testSendToReceiveFrom);
 	CppUnit_addTest(pSuite, ICMPSocketTest, testAssign);

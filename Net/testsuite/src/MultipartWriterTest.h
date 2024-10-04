@@ -15,10 +15,10 @@
 
 
 #include "Poco/Net/Net.h"
-#include "CppUnit/TestCase.h"
+#include "Poco/CppUnit/TestCase.h"
 
 
-class MultipartWriterTest: public CppUnit::TestCase
+class MultipartWriterTest: public Poco::CppUnit::TestCase
 {
 public:
 	MultipartWriterTest(const std::string& name);
@@ -31,7 +31,7 @@ public:
 	void setUp();
 	void tearDown();
 
-	static CppUnit::Test* suite();
+	static Poco::CppUnit::Test* suite();
 
 private:
 };

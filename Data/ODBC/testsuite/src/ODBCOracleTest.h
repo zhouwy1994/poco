@@ -47,7 +47,7 @@ public:
 	void testAutoTransaction();
 
 	void testNull();
-	static CppUnit::Test* suite();
+	static Poco::CppUnit::Test* suite();
 
 private:
 	static void testBarebone();

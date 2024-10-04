@@ -9,8 +9,8 @@
 
 
 #include "LinearHashTableTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/LinearHashTable.h"
 #include "Poco/HashTable.h"
 #include "Poco/Stopwatch.h"
@@ -26,7 +26,7 @@ using Poco::Stopwatch;
 using Poco::NumberFormatter;
 
 
-LinearHashTableTest::LinearHashTableTest(const std::string& name): CppUnit::TestCase(name)
+LinearHashTableTest::LinearHashTableTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -341,9 +341,9 @@ void LinearHashTableTest::tearDown()
 }
 
 
-CppUnit::Test* LinearHashTableTest::suite()
+Poco::CppUnit::Test* LinearHashTableTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("LinearHashTableTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("LinearHashTableTest");
 
 	CppUnit_addTest(pSuite, LinearHashTableTest, testInsert);
 	CppUnit_addTest(pSuite, LinearHashTableTest, testErase);

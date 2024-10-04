@@ -13,9 +13,9 @@
 #define StringTokenizerTest_INCLUDED
 
 #include "Poco/Foundation.h"
-#include "CppUnit/TestCase.h"
+#include "Poco/CppUnit/TestCase.h"
 
-class StringTokenizerTest: public CppUnit::TestCase
+class StringTokenizerTest: public Poco::CppUnit::TestCase
 {
 public:
 	StringTokenizerTest(const std::string& name);
@@ -27,7 +27,7 @@ public:
 	void setUp();
 	void tearDown();
 
-	static CppUnit::Test* suite();
+	static Poco::CppUnit::Test* suite();
 
 private:
 };

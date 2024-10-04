@@ -15,8 +15,8 @@
 #include "Poco/Zip/ZipManipulator.h"
 #include "Poco/File.h"
 #include "Poco/FileStream.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include <iostream>
 #undef min
 #include <algorithm>
@@ -25,7 +25,7 @@
 using namespace Poco::Zip;
 
 
-CompressTest::CompressTest(const std::string& name): CppUnit::TestCase(name)
+CompressTest::CompressTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -205,9 +205,9 @@ void CompressTest::tearDown()
 }
 
 
-CppUnit::Test* CompressTest::suite()
+Poco::CppUnit::Test* CompressTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("CompressTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("CompressTest");
 
 	CppUnit_addTest(pSuite, CompressTest, testSingleFile);
 	CppUnit_addTest(pSuite, CompressTest, testDirectory);

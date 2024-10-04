@@ -9,8 +9,8 @@
 
 
 #include "FileTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/File.h"
 #include "Poco/TemporaryFile.h"
 #include "Poco/Path.h"
@@ -28,7 +28,7 @@ using Poco::Timestamp;
 using Poco::Thread;
 
 
-FileTest::FileTest(const std::string& name): CppUnit::TestCase(name)
+FileTest::FileTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -664,9 +664,9 @@ void FileTest::tearDown()
 }
 
 
-CppUnit::Test* FileTest::suite()
+Poco::CppUnit::Test* FileTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("FileTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("FileTest");
 
 	CppUnit_addTest(pSuite, FileTest, testCreateFile);
 	CppUnit_addTest(pSuite, FileTest, testFileAttributes1);

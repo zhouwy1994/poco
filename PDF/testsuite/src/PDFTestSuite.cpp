@@ -12,9 +12,9 @@
 #include "PDFTest.h"
 
 
-CppUnit::Test* PDFTestSuite::suite()
+Poco::CppUnit::Test* PDFTestSuite::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("PDFTestSuite");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("PDFTestSuite");
 
 	pSuite->addTest(PDFTest::suite());
 

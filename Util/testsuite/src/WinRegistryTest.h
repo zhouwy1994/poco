@@ -15,10 +15,10 @@
 
 
 #include "Poco/Util/Util.h"
-#include "CppUnit/TestCase.h"
+#include "Poco/CppUnit/TestCase.h"
 
 
-class WinRegistryTest: public CppUnit::TestCase
+class WinRegistryTest: public Poco::CppUnit::TestCase
 {
 public:
 	WinRegistryTest(const std::string& name);
@@ -29,7 +29,7 @@ public:
 	void setUp();
 	void tearDown();
 
-	static CppUnit::Test* suite();
+	static Poco::CppUnit::Test* suite();
 
 private:
 };

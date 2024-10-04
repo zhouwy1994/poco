@@ -15,10 +15,10 @@
 
 
 #include "Poco/Foundation.h"
-#include "CppUnit/TestCase.h"
+#include "Poco/CppUnit/TestCase.h"
 
 
-class URIStreamOpenerTest: public CppUnit::TestCase
+class URIStreamOpenerTest: public Poco::CppUnit::TestCase
 {
 public:
 	URIStreamOpenerTest(const std::string& name);
@@ -35,7 +35,7 @@ public:
 	void setUp();
 	void tearDown();
 
-	static CppUnit::Test* suite();
+	static Poco::CppUnit::Test* suite();
 
 private:
 };

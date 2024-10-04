@@ -15,13 +15,13 @@
 #include "Poco/Data/ODBC/Connector.h"
 
 
-class TestDriver: public CppUnit::WinTestRunnerApp
+class TestDriver: public Poco::CppUnit::WinTestRunnerApp
 {
 	void TestMain()
 	{
 		Poco::Data::ODBC::Connector::registerConnector();
 
-		CppUnit::WinTestRunner runner;
+		Poco::CppUnit::WinTestRunner runner;
 		runner.addTest(ODBCTestSuite::suite());
 		runner.run();
 	}

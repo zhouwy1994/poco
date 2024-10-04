@@ -9,8 +9,8 @@
 
 
 #include "Base64Test.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/Base64Encoder.h"
 #include "Poco/Base64Decoder.h"
 #include "Poco/Exception.h"
@@ -22,7 +22,7 @@ using Poco::Base64Decoder;
 using Poco::DataFormatException;
 
 
-Base64Test::Base64Test(const std::string& name): CppUnit::TestCase(name)
+Base64Test::Base64Test(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -353,9 +353,9 @@ void Base64Test::tearDown()
 }
 
 
-CppUnit::Test* Base64Test::suite()
+Poco::CppUnit::Test* Base64Test::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("Base64Test");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("Base64Test");
 
 	CppUnit_addTest(pSuite, Base64Test, testEncoder);
 	CppUnit_addTest(pSuite, Base64Test, testEncoderURL);

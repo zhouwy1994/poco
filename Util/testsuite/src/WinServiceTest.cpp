@@ -1,12 +1,12 @@
 #include "WinServiceTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 
 
 using Poco::Util::WinService;
 
 
-WinServiceTest::WinServiceTest(const std::string& name) : CppUnit::TestCase(name)
+WinServiceTest::WinServiceTest(const std::string& name) : Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -72,8 +72,8 @@ void WinServiceTest::tearDown()
 }
 
 
-CppUnit::Test* WinServiceTest::suite() {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("WinServiceTest");
+Poco::CppUnit::Test* WinServiceTest::suite() {
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("WinServiceTest");
 
 	CppUnit_addTest(pSuite, WinServiceTest, testServiceCouldCreatedWithExistingConnection);
 	CppUnit_addTest(pSuite, WinServiceTest, testServiceReturnsTrueIfStopped);

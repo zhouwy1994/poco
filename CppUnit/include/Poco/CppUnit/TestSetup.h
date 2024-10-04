@@ -7,11 +7,12 @@
 #define CppUnit_TestSetup_INCLUDED
 
 
-#include "CppUnit/CppUnit.h"
-#include "CppUnit/Guards.h"
-#include "CppUnit/TestDecorator.h"
+#include "Poco/CppUnit/CppUnit.h"
+#include "Poco/CppUnit/Guards.h"
+#include "Poco/CppUnit/TestDecorator.h"
 
 
+namespace Poco {
 namespace CppUnit {
 
 
@@ -50,6 +51,7 @@ inline void TestSetup::run(TestResult* result)
 
 
 } // namespace CppUnit
+} // namespace Poco
 
 
 #endif // CppUnit_TestSetup_INCLUDED

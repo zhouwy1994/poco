@@ -9,8 +9,8 @@
 
 
 #include "TreeWalkerTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/DOM/TreeWalker.h"
 #include "Poco/DOM/NodeFilter.h"
 #include "Poco/DOM/Document.h"
@@ -55,7 +55,7 @@ namespace
 }
 
 
-TreeWalkerTest::TreeWalkerTest(const std::string& name): CppUnit::TestCase(name)
+TreeWalkerTest::TreeWalkerTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -294,9 +294,9 @@ void TreeWalkerTest::tearDown()
 }
 
 
-CppUnit::Test* TreeWalkerTest::suite()
+Poco::CppUnit::Test* TreeWalkerTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("TreeWalkerTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("TreeWalkerTest");
 
 	CppUnit_addTest(pSuite, TreeWalkerTest, testShowAll);
 	CppUnit_addTest(pSuite, TreeWalkerTest, testShowElements);

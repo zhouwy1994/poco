@@ -9,8 +9,8 @@
 
 
 #include "SocketStreamTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "EchoServer.h"
 #include "Poco/Net/SocketStream.h"
 #include "Poco/Net/StreamSocket.h"
@@ -33,7 +33,7 @@ using Poco::TimeoutException;
 using Poco::InvalidArgumentException;
 
 
-SocketStreamTest::SocketStreamTest(const std::string& name): CppUnit::TestCase(name)
+SocketStreamTest::SocketStreamTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -130,9 +130,9 @@ void SocketStreamTest::tearDown()
 }
 
 
-CppUnit::Test* SocketStreamTest::suite()
+Poco::CppUnit::Test* SocketStreamTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("SocketStreamTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("SocketStreamTest");
 
 	CppUnit_addTest(pSuite, SocketStreamTest, testStreamEcho);
 	CppUnit_addTest(pSuite, SocketStreamTest, testLargeStreamEcho);

@@ -12,9 +12,9 @@
 #include "JSONTest.h"
 
 
-CppUnit::Test* JSONTestSuite::suite()
+Poco::CppUnit::Test* JSONTestSuite::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("JSONTestSuite");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("JSONTestSuite");
 
 	pSuite->addTest(JSONTest::suite());
 

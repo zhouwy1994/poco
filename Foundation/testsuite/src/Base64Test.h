@@ -15,10 +15,10 @@
 
 
 #include "Poco/Foundation.h"
-#include "CppUnit/TestCase.h"
+#include "Poco/CppUnit/TestCase.h"
 
 
-class Base64Test: public CppUnit::TestCase
+class Base64Test: public Poco::CppUnit::TestCase
 {
 public:
 	Base64Test(const std::string& name);
@@ -35,7 +35,7 @@ public:
 	void setUp();
 	void tearDown();
 
-	static CppUnit::Test* suite();
+	static Poco::CppUnit::Test* suite();
 
 private:
 };

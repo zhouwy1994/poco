@@ -9,8 +9,8 @@
 
 
 #include "AutoPtrTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/AutoPtr.h"
 #include "Poco/Exception.h"
 #include <atomic>
@@ -75,7 +75,7 @@ namespace
 }
 
 
-AutoPtrTest::AutoPtrTest(const std::string& name): CppUnit::TestCase(name)
+AutoPtrTest::AutoPtrTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -209,9 +209,9 @@ void AutoPtrTest::tearDown()
 }
 
 
-CppUnit::Test* AutoPtrTest::suite()
+Poco::CppUnit::Test* AutoPtrTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("AutoPtrTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("AutoPtrTest");
 
 	CppUnit_addTest(pSuite, AutoPtrTest, testAutoPtr);
 	CppUnit_addTest(pSuite, AutoPtrTest, testOps);

@@ -9,8 +9,8 @@
 
 
 #include "ActivityTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/Activity.h"
 #include "Poco/Thread.h"
 
@@ -58,7 +58,7 @@ namespace
 }
 
 
-ActivityTest::ActivityTest(const std::string& name): CppUnit::TestCase(name)
+ActivityTest::ActivityTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -92,9 +92,9 @@ void ActivityTest::tearDown()
 }
 
 
-CppUnit::Test* ActivityTest::suite()
+Poco::CppUnit::Test* ActivityTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("ActivityTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("ActivityTest");
 
 	CppUnit_addTest(pSuite, ActivityTest, testActivity);
 

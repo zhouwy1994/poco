@@ -7,12 +7,13 @@
 #define CppUnit_TextTestResult_INCLUDED
 
 
-#include "CppUnit/CppUnit.h"
-#include "CppUnit/TestResult.h"
+#include "Poco/CppUnit/CppUnit.h"
+#include "Poco/CppUnit/TestResult.h"
 #include <set>
 #include <ostream>
 
 
+namespace Poco {
 namespace CppUnit {
 
 
@@ -52,6 +53,7 @@ inline std::ostream& operator<< (std::ostream& stream, TextTestResult& result)
 
 
 } // namespace CppUnit
+} // namespace Poco
 
 
 #endif // CppUnit_TextTestResult_INCLUDED

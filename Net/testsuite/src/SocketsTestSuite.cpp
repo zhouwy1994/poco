@@ -19,9 +19,9 @@
 #include "SocketProactorTest.h"
 
 
-CppUnit::Test* SocketsTestSuite::suite()
+Poco::CppUnit::Test* SocketsTestSuite::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("SocketsTestSuite");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("SocketsTestSuite");
 
 	pSuite->addTest(SocketTest::suite());
 	pSuite->addTest(SocketStreamTest::suite());

@@ -15,7 +15,7 @@
 
 
 #include "Poco/Foundation.h"
-#include "CppUnit/TestCase.h"
+#include "Poco/CppUnit/TestCase.h"
 #include "Poco/Notification.h"
 #include "Poco/AutoPtr.h"
 #include <set>
@@ -24,7 +24,7 @@
 class TestNotification;
 
 
-class NotificationCenterTest: public CppUnit::TestCase
+class NotificationCenterTest: public Poco::CppUnit::TestCase
 {
 public:
 	NotificationCenterTest(const std::string& name);
@@ -41,7 +41,7 @@ public:
 	void setUp();
 	void tearDown();
 
-	static CppUnit::Test* suite();
+	static Poco::CppUnit::Test* suite();
 
 protected:
 	void handle1(Poco::Notification* pNf);

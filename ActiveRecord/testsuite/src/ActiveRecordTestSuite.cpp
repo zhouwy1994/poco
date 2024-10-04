@@ -12,9 +12,9 @@
 #include "ActiveRecordTest.h"
 
 
-CppUnit::Test* ActiveRecordTestSuite::suite()
+Poco::CppUnit::Test* ActiveRecordTestSuite::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("ActiveRecordTestSuite");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("ActiveRecordTestSuite");
 
 	pSuite->addTest(ActiveRecordTest::suite());
 

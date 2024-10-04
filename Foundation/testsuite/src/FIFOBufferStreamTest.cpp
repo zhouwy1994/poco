@@ -9,8 +9,8 @@
 
 
 #include "FIFOBufferStreamTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/FIFOBuffer.h"
 #include "Poco/FIFOBufferStream.h"
 #include "Poco/Delegate.h"
@@ -21,7 +21,7 @@ using Poco::FIFOBufferStream;
 using Poco::delegate;
 
 
-FIFOBufferStreamTest::FIFOBufferStreamTest(const std::string& name): CppUnit::TestCase(name)
+FIFOBufferStreamTest::FIFOBufferStreamTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -190,9 +190,9 @@ void FIFOBufferStreamTest::tearDown()
 }
 
 
-CppUnit::Test* FIFOBufferStreamTest::suite()
+Poco::CppUnit::Test* FIFOBufferStreamTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("FIFOBufferStreamTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("FIFOBufferStreamTest");
 
 	CppUnit_addTest(pSuite, FIFOBufferStreamTest, testInput);
 	CppUnit_addTest(pSuite, FIFOBufferStreamTest, testOutput);

@@ -9,8 +9,8 @@
 
 
 #include "SMTPClientSessionTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "DialogServer.h"
 #include "Poco/Net/SMTPClientSession.h"
 #include "Poco/Net/MailMessage.h"
@@ -24,7 +24,7 @@ using Poco::Net::MailRecipient;
 using Poco::Net::SMTPException;
 
 
-SMTPClientSessionTest::SMTPClientSessionTest(const std::string& name): CppUnit::TestCase(name)
+SMTPClientSessionTest::SMTPClientSessionTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -315,9 +315,9 @@ void SMTPClientSessionTest::tearDown()
 }
 
 
-CppUnit::Test* SMTPClientSessionTest::suite()
+Poco::CppUnit::Test* SMTPClientSessionTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("SMTPClientSessionTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("SMTPClientSessionTest");
 
 	CppUnit_addTest(pSuite, SMTPClientSessionTest, testLoginEHLO);
 	CppUnit_addTest(pSuite, SMTPClientSessionTest, testLoginHELO);

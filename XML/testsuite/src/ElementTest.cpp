@@ -9,8 +9,8 @@
 
 
 #include "ElementTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/DOM/Document.h"
 #include "Poco/DOM/Element.h"
 #include "Poco/DOM/Attr.h"
@@ -31,7 +31,7 @@ using Poco::XML::AutoPtr;
 using Poco::XML::XMLString;
 
 
-ElementTest::ElementTest(const std::string& name): CppUnit::TestCase(name)
+ElementTest::ElementTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -956,9 +956,9 @@ void ElementTest::tearDown()
 }
 
 
-CppUnit::Test* ElementTest::suite()
+Poco::CppUnit::Test* ElementTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("ElementTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("ElementTest");
 
 	CppUnit_addTest(pSuite, ElementTest, testAttributes);
 	CppUnit_addTest(pSuite, ElementTest, testAttributesNS);

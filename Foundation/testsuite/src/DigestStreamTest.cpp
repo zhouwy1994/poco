@@ -10,8 +10,8 @@
 
 
 #include "DigestStreamTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/DigestStream.h"
 #include "Poco/MD5Engine.h"
 #include <sstream>
@@ -23,7 +23,7 @@ using Poco::DigestEngine;
 using Poco::MD5Engine;
 
 
-DigestStreamTest::DigestStreamTest(const std::string& name): CppUnit::TestCase(name)
+DigestStreamTest::DigestStreamTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -91,9 +91,9 @@ void DigestStreamTest::tearDown()
 }
 
 
-CppUnit::Test* DigestStreamTest::suite()
+Poco::CppUnit::Test* DigestStreamTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("DigestStreamTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("DigestStreamTest");
 
 	CppUnit_addTest(pSuite, DigestStreamTest, testInputStream);
 	CppUnit_addTest(pSuite, DigestStreamTest, testOutputStream1);

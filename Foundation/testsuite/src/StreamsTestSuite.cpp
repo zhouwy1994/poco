@@ -26,9 +26,9 @@
 #include "DataURIStreamTest.h"
 
 
-CppUnit::Test* StreamsTestSuite::suite()
+Poco::CppUnit::Test* StreamsTestSuite::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("StreamsTestSuite");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("StreamsTestSuite");
 
 	pSuite->addTest(Base32Test::suite());
 	pSuite->addTest(Base64Test::suite());

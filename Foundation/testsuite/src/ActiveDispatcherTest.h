@@ -12,10 +12,10 @@
 
 
 #include "Poco/Foundation.h"
-#include "CppUnit/TestCase.h"
+#include "Poco/CppUnit/TestCase.h"
 
 
-class ActiveDispatcherTest: public CppUnit::TestCase
+class ActiveDispatcherTest: public Poco::CppUnit::TestCase
 {
 public:
 	ActiveDispatcherTest(const std::string& name);
@@ -33,7 +33,7 @@ public:
 	void setUp();
 	void tearDown();
 
-	static CppUnit::Test* suite();
+	static Poco::CppUnit::Test* suite();
 
 private:
 };

@@ -9,8 +9,8 @@
 
 
 #include "UDPServerTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/Net/UDPServer.h"
 #include "Poco/Net/UDPClient.h"
 #include "Poco/Net/UDPHandler.h"
@@ -164,7 +164,7 @@ namespace
 }
 
 
-UDPServerTest::UDPServerTest(const std::string& name): CppUnit::TestCase(name)
+UDPServerTest::UDPServerTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -193,9 +193,9 @@ void UDPServerTest::tearDown()
 }
 
 
-CppUnit::Test* UDPServerTest::suite()
+Poco::CppUnit::Test* UDPServerTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("UDPServerTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("UDPServerTest");
 
 	CppUnit_addTest(pSuite, UDPServerTest, testServer);
 

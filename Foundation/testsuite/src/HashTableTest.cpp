@@ -9,8 +9,8 @@
 
 
 #include "HashTableTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/HashTable.h"
 #include "Poco/NumberFormatter.h"
 
@@ -18,7 +18,7 @@
 using namespace Poco;
 
 
-HashTableTest::HashTableTest(const std::string& name): CppUnit::TestCase(name)
+HashTableTest::HashTableTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -187,9 +187,9 @@ void HashTableTest::tearDown()
 }
 
 
-CppUnit::Test* HashTableTest::suite()
+Poco::CppUnit::Test* HashTableTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("HashTableTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("HashTableTest");
 
 	CppUnit_addTest(pSuite, HashTableTest, testInsert);
 	CppUnit_addTest(pSuite, HashTableTest, testUpdate);

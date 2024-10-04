@@ -15,12 +15,12 @@
 
 
 #include "Poco/Net/Net.h"
-#include "CppUnit/TestCase.h"
+#include "Poco/CppUnit/TestCase.h"
 #include "Poco/Net/NTPClient.h"
 #include "Poco/Net/NTPEventArgs.h"
 
 
-class NTPClientTest: public CppUnit::TestCase
+class NTPClientTest: public Poco::CppUnit::TestCase
 {
 public:
 	NTPClientTest(const std::string& name);
@@ -31,7 +31,7 @@ public:
 	void setUp();
 	void tearDown();
 
-	static CppUnit::Test* suite();
+	static Poco::CppUnit::Test* suite();
 
 	void onResponse(const void* pSender, Poco::Net::NTPEventArgs& args);
 private:

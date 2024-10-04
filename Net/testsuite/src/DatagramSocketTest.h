@@ -16,10 +16,10 @@
 
 #include "Poco/Net/Net.h"
 #include "Poco/Net/SocketAddress.h"
-#include "CppUnit/TestCase.h"
+#include "Poco/CppUnit/TestCase.h"
 
 
-class DatagramSocketTest: public CppUnit::TestCase
+class DatagramSocketTest: public Poco::CppUnit::TestCase
 {
 public:
 	DatagramSocketTest(const std::string& name);
@@ -40,7 +40,7 @@ public:
 	void setUp();
 	void tearDown();
 
-	static CppUnit::Test* suite();
+	static Poco::CppUnit::Test* suite();
 
 private:
 	static Poco::UInt16 getFreePort(Poco::Net::SocketAddress::Family family, std::uint16_t port);

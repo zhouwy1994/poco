@@ -9,8 +9,8 @@
 
 
 #include "TuplesTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/Tuple.h"
 #include "Poco/Void.h"
 #include <algorithm>
@@ -44,7 +44,7 @@ using Poco::Int32;
 using Poco::UInt32;
 
 
-TuplesTest::TuplesTest(const std::string& name): CppUnit::TestCase(name)
+TuplesTest::TuplesTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -1160,9 +1160,9 @@ void TuplesTest::tearDown()
 }
 
 
-CppUnit::Test* TuplesTest::suite()
+Poco::CppUnit::Test* TuplesTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("TuplesTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("TuplesTest");
 
 	CppUnit_addTest(pSuite, TuplesTest, testTuple1);
 	CppUnit_addTest(pSuite, TuplesTest, testTuple2);

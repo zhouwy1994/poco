@@ -9,8 +9,8 @@
 
 
 #include "HTTPServerTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/Net/HTTPServer.h"
 #include "Poco/Net/HTTPServerParams.h"
 #include "Poco/Net/AbstractHTTPRequestHandler.h"
@@ -145,7 +145,7 @@ namespace
 }
 
 
-HTTPServerTest::HTTPServerTest(const std::string& name): CppUnit::TestCase(name)
+HTTPServerTest::HTTPServerTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -567,9 +567,9 @@ void HTTPServerTest::tearDown()
 }
 
 
-CppUnit::Test* HTTPServerTest::suite()
+Poco::CppUnit::Test* HTTPServerTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("HTTPServerTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("HTTPServerTest");
 
 	CppUnit_addTest(pSuite, HTTPServerTest, testIdentityRequest);
 	CppUnit_addTest(pSuite, HTTPServerTest, testPutIdentityRequest);

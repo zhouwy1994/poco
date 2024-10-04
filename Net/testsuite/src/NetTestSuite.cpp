@@ -28,9 +28,9 @@
 #include "SyslogTest.h"
 
 
-CppUnit::Test* NetTestSuite::suite()
+Poco::CppUnit::Test* NetTestSuite::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("NetTestSuite");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("NetTestSuite");
 
 	pSuite->addTest(NetCoreTestSuite::suite());
 	pSuite->addTest(SocketsTestSuite::suite());

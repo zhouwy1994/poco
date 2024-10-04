@@ -13,9 +13,9 @@
 #include "OAuth20CredentialsTest.h"
 
 
-CppUnit::Test* OAuthTestSuite::suite()
+Poco::CppUnit::Test* OAuthTestSuite::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("OAuthTestSuite");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("OAuthTestSuite");
 
 	pSuite->addTest(OAuth10CredentialsTest::suite());
 	pSuite->addTest(OAuth20CredentialsTest::suite());

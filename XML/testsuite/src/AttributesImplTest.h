@@ -15,10 +15,10 @@
 
 
 #include "Poco/XML/XML.h"
-#include "CppUnit/TestCase.h"
+#include "Poco/CppUnit/TestCase.h"
 
 
-class AttributesImplTest: public CppUnit::TestCase
+class AttributesImplTest: public Poco::CppUnit::TestCase
 {
 public:
 	AttributesImplTest(const std::string& name);
@@ -32,7 +32,7 @@ public:
 	void setUp();
 	void tearDown();
 
-	static CppUnit::Test* suite();
+	static Poco::CppUnit::Test* suite();
 
 private:
 };

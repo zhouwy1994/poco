@@ -15,10 +15,10 @@
 
 
 #include "Poco/Net/Net.h"
-#include "CppUnit/TestCase.h"
+#include "Poco/CppUnit/TestCase.h"
 
 
-class SocketAddressTest: public CppUnit::TestCase
+class SocketAddressTest: public Poco::CppUnit::TestCase
 {
 public:
 	SocketAddressTest(const std::string& name);
@@ -32,7 +32,7 @@ public:
 	void setUp();
 	void tearDown();
 
-	static CppUnit::Test* suite();
+	static Poco::CppUnit::Test* suite();
 
 private:
 };

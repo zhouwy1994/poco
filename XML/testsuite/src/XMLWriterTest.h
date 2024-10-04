@@ -15,10 +15,10 @@
 
 
 #include "Poco/XML/XML.h"
-#include "CppUnit/TestCase.h"
+#include "Poco/CppUnit/TestCase.h"
 
 
-class XMLWriterTest: public CppUnit::TestCase
+class XMLWriterTest: public Poco::CppUnit::TestCase
 {
 public:
 	XMLWriterTest(const std::string& name);
@@ -66,7 +66,7 @@ public:
 	void setUp();
 	void tearDown();
 
-	static CppUnit::Test* suite();
+	static Poco::CppUnit::Test* suite();
 
 private:
 };

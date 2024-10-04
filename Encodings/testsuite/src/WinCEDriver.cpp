@@ -10,7 +10,7 @@
 //
 
 
-#include "CppUnit/TestRunner.h"
+#include "Poco/CppUnit/TestRunner.h"
 #include "EncodingsTestSuite.h"
 #include <cstdlib>
 
@@ -24,7 +24,7 @@ int wmain(int argc, wchar_t* argv[])
 		std::wcstombs(buffer, argv[i], sizeof(buffer));
 		args.push_back(std::string(buffer));
 	}
-	CppUnit::TestRunner runner;
+	Poco::CppUnit::TestRunner runner;
 	runner.addTest("EncodingsTestSuite", EncodingsTestSuite::suite());
 	return runner.run(args) ? 0 : 1;
 }

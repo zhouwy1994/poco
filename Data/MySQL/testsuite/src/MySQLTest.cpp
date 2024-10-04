@@ -9,8 +9,8 @@
 
 
 #include "MySQLTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/String.h"
 #include "Poco/Format.h"
 #include "Poco/Tuple.h"
@@ -63,7 +63,7 @@ std::string MySQLTest::_dbConnString = "host=" MYSQL_HOST
 
 
 MySQLTest::MySQLTest(const std::string& name):
-	CppUnit::TestCase(name)
+	Poco::CppUnit::TestCase(name)
 {
 	MySQL::Connector::registerConnector();
 }
@@ -907,7 +907,7 @@ void MySQLTest::tearDown()
 }
 
 
-CppUnit::Test* MySQLTest::suite()
+Poco::CppUnit::Test* MySQLTest::suite()
 {
 	MySQL::Connector::registerConnector();
 
@@ -936,7 +936,7 @@ CppUnit::Test* MySQLTest::suite()
 
 	_pExecutor = new SQLExecutor("MySQL SQL Executor", _pSession);
 
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("MySQLTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("MySQLTest");
 
 	CppUnit_addTest(pSuite, MySQLTest, testBareboneMySQL);
 	CppUnit_addTest(pSuite, MySQLTest, testSimpleAccess);

@@ -15,12 +15,12 @@
 
 
 #include "Poco/Util/Util.h"
-#include "CppUnit/TestCase.h"
+#include "Poco/CppUnit/TestCase.h"
 #include "Poco/AutoPtr.h"
 #include "Poco/Util/AbstractConfiguration.h"
 
 
-class AbstractConfigurationTest: public CppUnit::TestCase
+class AbstractConfigurationTest: public Poco::CppUnit::TestCase
 {
 public:
 	AbstractConfigurationTest(const std::string& name);

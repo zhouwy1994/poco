@@ -9,8 +9,8 @@
 
 
 #include "CounterTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/Prometheus/Counter.h"
 #include "Poco/Prometheus/Registry.h"
 #include "Poco/Prometheus/TextExporter.h"
@@ -25,7 +25,7 @@ using namespace std::string_literals;
 
 
 CounterTest::CounterTest(const std::string& name):
-	CppUnit::TestCase("CounterTest"s)
+	Poco::CppUnit::TestCase("CounterTest"s)
 {
 }
 
@@ -226,9 +226,9 @@ void CounterTest::tearDown()
 }
 
 
-CppUnit::Test* CounterTest::suite()
+Poco::CppUnit::Test* CounterTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("CounterTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("CounterTest");
 
 	CppUnit_addTest(pSuite, CounterTest, testBasicBehavior);
 	CppUnit_addTest(pSuite, CounterTest, testInvalidName);

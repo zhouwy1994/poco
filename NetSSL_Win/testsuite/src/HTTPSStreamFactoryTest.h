@@ -15,10 +15,10 @@
 
 
 #include "Poco/Net/Net.h"
-#include "CppUnit/TestCase.h"
+#include "Poco/CppUnit/TestCase.h"
 
 
-class HTTPSStreamFactoryTest: public CppUnit::TestCase
+class HTTPSStreamFactoryTest: public Poco::CppUnit::TestCase
 {
 public:
 	HTTPSStreamFactoryTest(const std::string& name);
@@ -33,7 +33,7 @@ public:
 	void setUp();
 	void tearDown();
 
-	static CppUnit::Test* suite();
+	static Poco::CppUnit::Test* suite();
 
 private:
 };

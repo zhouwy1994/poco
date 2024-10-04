@@ -9,8 +9,8 @@
 
 
 #include "LoggingConfiguratorTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/Util/LoggingConfigurator.h"
 #include "Poco/Util/PropertyFileConfiguration.h"
 #include "Poco/LoggingRegistry.h"
@@ -42,7 +42,7 @@ using Poco::Message;
 using Poco::AutoPtr;
 
 
-LoggingConfiguratorTest::LoggingConfiguratorTest(const std::string& name): CppUnit::TestCase(name)
+LoggingConfiguratorTest::LoggingConfiguratorTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -295,9 +295,9 @@ void LoggingConfiguratorTest::tearDown()
 }
 
 
-CppUnit::Test* LoggingConfiguratorTest::suite()
+Poco::CppUnit::Test* LoggingConfiguratorTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("LoggingConfiguratorTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("LoggingConfiguratorTest");
 
 	CppUnit_addTest(pSuite, LoggingConfiguratorTest, testConfigurator);
 	CppUnit_addTest(pSuite, LoggingConfiguratorTest, testBadConfiguration1);

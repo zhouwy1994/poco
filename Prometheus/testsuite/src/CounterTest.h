@@ -14,10 +14,10 @@
 #define CounterTest_INCLUDED
 
 
-#include "CppUnit/TestCase.h"
+#include "Poco/CppUnit/TestCase.h"
 
 
-class CounterTest: public CppUnit::TestCase
+class CounterTest: public Poco::CppUnit::TestCase
 {
 public:
 	CounterTest(const std::string& name);
@@ -32,7 +32,7 @@ public:
 	void setUp();
 	void tearDown();
 
-	static CppUnit::Test* suite();
+	static Poco::CppUnit::Test* suite();
 };
 
 

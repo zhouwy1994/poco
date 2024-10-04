@@ -9,8 +9,8 @@
 
 
 #include "OrderedContainersTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/Exception.h"
 
 #ifdef POCO_COMPILER_MSVC
@@ -120,7 +120,7 @@ namespace {
 }
 
 
-OrderedContainersTest::OrderedContainersTest(const std::string& rName): CppUnit::TestCase(rName)
+OrderedContainersTest::OrderedContainersTest(const std::string& rName): Poco::CppUnit::TestCase(rName)
 {
 }
 
@@ -1066,9 +1066,9 @@ void OrderedContainersTest::tearDown()
 }
 
 
-CppUnit::Test* OrderedContainersTest::suite()
+Poco::CppUnit::Test* OrderedContainersTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("OrderedContainersTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("OrderedContainersTest");
 
 	CppUnit_addTest(pSuite, OrderedContainersTest, testMapInsert);
 	CppUnit_addTest(pSuite, OrderedContainersTest, testRangeInsert);

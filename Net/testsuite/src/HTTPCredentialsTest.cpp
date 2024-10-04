@@ -9,8 +9,8 @@
 
 
 #include "HTTPCredentialsTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/Net/HTTPRequest.h"
 #include "Poco/Net/HTTPResponse.h"
 #include "Poco/Net/HTTPBasicCredentials.h"
@@ -30,7 +30,7 @@ using Poco::Net::HTTPCredentials;
 using Poco::Net::NotAuthenticatedException;
 
 
-HTTPCredentialsTest::HTTPCredentialsTest(const std::string& name): CppUnit::TestCase(name)
+HTTPCredentialsTest::HTTPCredentialsTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -398,9 +398,9 @@ void HTTPCredentialsTest::tearDown()
 }
 
 
-CppUnit::Test* HTTPCredentialsTest::suite()
+Poco::CppUnit::Test* HTTPCredentialsTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("HTTPCredentialsTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("HTTPCredentialsTest");
 
 	CppUnit_addTest(pSuite, HTTPCredentialsTest, testBasicCredentials);
 	CppUnit_addTest(pSuite, HTTPCredentialsTest, testProxyBasicCredentials);

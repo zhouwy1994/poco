@@ -9,15 +9,15 @@
 
 
 #include "NameTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/XML/Name.h"
 
 
 using Poco::XML::Name;
 
 
-NameTest::NameTest(const std::string& name): CppUnit::TestCase(name)
+NameTest::NameTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -156,9 +156,9 @@ void NameTest::tearDown()
 }
 
 
-CppUnit::Test* NameTest::suite()
+Poco::CppUnit::Test* NameTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("NameTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("NameTest");
 
 	CppUnit_addTest(pSuite, NameTest, testSplit);
 	CppUnit_addTest(pSuite, NameTest, testLocalName);

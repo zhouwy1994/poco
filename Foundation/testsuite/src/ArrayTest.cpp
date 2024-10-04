@@ -9,14 +9,14 @@
 
 
 #include "ArrayTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/Array.h"
 #include <vector>
 #include <algorithm>
 #include <functional>
 
-ArrayTest::ArrayTest(const std::string& name): CppUnit::TestCase(name)
+ArrayTest::ArrayTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -216,9 +216,9 @@ void ArrayTest::tearDown()
 }
 
 
-CppUnit::Test* ArrayTest::suite()
+Poco::CppUnit::Test* ArrayTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("ArrayTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("ArrayTest");
 
 	CppUnit_addTest(pSuite, ArrayTest, testConstruction);
 	CppUnit_addTest(pSuite, ArrayTest, testOperations);

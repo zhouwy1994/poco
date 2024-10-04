@@ -15,10 +15,10 @@
 
 
 #include "Poco/JWT/JWT.h"
-#include "CppUnit/TestCase.h"
+#include "Poco/CppUnit/TestCase.h"
 
 
-class SerializerTest: public CppUnit::TestCase
+class SerializerTest: public Poco::CppUnit::TestCase
 {
 public:
 	SerializerTest(const std::string& name);
@@ -36,7 +36,7 @@ public:
 	void testSplit();
 	void testSplitEmptySig();
 
-	static CppUnit::Test* suite();
+	static Poco::CppUnit::Test* suite();
 };
 
 

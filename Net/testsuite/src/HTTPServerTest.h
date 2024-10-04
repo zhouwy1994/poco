@@ -15,10 +15,10 @@
 
 
 #include "Poco/Net/Net.h"
-#include "CppUnit/TestCase.h"
+#include "Poco/CppUnit/TestCase.h"
 
 
-class HTTPServerTest: public CppUnit::TestCase
+class HTTPServerTest: public Poco::CppUnit::TestCase
 {
 public:
 	HTTPServerTest(const std::string& name);
@@ -43,7 +43,7 @@ public:
 	void setUp();
 	void tearDown();
 
-	static CppUnit::Test* suite();
+	static Poco::CppUnit::Test* suite();
 
 private:
 };

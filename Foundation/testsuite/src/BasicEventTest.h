@@ -15,12 +15,12 @@
 
 
 #include "Poco/Foundation.h"
-#include "CppUnit/TestCase.h"
+#include "Poco/CppUnit/TestCase.h"
 #include "Poco/BasicEvent.h"
 #include "Poco/EventArgs.h"
 
 
-class BasicEventTest: public CppUnit::TestCase
+class BasicEventTest: public Poco::CppUnit::TestCase
 {
 	Poco::BasicEvent<void> Void;
 	Poco::BasicEvent<int> Simple;
@@ -47,7 +47,7 @@ public:
 
 	void setUp();
 	void tearDown();
-	static CppUnit::Test* suite();
+	static Poco::CppUnit::Test* suite();
 
 protected:
 

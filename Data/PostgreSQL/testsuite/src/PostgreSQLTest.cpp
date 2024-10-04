@@ -9,8 +9,8 @@
 
 
 #include "PostgreSQLTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/Environment.h"
 #include "Poco/String.h"
 #include "Poco/Format.h"
@@ -91,7 +91,7 @@ std::string PostgreSQLTest::getPass()
 
 
 PostgreSQLTest::PostgreSQLTest(const std::string& name):
-	CppUnit::TestCase(name)
+	Poco::CppUnit::TestCase(name)
 {
 	PostgreSQL::Connector::registerConnector();
 }
@@ -1194,7 +1194,7 @@ void PostgreSQLTest::tearDown()
 }
 
 
-CppUnit::Test* PostgreSQLTest::suite()
+Poco::CppUnit::Test* PostgreSQLTest::suite()
 {
 	PostgreSQL::Connector::registerConnector();
 
@@ -1219,7 +1219,7 @@ CppUnit::Test* PostgreSQLTest::suite()
 
 	_pExecutor = new SQLExecutor("PostgreSQL SQL Executor", _pSession);
 
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("PostgreSQLTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("PostgreSQLTest");
 
 	CppUnit_addTest(pSuite, PostgreSQLTest, testConnectNoDB);
 	CppUnit_addTest(pSuite, PostgreSQLTest, testPostgreSQLOIDs);

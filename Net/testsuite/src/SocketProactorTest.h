@@ -20,11 +20,11 @@
 #include "Poco/Net/SocketAddress.h"
 #include "Poco/Net/SocketProactor.h"
 #include "Poco/Net/SocketNotification.h"
-#include "CppUnit/TestCase.h"
+#include "Poco/CppUnit/TestCase.h"
 #include "EchoServer.h"
 
 
-class SocketProactorTest: public CppUnit::TestCase
+class SocketProactorTest: public Poco::CppUnit::TestCase
 {
 public:
 	SocketProactorTest(const std::string& name);
@@ -40,7 +40,7 @@ public:
 	void setUp();
 	void tearDown();
 
-	static CppUnit::Test* suite();
+	static Poco::CppUnit::Test* suite();
 
 private:
 };

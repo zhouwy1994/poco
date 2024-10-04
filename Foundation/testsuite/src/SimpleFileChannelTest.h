@@ -15,10 +15,10 @@
 
 
 #include "Poco/Foundation.h"
-#include "CppUnit/TestCase.h"
+#include "Poco/CppUnit/TestCase.h"
 
 
-class SimpleFileChannelTest: public CppUnit::TestCase
+class SimpleFileChannelTest: public Poco::CppUnit::TestCase
 {
 public:
 	SimpleFileChannelTest(const std::string& name);
@@ -29,7 +29,7 @@ public:
 	void setUp();
 	void tearDown();
 
-	static CppUnit::Test* suite();
+	static Poco::CppUnit::Test* suite();
 
 private:
 	void remove(const std::string& baseName);

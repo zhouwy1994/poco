@@ -9,8 +9,8 @@
 
 
 #include "ExpireCacheTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/Exception.h"
 #include "Poco/ExpireCache.h"
 #include "Poco/AccessExpireCache.h"
@@ -26,7 +26,7 @@ using namespace Poco;
 #define DURWAIT  300
 
 
-ExpireCacheTest::ExpireCacheTest(const std::string& name): CppUnit::TestCase(name)
+ExpireCacheTest::ExpireCacheTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -212,9 +212,9 @@ void ExpireCacheTest::tearDown()
 }
 
 
-CppUnit::Test* ExpireCacheTest::suite()
+Poco::CppUnit::Test* ExpireCacheTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("ExpireCacheTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("ExpireCacheTest");
 
 	CppUnit_addTest(pSuite, ExpireCacheTest, testClear);
 	CppUnit_addTest(pSuite, ExpireCacheTest, testExpire0);

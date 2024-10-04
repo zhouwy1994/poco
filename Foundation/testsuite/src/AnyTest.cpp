@@ -9,8 +9,8 @@
 
 
 #include "AnyTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/Exception.h"
 #include "Poco/Any.h"
 #include "Poco/SharedPtr.h"
@@ -42,7 +42,7 @@ public:
 };
 
 
-AnyTest::AnyTest(const std::string& name): CppUnit::TestCase(name)
+AnyTest::AnyTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -443,9 +443,9 @@ void AnyTest::tearDown()
 }
 
 
-CppUnit::Test* AnyTest::suite()
+Poco::CppUnit::Test* AnyTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("AnyTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("AnyTest");
 
 	CppUnit_addTest(pSuite, AnyTest, testAnyConvertingCtor);
 	CppUnit_addTest(pSuite, AnyTest, testAnyDefaultCtor);

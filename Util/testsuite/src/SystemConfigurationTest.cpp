@@ -9,8 +9,8 @@
 
 
 #include "SystemConfigurationTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/Util/SystemConfiguration.h"
 #include "Poco/AutoPtr.h"
 #include "Poco/Exception.h"
@@ -32,7 +32,7 @@ using Poco::InvalidAccessException;
 using Poco::NotFoundException;
 
 
-SystemConfigurationTest::SystemConfigurationTest(const std::string& name): CppUnit::TestCase(name)
+SystemConfigurationTest::SystemConfigurationTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -115,9 +115,9 @@ void SystemConfigurationTest::tearDown()
 }
 
 
-CppUnit::Test* SystemConfigurationTest::suite()
+Poco::CppUnit::Test* SystemConfigurationTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("SystemConfigurationTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("SystemConfigurationTest");
 
 	CppUnit_addTest(pSuite, SystemConfigurationTest, testProperties);
 	CppUnit_addTest(pSuite, SystemConfigurationTest, testKeys);

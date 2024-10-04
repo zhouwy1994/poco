@@ -9,8 +9,8 @@
 
 
 #include "MD5EngineTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/MD5Engine.h"
 
 
@@ -18,7 +18,7 @@ using Poco::MD5Engine;
 using Poco::DigestEngine;
 
 
-MD5EngineTest::MD5EngineTest(const std::string& name): CppUnit::TestCase(name)
+MD5EngineTest::MD5EngineTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -79,9 +79,9 @@ void MD5EngineTest::tearDown()
 }
 
 
-CppUnit::Test* MD5EngineTest::suite()
+Poco::CppUnit::Test* MD5EngineTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("MD5EngineTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("MD5EngineTest");
 
 	CppUnit_addTest(pSuite, MD5EngineTest, testMD5);
 	CppUnit_addTest(pSuite, MD5EngineTest, testConstantTimeEquals);

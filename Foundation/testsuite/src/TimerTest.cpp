@@ -9,8 +9,8 @@
 
 
 #include "TimerTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/Thread.h"
 #include "Poco/Stopwatch.h"
 
@@ -21,7 +21,7 @@ using Poco::Thread;
 using Poco::Stopwatch;
 
 
-TimerTest::TimerTest(const std::string& name): CppUnit::TestCase(name)
+TimerTest::TimerTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -85,9 +85,9 @@ void TimerTest::onTimer(Timer& timer)
 }
 
 
-CppUnit::Test* TimerTest::suite()
+Poco::CppUnit::Test* TimerTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("TimerTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("TimerTest");
 
 	CppUnit_addTest(pSuite, TimerTest, testTimer);
 	CppUnit_addTest(pSuite, TimerTest, testDuplicateStop);

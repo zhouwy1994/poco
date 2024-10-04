@@ -12,9 +12,9 @@
 #include "DoubleByteEncodingTest.h"
 
 
-CppUnit::Test* EncodingsTestSuite::suite()
+Poco::CppUnit::Test* EncodingsTestSuite::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("EncodingsTestSuite");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("EncodingsTestSuite");
 
 	pSuite->addTest(DoubleByteEncodingTest::suite());
 

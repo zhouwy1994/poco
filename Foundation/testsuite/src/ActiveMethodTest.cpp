@@ -9,8 +9,8 @@
 
 
 #include "ActiveMethodTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/ActiveMethod.h"
 #include "Poco/Thread.h"
 #include "Poco/Event.h"
@@ -90,7 +90,7 @@ namespace
 }
 
 
-ActiveMethodTest::ActiveMethodTest(const std::string& name): CppUnit::TestCase(name)
+ActiveMethodTest::ActiveMethodTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -244,9 +244,9 @@ void ActiveMethodTest::tearDown()
 }
 
 
-CppUnit::Test* ActiveMethodTest::suite()
+Poco::CppUnit::Test* ActiveMethodTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("ActiveMethodTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("ActiveMethodTest");
 
 	CppUnit_addTest(pSuite, ActiveMethodTest, testWait);
 	CppUnit_addTest(pSuite, ActiveMethodTest, testCopy);

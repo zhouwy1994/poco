@@ -19,9 +19,9 @@
 #include "LogStreamTest.h"
 
 
-CppUnit::Test* LoggingTestSuite::suite()
+Poco::CppUnit::Test* LoggingTestSuite::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("LoggingTestSuite");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("LoggingTestSuite");
 
 	pSuite->addTest(LoggerTest::suite());
 	pSuite->addTest(ChannelTest::suite());

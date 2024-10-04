@@ -13,9 +13,9 @@
 #include "BasicEventTest.h"
 #include "PriorityEventTest.h"
 
-CppUnit::Test* EventTestSuite::suite()
+Poco::CppUnit::Test* EventTestSuite::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("EventTestSuite");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("EventTestSuite");
 
 	pSuite->addTest(BasicEventTest::suite());
 	pSuite->addTest(PriorityEventTest::suite());

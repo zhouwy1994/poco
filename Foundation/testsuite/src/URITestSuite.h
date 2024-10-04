@@ -14,13 +14,13 @@
 #define URITestSuite_INCLUDED
 
 
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestSuite.h"
 
 
 class URITestSuite
 {
 public:
-	static CppUnit::Test* suite();
+	static Poco::CppUnit::Test* suite();
 };
 
 

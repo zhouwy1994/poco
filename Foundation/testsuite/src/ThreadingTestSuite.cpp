@@ -21,9 +21,9 @@
 #include "ConditionTest.h"
 
 
-CppUnit::Test* ThreadingTestSuite::suite()
+Poco::CppUnit::Test* ThreadingTestSuite::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("ThreadingTestSuite");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("ThreadingTestSuite");
 
 	pSuite->addTest(ThreadTest::suite());
 	pSuite->addTest(SemaphoreTest::suite());

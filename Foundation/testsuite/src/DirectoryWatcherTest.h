@@ -23,10 +23,10 @@
 #include "Poco/DirectoryWatcher.h"
 #include "Poco/Path.h"
 #include "Poco/Mutex.h"
-#include "CppUnit/TestCase.h"
+#include "Poco/CppUnit/TestCase.h"
 
 
-class DirectoryWatcherTest: public CppUnit::TestCase
+class DirectoryWatcherTest: public Poco::CppUnit::TestCase
 {
 public:
 	DirectoryWatcherTest(const std::string& name);
@@ -43,7 +43,7 @@ public:
 	void setUp();
 	void tearDown();
 
-	static CppUnit::Test* suite();
+	static Poco::CppUnit::Test* suite();
 
 protected:
 	void onItemAdded(const Poco::DirectoryWatcher::DirectoryEvent& ev);

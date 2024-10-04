@@ -15,10 +15,10 @@
 
 
 #include "Poco/Foundation.h"
-#include "CppUnit/TestCase.h"
+#include "Poco/CppUnit/TestCase.h"
 
 
-class RegularExpressionTest: public CppUnit::TestCase
+class RegularExpressionTest: public Poco::CppUnit::TestCase
 {
 public:
 	RegularExpressionTest(const std::string& name);
@@ -44,7 +44,7 @@ public:
 	void setUp();
 	void tearDown();
 
-	static CppUnit::Test* suite();
+	static Poco::CppUnit::Test* suite();
 
 private:
 };

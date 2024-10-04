@@ -3,10 +3,11 @@
 //
 
 
-#include "CppUnit/TestSuite.h"
-#include "CppUnit/TestResult.h"
+#include "Poco/CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestResult.h"
 
 
+namespace Poco {
 namespace CppUnit {
 
 
@@ -47,3 +48,4 @@ int TestSuite::countTestCases() const
 
 
 } // namespace CppUnit
+} // namespace Poco

@@ -9,8 +9,8 @@
 
 
 #include "MemoryStreamTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/Buffer.h"
 #include "Poco/MemoryStream.h"
 #include <sstream>
@@ -20,7 +20,7 @@ using Poco::MemoryInputStream;
 using Poco::MemoryOutputStream;
 
 
-MemoryStreamTest::MemoryStreamTest(const std::string& name): CppUnit::TestCase(name)
+MemoryStreamTest::MemoryStreamTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -476,9 +476,9 @@ void MemoryStreamTest::tearDown()
 }
 
 
-CppUnit::Test* MemoryStreamTest::suite()
+Poco::CppUnit::Test* MemoryStreamTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("MemoryStreamTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("MemoryStreamTest");
 
 	CppUnit_addTest(pSuite, MemoryStreamTest, testInput);
 	CppUnit_addTest(pSuite, MemoryStreamTest, testOutput);

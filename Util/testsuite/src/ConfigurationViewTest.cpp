@@ -9,8 +9,8 @@
 
 
 #include "ConfigurationViewTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/Util/MapConfiguration.h"
 #include "Poco/AutoPtr.h"
 #include "Poco/Exception.h"
@@ -117,9 +117,9 @@ void ConfigurationViewTest::tearDown()
 }
 
 
-CppUnit::Test* ConfigurationViewTest::suite()
+Poco::CppUnit::Test* ConfigurationViewTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("ConfigurationViewTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("ConfigurationViewTest");
 
 	AbstractConfigurationTest_addTests(pSuite, ConfigurationViewTest);
 	CppUnit_addTest(pSuite, ConfigurationViewTest, testView);

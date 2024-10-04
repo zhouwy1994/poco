@@ -9,8 +9,8 @@
 
 
 #include "CryptoTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/Crypto/CipherFactory.h"
 #include "Poco/Crypto/Cipher.h"
 #include "Poco/Crypto/CipherKey.h"
@@ -76,7 +76,7 @@ static const std::string UTF8_PEM(
 	"-----END CERTIFICATE-----\n"
 );
 
-CryptoTest::CryptoTest(const std::string& name): CppUnit::TestCase(name)
+CryptoTest::CryptoTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -408,9 +408,9 @@ void CryptoTest::tearDown()
 }
 
 
-CppUnit::Test* CryptoTest::suite()
+Poco::CppUnit::Test* CryptoTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("CryptoTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("CryptoTest");
 
 	CppUnit_addTest(pSuite, CryptoTest, testEncryptDecrypt);
 	CppUnit_addTest(pSuite, CryptoTest, testEncryptDecryptWithSalt);

@@ -9,8 +9,8 @@
 
 
 #include "MessageHeaderTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/Net/MessageHeader.h"
 #include "Poco/Net/NetException.h"
 #include <sstream>
@@ -21,7 +21,7 @@ using Poco::Net::NameValueCollection;
 using Poco::Net::MessageException;
 
 
-MessageHeaderTest::MessageHeaderTest(const std::string& name): CppUnit::TestCase(name)
+MessageHeaderTest::MessageHeaderTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -419,9 +419,9 @@ void MessageHeaderTest::tearDown()
 }
 
 
-CppUnit::Test* MessageHeaderTest::suite()
+Poco::CppUnit::Test* MessageHeaderTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("MessageHeaderTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("MessageHeaderTest");
 
 	CppUnit_addTest(pSuite, MessageHeaderTest, testWrite);
 	CppUnit_addTest(pSuite, MessageHeaderTest, testRead1);

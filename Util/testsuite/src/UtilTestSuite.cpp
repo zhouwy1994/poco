@@ -17,9 +17,9 @@
 #endif
 
 
-CppUnit::Test* UtilTestSuite::suite()
+Poco::CppUnit::Test* UtilTestSuite::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("UtilTestSuite");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("UtilTestSuite");
 
 	pSuite->addTest(ConfigurationTestSuite::suite());
 	pSuite->addTest(OptionsTestSuite::suite());

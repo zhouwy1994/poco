@@ -9,8 +9,8 @@
 
 
 #include "TaskManagerTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/Exception.h"
 #include "Poco/TaskManager.h"
 #include "Poco/Task.h"
@@ -232,7 +232,7 @@ namespace
 }
 
 
-TaskManagerTest::TaskManagerTest(const std::string& name): CppUnit::TestCase(name)
+TaskManagerTest::TaskManagerTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -485,9 +485,9 @@ void TaskManagerTest::tearDown()
 }
 
 
-CppUnit::Test* TaskManagerTest::suite()
+Poco::CppUnit::Test* TaskManagerTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("TaskManagerTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("TaskManagerTest");
 
 	CppUnit_addTest(pSuite, TaskManagerTest, testFinish);
 	CppUnit_addTest(pSuite, TaskManagerTest, testCancel);

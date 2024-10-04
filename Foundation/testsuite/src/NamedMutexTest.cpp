@@ -9,8 +9,8 @@
 
 
 #include "NamedMutexTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/NamedMutex.h"
 #include "Poco/Thread.h"
 #include "Poco/Runnable.h"
@@ -75,7 +75,7 @@ namespace
 }
 
 
-NamedMutexTest::NamedMutexTest(const std::string& name): CppUnit::TestCase(name)
+NamedMutexTest::NamedMutexTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -146,9 +146,9 @@ void NamedMutexTest::tearDown()
 }
 
 
-CppUnit::Test* NamedMutexTest::suite()
+Poco::CppUnit::Test* NamedMutexTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("NamedMutexTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("NamedMutexTest");
 
 	CppUnit_addTest(pSuite, NamedMutexTest, testLock);
 	CppUnit_addTest(pSuite, NamedMutexTest, testTryLock);

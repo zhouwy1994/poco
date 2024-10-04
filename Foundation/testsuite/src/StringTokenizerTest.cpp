@@ -9,8 +9,8 @@
 #include <iostream>
 
 #include "StringTokenizerTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/StringTokenizer.h"
 #include "Poco/Exception.h"
 
@@ -20,7 +20,7 @@ using Poco::RangeException;
 using Poco::NotFoundException;
 
 
-StringTokenizerTest::StringTokenizerTest(const std::string& name): CppUnit::TestCase(name)
+StringTokenizerTest::StringTokenizerTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -417,9 +417,9 @@ void StringTokenizerTest::tearDown()
 }
 
 
-CppUnit::Test* StringTokenizerTest::suite()
+Poco::CppUnit::Test* StringTokenizerTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("StringTokenizerTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("StringTokenizerTest");
 
 	CppUnit_addTest(pSuite, StringTokenizerTest, testStringTokenizer);
 	CppUnit_addTest(pSuite, StringTokenizerTest, testFind);

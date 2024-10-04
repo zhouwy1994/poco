@@ -18,10 +18,10 @@
 #include "Poco/BinaryReader.h"
 #include "Poco/BinaryWriter.h"
 #include "Poco/Data/Row.h"
-#include "CppUnit/TestCase.h"
+#include "Poco/CppUnit/TestCase.h"
 
 
-class DataTest: public CppUnit::TestCase
+class DataTest: public Poco::CppUnit::TestCase
 {
 public:
 	DataTest(const std::string& name);
@@ -49,7 +49,7 @@ public:
 	void setUp();
 	void tearDown();
 
-	static CppUnit::Test* suite();
+	static Poco::CppUnit::Test* suite();
 
 private:
 	void testRowStrictWeak(const Poco::Data::Row& row1,

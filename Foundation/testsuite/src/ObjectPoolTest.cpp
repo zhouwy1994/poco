@@ -9,8 +9,8 @@
 
 
 #include "ObjectPoolTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/ObjectPool.h"
 #include "Poco/Exception.h"
 #include "Poco/Thread.h"
@@ -19,7 +19,7 @@
 using Poco::ObjectPool;
 
 
-ObjectPoolTest::ObjectPoolTest(const std::string& name): CppUnit::TestCase(name)
+ObjectPoolTest::ObjectPoolTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -120,9 +120,9 @@ void ObjectPoolTest::tearDown()
 }
 
 
-CppUnit::Test* ObjectPoolTest::suite()
+Poco::CppUnit::Test* ObjectPoolTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("ObjectPoolTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("ObjectPoolTest");
 
 	CppUnit_addTest(pSuite, ObjectPoolTest, testObjectPool);
 	CppUnit_addTest(pSuite, ObjectPoolTest, testObjectPoolWaitOnBorrowObject);

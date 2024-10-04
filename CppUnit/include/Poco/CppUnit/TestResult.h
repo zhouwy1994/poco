@@ -7,12 +7,13 @@
 #define CppUnit_TestResult_INCLUDED
 
 
-#include "CppUnit/CppUnit.h"
-#include "CppUnit/Guards.h"
-#include "CppUnit/TestFailure.h"
+#include "Poco/CppUnit/CppUnit.h"
+#include "Poco/CppUnit/Guards.h"
+#include "Poco/CppUnit/TestFailure.h"
 #include <vector>
 
 
+namespace Poco {
 namespace CppUnit {
 
 
@@ -226,6 +227,7 @@ inline void TestResult::setSynchronizationObject(SynchronizationObject* syncObje
 
 
 } // namespace CppUnit
+} // namespace Poco
 
 
 #endif // CppUnit_TestResult_INCLUDED

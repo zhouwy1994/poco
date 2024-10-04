@@ -9,8 +9,8 @@
 
 
 #include "SemaphoreTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/Thread.h"
 #include "Poco/Runnable.h"
 #include "Poco/Semaphore.h"
@@ -67,7 +67,7 @@ private:
 };
 
 
-SemaphoreTest::SemaphoreTest(const std::string& name): CppUnit::TestCase(name)
+SemaphoreTest::SemaphoreTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -134,9 +134,9 @@ void SemaphoreTest::tearDown()
 }
 
 
-CppUnit::Test* SemaphoreTest::suite()
+Poco::CppUnit::Test* SemaphoreTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("SemaphoreTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("SemaphoreTest");
 
 	CppUnit_addTest(pSuite, SemaphoreTest, testInitZero);
 	CppUnit_addTest(pSuite, SemaphoreTest, testInitNonZero);

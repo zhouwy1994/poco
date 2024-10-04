@@ -9,8 +9,8 @@
 
 
 #include "ODBCTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/String.h"
 #include "Poco/Format.h"
 #include "Poco/Any.h"
@@ -60,7 +60,7 @@ ODBCTest::ODBCTest(const std::string& name,
 	std::string& rUID,
 	std::string& rPwd,
 	std::string& rConnectString):
-	CppUnit::TestCase(name),
+	Poco::CppUnit::TestCase(name),
 	_pSession(pSession),
 	_pExecutor(pExecutor),
 	_rDSN(rDSN),

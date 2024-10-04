@@ -9,8 +9,8 @@
 
 
 #include "ByteOrderTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/ByteOrder.h"
 
 
@@ -25,7 +25,7 @@ using Poco::UInt64;
 #endif
 
 
-ByteOrderTest::ByteOrderTest(const std::string& name): CppUnit::TestCase(name)
+ByteOrderTest::ByteOrderTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -598,9 +598,9 @@ void ByteOrderTest::tearDown()
 }
 
 
-CppUnit::Test* ByteOrderTest::suite()
+Poco::CppUnit::Test* ByteOrderTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("ByteOrderTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("ByteOrderTest");
 
 	CppUnit_addTest(pSuite, ByteOrderTest, testByteOrderFlip);
 	CppUnit_addTest(pSuite, ByteOrderTest, testByteOrderBigEndian);

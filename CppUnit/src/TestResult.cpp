@@ -8,13 +8,14 @@
 #endif
 
 
-#include "CppUnit/TestResult.h"
+#include "Poco/CppUnit/TestResult.h"
 #ifdef HAVE_CXXABI_H
 #include <cxxabi.h>
 #include <cstdlib>
 #endif
 
 
+namespace Poco {
 namespace CppUnit {
 
 
@@ -56,3 +57,4 @@ std::string TestResult::demangle(const char* typeName)
 
 
 } // namespace CppUnit
+} // namespace Poco

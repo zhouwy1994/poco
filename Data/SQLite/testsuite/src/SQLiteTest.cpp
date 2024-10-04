@@ -9,8 +9,8 @@
 
 
 #include "SQLiteTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/Data/Date.h"
 #include "Poco/Data/Time.h"
 #include "Poco/Data/LOB.h"
@@ -242,7 +242,7 @@ int SQLiteTest::_updateCounter;
 int SQLiteTest::_deleteCounter;
 
 
-SQLiteTest::SQLiteTest(const std::string& name): CppUnit::TestCase(name)
+SQLiteTest::SQLiteTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 	Poco::Data::SQLite::Connector::registerConnector();
 }
@@ -3477,9 +3477,9 @@ void SQLiteTest::tearDown()
 }
 
 
-CppUnit::Test* SQLiteTest::suite()
+Poco::CppUnit::Test* SQLiteTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("SQLiteTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("SQLiteTest");
 
 	CppUnit_addTest(pSuite, SQLiteTest, testBinding);
 	CppUnit_addTest(pSuite, SQLiteTest, testZeroRows);

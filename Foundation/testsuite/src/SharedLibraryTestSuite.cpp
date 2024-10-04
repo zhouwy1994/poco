@@ -14,9 +14,9 @@
 #include "SharedLibraryTest.h"
 
 
-CppUnit::Test* SharedLibraryTestSuite::suite()
+Poco::CppUnit::Test* SharedLibraryTestSuite::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("SharedLibraryTestSuite");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("SharedLibraryTestSuite");
 
 	pSuite->addTest(ManifestTest::suite());
 

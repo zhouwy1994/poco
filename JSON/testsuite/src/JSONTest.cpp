@@ -9,8 +9,8 @@
 
 
 #include "JSONTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/Path.h"
 #include "Poco/Environment.h"
 #include "Poco/File.h"
@@ -33,7 +33,7 @@ using Poco::DynamicStruct;
 using Poco::DateTime;
 using Poco::DateTimeFormatter;
 
-JSONTest::JSONTest(const std::string& name): CppUnit::TestCase("JSON")
+JSONTest::JSONTest(const std::string& name): Poco::CppUnit::TestCase("JSON")
 {
 
 }
@@ -2334,9 +2334,9 @@ void JSONTest::testRemove()
 }
 
 
-CppUnit::Test* JSONTest::suite()
+Poco::CppUnit::Test* JSONTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("JSONTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("JSONTest");
 
 	CppUnit_addTest(pSuite, JSONTest, testNullProperty);
 	CppUnit_addTest(pSuite, JSONTest, testTrueProperty);

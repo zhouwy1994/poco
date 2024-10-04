@@ -15,13 +15,13 @@
 
 
 #include "Poco/Net/Net.h"
-#include "CppUnit/TestCase.h"
+#include "Poco/CppUnit/TestCase.h"
 #include "Poco/Net/ICMPClient.h"
 #include "Poco/Net/ICMPEventArgs.h"
 #include "Poco/Mutex.h"
 
 
-class ICMPClientTest: public CppUnit::TestCase
+class ICMPClientTest: public Poco::CppUnit::TestCase
 {
 public:
 	ICMPClientTest(const std::string& name);
@@ -33,7 +33,7 @@ public:
 	void setUp();
 	void tearDown();
 
-	static CppUnit::Test* suite();
+	static Poco::CppUnit::Test* suite();
 
 	void onBegin(const void* pSender, Poco::Net::ICMPEventArgs& args);
 	void onReply(const void* pSender, Poco::Net::ICMPEventArgs& args);

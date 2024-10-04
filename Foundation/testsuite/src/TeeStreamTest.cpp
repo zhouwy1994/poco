@@ -9,8 +9,8 @@
 
 
 #include "TeeStreamTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/TeeStream.h"
 #include <sstream>
 
@@ -19,7 +19,7 @@ using Poco::TeeInputStream;
 using Poco::TeeOutputStream;
 
 
-TeeStreamTest::TeeStreamTest(const std::string& name): CppUnit::TestCase(name)
+TeeStreamTest::TeeStreamTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -63,9 +63,9 @@ void TeeStreamTest::tearDown()
 }
 
 
-CppUnit::Test* TeeStreamTest::suite()
+Poco::CppUnit::Test* TeeStreamTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("TeeStreamTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("TeeStreamTest");
 
 	CppUnit_addTest(pSuite, TeeStreamTest, testTeeInputStream);
 	CppUnit_addTest(pSuite, TeeStreamTest, testTeeOutputStream);

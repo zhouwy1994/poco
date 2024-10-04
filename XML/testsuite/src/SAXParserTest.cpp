@@ -9,8 +9,8 @@
 
 
 #include "SAXParserTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/SAX/SAXParser.h"
 #include "Poco/SAX/InputSource.h"
 #include "Poco/SAX/EntityResolver.h"
@@ -62,7 +62,7 @@ public:
 };
 
 
-SAXParserTest::SAXParserTest(const std::string& name): CppUnit::TestCase(name)
+SAXParserTest::SAXParserTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -351,9 +351,9 @@ std::string SAXParserTest::parseMemory(XMLReader& reader, int options, const std
 }
 
 
-CppUnit::Test* SAXParserTest::suite()
+Poco::CppUnit::Test* SAXParserTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("SAXParserTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("SAXParserTest");
 
 	CppUnit_addTest(pSuite, SAXParserTest, testSimple1);
 	CppUnit_addTest(pSuite, SAXParserTest, testSimple2);

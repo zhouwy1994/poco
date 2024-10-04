@@ -9,8 +9,8 @@
 
 
 #include "XMLWriterTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/XML/XMLWriter.h"
 #include "Poco/SAX/AttributesImpl.h"
 #include "Poco/Exception.h"
@@ -21,7 +21,7 @@ using Poco::XML::XMLWriter;
 using Poco::XML::AttributesImpl;
 
 
-XMLWriterTest::XMLWriterTest(const std::string& name): CppUnit::TestCase(name)
+XMLWriterTest::XMLWriterTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -656,9 +656,9 @@ void XMLWriterTest::tearDown()
 }
 
 
-CppUnit::Test* XMLWriterTest::suite()
+Poco::CppUnit::Test* XMLWriterTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("XMLWriterTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("XMLWriterTest");
 
 	CppUnit_addTest(pSuite, XMLWriterTest, testTrivial);
 	CppUnit_addTest(pSuite, XMLWriterTest, testTrivialCanonical);

@@ -9,8 +9,8 @@
 
 
 #include "SharedPtrTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/SharedPtr.h"
 #include "Poco/Exception.h"
 
@@ -69,7 +69,7 @@ namespace
 }
 
 
-SharedPtrTest::SharedPtrTest(const std::string& name): CppUnit::TestCase(name)
+SharedPtrTest::SharedPtrTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -210,9 +210,9 @@ void SharedPtrTest::tearDown()
 }
 
 
-CppUnit::Test* SharedPtrTest::suite()
+Poco::CppUnit::Test* SharedPtrTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("SharedPtrTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("SharedPtrTest");
 
 	CppUnit_addTest(pSuite, SharedPtrTest, testSharedPtr);
 	CppUnit_addTest(pSuite, SharedPtrTest, testImplicitCast);

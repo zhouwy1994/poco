@@ -17,9 +17,9 @@
 #include "FTPSClientTestSuite.h"
 
 
-CppUnit::Test* NetSSLTestSuite::suite()
+Poco::CppUnit::Test* NetSSLTestSuite::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("OpenSSLTestSuite");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("OpenSSLTestSuite");
 
 	pSuite->addTest(HTTPSClientTestSuite::suite());
 	pSuite->addTest(TCPServerTestSuite::suite());

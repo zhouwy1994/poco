@@ -9,8 +9,8 @@
 
 
 #include "OptionSetTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/Util/OptionSet.h"
 #include "Poco/Util/Option.h"
 #include "Poco/Util/OptionException.h"
@@ -20,7 +20,7 @@ using Poco::Util::OptionSet;
 using Poco::Util::Option;
 
 
-OptionSetTest::OptionSetTest(const std::string& name): CppUnit::TestCase(name)
+OptionSetTest::OptionSetTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -139,9 +139,9 @@ void OptionSetTest::tearDown()
 }
 
 
-CppUnit::Test* OptionSetTest::suite()
+Poco::CppUnit::Test* OptionSetTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("OptionSetTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("OptionSetTest");
 
 	CppUnit_addTest(pSuite, OptionSetTest, testOptionSet);
 

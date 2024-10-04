@@ -9,8 +9,8 @@
 
 
 #include "RawSocketTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/Net/RawSocket.h"
 #include "Poco/Net/RawSocketImpl.h"
 #include "Poco/Net/SocketAddress.h"
@@ -31,7 +31,7 @@ using Poco::InvalidArgumentException;
 using Poco::IOException;
 
 
-RawSocketTest::RawSocketTest(const std::string& name): CppUnit::TestCase(name)
+RawSocketTest::RawSocketTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -122,9 +122,9 @@ void RawSocketTest::tearDown()
 }
 
 
-CppUnit::Test* RawSocketTest::suite()
+Poco::CppUnit::Test* RawSocketTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("RawSocketTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("RawSocketTest");
 
 	CppUnit_addTest(pSuite, RawSocketTest, testEchoIPv4);
 	CppUnit_addTest(pSuite, RawSocketTest, testSendToReceiveFromIPv4);

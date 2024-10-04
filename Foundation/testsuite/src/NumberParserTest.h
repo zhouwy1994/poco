@@ -15,14 +15,14 @@
 
 
 #include "Poco/Foundation.h"
-#include "CppUnit/TestCase.h"
+#include "Poco/CppUnit/TestCase.h"
 #include "Poco/NumberParser.h"
 #include "Poco/NumberFormatter.h"
 #undef max
 #undef min
 #include <limits>
 
-class NumberParserTest: public CppUnit::TestCase
+class NumberParserTest: public Poco::CppUnit::TestCase
 {
 public:
 	NumberParserTest(const std::string& name);
@@ -35,7 +35,7 @@ public:
 	void setUp();
 	void tearDown();
 
-	static CppUnit::Test* suite();
+	static Poco::CppUnit::Test* suite();
 
 private:
 

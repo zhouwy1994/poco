@@ -13,9 +13,9 @@
 #include "ICMPSocketTest.h"
 
 
-CppUnit::Test* ICMPClientTestSuite::suite()
+Poco::CppUnit::Test* ICMPClientTestSuite::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("ICMPClientTestSuite");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("ICMPClientTestSuite");
 
 	pSuite->addTest(ICMPClientTest::suite());
 	pSuite->addTest(ICMPSocketTest::suite());

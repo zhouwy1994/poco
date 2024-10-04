@@ -13,9 +13,9 @@
 #include "SessionPoolTest.h"
 
 
-CppUnit::Test* DataTestSuite::suite()
+Poco::CppUnit::Test* DataTestSuite::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("DataTestSuite");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("DataTestSuite");
 
 	pSuite->addTest(DataTest::suite());
 	pSuite->addTest(SessionPoolTest::suite());

@@ -15,10 +15,10 @@
 
 
 #include "Poco/CppParser/CppParser.h"
-#include "CppUnit/TestCase.h"
+#include "Poco/CppUnit/TestCase.h"
 
 
-class CppParserTest: public CppUnit::TestCase
+class CppParserTest: public Poco::CppUnit::TestCase
 {
 public:
 	CppParserTest(const std::string& name);
@@ -31,7 +31,7 @@ public:
 	void setUp();
 	void tearDown();
 
-	static CppUnit::Test* suite();
+	static Poco::CppUnit::Test* suite();
 
 protected:
 	void testNumberLiteral(const std::string& literal);

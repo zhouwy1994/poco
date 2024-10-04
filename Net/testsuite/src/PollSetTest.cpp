@@ -9,8 +9,8 @@
 
 
 #include "PollSetTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "EchoServer.h"
 #include "Poco/Net/StreamSocket.h"
 #include "Poco/Net/ServerSocket.h"
@@ -65,7 +65,7 @@ private:
 }
 
 
-PollSetTest::PollSetTest(const std::string& name): CppUnit::TestCase(name)
+PollSetTest::PollSetTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -458,9 +458,9 @@ void PollSetTest::tearDown()
 }
 
 
-CppUnit::Test* PollSetTest::suite()
+Poco::CppUnit::Test* PollSetTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("PollSetTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("PollSetTest");
 
 	CppUnit_addTest(pSuite, PollSetTest, testAddUpdate);
 	CppUnit_addTest(pSuite, PollSetTest, testTimeout);

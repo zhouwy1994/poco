@@ -9,8 +9,8 @@
 
 
 #include "PartialStreamTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/Zip/PartialStream.h"
 #include "Poco/Zip/AutoDetectStream.h"
 #include "Poco/Zip/ZipUtil.h"
@@ -22,7 +22,7 @@
 using namespace Poco::Zip;
 
 
-PartialStreamTest::PartialStreamTest(const std::string& name): CppUnit::TestCase(name)
+PartialStreamTest::PartialStreamTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -133,9 +133,9 @@ void PartialStreamTest::tearDown()
 }
 
 
-CppUnit::Test* PartialStreamTest::suite()
+Poco::CppUnit::Test* PartialStreamTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("PartialStreamTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("PartialStreamTest");
 
 	CppUnit_addTest(pSuite, PartialStreamTest, testReading);
 	CppUnit_addTest(pSuite, PartialStreamTest, testWriting);

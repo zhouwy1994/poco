@@ -9,8 +9,8 @@
 
 
 #include "CppParserTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/CppParser/Utility.h"
 #include "Poco/CppParser/Symbol.h"
 #include "Poco/CppParser/CppToken.h"
@@ -36,7 +36,7 @@ std::string options("/I \"C:\\Program Files\\Microsoft Visual Studio 8\\VC\\INCL
 std::string path("C:\\Program Files\\Microsoft Visual Studio 8\\Common7\\IDE;C:\\Program Files\\Microsoft Visual Studio 8\\VC\\BIN;C:\\Program Files\\Microsoft Visual Studio 8\\Common7\\Tools;;C:\\Program Files\\Microsoft Visual Studio 8\\Common7\\Tools\\bin");
 
 
-CppParserTest::CppParserTest(const std::string& name): CppUnit::TestCase(name)
+CppParserTest::CppParserTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -206,9 +206,9 @@ void CppParserTest::tearDown()
 }
 
 
-CppUnit::Test* CppParserTest::suite()
+Poco::CppUnit::Test* CppParserTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("CppParserTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("CppParserTest");
 
 	CppUnit_addTest(pSuite, CppParserTest, testParseDir);
 	CppUnit_addTest(pSuite, CppParserTest, testExtractName);

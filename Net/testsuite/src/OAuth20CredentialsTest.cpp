@@ -9,8 +9,8 @@
 
 
 #include "OAuth20CredentialsTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/Net/HTTPRequest.h"
 #include "Poco/Net/OAuth20Credentials.h"
 #include "Poco/Net/NetException.h"
@@ -21,7 +21,7 @@ using Poco::Net::OAuth20Credentials;
 using Poco::Net::NotAuthenticatedException;
 
 
-OAuth20CredentialsTest::OAuth20CredentialsTest(const std::string& name): CppUnit::TestCase(name)
+OAuth20CredentialsTest::OAuth20CredentialsTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -93,9 +93,9 @@ void OAuth20CredentialsTest::tearDown()
 }
 
 
-CppUnit::Test* OAuth20CredentialsTest::suite()
+Poco::CppUnit::Test* OAuth20CredentialsTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("OAuth20CredentialsTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("OAuth20CredentialsTest");
 
 	CppUnit_addTest(pSuite, OAuth20CredentialsTest, testAuthorize);
 	CppUnit_addTest(pSuite, OAuth20CredentialsTest, testAuthorizeCustomScheme);

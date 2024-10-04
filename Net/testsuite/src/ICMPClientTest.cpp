@@ -9,8 +9,8 @@
 
 
 #include "ICMPClientTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/Net/ICMPSocket.h"
 #include "Poco/Net/ICMPClient.h"
 #include "Poco/Net/ICMPEventArgs.h"
@@ -36,7 +36,7 @@ Poco::FastMutex ICMPClientTest::_mutex;
 
 
 ICMPClientTest::ICMPClientTest(const std::string& name):
-	CppUnit::TestCase(name)
+	Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -176,9 +176,9 @@ void ICMPClientTest::onEnd(const void* pSender, ICMPEventArgs& args)
 }
 
 
-CppUnit::Test* ICMPClientTest::suite()
+Poco::CppUnit::Test* ICMPClientTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("ICMPClientTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("ICMPClientTest");
 
 	CppUnit_addTest(pSuite, ICMPClientTest, testPing);
 	CppUnit_addTest(pSuite, ICMPClientTest, testBigPing);

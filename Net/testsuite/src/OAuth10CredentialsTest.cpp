@@ -9,8 +9,8 @@
 
 
 #include "OAuth10CredentialsTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/Net/HTTPRequest.h"
 #include "Poco/Net/HTTPResponse.h"
 #include "Poco/Net/OAuth10Credentials.h"
@@ -27,7 +27,7 @@ using Poco::Net::HTMLForm;
 using Poco::URI;
 
 
-OAuth10CredentialsTest::OAuth10CredentialsTest(const std::string& name): CppUnit::TestCase(name)
+OAuth10CredentialsTest::OAuth10CredentialsTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -249,9 +249,9 @@ void OAuth10CredentialsTest::tearDown()
 }
 
 
-CppUnit::Test* OAuth10CredentialsTest::suite()
+Poco::CppUnit::Test* OAuth10CredentialsTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("OAuth10CredentialsTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("OAuth10CredentialsTest");
 
 	CppUnit_addTest(pSuite, OAuth10CredentialsTest, testCallback);
 	CppUnit_addTest(pSuite, OAuth10CredentialsTest, testParams);

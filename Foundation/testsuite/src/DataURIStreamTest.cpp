@@ -9,8 +9,8 @@
 
 
 #include "DataURIStreamTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/DataURIStream.h"
 #include "Poco/Exception.h"
 #include "Poco/URI.h"
@@ -24,7 +24,7 @@ using Poco::StreamCopier;
 using Poco::URI;
 
 
-DataURIStreamTest::DataURIStreamTest(const std::string& name): CppUnit::TestCase(name)
+DataURIStreamTest::DataURIStreamTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -101,9 +101,9 @@ void DataURIStreamTest::tearDown()
 }
 
 
-CppUnit::Test* DataURIStreamTest::suite()
+Poco::CppUnit::Test* DataURIStreamTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("DataURIStreamTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("DataURIStreamTest");
 
 	CppUnit_addTest(pSuite, DataURIStreamTest, testWithBase64);
 	CppUnit_addTest(pSuite, DataURIStreamTest, testWithoutBase64);

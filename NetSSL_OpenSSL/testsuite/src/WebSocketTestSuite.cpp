@@ -12,9 +12,9 @@
 #include "WebSocketTest.h"
 
 
-CppUnit::Test* WebSocketTestSuite::suite()
+Poco::CppUnit::Test* WebSocketTestSuite::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("WebSocketTestSuite");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("WebSocketTestSuite");
 
 	pSuite->addTest(WebSocketTest::suite());
 

@@ -13,9 +13,9 @@
 #include "TaskManagerTest.h"
 
 
-CppUnit::Test* TaskTestSuite::suite()
+Poco::CppUnit::Test* TaskTestSuite::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("TaskTestSuite");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("TaskTestSuite");
 
 	pSuite->addTest(TaskTest::suite());
 	pSuite->addTest(TaskManagerTest::suite());

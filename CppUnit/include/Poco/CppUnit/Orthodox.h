@@ -7,10 +7,11 @@
 #define CppUnit_Orthodox_INCLUDED
 
 
-#include "CppUnit/CppUnit.h"
-#include "CppUnit/TestCase.h"
+#include "Poco/CppUnit/CppUnit.h"
+#include "Poco/CppUnit/TestCase.h"
 
 
+namespace Poco {
 namespace CppUnit {
 
 
@@ -98,6 +99,7 @@ ClassUnderTest Orthodox<ClassUnderTest>::call(ClassUnderTest object)
 
 
 } // namespace CppUnit
+} // namespace Poco
 
 
 #endif // CppUnit_Orthodox_INCLUDED

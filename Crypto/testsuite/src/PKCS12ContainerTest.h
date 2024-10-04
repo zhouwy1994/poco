@@ -15,12 +15,12 @@
 
 
 #include "Poco/Crypto/Crypto.h"
-#include "CppUnit/TestCase.h"
+#include "Poco/CppUnit/TestCase.h"
 #include "Poco/Crypto/PKCS12Container.h"
 #include "Poco/Crypto/X509Certificate.h"
 
 
-class PKCS12ContainerTest: public CppUnit::TestCase
+class PKCS12ContainerTest: public Poco::CppUnit::TestCase
 {
 public:
 	PKCS12ContainerTest(const std::string& name);
@@ -33,7 +33,7 @@ public:
 	void setUp();
 	void tearDown();
 
-	static CppUnit::Test* suite();
+	static Poco::CppUnit::Test* suite();
 
 	static std::string getTestFilesPath(const std::string& name,
 		const std::string& ext = "p12");

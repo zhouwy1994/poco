@@ -9,8 +9,8 @@
 
 
 #include "PathTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/Path.h"
 #include "Poco/Exception.h"
 #include "Poco/Random.h"
@@ -32,7 +32,7 @@ using Poco::PathSyntaxException;
 using Poco::Environment;
 
 
-PathTest::PathTest(const std::string& name): CppUnit::TestCase(name)
+PathTest::PathTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -1630,9 +1630,9 @@ void PathTest::tearDown()
 }
 
 
-CppUnit::Test* PathTest::suite()
+Poco::CppUnit::Test* PathTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("PathTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("PathTest");
 
 	CppUnit_addTest(pSuite, PathTest, testParseUnix1);
 	CppUnit_addTest(pSuite, PathTest, testParseUnix2);

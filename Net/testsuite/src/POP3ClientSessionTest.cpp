@@ -9,8 +9,8 @@
 
 
 #include "POP3ClientSessionTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "DialogServer.h"
 #include "Poco/Net/POP3ClientSession.h"
 #include "Poco/Net/MailMessage.h"
@@ -23,7 +23,7 @@ using Poco::Net::MailMessage;
 using Poco::Net::POP3Exception;
 
 
-POP3ClientSessionTest::POP3ClientSessionTest(const std::string& name): CppUnit::TestCase(name)
+POP3ClientSessionTest::POP3ClientSessionTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -279,9 +279,9 @@ void POP3ClientSessionTest::tearDown()
 }
 
 
-CppUnit::Test* POP3ClientSessionTest::suite()
+Poco::CppUnit::Test* POP3ClientSessionTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("POP3ClientSessionTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("POP3ClientSessionTest");
 
 	CppUnit_addTest(pSuite, POP3ClientSessionTest, testLogin);
 	CppUnit_addTest(pSuite, POP3ClientSessionTest, testLoginFail);

@@ -9,8 +9,8 @@
 
 
 #include "NullStreamTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/NullStream.h"
 
 
@@ -18,7 +18,7 @@ using Poco::NullInputStream;
 using Poco::NullOutputStream;
 
 
-NullStreamTest::NullStreamTest(const std::string& name): CppUnit::TestCase(name)
+NullStreamTest::NullStreamTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -58,9 +58,9 @@ void NullStreamTest::tearDown()
 }
 
 
-CppUnit::Test* NullStreamTest::suite()
+Poco::CppUnit::Test* NullStreamTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("NullStreamTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("NullStreamTest");
 
 	CppUnit_addTest(pSuite, NullStreamTest, testInput);
 	CppUnit_addTest(pSuite, NullStreamTest, testOutput);

@@ -9,8 +9,8 @@
 
 
 #include "ODBCPostgreSQLTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "ODBCTest.h"
 #include "Poco/Format.h"
 #include "Poco/Any.h"
@@ -572,7 +572,7 @@ void ODBCPostgreSQLTest::recreateUnicodeTable()
 }
 
 
-CppUnit::Test* ODBCPostgreSQLTest::suite()
+Poco::CppUnit::Test* ODBCPostgreSQLTest::suite()
 {
 	if ((_pSession = init(_driver, _dsn, _uid, _pwd, _connectString)))
 	{
@@ -580,7 +580,7 @@ CppUnit::Test* ODBCPostgreSQLTest::suite()
 
 		_pExecutor = new SQLExecutor(_driver + " SQL Executor", _pSession);
 
-		CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("ODBCPostgreSQLTest");
+		Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("ODBCPostgreSQLTest");
 
 		CppUnit_addTest(pSuite, ODBCPostgreSQLTest, testBareboneODBC);
 		CppUnit_addTest(pSuite, ODBCPostgreSQLTest, testZeroRows);

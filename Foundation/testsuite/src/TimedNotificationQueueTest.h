@@ -15,13 +15,13 @@
 
 
 #include "Poco/Foundation.h"
-#include "CppUnit/TestCase.h"
+#include "Poco/CppUnit/TestCase.h"
 #include "Poco/TimedNotificationQueue.h"
 #include "Poco/Mutex.h"
 #include <set>
 
 
-class TimedNotificationQueueTest: public CppUnit::TestCase
+class TimedNotificationQueueTest: public Poco::CppUnit::TestCase
 {
 public:
 	TimedNotificationQueueTest(const std::string& name);
@@ -35,7 +35,7 @@ public:
 	void setUp();
 	void tearDown();
 
-	static CppUnit::Test* suite();
+	static Poco::CppUnit::Test* suite();
 
 protected:
 	void work();

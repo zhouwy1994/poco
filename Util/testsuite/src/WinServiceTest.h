@@ -3,11 +3,11 @@
 
 
 #include "Poco/Util/Util.h"
-#include "CppUnit/TestCase.h"
+#include "Poco/CppUnit/TestCase.h"
 #include "Poco/Util/WinService.h"
 
 
-class WinServiceTest : public CppUnit::TestCase {
+class WinServiceTest : public Poco::CppUnit::TestCase {
 public:
 	WinServiceTest(const std::string& name);
 	~WinServiceTest();
@@ -19,7 +19,7 @@ public:
 	void setUp();
 	void tearDown();
 
-	static CppUnit::Test* suite();
+	static Poco::CppUnit::Test* suite();
 };
 
 

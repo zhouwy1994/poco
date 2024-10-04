@@ -9,8 +9,8 @@
 
 
 #include "StopwatchTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/Stopwatch.h"
 #include "Poco/Timestamp.h"
 #include "Poco/Thread.h"
@@ -21,7 +21,7 @@ using Poco::Timestamp;
 using Poco::Thread;
 
 
-StopwatchTest::StopwatchTest(const std::string& name): CppUnit::TestCase(name)
+StopwatchTest::StopwatchTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -66,9 +66,9 @@ void StopwatchTest::tearDown()
 }
 
 
-CppUnit::Test* StopwatchTest::suite()
+Poco::CppUnit::Test* StopwatchTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("StopwatchTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("StopwatchTest");
 
 	CppUnit_addTest(pSuite, StopwatchTest, testStopwatch);
 

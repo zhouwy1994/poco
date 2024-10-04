@@ -15,11 +15,11 @@
 
 
 #include "Poco/XML/XML.h"
-#include "CppUnit/TestCase.h"
+#include "Poco/CppUnit/TestCase.h"
 #include "Poco/SAX/XMLReader.h"
 
 
-class SAXParserTest: public CppUnit::TestCase
+class SAXParserTest: public Poco::CppUnit::TestCase
 {
 public:
 	SAXParserTest(const std::string& name);
@@ -55,7 +55,7 @@ public:
 	std::string parse(Poco::XML::XMLReader& reader, int options, const std::string& data);
 	std::string parseMemory(Poco::XML::XMLReader& reader, int options, const std::string& data);
 
-	static CppUnit::Test* suite();
+	static Poco::CppUnit::Test* suite();
 
 	static const std::string SIMPLE1;
 	static const std::string SIMPLE2;

@@ -7,13 +7,14 @@
 #define CppUnit_TestSuite_INCLUDED
 
 
-#include "CppUnit/CppUnit.h"
-#include "CppUnit/Guards.h"
-#include "CppUnit/Test.h"
+#include "Poco/CppUnit/CppUnit.h"
+#include "Poco/CppUnit/Guards.h"
+#include "Poco/CppUnit/Test.h"
 #include <vector>
 #include <string>
 
 
+namespace Poco {
 namespace CppUnit {
 
 
@@ -97,6 +98,7 @@ inline const std::vector<Test*> TestSuite::tests() const
 
 
 } // namespace CppUnit
+} // namespace Poco
 
 
 #endif // CppUnit_TestSuite_INCLUDED

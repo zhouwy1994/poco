@@ -9,8 +9,8 @@
 
 
 #include "RSATest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/Crypto/RSADigestEngine.h"
 #include "Poco/Crypto/CipherFactory.h"
 #include "Poco/Crypto/Cipher.h"
@@ -76,7 +76,7 @@ static const std::string anyPem(
 );
 
 
-RSATest::RSATest(const std::string& name): CppUnit::TestCase(name)
+RSATest::RSATest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -290,9 +290,9 @@ void RSATest::tearDown()
 }
 
 
-CppUnit::Test* RSATest::suite()
+Poco::CppUnit::Test* RSATest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("RSATest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("RSATest");
 
 	CppUnit_addTest(pSuite, RSATest, testNewKeys);
 	CppUnit_addTest(pSuite, RSATest, testNewKeysNoPassphrase);

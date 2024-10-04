@@ -9,8 +9,8 @@
 
 
 #include "TimezoneTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/Timezone.h"
 #include <iostream>
 
@@ -18,7 +18,7 @@
 using Poco::Timezone;
 
 
-TimezoneTest::TimezoneTest(const std::string& name): CppUnit::TestCase(name)
+TimezoneTest::TimezoneTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -51,9 +51,9 @@ void TimezoneTest::tearDown()
 }
 
 
-CppUnit::Test* TimezoneTest::suite()
+Poco::CppUnit::Test* TimezoneTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("TimezoneTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("TimezoneTest");
 
 	CppUnit_addTest(pSuite, TimezoneTest, testTimezone);
 

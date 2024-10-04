@@ -30,9 +30,9 @@
 #include "HashingTestSuite.h"
 
 
-CppUnit::Test* FoundationTestSuite::suite()
+Poco::CppUnit::Test* FoundationTestSuite::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("FoundationTestSuite");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("FoundationTestSuite");
 
 	pSuite->addTest(CoreTestSuite::suite());
 	pSuite->addTest(DateTimeTestSuite::suite());

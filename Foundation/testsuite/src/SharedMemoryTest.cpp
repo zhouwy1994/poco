@@ -8,8 +8,8 @@
 //
 
 #include "SharedMemoryTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/SharedMemory.h"
 #include "Poco/Path.h"
 #include "Poco/File.h"
@@ -19,7 +19,7 @@
 using Poco::SharedMemory;
 
 
-SharedMemoryTest::SharedMemoryTest(const std::string& name): CppUnit::TestCase(name)
+SharedMemoryTest::SharedMemoryTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -82,9 +82,9 @@ void SharedMemoryTest::tearDown()
 }
 
 
-CppUnit::Test* SharedMemoryTest::suite()
+Poco::CppUnit::Test* SharedMemoryTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("SharedMemoryTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("SharedMemoryTest");
 
 #if !defined(POCO_NO_SHAREDMEMORY)
 	CppUnit_addTest(pSuite, SharedMemoryTest, testCreate);

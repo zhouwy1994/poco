@@ -11,16 +11,16 @@
 #include "PostgreSQLTestSuite.h"
 #include "PostgreSQLTest.h"
 
-CppUnit::Test* PostgreSQLTestSuite::suite()
+Poco::CppUnit::Test* PostgreSQLTestSuite::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("PostgreSQLTestSuite");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("PostgreSQLTestSuite");
 
 	addTest(pSuite, PostgreSQLTest::suite());
 	return pSuite;
 }
 
 
-void PostgreSQLTestSuite::addTest(CppUnit::TestSuite* pSuite, CppUnit::Test* pT)
+void PostgreSQLTestSuite::addTest(Poco::CppUnit::TestSuite* pSuite, Poco::CppUnit::Test* pT)
 {
 	if (pSuite && pT) pSuite->addTest(pT);
 }

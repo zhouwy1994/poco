@@ -9,8 +9,8 @@
 
 
 #include "NamePoolTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/XML/NamePool.h"
 #include "Poco/XML/Name.h"
 #include "Poco/DOM/AutoPtr.h"
@@ -21,7 +21,7 @@ using Poco::XML::Name;
 using Poco::XML::AutoPtr;
 
 
-NamePoolTest::NamePoolTest(const std::string& name): CppUnit::TestCase(name)
+NamePoolTest::NamePoolTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -62,9 +62,9 @@ void NamePoolTest::tearDown()
 }
 
 
-CppUnit::Test* NamePoolTest::suite()
+Poco::CppUnit::Test* NamePoolTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("NamePoolTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("NamePoolTest");
 
 	CppUnit_addTest(pSuite, NamePoolTest, testNamePool);
 

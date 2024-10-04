@@ -15,10 +15,10 @@
 
 
 #include "Poco/JWT/JWT.h"
-#include "CppUnit/TestCase.h"
+#include "Poco/CppUnit/TestCase.h"
 
 
-class SignerTest: public CppUnit::TestCase
+class SignerTest: public Poco::CppUnit::TestCase
 {
 public:
 	SignerTest(const std::string& name);
@@ -48,7 +48,7 @@ public:
 	void testSignVerifyES512();
 	void testVerifyES512();
 
-	static CppUnit::Test* suite();
+	static Poco::CppUnit::Test* suite();
 
 	static const std::string RSA_PRIVATE_KEY;
 	static const std::string RSA_PUBLIC_KEY;

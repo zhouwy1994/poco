@@ -9,8 +9,8 @@
 
 
 #include "DatagramSocketTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "UDPEchoServer.h"
 #include "Poco/Net/DatagramSocket.h"
 #include "Poco/Net/NetworkInterface.h"
@@ -38,7 +38,7 @@ using Poco::IOException;
 using Poco::Thread;
 
 
-DatagramSocketTest::DatagramSocketTest(const std::string& name): CppUnit::TestCase(name)
+DatagramSocketTest::DatagramSocketTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -814,9 +814,9 @@ void DatagramSocketTest::tearDown()
 }
 
 
-CppUnit::Test* DatagramSocketTest::suite()
+Poco::CppUnit::Test* DatagramSocketTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("DatagramSocketTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("DatagramSocketTest");
 
 	CppUnit_addTest(pSuite, DatagramSocketTest, testEcho);
 	CppUnit_addTest(pSuite, DatagramSocketTest, testMoveDatagramSocket);

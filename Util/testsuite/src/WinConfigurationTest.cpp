@@ -9,8 +9,8 @@
 
 
 #include "WinConfigurationTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/Util/WinRegistryConfiguration.h"
 #include "Poco/Util/WinRegistryKey.h"
 #include "Poco/Environment.h"
@@ -29,7 +29,7 @@ using Poco::Int64;
 using Poco::UInt64;
 
 
-WinConfigurationTest::WinConfigurationTest(const std::string& name): CppUnit::TestCase(name)
+WinConfigurationTest::WinConfigurationTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -144,9 +144,9 @@ void WinConfigurationTest::tearDown()
 }
 
 
-CppUnit::Test* WinConfigurationTest::suite()
+Poco::CppUnit::Test* WinConfigurationTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("WinConfigurationTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("WinConfigurationTest");
 
 	CppUnit_addTest(pSuite, WinConfigurationTest, testConfiguration);
 

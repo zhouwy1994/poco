@@ -12,9 +12,9 @@
 #include "UDPServerTest.h"
 
 
-CppUnit::Test* UDPServerTestSuite::suite()
+Poco::CppUnit::Test* UDPServerTestSuite::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("UDPServerTestSuite");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("UDPServerTestSuite");
 
 	pSuite->addTest(UDPServerTest::suite());
 

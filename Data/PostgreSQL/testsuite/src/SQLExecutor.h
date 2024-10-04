@@ -17,7 +17,7 @@
 
 #include <libpq-fe.h>
 
-class SQLExecutor: public CppUnit::TestCase
+class SQLExecutor: public Poco::CppUnit::TestCase
 {
 public:
 	enum DataBinding

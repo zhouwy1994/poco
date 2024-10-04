@@ -39,9 +39,9 @@
 #include "OrderedContainersTest.h"
 
 
-CppUnit::Test* CoreTestSuite::suite()
+Poco::CppUnit::Test* CoreTestSuite::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("CoreTestSuite");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("CoreTestSuite");
 
 	pSuite->addTest(CoreTest::suite());
 	pSuite->addTest(ArrayTest::suite());

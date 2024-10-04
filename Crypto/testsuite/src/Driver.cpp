@@ -10,7 +10,7 @@
 //
 
 
-#include "CppUnit/TestRunner.h"
+#include "Poco/CppUnit/TestRunner.h"
 #include "CryptoTestSuite.h"
 #include "Poco/Crypto/Crypto.h"
 #include "Poco/Exception.h"
@@ -38,7 +38,7 @@ int main(int ac, char **av)
 	std::vector<std::string> args;
 	for (int i = 0; i < ac; ++i)
 		args.push_back(std::string(av[i]));
-	CppUnit::TestRunner runner;
+	Poco::CppUnit::TestRunner runner;
 	runner.addTest("CryptoTestSuite", CryptoTestSuite::suite());
 	CppUnitPocoExceptionText (exc);
 	return runner.run(args, exc) ? 0 : 1;

@@ -9,8 +9,8 @@
 
 
 #include "StreamConverterTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/StreamConverter.h"
 #include "Poco/ASCIIEncoding.h"
 #include "Poco/Latin1Encoding.h"
@@ -27,7 +27,7 @@ using Poco::ASCIIEncoding;
 using Poco::StreamCopier;
 
 
-StreamConverterTest::StreamConverterTest(const std::string& name): CppUnit::TestCase(name)
+StreamConverterTest::StreamConverterTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -294,9 +294,9 @@ void StreamConverterTest::tearDown()
 }
 
 
-CppUnit::Test* StreamConverterTest::suite()
+Poco::CppUnit::Test* StreamConverterTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("StreamConverterTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("StreamConverterTest");
 
 	CppUnit_addTest(pSuite, StreamConverterTest, testIdentityASCIIIn);
 	CppUnit_addTest(pSuite, StreamConverterTest, testIdentityASCIIOut);

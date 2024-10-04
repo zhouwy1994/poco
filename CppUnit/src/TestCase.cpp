@@ -5,9 +5,9 @@
 
 #include <stdexcept>
 #include <math.h>
-#include "CppUnit/TestCase.h"
-#include "CppUnit/TestResult.h"
-#include "CppUnit/estring.h"
+#include "Poco/CppUnit/TestCase.h"
+#include "Poco/CppUnit/TestResult.h"
+#include "Poco/CppUnit/estring.h"
 #include <typeinfo>
 #include <iostream>
 
@@ -15,6 +15,7 @@
 using namespace std;
 
 
+namespace Poco {
 namespace CppUnit {
 
 
@@ -167,3 +168,4 @@ std::string TestCase::notEqualsMessage(const std::string& expected, const std::s
 
 
 } // namespace CppUnit
+} // namespace Poco

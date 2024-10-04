@@ -16,9 +16,9 @@
 #include "DOMTestSuite.h"
 #include "XMLStreamParserTest.h"
 
-CppUnit::Test* XMLTestSuite::suite()
+Poco::CppUnit::Test* XMLTestSuite::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("XMLTestSuite");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("XMLTestSuite");
 
 	pSuite->addTest(NameTest::suite());
 	pSuite->addTest(NamePoolTest::suite());

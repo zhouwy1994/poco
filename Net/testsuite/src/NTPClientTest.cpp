@@ -9,8 +9,8 @@
 
 
 #include "NTPClientTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/Net/NTPClient.h"
 #include "Poco/Net/NTPEventArgs.h"
 #include "Poco/Net/SocketAddress.h"
@@ -35,7 +35,7 @@ using Poco::AutoPtr;
 
 
 NTPClientTest::NTPClientTest(const std::string& name):
-	CppUnit::TestCase(name),
+	Poco::CppUnit::TestCase(name),
 	_ntpClient(IPAddress::IPv4)
 {
 }
@@ -82,9 +82,9 @@ void NTPClientTest::onResponse(const void* pSender, NTPEventArgs& args)
 }
 
 
-CppUnit::Test* NTPClientTest::suite()
+Poco::CppUnit::Test* NTPClientTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("NTPClientTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("NTPClientTest");
 
 	CppUnit_addTest(pSuite, NTPClientTest, testTimeSync);
 

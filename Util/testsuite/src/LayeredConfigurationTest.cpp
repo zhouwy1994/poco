@@ -9,8 +9,8 @@
 
 
 #include "LayeredConfigurationTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/Util/LayeredConfiguration.h"
 #include "Poco/Util/MapConfiguration.h"
 #include "Poco/AutoPtr.h"
@@ -236,9 +236,9 @@ void LayeredConfigurationTest::tearDown()
 }
 
 
-CppUnit::Test* LayeredConfigurationTest::suite()
+Poco::CppUnit::Test* LayeredConfigurationTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("LayeredConfigurationTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("LayeredConfigurationTest");
 
 	AbstractConfigurationTest_addTests(pSuite, LayeredConfigurationTest);
 	CppUnit_addTest(pSuite, LayeredConfigurationTest, testEmpty);

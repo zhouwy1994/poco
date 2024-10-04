@@ -9,8 +9,8 @@
 
 
 #include "LoggingRegistryTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/LoggingRegistry.h"
 #include "Poco/ConsoleChannel.h"
 #include "Poco/PatternFormatter.h"
@@ -25,7 +25,7 @@ using Poco::PatternFormatter;
 using Poco::AutoPtr;
 
 
-LoggingRegistryTest::LoggingRegistryTest(const std::string& name): CppUnit::TestCase(name)
+LoggingRegistryTest::LoggingRegistryTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -156,9 +156,9 @@ void LoggingRegistryTest::tearDown()
 }
 
 
-CppUnit::Test* LoggingRegistryTest::suite()
+Poco::CppUnit::Test* LoggingRegistryTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("LoggingRegistryTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("LoggingRegistryTest");
 
 	CppUnit_addTest(pSuite, LoggingRegistryTest, testRegister);
 	CppUnit_addTest(pSuite, LoggingRegistryTest, testReregister);

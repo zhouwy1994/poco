@@ -15,9 +15,9 @@
 #include "UniqueExpireCacheTest.h"
 #include "UniqueExpireLRUCacheTest.h"
 
-CppUnit::Test* CacheTestSuite::suite()
+Poco::CppUnit::Test* CacheTestSuite::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("CacheTestSuite");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("CacheTestSuite");
 
 	pSuite->addTest(LRUCacheTest::suite());
 	pSuite->addTest(ExpireCacheTest::suite());

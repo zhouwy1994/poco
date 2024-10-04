@@ -14,8 +14,8 @@
 #ifndef POCO_NO_INOTIFY
 
 
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/DirectoryWatcher.h"
 #include "Poco/Delegate.h"
 #include "Poco/FileStream.h"
@@ -25,7 +25,7 @@ using Poco::DirectoryWatcher;
 
 
 DirectoryWatcherTest::DirectoryWatcherTest(const std::string& name):
-	CppUnit::TestCase(name),
+	Poco::CppUnit::TestCase(name),
 	_error(false)
 {
 }
@@ -441,9 +441,9 @@ Poco::Path DirectoryWatcherTest::path() const
 }
 
 
-CppUnit::Test* DirectoryWatcherTest::suite()
+Poco::CppUnit::Test* DirectoryWatcherTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("DirectoryWatcherTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("DirectoryWatcherTest");
 
 	CppUnit_addTest(pSuite, DirectoryWatcherTest, testAdded);
 	CppUnit_addTest(pSuite, DirectoryWatcherTest, testRemoved);

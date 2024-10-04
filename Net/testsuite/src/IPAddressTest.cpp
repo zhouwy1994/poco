@@ -9,8 +9,8 @@
 
 
 #include "IPAddressTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/Net/IPAddress.h"
 #include "Poco/Net/NetException.h"
 
@@ -19,7 +19,7 @@ using Poco::Net::IPAddress;
 using Poco::Net::InvalidAddressException;
 
 
-IPAddressTest::IPAddressTest(const std::string& name): CppUnit::TestCase(name)
+IPAddressTest::IPAddressTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -700,9 +700,9 @@ void IPAddressTest::tearDown()
 }
 
 
-CppUnit::Test* IPAddressTest::suite()
+Poco::CppUnit::Test* IPAddressTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("IPAddressTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("IPAddressTest");
 
 	CppUnit_addTest(pSuite, IPAddressTest, testStringConv);
 	CppUnit_addTest(pSuite, IPAddressTest, testStringConv6);

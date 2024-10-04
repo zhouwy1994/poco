@@ -17,11 +17,11 @@
 #include "Poco/Data/PostgreSQL/PostgreSQL.h"
 #include "Poco/Data/Session.h"
 #include "Poco/SharedPtr.h"
-#include "CppUnit/TestCase.h"
+#include "Poco/CppUnit/TestCase.h"
 #include "SQLExecutor.h"
 
 
-class PostgreSQLTest: public CppUnit::TestCase
+class PostgreSQLTest: public Poco::CppUnit::TestCase
 	/// PostgreSQL test class
 	/// Tested:
 	///
@@ -116,7 +116,7 @@ public:
 	void setUp();
 	void tearDown();
 
-	static CppUnit::Test* suite();
+	static Poco::CppUnit::Test* suite();
 
 private:
 

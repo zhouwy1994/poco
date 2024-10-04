@@ -15,13 +15,13 @@
 
 
 #include "Poco/Foundation.h"
-#include "CppUnit/TestCase.h"
+#include "Poco/CppUnit/TestCase.h"
 #include "Poco/UnicodeConverter.h"
 #include "Poco/UTFString.h"
 #include <cstring>
 
 
-class UnicodeConverterTest: public CppUnit::TestCase
+class UnicodeConverterTest: public Poco::CppUnit::TestCase
 {
 public:
 	UnicodeConverterTest(const std::string& name);
@@ -33,7 +33,7 @@ public:
 	void setUp();
 	void tearDown();
 
-	static CppUnit::Test* suite();
+	static Poco::CppUnit::Test* suite();
 
 private:
 	template <typename T>

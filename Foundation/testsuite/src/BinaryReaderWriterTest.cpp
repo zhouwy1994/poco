@@ -9,8 +9,8 @@
 
 
 #include "BinaryReaderWriterTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/BinaryWriter.h"
 #include "Poco/BinaryReader.h"
 #include "Poco/Buffer.h"
@@ -28,7 +28,7 @@ using Poco::Int64;
 using Poco::UInt64;
 
 
-BinaryReaderWriterTest::BinaryReaderWriterTest(const std::string& name): CppUnit::TestCase(name)
+BinaryReaderWriterTest::BinaryReaderWriterTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -268,9 +268,9 @@ void BinaryReaderWriterTest::tearDown()
 }
 
 
-CppUnit::Test* BinaryReaderWriterTest::suite()
+Poco::CppUnit::Test* BinaryReaderWriterTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("BinaryReaderWriterTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("BinaryReaderWriterTest");
 
 	CppUnit_addTest(pSuite, BinaryReaderWriterTest, testNative);
 	CppUnit_addTest(pSuite, BinaryReaderWriterTest, testBigEndian);

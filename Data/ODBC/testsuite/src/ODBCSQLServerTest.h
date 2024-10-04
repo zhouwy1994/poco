@@ -51,7 +51,7 @@ public:
 
 	void testStoredFunction();
 
-	static CppUnit::Test* suite();
+	static Poco::CppUnit::Test* suite();
 
 private:
 	void dropObject(const std::string& type, const std::string& name);

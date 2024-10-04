@@ -3,14 +3,15 @@
 //
 
 
-#include "CppUnit/TestRunner.h"
-#include "CppUnit/Test.h"
-#include "CppUnit/TestSuite.h"
-#include "CppUnit/TextTestResult.h"
+#include "Poco/CppUnit/TestRunner.h"
+#include "Poco/CppUnit/Test.h"
+#include "Poco/CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TextTestResult.h"
 #include <iostream>
 #include <fstream>
 
 
+namespace Poco {
 namespace CppUnit {
 
 
@@ -233,3 +234,4 @@ int TestRunner::collectAllTestCases(Test* pTest, std::vector<Test*>& testcases)
 
 
 } // namespace CppUnit
+} // namespace Poco

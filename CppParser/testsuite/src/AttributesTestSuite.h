@@ -14,13 +14,13 @@
 #define AttributesTestSuite_INCLUDED
 
 
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestSuite.h"
 
 
 class AttributesTestSuite
 {
 public:
-	static CppUnit::Test* suite();
+	static Poco::CppUnit::Test* suite();
 };
 
 

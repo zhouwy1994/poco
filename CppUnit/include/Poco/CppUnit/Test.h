@@ -7,12 +7,13 @@
 #define CppUnit_Test_INCLUDED
 
 
-#include "CppUnit/CppUnit.h"
+#include "Poco/CppUnit/CppUnit.h"
 #include <string>
 #include <vector>
 #include <functional>
 
 
+namespace Poco {
 namespace CppUnit {
 
 
@@ -28,7 +29,7 @@ class CppUnit_API Test
 {
 public:
 	enum Type {
-		Suite, // Only set on CppUnit::TestSuite
+		Suite, // Only set on Poco::CppUnit::TestSuite
 		Normal, // Default TestCase always run
 		Long // Such TestCase will only be run if the `-long` command line argument is set
 	};
@@ -95,6 +96,7 @@ inline const std::vector<std::string>& Test::setup() const
 
 
 } // namespace CppUnit
+} // namespace Poco
 
 
 #endif // CppUnit_Test_INCLUDED

@@ -12,9 +12,9 @@
 #include "MongoDBTest.h"
 
 
-CppUnit::Test* MongoDBTestSuite::suite()
+Poco::CppUnit::Test* MongoDBTestSuite::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("MongoDBTestSuite");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("MongoDBTestSuite");
 
 	pSuite->addTest(MongoDBTest::suite());
 

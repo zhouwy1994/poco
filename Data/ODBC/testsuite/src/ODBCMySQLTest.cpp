@@ -10,8 +10,8 @@
 
 #include "ODBCMySQLTest.h"
 #include "ODBCTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/String.h"
 #include "Poco/Format.h"
 #include "Poco/Tuple.h"
@@ -410,7 +410,7 @@ void ODBCMySQLTest::recreateLogTable()
 }
 
 
-CppUnit::Test* ODBCMySQLTest::suite()
+Poco::CppUnit::Test* ODBCMySQLTest::suite()
 {
 	if ((_pSession = init(_driver, _dsn, _uid, _pwd, _connectString, _db)))
 	{
@@ -418,7 +418,7 @@ CppUnit::Test* ODBCMySQLTest::suite()
 
 		_pExecutor = new SQLExecutor(_driver + " SQL Executor", _pSession);
 
-		CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("ODBCMySQLTest");
+		Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("ODBCMySQLTest");
 
 		CppUnit_addTest(pSuite, ODBCMySQLTest, testBareboneODBC);
 		CppUnit_addTest(pSuite, ODBCMySQLTest, testZeroRows);

@@ -9,8 +9,8 @@
 
 
 #include "OptionProcessorTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/Util/Option.h"
 #include "Poco/Util/OptionSet.h"
 #include "Poco/Util/OptionProcessor.h"
@@ -22,7 +22,7 @@ using Poco::Util::OptionSet;
 using Poco::Util::OptionProcessor;
 
 
-OptionProcessorTest::OptionProcessorTest(const std::string& name): CppUnit::TestCase(name)
+OptionProcessorTest::OptionProcessorTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -364,9 +364,9 @@ void OptionProcessorTest::tearDown()
 }
 
 
-CppUnit::Test* OptionProcessorTest::suite()
+Poco::CppUnit::Test* OptionProcessorTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("OptionProcessorTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("OptionProcessorTest");
 
 	CppUnit_addTest(pSuite, OptionProcessorTest, testUnix);
 	CppUnit_addTest(pSuite, OptionProcessorTest, testDefault);

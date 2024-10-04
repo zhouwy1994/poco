@@ -9,8 +9,8 @@
 
 
 #include "HMACEngineTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/HMACEngine.h"
 #include "Poco/MD5Engine.h"
 #include "Poco/SHA2Engine.h"
@@ -26,7 +26,7 @@ using Poco::SHA2Engine512;
 using Poco::DigestEngine;
 
 
-HMACEngineTest::HMACEngineTest(const std::string& name): CppUnit::TestCase(name)
+HMACEngineTest::HMACEngineTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -391,9 +391,9 @@ void HMACEngineTest::tearDown()
 }
 
 
-CppUnit::Test* HMACEngineTest::suite()
+Poco::CppUnit::Test* HMACEngineTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("HMACEngineTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("HMACEngineTest");
 
 	CppUnit_addTest(pSuite, HMACEngineTest, testHMAC_MD5);
 	CppUnit_addTest(pSuite, HMACEngineTest, testHMAC_SHA2_224);

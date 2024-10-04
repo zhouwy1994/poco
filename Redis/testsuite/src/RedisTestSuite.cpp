@@ -12,9 +12,9 @@
 #include "RedisTest.h"
 
 
-CppUnit::Test* RedisTestSuite::suite()
+Poco::CppUnit::Test* RedisTestSuite::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("RedisTestSuite");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("RedisTestSuite");
 
 	pSuite->addTest(RedisTest::suite());
 

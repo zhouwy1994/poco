@@ -16,9 +16,9 @@
 #include "DirectoryIteratorsTest.h"
 
 
-CppUnit::Test* FilesystemTestSuite::suite()
+Poco::CppUnit::Test* FilesystemTestSuite::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("FilesystemTestSuite");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("FilesystemTestSuite");
 
 	pSuite->addTest(PathTest::suite());
 	pSuite->addTest(FileTest::suite());

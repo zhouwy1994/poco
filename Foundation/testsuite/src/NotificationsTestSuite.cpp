@@ -15,9 +15,9 @@
 #include "TimedNotificationQueueTest.h"
 
 
-CppUnit::Test* NotificationsTestSuite::suite()
+Poco::CppUnit::Test* NotificationsTestSuite::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("NotificationsTestSuite");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("NotificationsTestSuite");
 
 	pSuite->addTest(NotificationCenterTest::suite());
 	pSuite->addTest(NotificationQueueTest::suite());

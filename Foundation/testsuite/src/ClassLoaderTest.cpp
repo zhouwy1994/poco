@@ -9,8 +9,8 @@
 
 
 #include "ClassLoaderTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/ClassLoader.h"
 #include "Poco/Manifest.h"
 #include "Poco/Exception.h"
@@ -25,7 +25,7 @@ using Poco::NotFoundException;
 using Poco::InvalidAccessException;
 
 
-ClassLoaderTest::ClassLoaderTest(const std::string& name): CppUnit::TestCase(name)
+ClassLoaderTest::ClassLoaderTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -200,9 +200,9 @@ void ClassLoaderTest::tearDown()
 }
 
 
-CppUnit::Test* ClassLoaderTest::suite()
+Poco::CppUnit::Test* ClassLoaderTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("ClassLoaderTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("ClassLoaderTest");
 
 	CppUnit_addTest(pSuite, ClassLoaderTest, testClassLoader1);
 	CppUnit_addTest(pSuite, ClassLoaderTest, testClassLoader2);

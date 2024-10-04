@@ -15,10 +15,10 @@
 
 
 #include "Poco/Crypto/Crypto.h"
-#include "CppUnit/TestCase.h"
+#include "Poco/CppUnit/TestCase.h"
 
 
-class CryptoTest: public CppUnit::TestCase
+class CryptoTest: public Poco::CppUnit::TestCase
 {
 public:
 	enum
@@ -45,7 +45,7 @@ public:
 	void setUp();
 	void tearDown();
 
-	static CppUnit::Test* suite();
+	static Poco::CppUnit::Test* suite();
 
 private:
 };

@@ -9,8 +9,8 @@
 
 
 #include "CoreTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/Bugcheck.h"
 #include "Poco/Exception.h"
 #include "Poco/Environment.h"
@@ -112,7 +112,7 @@ struct Large
 #define ENABLE_BUGCHECK_TEST 0
 
 
-CoreTest::CoreTest(const std::string& name): CppUnit::TestCase(name)
+CoreTest::CoreTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -1146,9 +1146,9 @@ void CoreTest::tearDown()
 }
 
 
-CppUnit::Test* CoreTest::suite()
+Poco::CppUnit::Test* CoreTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("CoreTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("CoreTest");
 
 	CppUnit_addTest(pSuite, CoreTest, testPlatform);
 	CppUnit_addTest(pSuite, CoreTest, testFixedLength);

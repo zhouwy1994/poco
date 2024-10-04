@@ -9,8 +9,8 @@
 
 
 #include "LRUCacheTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/Exception.h"
 #include "Poco/LRUCache.h"
 #include "Poco/Bugcheck.h"
@@ -20,7 +20,7 @@
 using namespace Poco;
 
 
-LRUCacheTest::LRUCacheTest(const std::string& name): CppUnit::TestCase(name)
+LRUCacheTest::LRUCacheTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -272,9 +272,9 @@ void LRUCacheTest::tearDown()
 }
 
 
-CppUnit::Test* LRUCacheTest::suite()
+Poco::CppUnit::Test* LRUCacheTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("LRUCacheTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("LRUCacheTest");
 
 	CppUnit_addTest(pSuite, LRUCacheTest, testClear);
 	CppUnit_addTest(pSuite, LRUCacheTest, testCacheSize0);

@@ -18,8 +18,8 @@
 #include "Poco/Crypto/X509Certificate.h"
 #include "Poco/TemporaryFile.h"
 #include "Poco/StreamCopier.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include <memory>
 #include <sstream>
 #include <fstream>
@@ -84,7 +84,7 @@ static const std::string anyPemRSA(
 );
 
 
-EVPTest::EVPTest(const std::string& name): CppUnit::TestCase(name)
+EVPTest::EVPTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -696,9 +696,9 @@ void EVPTest::tearDown()
 }
 
 
-CppUnit::Test* EVPTest::suite()
+Poco::CppUnit::Test* EVPTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("EVPTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("EVPTest");
 
 	CppUnit_addTest(pSuite, EVPTest, testRSAEVPPKey);
 	CppUnit_addTest(pSuite, EVPTest, testRSAEVPSaveLoadStream);

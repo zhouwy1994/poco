@@ -9,8 +9,8 @@
 
 
 #include "FilesystemConfigurationTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/Util/FilesystemConfiguration.h"
 #include "Poco/AutoPtr.h"
 #include "Poco/File.h"
@@ -103,9 +103,9 @@ void FilesystemConfigurationTest::tearDown()
 }
 
 
-CppUnit::Test* FilesystemConfigurationTest::suite()
+Poco::CppUnit::Test* FilesystemConfigurationTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("FilesystemConfigurationTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("FilesystemConfigurationTest");
 
 	AbstractConfigurationTest_addTests(pSuite, FilesystemConfigurationTest);
 	CppUnit_addTest(pSuite, FilesystemConfigurationTest, testFilesystemConfiguration);

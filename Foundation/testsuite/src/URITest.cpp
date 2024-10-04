@@ -9,8 +9,8 @@
 
 
 #include "URITest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/URI.h"
 #include "Poco/Path.h"
 
@@ -19,7 +19,7 @@ using Poco::URI;
 using Poco::Path;
 
 
-URITest::URITest(const std::string& name): CppUnit::TestCase(name)
+URITest::URITest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -915,9 +915,9 @@ void URITest::tearDown()
 }
 
 
-CppUnit::Test* URITest::suite()
+Poco::CppUnit::Test* URITest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("URITest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("URITest");
 
 	CppUnit_addTest(pSuite, URITest, testConstruction);
 	CppUnit_addTest(pSuite, URITest, testParse);

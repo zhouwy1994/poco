@@ -7,16 +7,17 @@
 #define CppUnit_TestCase_INCLUDED
 
 
-#include "CppUnit/CppUnit.h"
-#include "CppUnit/Guards.h"
-#include "CppUnit/Test.h"
-#include "CppUnit/TestResult.h"
-#include "CppUnit/CppUnitException.h"
+#include "Poco/CppUnit/CppUnit.h"
+#include "Poco/CppUnit/Guards.h"
+#include "Poco/CppUnit/Test.h"
+#include "Poco/CppUnit/TestResult.h"
+#include "Poco/CppUnit/CppUnitException.h"
 #include <string>
 #include <vector>
 #include <typeinfo>
 
 
+namespace Poco {
 namespace CppUnit {
 
 
@@ -305,6 +306,7 @@ inline void TestCase::setType(Test::Type testType)
 
 
 } // namespace CppUnit
+} // namespace Poco
 
 
 #endif // CppUnit_TestCase_INCLUDED

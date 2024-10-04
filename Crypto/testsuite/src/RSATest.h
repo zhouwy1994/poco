@@ -15,10 +15,10 @@
 
 
 #include "Poco/Crypto/Crypto.h"
-#include "CppUnit/TestCase.h"
+#include "Poco/CppUnit/TestCase.h"
 
 
-class RSATest: public CppUnit::TestCase
+class RSATest: public Poco::CppUnit::TestCase
 {
 public:
 	RSATest(const std::string& name);
@@ -36,7 +36,7 @@ public:
 	void setUp();
 	void tearDown();
 
-	static CppUnit::Test* suite();
+	static Poco::CppUnit::Test* suite();
 
 private:
 };

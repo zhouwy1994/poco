@@ -9,8 +9,8 @@
 
 
 #include "TimestampTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/Timestamp.h"
 #include "Poco/Thread.h"
 
@@ -19,7 +19,7 @@ using Poco::Timestamp;
 using Poco::Thread;
 
 
-TimestampTest::TimestampTest(const std::string& name): CppUnit::TestCase(name)
+TimestampTest::TimestampTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -90,9 +90,9 @@ void TimestampTest::tearDown()
 }
 
 
-CppUnit::Test* TimestampTest::suite()
+Poco::CppUnit::Test* TimestampTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("TimestampTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("TimestampTest");
 
 	CppUnit_addTest(pSuite, TimestampTest, testTimestamp);
 

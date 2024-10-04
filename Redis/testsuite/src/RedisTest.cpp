@@ -15,8 +15,8 @@
 #include "Poco/Redis/AsyncReader.h"
 #include "Poco/Redis/Command.h"
 #include "Poco/Redis/PoolableConnectionFactory.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include <iostream>
 
 
@@ -28,7 +28,7 @@ Poco::Redis::Client RedisTest::_redis;
 
 
 RedisTest::RedisTest(const std::string& name):
-	CppUnit::TestCase("Redis"),
+	Poco::CppUnit::TestCase("Redis"),
 	_host("localhost"),
 	_port(6379)
 {
@@ -2947,9 +2947,9 @@ void RedisTest::delKey(const std::string& key)
 }
 
 
-CppUnit::Test* RedisTest::suite()
+Poco::CppUnit::Test* RedisTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("RedisTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("RedisTest");
 
 	CppUnit_addTest(pSuite, RedisTest, testAPPEND);
 	CppUnit_addTest(pSuite, RedisTest, testBLPOP);

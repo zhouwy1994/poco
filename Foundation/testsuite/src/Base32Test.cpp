@@ -9,8 +9,8 @@
 
 
 #include "Base32Test.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/Base32Encoder.h"
 #include "Poco/Base32Decoder.h"
 #include "Poco/Exception.h"
@@ -22,7 +22,7 @@ using Poco::Base32Decoder;
 using Poco::DataFormatException;
 
 
-Base32Test::Base32Test(const std::string& name): CppUnit::TestCase(name)
+Base32Test::Base32Test(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -170,9 +170,9 @@ void Base32Test::tearDown()
 }
 
 
-CppUnit::Test* Base32Test::suite()
+Poco::CppUnit::Test* Base32Test::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("Base32Test");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("Base32Test");
 
 	CppUnit_addTest(pSuite, Base32Test, testEncoder);
 	CppUnit_addTest(pSuite, Base32Test, testDecoder);

@@ -10,8 +10,8 @@
 
 #include "DataTest.h"
 #include "Extractor.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/Data/Session.h"
 #include "Poco/Data/SessionFactory.h"
 #include "Poco/Data/LOB.h"
@@ -80,7 +80,7 @@ using Poco::Data::AbstractBindingVec;
 using Poco::Data::NotConnectedException;
 
 
-DataTest::DataTest(const std::string& name): CppUnit::TestCase(name)
+DataTest::DataTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 	Poco::Data::Test::Connector::addToFactory();
 }
@@ -1447,9 +1447,9 @@ void DataTest::tearDown()
 }
 
 
-CppUnit::Test* DataTest::suite()
+Poco::CppUnit::Test* DataTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("DataTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("DataTest");
 
 	CppUnit_addTest(pSuite, DataTest, testSession);
 	CppUnit_addTest(pSuite, DataTest, testStatementFormatting);

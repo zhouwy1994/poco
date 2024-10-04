@@ -2472,7 +2472,7 @@ Release 1.3.4 (2009-04-21)
   member function) and the Poco::Net::SSLInitializer class was
   moved to Poco::Crypto::OpenSSLInitializer.
 - added build configs for static libraries to Zip
-- added batch mode to CppUnit::WinTestRunner.
+- added batch mode to Poco::CppUnit::WinTestRunner.
   WinTestRunnerApp supports a batch mode, which runs the
   test using the standard text-based TestRunner from CppUnit.
   To enable batch mode, start the application with the "/b"

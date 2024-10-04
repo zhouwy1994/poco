@@ -9,8 +9,8 @@
 
 
 #include "HTTPSClientSessionTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/Net/HTTPSClientSession.h"
 #include "Poco/Net/HTTPRequest.h"
 #include "Poco/Net/HTTPRequestHandler.h"
@@ -76,7 +76,7 @@ public:
 };
 
 
-HTTPSClientSessionTest::HTTPSClientSessionTest(const std::string& name): CppUnit::TestCase(name)
+HTTPSClientSessionTest::HTTPSClientSessionTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -446,9 +446,9 @@ void HTTPSClientSessionTest::tearDown()
 }
 
 
-CppUnit::Test* HTTPSClientSessionTest::suite()
+Poco::CppUnit::Test* HTTPSClientSessionTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("HTTPSClientSessionTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("HTTPSClientSessionTest");
 
 	CppUnit_addTest(pSuite, HTTPSClientSessionTest, testGetSmall);
 	CppUnit_addTest(pSuite, HTTPSClientSessionTest, testGetLarge);

@@ -9,8 +9,8 @@
 
 
 #include "NameValueCollectionTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/Net/NameValueCollection.h"
 #include "Poco/Exception.h"
 
@@ -19,7 +19,7 @@ using Poco::Net::NameValueCollection;
 using Poco::NotFoundException;
 
 
-NameValueCollectionTest::NameValueCollectionTest(const std::string& name): CppUnit::TestCase(name)
+NameValueCollectionTest::NameValueCollectionTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -116,9 +116,9 @@ void NameValueCollectionTest::tearDown()
 }
 
 
-CppUnit::Test* NameValueCollectionTest::suite()
+Poco::CppUnit::Test* NameValueCollectionTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("NameValueCollectionTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("NameValueCollectionTest");
 
 	CppUnit_addTest(pSuite, NameValueCollectionTest, testNameValueCollection);
 

@@ -7,11 +7,12 @@
 #define CppUnit_CppUnitException_INCLUDED
 
 
-#include "CppUnit/CppUnit.h"
+#include "Poco/CppUnit/CppUnit.h"
 #include <exception>
 #include <string>
 
 
+namespace Poco {
 namespace CppUnit {
 
 
@@ -134,6 +135,7 @@ inline const std::string& CppUnitException::fileName() const
 
 
 } // namespace CppUnit
+} // namespace Poco
 
 
 #endif // CppUnit_CppUnitException_INCLUDED

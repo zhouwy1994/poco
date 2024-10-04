@@ -72,7 +72,7 @@
 		using Poco::Data::ODBC::StatementException
 
 
-class SQLExecutor: public CppUnit::TestCase
+class SQLExecutor: public Poco::CppUnit::TestCase
 {
 public:
 	enum DataBinding

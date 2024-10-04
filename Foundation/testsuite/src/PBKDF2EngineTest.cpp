@@ -9,8 +9,8 @@
 
 
 #include "PBKDF2EngineTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/PBKDF2Engine.h"
 #include "Poco/HMACEngine.h"
 #include "Poco/SHA1Engine.h"
@@ -22,7 +22,7 @@ using Poco::SHA1Engine;
 using Poco::DigestEngine;
 
 
-PBKDF2EngineTest::PBKDF2EngineTest(const std::string& name): CppUnit::TestCase(name)
+PBKDF2EngineTest::PBKDF2EngineTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -119,9 +119,9 @@ void PBKDF2EngineTest::tearDown()
 }
 
 
-CppUnit::Test* PBKDF2EngineTest::suite()
+Poco::CppUnit::Test* PBKDF2EngineTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("PBKDF2EngineTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("PBKDF2EngineTest");
 
 	CppUnit_addTest(pSuite, PBKDF2EngineTest, testPBKDF2a);
 	CppUnit_addTest(pSuite, PBKDF2EngineTest, testPBKDF2b);

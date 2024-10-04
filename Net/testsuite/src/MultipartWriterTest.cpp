@@ -9,8 +9,8 @@
 
 
 #include "MultipartWriterTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/Net/MultipartWriter.h"
 #include "Poco/Net/MessageHeader.h"
 #include <sstream>
@@ -20,7 +20,7 @@ using Poco::Net::MultipartWriter;
 using Poco::Net::MessageHeader;
 
 
-MultipartWriterTest::MultipartWriterTest(const std::string& name): CppUnit::TestCase(name)
+MultipartWriterTest::MultipartWriterTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -82,9 +82,9 @@ void MultipartWriterTest::tearDown()
 }
 
 
-CppUnit::Test* MultipartWriterTest::suite()
+Poco::CppUnit::Test* MultipartWriterTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("MultipartWriterTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("MultipartWriterTest");
 
 	CppUnit_addTest(pSuite, MultipartWriterTest, testWriteOnePart);
 	CppUnit_addTest(pSuite, MultipartWriterTest, testWriteTwoParts);

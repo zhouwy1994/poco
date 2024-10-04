@@ -9,8 +9,8 @@
 
 
 #include "HexBinaryTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/HexBinaryEncoder.h"
 #include "Poco/HexBinaryDecoder.h"
 #include "Poco/Exception.h"
@@ -22,7 +22,7 @@ using Poco::HexBinaryDecoder;
 using Poco::DataFormatException;
 
 
-HexBinaryTest::HexBinaryTest(const std::string& name): CppUnit::TestCase(name)
+HexBinaryTest::HexBinaryTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -193,9 +193,9 @@ void HexBinaryTest::tearDown()
 }
 
 
-CppUnit::Test* HexBinaryTest::suite()
+Poco::CppUnit::Test* HexBinaryTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("HexBinaryTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("HexBinaryTest");
 
 	CppUnit_addTest(pSuite, HexBinaryTest, testEncoder);
 	CppUnit_addTest(pSuite, HexBinaryTest, testDecoder);

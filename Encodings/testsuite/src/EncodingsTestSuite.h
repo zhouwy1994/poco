@@ -14,13 +14,13 @@
 #define EncodingsTestSuite_INCLUDED
 
 
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestSuite.h"
 
 
 class EncodingsTestSuite
 {
 public:
-	static CppUnit::Test* suite();
+	static Poco::CppUnit::Test* suite();
 };
 
 

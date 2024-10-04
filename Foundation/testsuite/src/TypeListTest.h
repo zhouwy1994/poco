@@ -15,10 +15,10 @@
 
 
 #include "Poco/Foundation.h"
-#include "CppUnit/TestCase.h"
+#include "Poco/CppUnit/TestCase.h"
 
 
-class TypeListTest: public CppUnit::TestCase
+class TypeListTest: public Poco::CppUnit::TestCase
 {
 public:
 	TypeListTest(const std::string& name);
@@ -28,7 +28,7 @@ public:
 	void setUp();
 	void tearDown();
 
-	static CppUnit::Test* suite();
+	static Poco::CppUnit::Test* suite();
 
 private:
 };

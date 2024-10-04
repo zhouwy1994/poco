@@ -9,8 +9,8 @@
 
 
 #include "ThreadPoolTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/ThreadPool.h"
 #include "Poco/RunnableAdapter.h"
 #include "Poco/Exception.h"
@@ -22,7 +22,7 @@ using Poco::RunnableAdapter;
 using Poco::Thread;
 
 
-ThreadPoolTest::ThreadPoolTest(const std::string& name): CppUnit::TestCase(name), _event(false)
+ThreadPoolTest::ThreadPoolTest(const std::string& name): Poco::CppUnit::TestCase(name), _event(false)
 {
 }
 
@@ -152,9 +152,9 @@ void ThreadPoolTest::count()
 }
 
 
-CppUnit::Test* ThreadPoolTest::suite()
+Poco::CppUnit::Test* ThreadPoolTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("ThreadPoolTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("ThreadPoolTest");
 
 	CppUnit_addTest(pSuite, ThreadPoolTest, testThreadPool);
 

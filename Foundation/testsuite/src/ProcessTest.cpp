@@ -9,8 +9,8 @@
 
 
 #include "ProcessTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/Process.h"
 #include "Poco/Pipe.h"
 #include "Poco/PipeStream.h"
@@ -24,7 +24,7 @@ using Poco::PipeInputStream;
 using Poco::PipeOutputStream;
 
 
-ProcessTest::ProcessTest(const std::string& name): CppUnit::TestCase(name)
+ProcessTest::ProcessTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -268,9 +268,9 @@ void ProcessTest::tearDown()
 }
 
 
-CppUnit::Test* ProcessTest::suite()
+Poco::CppUnit::Test* ProcessTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("ProcessTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("ProcessTest");
 
 	CppUnit_addTest(pSuite, ProcessTest, testEscapeArgs);
 	CppUnit_addTest(pSuite, ProcessTest, testLaunch);

@@ -20,9 +20,9 @@
 #include "ODBCSQLServerTest.h"
 
 
-CppUnit::Test* ODBCTestSuite::suite()
+Poco::CppUnit::Test* ODBCTestSuite::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("ODBCTestSuite");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("ODBCTestSuite");
 
 	// WARNING!
 	// On Win XP Pro, the PostgreSQL connection fails if attempted after DB2 w/ following error:
@@ -53,7 +53,7 @@ CppUnit::Test* ODBCTestSuite::suite()
 }
 
 
-void ODBCTestSuite::addTest(CppUnit::TestSuite* pSuite, CppUnit::Test* pT)
+void ODBCTestSuite::addTest(Poco::CppUnit::TestSuite* pSuite, Poco::CppUnit::Test* pT)
 {
 	if (pSuite && pT) pSuite->addTest(pT);
 }

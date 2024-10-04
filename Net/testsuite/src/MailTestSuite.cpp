@@ -15,9 +15,9 @@
 #include "POP3ClientSessionTest.h"
 
 
-CppUnit::Test* MailTestSuite::suite()
+Poco::CppUnit::Test* MailTestSuite::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("MailTestSuite");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("MailTestSuite");
 
 	pSuite->addTest(MailMessageTest::suite());
 	pSuite->addTest(MailStreamTest::suite());

@@ -9,8 +9,8 @@
 
 
 #include "AttributesParserTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/CppParser/Attributes.h"
 #include "Poco/CppParser/AttributesParser.h"
 #include <sstream>
@@ -20,7 +20,7 @@ using Poco::CppParser::Attributes;
 using Poco::CppParser::AttributesParser;
 
 
-AttributesParserTest::AttributesParserTest(const std::string& name): CppUnit::TestCase(name)
+AttributesParserTest::AttributesParserTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -120,9 +120,9 @@ void AttributesParserTest::tearDown()
 }
 
 
-CppUnit::Test* AttributesParserTest::suite()
+Poco::CppUnit::Test* AttributesParserTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("AttributesParserTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("AttributesParserTest");
 
 	CppUnit_addTest(pSuite, AttributesParserTest, testParser1);
 	CppUnit_addTest(pSuite, AttributesParserTest, testParser2);

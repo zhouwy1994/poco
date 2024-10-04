@@ -23,8 +23,8 @@
 #include "Poco/Delegate.h"
 #include "Poco/StreamCopier.h"
 #include "Poco/Environment.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #undef min
 #include <algorithm>
 #include <iostream>
@@ -34,7 +34,7 @@
 using namespace Poco::Zip;
 
 
-ZipTest::ZipTest(const std::string& name): CppUnit::TestCase(name)
+ZipTest::ZipTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -341,9 +341,9 @@ void ZipTest::tearDown()
 }
 
 
-CppUnit::Test* ZipTest::suite()
+Poco::CppUnit::Test* ZipTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("ZipTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("ZipTest");
 
 	CppUnit_addTest(pSuite, ZipTest, testSkipSingleFile);
 	CppUnit_addTest(pSuite, ZipTest, testDecompressSingleFile);

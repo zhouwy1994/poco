@@ -13,8 +13,8 @@
 
 
 #include "SHA2EngineTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/SHA2Engine.h"
 
 
@@ -22,7 +22,7 @@ using Poco::SHA2Engine;
 using Poco::DigestEngine;
 
 
-SHA2EngineTest::SHA2EngineTest(const std::string& rName): CppUnit::TestCase(rName)
+SHA2EngineTest::SHA2EngineTest(const std::string& rName): Poco::CppUnit::TestCase(rName)
 {
 }
 
@@ -171,9 +171,9 @@ void SHA2EngineTest::tearDown()
 }
 
 
-CppUnit::Test* SHA2EngineTest::suite()
+Poco::CppUnit::Test* SHA2EngineTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("SHA2EngineTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("SHA2EngineTest");
 
 	CppUnit_addTest(pSuite, SHA2EngineTest, testSHA224);
 	CppUnit_addTest(pSuite, SHA2EngineTest, testSHA256);

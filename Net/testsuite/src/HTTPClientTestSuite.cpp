@@ -13,9 +13,9 @@
 #include "HTTPStreamFactoryTest.h"
 
 
-CppUnit::Test* HTTPClientTestSuite::suite()
+Poco::CppUnit::Test* HTTPClientTestSuite::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("HTTPClientTestSuite");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("HTTPClientTestSuite");
 
 	pSuite->addTest(HTTPClientSessionTest::suite());
 	pSuite->addTest(HTTPStreamFactoryTest::suite());

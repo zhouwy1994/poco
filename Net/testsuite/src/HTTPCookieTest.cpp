@@ -9,8 +9,8 @@
 
 
 #include "HTTPCookieTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/Net/HTTPCookie.h"
 #include "Poco/Timestamp.h"
 #include "Poco/Timespan.h"
@@ -33,7 +33,7 @@ using Poco::Net::NameValueCollection;
 using Poco::Net::HTTPCookie;
 
 
-HTTPCookieTest::HTTPCookieTest(const std::string& name): CppUnit::TestCase(name)
+HTTPCookieTest::HTTPCookieTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -202,9 +202,9 @@ void HTTPCookieTest::tearDown()
 }
 
 
-CppUnit::Test* HTTPCookieTest::suite()
+Poco::CppUnit::Test* HTTPCookieTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("HTTPCookieTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("HTTPCookieTest");
 
 	CppUnit_addTest(pSuite, HTTPCookieTest, testCookie);
 	CppUnit_addTest(pSuite, HTTPCookieTest, testEscape);

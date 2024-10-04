@@ -9,15 +9,15 @@
 
 
 #include "TimespanTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/Timespan.h"
 
 
 using Poco::Timespan;
 
 
-TimespanTest::TimespanTest(const std::string& name): CppUnit::TestCase(name)
+TimespanTest::TimespanTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -149,9 +149,9 @@ void TimespanTest::tearDown()
 }
 
 
-CppUnit::Test* TimespanTest::suite()
+Poco::CppUnit::Test* TimespanTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("TimespanTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("TimespanTest");
 
 	CppUnit_addTest(pSuite, TimespanTest, testConversions);
 	CppUnit_addTest(pSuite, TimespanTest, testComparisons);

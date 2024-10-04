@@ -15,10 +15,10 @@
 
 
 #include "Poco/Crypto/Crypto.h"
-#include "CppUnit/TestCase.h"
+#include "Poco/CppUnit/TestCase.h"
 
 
-class EVPTest: public CppUnit::TestCase
+class EVPTest: public Poco::CppUnit::TestCase
 {
 public:
 	EVPTest(const std::string& name);
@@ -47,7 +47,7 @@ public:
 	void setUp();
 	void tearDown();
 
-	static CppUnit::Test* suite();
+	static Poco::CppUnit::Test* suite();
 
 private:
 };

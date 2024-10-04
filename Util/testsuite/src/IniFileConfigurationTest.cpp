@@ -9,8 +9,8 @@
 
 
 #include "IniFileConfigurationTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/Util/IniFileConfiguration.h"
 #include "Poco/AutoPtr.h"
 #include "Poco/Exception.h"
@@ -142,9 +142,9 @@ void IniFileConfigurationTest::tearDown()
 }
 
 
-CppUnit::Test* IniFileConfigurationTest::suite()
+Poco::CppUnit::Test* IniFileConfigurationTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("IniFileConfigurationTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("IniFileConfigurationTest");
 
 	AbstractConfigurationTest_addTests(pSuite, IniFileConfigurationTest);
 	CppUnit_addTest(pSuite, IniFileConfigurationTest, testLoad);

@@ -9,15 +9,15 @@
 
 
 #include "FileStreamTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/FileStream.h"
 #include "Poco/File.h"
 #include "Poco/TemporaryFile.h"
 #include "Poco/Exception.h"
 
 
-FileStreamTest::FileStreamTest(const std::string& name): CppUnit::TestCase(name)
+FileStreamTest::FileStreamTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -299,9 +299,9 @@ void FileStreamTest::tearDown()
 }
 
 
-CppUnit::Test* FileStreamTest::suite()
+Poco::CppUnit::Test* FileStreamTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("FileStreamTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("FileStreamTest");
 
 	CppUnit_addTest(pSuite, FileStreamTest, testRead);
 	CppUnit_addTest(pSuite, FileStreamTest, testWrite);

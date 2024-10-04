@@ -9,8 +9,8 @@
 
 
 #include "QuotedPrintableTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/Net/QuotedPrintableEncoder.h"
 #include "Poco/Net/QuotedPrintableDecoder.h"
 #include <sstream>
@@ -20,7 +20,7 @@ using Poco::Net::QuotedPrintableEncoder;
 using Poco::Net::QuotedPrintableDecoder;
 
 
-QuotedPrintableTest::QuotedPrintableTest(const std::string& name): CppUnit::TestCase(name)
+QuotedPrintableTest::QuotedPrintableTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -89,9 +89,9 @@ void QuotedPrintableTest::tearDown()
 }
 
 
-CppUnit::Test* QuotedPrintableTest::suite()
+Poco::CppUnit::Test* QuotedPrintableTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("QuotedPrintableTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("QuotedPrintableTest");
 
 	CppUnit_addTest(pSuite, QuotedPrintableTest, testEncode);
 	CppUnit_addTest(pSuite, QuotedPrintableTest, testDecode);

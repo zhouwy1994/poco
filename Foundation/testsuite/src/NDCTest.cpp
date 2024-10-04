@@ -9,8 +9,8 @@
 
 
 #include "NDCTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/NestedDiagnosticContext.h"
 #include <iostream>
 
@@ -18,7 +18,7 @@
 using Poco::NDC;
 
 
-NDCTest::NDCTest(const std::string& name): CppUnit::TestCase(name)
+NDCTest::NDCTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -74,9 +74,9 @@ void NDCTest::tearDown()
 }
 
 
-CppUnit::Test* NDCTest::suite()
+Poco::CppUnit::Test* NDCTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("NDCTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("NDCTest");
 
 	CppUnit_addTest(pSuite, NDCTest, testNDC);
 	CppUnit_addTest(pSuite, NDCTest, testNDCScope);

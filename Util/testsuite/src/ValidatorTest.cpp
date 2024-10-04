@@ -9,8 +9,8 @@
 
 
 #include "ValidatorTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/Util/RegExpValidator.h"
 #include "Poco/Util/IntValidator.h"
 #include "Poco/Util/Option.h"
@@ -26,7 +26,7 @@ using Poco::Util::InvalidArgumentException;
 using Poco::AutoPtr;
 
 
-ValidatorTest::ValidatorTest(const std::string& name): CppUnit::TestCase(name)
+ValidatorTest::ValidatorTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -144,9 +144,9 @@ void ValidatorTest::tearDown()
 }
 
 
-CppUnit::Test* ValidatorTest::suite()
+Poco::CppUnit::Test* ValidatorTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("ValidatorTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("ValidatorTest");
 
 	CppUnit_addTest(pSuite, ValidatorTest, testRegExpValidator);
 	CppUnit_addTest(pSuite, ValidatorTest, testIntValidator);

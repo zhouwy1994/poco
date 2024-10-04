@@ -12,9 +12,9 @@
 #include "VarTest.h"
 
 
-CppUnit::Test* DynamicTestSuite::suite()
+Poco::CppUnit::Test* DynamicTestSuite::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("DynamicTestSuite");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("DynamicTestSuite");
 
 	pSuite->addTest(VarTest::suite());
 

@@ -14,10 +14,10 @@
 #define DataURIStreamTest_INCLUDED
 
 
-#include "CppUnit/TestCase.h"
+#include "Poco/CppUnit/TestCase.h"
 
 
-class DataURIStreamTest: public CppUnit::TestCase
+class DataURIStreamTest: public Poco::CppUnit::TestCase
 {
 public:
 	DataURIStreamTest(const std::string& name);
@@ -30,7 +30,7 @@ public:
 	void setUp();
 	void tearDown();
 
-	static CppUnit::Test* suite();
+	static Poco::CppUnit::Test* suite();
 };
 
 

@@ -16,10 +16,10 @@
 
 #include "Poco/Redis/Redis.h"
 #include "Poco/Redis/Client.h"
-#include "CppUnit/TestCase.h"
+#include "Poco/CppUnit/TestCase.h"
 
 
-class RedisTest: public CppUnit::TestCase
+class RedisTest: public Poco::CppUnit::TestCase
 {
 public:
 	RedisTest(const std::string& name);
@@ -86,7 +86,7 @@ public:
 	void setUp();
 	void tearDown();
 
-	static CppUnit::Test* suite();
+	static Poco::CppUnit::Test* suite();
 
 private:
 

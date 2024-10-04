@@ -9,8 +9,8 @@
 
 
 #include "ODBCOracleTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/String.h"
 #include "Poco/Tuple.h"
 #include "Poco/Format.h"
@@ -843,7 +843,7 @@ void ODBCOracleTest::recreateUnicodeTable()
 }
 
 
-CppUnit::Test* ODBCOracleTest::suite()
+Poco::CppUnit::Test* ODBCOracleTest::suite()
 {
 	if ((_pSession = init(_driver, _dsn, _uid, _pwd, _connectString)))
 	{
@@ -851,7 +851,7 @@ CppUnit::Test* ODBCOracleTest::suite()
 
 		_pExecutor = new SQLExecutor(_driver + " SQL Executor", _pSession);
 
-		CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("ODBCOracleTest");
+		Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("ODBCOracleTest");
 
 		CppUnit_addTest(pSuite, ODBCOracleTest, testBareboneODBC);
 		CppUnit_addTest(pSuite, ODBCOracleTest, testZeroRows);

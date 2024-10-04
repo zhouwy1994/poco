@@ -9,8 +9,8 @@
 
 
 #include "TokenTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/JWT/Token.h"
 
 
@@ -18,7 +18,7 @@ using namespace Poco::JWT;
 
 
 TokenTest::TokenTest(const std::string& name):
-	CppUnit::TestCase("TokenTest")
+	Poco::CppUnit::TestCase("TokenTest")
 {
 }
 
@@ -113,9 +113,9 @@ void TokenTest::testAudience()
 }
 
 
-CppUnit::Test* TokenTest::suite()
+Poco::CppUnit::Test* TokenTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("TokenTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("TokenTest");
 
 	CppUnit_addTest(pSuite, TokenTest, testParse);
 	CppUnit_addTest(pSuite, TokenTest, testParseNoSig);

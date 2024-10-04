@@ -15,10 +15,10 @@
 
 
 #include "Poco/Data/Data.h"
-#include "CppUnit/TestCase.h"
+#include "Poco/CppUnit/TestCase.h"
 
 
-class SessionPoolTest: public CppUnit::TestCase
+class SessionPoolTest: public Poco::CppUnit::TestCase
 {
 public:
 	SessionPoolTest(const std::string& name);
@@ -30,7 +30,7 @@ public:
 	void setUp();
 	void tearDown();
 
-	static CppUnit::Test* suite();
+	static Poco::CppUnit::Test* suite();
 
 private:
 };

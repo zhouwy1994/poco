@@ -15,10 +15,10 @@
 
 
 #include "Poco/JWT/JWT.h"
-#include "CppUnit/TestCase.h"
+#include "Poco/CppUnit/TestCase.h"
 
 
-class TokenTest: public CppUnit::TestCase
+class TokenTest: public Poco::CppUnit::TestCase
 {
 public:
 	TokenTest(const std::string& name);
@@ -33,7 +33,7 @@ public:
 	void testAssign();
 	void testAudience();
 
-	static CppUnit::Test* suite();
+	static Poco::CppUnit::Test* suite();
 };
 
 

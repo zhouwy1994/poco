@@ -9,8 +9,8 @@
 
 
 #include "ThreadLocalTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/ThreadLocal.h"
 #include "Poco/Thread.h"
 #include "Poco/Runnable.h"
@@ -58,7 +58,7 @@ struct TLTestStruct
 ThreadLocal<int> TLTestRunnable::_count;
 
 
-ThreadLocalTest::ThreadLocalTest(const std::string& name): CppUnit::TestCase(name)
+ThreadLocalTest::ThreadLocalTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -111,9 +111,9 @@ void ThreadLocalTest::tearDown()
 }
 
 
-CppUnit::Test* ThreadLocalTest::suite()
+Poco::CppUnit::Test* ThreadLocalTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("ThreadLocalTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("ThreadLocalTest");
 
 	CppUnit_addTest(pSuite, ThreadLocalTest, testLocality);
 	CppUnit_addTest(pSuite, ThreadLocalTest, testAccessors);

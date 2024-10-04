@@ -15,10 +15,10 @@
 
 
 #include "Poco/Net/Net.h"
-#include "CppUnit/TestCase.h"
+#include "Poco/CppUnit/TestCase.h"
 
 
-class POP3ClientSessionTest: public CppUnit::TestCase
+class POP3ClientSessionTest: public Poco::CppUnit::TestCase
 {
 public:
 	POP3ClientSessionTest(const std::string& name);
@@ -36,7 +36,7 @@ public:
 	void setUp();
 	void tearDown();
 
-	static CppUnit::Test* suite();
+	static Poco::CppUnit::Test* suite();
 
 private:
 };

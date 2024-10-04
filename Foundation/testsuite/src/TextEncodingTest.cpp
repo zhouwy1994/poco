@@ -9,8 +9,8 @@
 
 
 #include "TextEncodingTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/TextEncoding.h"
 #include "Poco/Latin1Encoding.h"
 #include "Poco/Latin2Encoding.h"
@@ -24,7 +24,7 @@
 using namespace Poco;
 
 
-TextEncodingTest::TextEncodingTest(const std::string& name): CppUnit::TestCase(name)
+TextEncodingTest::TextEncodingTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -101,9 +101,9 @@ void TextEncodingTest::tearDown()
 }
 
 
-CppUnit::Test* TextEncodingTest::suite()
+Poco::CppUnit::Test* TextEncodingTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("TextEncodingTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("TextEncodingTest");
 
 	CppUnit_addTest(pSuite, TextEncodingTest, testTextEncoding);
 

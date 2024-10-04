@@ -12,9 +12,9 @@
 #include "HTMLFormTest.h"
 
 
-CppUnit::Test* HTMLTestSuite::suite()
+Poco::CppUnit::Test* HTMLTestSuite::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("HTMLTestSuite");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("HTMLTestSuite");
 
 	pSuite->addTest(HTMLFormTest::suite());
 

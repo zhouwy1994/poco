@@ -9,8 +9,8 @@
 
 
 #include "GlobTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/Glob.h"
 #include "Poco/File.h"
 #include "Poco/Path.h"
@@ -22,7 +22,7 @@ using Poco::File;
 using Poco::Path;
 
 
-GlobTest::GlobTest(const std::string& name): CppUnit::TestCase(name)
+GlobTest::GlobTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -518,9 +518,9 @@ void GlobTest::tearDown()
 }
 
 
-CppUnit::Test* GlobTest::suite()
+Poco::CppUnit::Test* GlobTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("GlobTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("GlobTest");
 
 	CppUnit_addTest(pSuite, GlobTest, testMatchChars);
 	CppUnit_addTest(pSuite, GlobTest, testMatchQM);

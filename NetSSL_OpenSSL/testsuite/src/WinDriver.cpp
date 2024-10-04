@@ -34,7 +34,7 @@ public:
 
 	int main(const std::vector<std::string>& args)
 	{
-		CppUnit::WinTestRunner runner;
+		Poco::CppUnit::WinTestRunner runner;
 		runner.addTest(NetSSLTestSuite::suite());
 		runner.run();
 		return 0;
@@ -52,7 +52,7 @@ private:
 };
 
 
-class TestDriver: public CppUnit::WinTestRunnerApp
+class TestDriver: public Poco::CppUnit::WinTestRunnerApp
 {
 	void TestMain()
 	{

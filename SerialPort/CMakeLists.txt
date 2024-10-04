@@ -63,7 +63,7 @@ POCO_GENERATE_PACKAGE(SerialPort)
 
 add_subdirectory(samples)
 if(ENABLE_TESTS)
-	add_subdirectory(samples)
+	# add_subdirectory(samples)
 	# add_subdirectory(testsuite)
 endif()
 

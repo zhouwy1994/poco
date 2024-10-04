@@ -8,8 +8,8 @@
 //
 
 #include "XMLStreamParserTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/XML/XMLStreamParser.h"
 #include "Poco/Exception.h"
 #include <sstream>
@@ -22,7 +22,7 @@ using namespace Poco::XML;
 
 
 XMLStreamParserTest::XMLStreamParserTest(const std::string& name):
-	CppUnit::TestCase(name)
+	Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -493,9 +493,9 @@ void XMLStreamParserTest::tearDown()
 }
 
 
-CppUnit::Test* XMLStreamParserTest::suite()
+Poco::CppUnit::Test* XMLStreamParserTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("XMLStreamParserTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("XMLStreamParserTest");
 
 	CppUnit_addTest(pSuite, XMLStreamParserTest, testParser);
 

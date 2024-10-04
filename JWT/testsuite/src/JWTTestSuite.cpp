@@ -14,9 +14,9 @@
 #include "SignerTest.h"
 
 
-CppUnit::Test* JWTTestSuite::suite()
+Poco::CppUnit::Test* JWTTestSuite::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("JWTTestSuite");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("JWTTestSuite");
 
 	pSuite->addTest(SerializerTest::suite());
 	pSuite->addTest(TokenTest::suite());

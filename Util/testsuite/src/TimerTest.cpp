@@ -9,8 +9,8 @@
 
 
 #include "TimerTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/Util/Timer.h"
 #include "Poco/Util/TimerTaskAdapter.h"
 
@@ -22,7 +22,7 @@ using Poco::Timestamp;
 using Poco::Clock;
 
 
-TimerTest::TimerTest(const std::string& name): CppUnit::TestCase(name)
+TimerTest::TimerTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -331,9 +331,9 @@ void TimerTest::onTimer(TimerTask& task)
 }
 
 
-CppUnit::Test* TimerTest::suite()
+Poco::CppUnit::Test* TimerTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("TimerTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("TimerTest");
 
 	CppUnit_addTest(pSuite, TimerTest, testScheduleTimestamp);
 	CppUnit_addTest(pSuite, TimerTest, testScheduleClock);

@@ -9,8 +9,8 @@
 
 
 #include "MemoryPoolTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/MemoryPool.h"
 #include "Poco/NumberFormatter.h"
 #include "Poco/Stopwatch.h"
@@ -23,7 +23,7 @@ using Poco::MemoryPool;
 using Poco::NumberFormatter;
 
 
-MemoryPoolTest::MemoryPoolTest(const std::string& name): CppUnit::TestCase(name)
+MemoryPoolTest::MemoryPoolTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -298,9 +298,9 @@ void MemoryPoolTest::tearDown()
 }
 
 
-CppUnit::Test* MemoryPoolTest::suite()
+Poco::CppUnit::Test* MemoryPoolTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("MemoryPoolTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("MemoryPoolTest");
 
 	CppUnit_addTest(pSuite, MemoryPoolTest, testMemoryPool);
 	CppUnit_addTest(pSuite, MemoryPoolTest, testFastMemoryPool);

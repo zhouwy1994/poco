@@ -12,9 +12,9 @@
 #include "NTPClientTest.h"
 
 
-CppUnit::Test* NTPClientTestSuite::suite()
+Poco::CppUnit::Test* NTPClientTestSuite::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("NTPClientTestSuite");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("NTPClientTestSuite");
 
 	pSuite->addTest(NTPClientTest::suite());
 

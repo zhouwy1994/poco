@@ -9,8 +9,8 @@
 
 
 #include "ODBCAccessTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/String.h"
 #include "Poco/Format.h"
 #include "Poco/Exception.h"
@@ -41,7 +41,7 @@ Poco::Data::ODBC::Utility::DriverMap ODBCAccessTest::_drivers;
 
 
 ODBCAccessTest::ODBCAccessTest(const std::string& name):
-	CppUnit::TestCase(name)
+	Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -198,11 +198,11 @@ bool ODBCAccessTest::init(const std::string& driver, const std::string& dsn)
 }
 
 
-CppUnit::Test* ODBCAccessTest::suite()
+Poco::CppUnit::Test* ODBCAccessTest::suite()
 {
 	if (init("Microsoft Access Driver (*.mdb)", "PocoDataAccessTest"))
 	{
-		CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("ODBCAccessTest");
+		Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("ODBCAccessTest");
 
 		CppUnit_addTest(pSuite, ODBCAccessTest, testSimpleAccess);
 

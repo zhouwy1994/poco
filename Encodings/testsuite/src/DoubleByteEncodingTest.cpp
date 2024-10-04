@@ -9,13 +9,13 @@
 
 
 #include "DoubleByteEncodingTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/ISO8859_4Encoding.h"
 #include "Poco/Windows950Encoding.h"
 
 
-DoubleByteEncodingTest::DoubleByteEncodingTest(const std::string& name): CppUnit::TestCase(name)
+DoubleByteEncodingTest::DoubleByteEncodingTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -114,9 +114,9 @@ void DoubleByteEncodingTest::tearDown()
 }
 
 
-CppUnit::Test* DoubleByteEncodingTest::suite()
+Poco::CppUnit::Test* DoubleByteEncodingTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("DoubleByteEncodingTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("DoubleByteEncodingTest");
 
 	CppUnit_addTest(pSuite, DoubleByteEncodingTest, testSingleByte);
 	CppUnit_addTest(pSuite, DoubleByteEncodingTest, testSingleByteReverse);

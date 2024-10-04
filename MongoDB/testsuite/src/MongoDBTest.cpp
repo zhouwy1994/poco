@@ -23,8 +23,8 @@
 #include "Poco/Net/NetException.h"
 #include "Poco/UUIDGenerator.h"
 #include "MongoDBTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include <iostream>
 
 
@@ -35,7 +35,7 @@ Poco::MongoDB::Connection::Ptr MongoDBTest::_mongo;
 
 
 MongoDBTest::MongoDBTest(const std::string& name):
-	CppUnit::TestCase("MongoDB")
+	Poco::CppUnit::TestCase("MongoDB")
 {
 }
 
@@ -488,7 +488,7 @@ void MongoDBTest::testConnectURI()
 }
 
 
-CppUnit::Test* MongoDBTest::suite()
+Poco::CppUnit::Test* MongoDBTest::suite()
 {
 #if POCO_OS == POCO_OS_ANDROID
 		std::string host = "10.0.2.2";
@@ -505,7 +505,7 @@ CppUnit::Test* MongoDBTest::suite()
 		std::cout << "Couldn't connect to " << e.message() << ". " << std::endl;
 		return 0;
 	}
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("MongoDBTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("MongoDBTest");
 	CppUnit_addTest(pSuite, MongoDBTest, testBuildInfo);
 	CppUnit_addTest(pSuite, MongoDBTest, testInsertRequest);
 	CppUnit_addTest(pSuite, MongoDBTest, testArray);

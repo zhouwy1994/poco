@@ -15,10 +15,10 @@
 
 
 #include "Poco/XML/XML.h"
-#include "CppUnit/TestCase.h"
+#include "Poco/CppUnit/TestCase.h"
 
 
-class NodeAppenderTest: public CppUnit::TestCase
+class NodeAppenderTest: public Poco::CppUnit::TestCase
 {
 public:
 	NodeAppenderTest(const std::string& name);
@@ -30,7 +30,7 @@ public:
 	void setUp();
 	void tearDown();
 
-	static CppUnit::Test* suite();
+	static Poco::CppUnit::Test* suite();
 
 private:
 };

@@ -15,10 +15,10 @@
 
 
 #include "Poco/Net/Net.h"
-#include "CppUnit/TestCase.h"
+#include "Poco/CppUnit/TestCase.h"
 
 
-class NTLMCredentialsTest: public CppUnit::TestCase
+class NTLMCredentialsTest: public Poco::CppUnit::TestCase
 {
 public:
 	NTLMCredentialsTest(const std::string& name);
@@ -37,7 +37,7 @@ public:
 	void setUp();
 	void tearDown();
 
-	static CppUnit::Test* suite();
+	static Poco::CppUnit::Test* suite();
 
 private:
 };

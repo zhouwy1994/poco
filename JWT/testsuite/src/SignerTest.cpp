@@ -9,8 +9,8 @@
 
 
 #include "SignerTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/JWT/Signer.h"
 #include "Poco/JWT/JWTException.h"
 #include <iostream>
@@ -81,7 +81,7 @@ const std::string SignerTest::ECDSA_PUBLIC_KEY(
 
 
 SignerTest::SignerTest(const std::string& name):
-	CppUnit::TestCase("SignerTest")
+	Poco::CppUnit::TestCase("SignerTest")
 {
 }
 
@@ -570,9 +570,9 @@ void SignerTest::testVerifyES512()
 }
 
 
-CppUnit::Test* SignerTest::suite()
+Poco::CppUnit::Test* SignerTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("SignerTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("SignerTest");
 
 	CppUnit_addTest(pSuite, SignerTest, testSignHS256);
 	CppUnit_addTest(pSuite, SignerTest, testSignHS384);

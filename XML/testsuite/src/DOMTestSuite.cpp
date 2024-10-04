@@ -22,9 +22,9 @@
 #include "NodeAppenderTest.h"
 
 
-CppUnit::Test* DOMTestSuite::suite()
+Poco::CppUnit::Test* DOMTestSuite::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("DOMTestSuite");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("DOMTestSuite");
 
 	pSuite->addTest(NodeTest::suite());
 	pSuite->addTest(ChildNodesTest::suite());

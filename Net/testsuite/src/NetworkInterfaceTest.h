@@ -20,10 +20,10 @@
 #ifdef POCO_NET_HAS_INTERFACE
 
 
-#include "CppUnit/TestCase.h"
+#include "Poco/CppUnit/TestCase.h"
 
 
-class NetworkInterfaceTest: public CppUnit::TestCase
+class NetworkInterfaceTest: public Poco::CppUnit::TestCase
 {
 public:
 	NetworkInterfaceTest(const std::string& name);
@@ -41,7 +41,7 @@ public:
 	void setUp();
 	void tearDown();
 
-	static CppUnit::Test* suite();
+	static Poco::CppUnit::Test* suite();
 
 private:
 };

@@ -9,8 +9,8 @@
 
 
 #include "LoggerTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/Logger.h"
 #include "Poco/AutoPtr.h"
 #include "TestChannel.h"
@@ -22,7 +22,7 @@ using Poco::Message;
 using Poco::AutoPtr;
 
 
-LoggerTest::LoggerTest(const std::string& name): CppUnit::TestCase(name)
+LoggerTest::LoggerTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -301,9 +301,9 @@ void LoggerTest::tearDown()
 }
 
 
-CppUnit::Test* LoggerTest::suite()
+Poco::CppUnit::Test* LoggerTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("LoggerTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("LoggerTest");
 
 	CppUnit_addTest(pSuite, LoggerTest, testLogger);
 	CppUnit_addTest(pSuite, LoggerTest, testFormat);

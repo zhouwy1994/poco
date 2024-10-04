@@ -10,7 +10,7 @@
 //
 
 
-#include "CppUnit/TestRunner.h"
+#include "Poco/CppUnit/TestRunner.h"
 #include "CryptoTestSuite.h"
 #include "Poco/Crypto/Crypto.h"
 #include <cstdlib>
@@ -42,7 +42,7 @@ int _tmain(int argc, wchar_t* argv[])
 		std::wcstombs(buffer, argv[i], sizeof(buffer));
 		args.push_back(std::string(buffer));
 	}
-	CppUnit::TestRunner runner;
+	Poco::CppUnit::TestRunner runner;
 	runner.addTest("CryptoTestSuite", CryptoTestSuite::suite());
 	return runner.run(args) ? 0 : 1;
 }

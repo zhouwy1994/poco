@@ -9,8 +9,8 @@
 
 
 #include "NumberFormatterTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/NumberFormatter.h"
 #include <sstream>
 
@@ -20,7 +20,7 @@ using Poco::Int64;
 using Poco::UInt64;
 
 
-NumberFormatterTest::NumberFormatterTest(const std::string& name): CppUnit::TestCase(name)
+NumberFormatterTest::NumberFormatterTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -339,9 +339,9 @@ void NumberFormatterTest::tearDown()
 }
 
 
-CppUnit::Test* NumberFormatterTest::suite()
+Poco::CppUnit::Test* NumberFormatterTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("NumberFormatterTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("NumberFormatterTest");
 
 	CppUnit_addTest(pSuite, NumberFormatterTest, testFormat);
 	CppUnit_addTest(pSuite, NumberFormatterTest, testFormat0);

@@ -10,8 +10,8 @@
 
 #include "BasicEventTest.h"
 #include "DummyDelegate.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/Expire.h"
 #include "Poco/Delegate.h"
 #include "Poco/FunctionDelegate.h"
@@ -25,7 +25,7 @@ using namespace Poco;
 #define LARGEINC 100
 
 
-BasicEventTest::BasicEventTest(const std::string& name): CppUnit::TestCase(name)
+BasicEventTest::BasicEventTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -436,9 +436,9 @@ void BasicEventTest::tearDown()
 }
 
 
-CppUnit::Test* BasicEventTest::suite()
+Poco::CppUnit::Test* BasicEventTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("BasicEventTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("BasicEventTest");
 
 	CppUnit_addTest(pSuite, BasicEventTest, testNoDelegate);
 	CppUnit_addTest(pSuite, BasicEventTest, testSingleDelegate);

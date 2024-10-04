@@ -15,10 +15,10 @@
 
 
 #include "Poco/Zip/Zip.h"
-#include "CppUnit/TestCase.h"
+#include "Poco/CppUnit/TestCase.h"
 
 
-class CompressTest: public CppUnit::TestCase
+class CompressTest: public Poco::CppUnit::TestCase
 {
 public:
 	CompressTest(const std::string& name);
@@ -39,7 +39,7 @@ public:
 	void setUp();
 	void tearDown();
 
-	static CppUnit::Test* suite();
+	static Poco::CppUnit::Test* suite();
 
 private:
 };

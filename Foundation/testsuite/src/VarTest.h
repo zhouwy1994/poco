@@ -17,10 +17,10 @@
 #include "Poco/Dynamic/Var.h"
 #include "Poco/Dynamic/VarIterator.h"
 #include "Poco/Exception.h"
-#include "CppUnit/TestCase.h"
+#include "Poco/CppUnit/TestCase.h"
 
 
-class VarTest: public CppUnit::TestCase
+class VarTest: public Poco::CppUnit::TestCase
 {
 public:
 	VarTest(const std::string& name);
@@ -81,7 +81,7 @@ public:
 
 	void setUp();
 	void tearDown();
-	static CppUnit::Test* suite();
+	static Poco::CppUnit::Test* suite();
 
 private:
 	void testGetIdxMustThrow(Poco::Dynamic::Var& a1, std::vector<Poco::Dynamic::Var>::size_type n);

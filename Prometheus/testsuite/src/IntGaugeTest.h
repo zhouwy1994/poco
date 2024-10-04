@@ -14,10 +14,10 @@
 #define IntGaugeTest_INCLUDED
 
 
-#include "CppUnit/TestCase.h"
+#include "Poco/CppUnit/TestCase.h"
 
 
-class IntGaugeTest: public CppUnit::TestCase
+class IntGaugeTest: public Poco::CppUnit::TestCase
 {
 public:
 	IntGaugeTest(const std::string& name);
@@ -29,7 +29,7 @@ public:
 	void setUp();
 	void tearDown();
 
-	static CppUnit::Test* suite();
+	static Poco::CppUnit::Test* suite();
 };
 
 

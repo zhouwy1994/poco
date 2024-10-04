@@ -10,8 +10,8 @@
 
 #include "FIFOEventTest.h"
 #include "DummyDelegate.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/Delegate.h"
 #include "Poco/Expire.h"
 #include "Poco/Thread.h"
@@ -24,7 +24,7 @@ using namespace Poco;
 #define LARGEINC 100
 
 
-FIFOEventTest::FIFOEventTest(const std::string& name): CppUnit::TestCase(name)
+FIFOEventTest::FIFOEventTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -430,9 +430,9 @@ void FIFOEventTest::tearDown()
 }
 
 
-CppUnit::Test* FIFOEventTest::suite()
+Poco::CppUnit::Test* FIFOEventTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("FIFOEventTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("FIFOEventTest");
 
 	CppUnit_addTest(pSuite, FIFOEventTest, testNoDelegate);
 	CppUnit_addTest(pSuite, FIFOEventTest, testSingleDelegate);

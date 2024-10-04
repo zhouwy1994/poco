@@ -7,12 +7,13 @@
 #define CppUnit_RepeatedTest_INCLUDED
 
 
-#include "CppUnit/CppUnit.h"
-#include "CppUnit/Guards.h"
-#include "CppUnit/TestDecorator.h"
-#include "CppUnit/TestResult.h"
+#include "Poco/CppUnit/CppUnit.h"
+#include "Poco/CppUnit/Guards.h"
+#include "Poco/CppUnit/TestDecorator.h"
+#include "Poco/CppUnit/TestResult.h"
 
 
+namespace Poco {
 namespace CppUnit {
 
 
@@ -69,6 +70,7 @@ inline void RepeatedTest::run(TestResult *result, const Test::Callback& callback
 
 
 } // namespace CppUnit
+} // namespace Poco
 
 
 #endif // CppUnit_RepeatedTest_INCLUDED

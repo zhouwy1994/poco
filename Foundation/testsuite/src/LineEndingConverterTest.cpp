@@ -9,8 +9,8 @@
 
 
 #include "LineEndingConverterTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/LineEndingConverter.h"
 #include "Poco/StreamCopier.h"
 #include <sstream>
@@ -22,7 +22,7 @@ using Poco::OutputLineEndingConverter;
 using Poco::StreamCopier;
 
 
-LineEndingConverterTest::LineEndingConverterTest(const std::string& name): CppUnit::TestCase(name)
+LineEndingConverterTest::LineEndingConverterTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -126,9 +126,9 @@ void LineEndingConverterTest::tearDown()
 }
 
 
-CppUnit::Test* LineEndingConverterTest::suite()
+Poco::CppUnit::Test* LineEndingConverterTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("LineEndingConverterTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("LineEndingConverterTest");
 
 	CppUnit_addTest(pSuite, LineEndingConverterTest, testInputDosToUnix);
 	CppUnit_addTest(pSuite, LineEndingConverterTest, testInputUnixToDos);

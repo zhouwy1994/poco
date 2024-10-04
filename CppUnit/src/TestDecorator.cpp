@@ -3,9 +3,10 @@
 //
 
 
-#include "CppUnit/TestDecorator.h"
+#include "Poco/CppUnit/TestDecorator.h"
 
 
+namespace Poco {
 namespace CppUnit {
 
 
@@ -39,3 +40,4 @@ std::string TestDecorator::toString() const
 
 
 } // namespace CppUnit
+} // namespace Poco

@@ -15,10 +15,10 @@
 
 
 #include "Poco/ActiveRecord/Context.h"
-#include "CppUnit/TestCase.h"
+#include "Poco/CppUnit/TestCase.h"
 
 
-class ActiveRecordTest: public CppUnit::TestCase
+class ActiveRecordTest: public Poco::CppUnit::TestCase
 {
 public:
 	ActiveRecordTest(const std::string& name);
@@ -41,7 +41,7 @@ public:
 
 	void createRoles(Poco::ActiveRecord::Context::Ptr pContext);
 
-	static CppUnit::Test* suite();
+	static Poco::CppUnit::Test* suite();
 
 	static const std::string CONNECTOR;
 	static const std::string CONNECTION_STRING;

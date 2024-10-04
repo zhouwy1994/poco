@@ -12,16 +12,16 @@
 #include "MySQLTest.h"
 
 
-CppUnit::Test* MySQLTestSuite::suite()
+Poco::CppUnit::Test* MySQLTestSuite::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("MySQLTestSuite");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("MySQLTestSuite");
 
 	addTest(pSuite, MySQLTest::suite());
 	return pSuite;
 }
 
 
-void MySQLTestSuite::addTest(CppUnit::TestSuite* pSuite, CppUnit::Test* pT)
+void MySQLTestSuite::addTest(Poco::CppUnit::TestSuite* pSuite, Poco::CppUnit::Test* pT)
 {
 	if (pSuite && pT) pSuite->addTest(pT);
 }

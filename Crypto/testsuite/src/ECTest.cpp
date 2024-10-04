@@ -10,8 +10,8 @@
 
 
 #include "ECTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/Crypto/ECKey.h"
 #include "Poco/Crypto/ECDSADigestEngine.h"
 #include <openssl/pem.h>
@@ -23,7 +23,7 @@
 using namespace Poco::Crypto;
 
 
-ECTest::ECTest(const std::string& name): CppUnit::TestCase(name)
+ECTest::ECTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -187,9 +187,9 @@ void ECTest::tearDown()
 }
 
 
-CppUnit::Test* ECTest::suite()
+Poco::CppUnit::Test* ECTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("ECTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("ECTest");
 
 	CppUnit_addTest(pSuite, ECTest, testECNewKeys);
 	CppUnit_addTest(pSuite, ECTest, testECNewKeysNoPassphrase);

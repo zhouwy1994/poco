@@ -9,8 +9,8 @@
 
 
 #include "VarTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/Exception.h"
 #include "Poco/Dynamic/Var.h"
 #include "Poco/Bugcheck.h"
@@ -60,7 +60,7 @@ private:
 }
 
 
-VarTest::VarTest(const std::string& rName): CppUnit::TestCase(rName)
+VarTest::VarTest(const std::string& rName): Poco::CppUnit::TestCase(rName)
 {
 }
 
@@ -3097,9 +3097,9 @@ void VarTest::tearDown()
 }
 
 
-CppUnit::Test* VarTest::suite()
+Poco::CppUnit::Test* VarTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("VarTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("VarTest");
 
 	CppUnit_addTest(pSuite, VarTest, testInt8);
 	CppUnit_addTest(pSuite, VarTest, testInt16);

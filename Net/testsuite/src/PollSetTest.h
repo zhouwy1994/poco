@@ -15,10 +15,10 @@
 
 
 #include "Poco/Net/Net.h"
-#include "CppUnit/TestCase.h"
+#include "Poco/CppUnit/TestCase.h"
 
 
-class PollSetTest: public CppUnit::TestCase
+class PollSetTest: public Poco::CppUnit::TestCase
 {
 public:
 	PollSetTest(const std::string& name);
@@ -36,7 +36,7 @@ public:
 	void setUp();
 	void tearDown();
 
-	static CppUnit::Test* suite();
+	static Poco::CppUnit::Test* suite();
 };
 
 

@@ -9,8 +9,8 @@
 
 
 #include "HashSetTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/HashSet.h"
 #include <set>
 
@@ -19,7 +19,7 @@ using Poco::Hash;
 using Poco::HashSet;
 
 
-HashSetTest::HashSetTest(const std::string& name): CppUnit::TestCase(name)
+HashSetTest::HashSetTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -171,9 +171,9 @@ void HashSetTest::tearDown()
 }
 
 
-CppUnit::Test* HashSetTest::suite()
+Poco::CppUnit::Test* HashSetTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("HashSetTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("HashSetTest");
 
 	CppUnit_addTest(pSuite, HashSetTest, testInsert);
 	CppUnit_addTest(pSuite, HashSetTest, testErase);

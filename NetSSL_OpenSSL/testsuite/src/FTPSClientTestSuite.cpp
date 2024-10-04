@@ -12,9 +12,9 @@
 #include "FTPSClientSessionTest.h"
 
 
-CppUnit::Test* FTPSClientTestSuite::suite()
+Poco::CppUnit::Test* FTPSClientTestSuite::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("FTPSClientTestSuite");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("FTPSClientTestSuite");
 
 	pSuite->addTest(FTPSClientSessionTest::suite());
 

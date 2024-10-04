@@ -9,8 +9,8 @@
 
 
 #include "DocumentTypeTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/DOM/DocumentType.h"
 #include "Poco/DOM/Document.h"
 #include "Poco/DOM/Notation.h"
@@ -29,7 +29,7 @@ using Poco::XML::NamedNodeMap;
 using Poco::XML::AutoPtr;
 
 
-DocumentTypeTest::DocumentTypeTest(const std::string& name): CppUnit::TestCase(name)
+DocumentTypeTest::DocumentTypeTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -98,9 +98,9 @@ void DocumentTypeTest::tearDown()
 }
 
 
-CppUnit::Test* DocumentTypeTest::suite()
+Poco::CppUnit::Test* DocumentTypeTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("DocumentTypeTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("DocumentTypeTest");
 
 	CppUnit_addTest(pSuite, DocumentTypeTest, testDocumentType);
 

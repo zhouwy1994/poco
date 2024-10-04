@@ -14,10 +14,10 @@
 #define IntCounterTest_INCLUDED
 
 
-#include "CppUnit/TestCase.h"
+#include "Poco/CppUnit/TestCase.h"
 
 
-class IntCounterTest: public CppUnit::TestCase
+class IntCounterTest: public Poco::CppUnit::TestCase
 {
 public:
 	IntCounterTest(const std::string& name);
@@ -29,7 +29,7 @@ public:
 	void setUp();
 	void tearDown();
 
-	static CppUnit::Test* suite();
+	static Poco::CppUnit::Test* suite();
 };
 
 

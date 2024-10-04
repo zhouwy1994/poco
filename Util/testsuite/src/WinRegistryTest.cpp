@@ -9,8 +9,8 @@
 
 
 #include "WinRegistryTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/Util/WinRegistryKey.h"
 #include "Poco/Environment.h"
 #include "Poco/Exception.h"
@@ -27,7 +27,7 @@ using Poco::Environment;
 
 
 
-WinRegistryTest::WinRegistryTest(const std::string& name): CppUnit::TestCase(name)
+WinRegistryTest::WinRegistryTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -118,9 +118,9 @@ void WinRegistryTest::tearDown()
 }
 
 
-CppUnit::Test* WinRegistryTest::suite()
+Poco::CppUnit::Test* WinRegistryTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("WinRegistryTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("WinRegistryTest");
 
 	CppUnit_addTest(pSuite, WinRegistryTest, testRegistry);
 

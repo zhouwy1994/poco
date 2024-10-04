@@ -9,8 +9,8 @@
 
 
 #include "ConfigurationMapperTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/Util/ConfigurationMapper.h"
 #include "Poco/Util/MapConfiguration.h"
 #include "Poco/AutoPtr.h"
@@ -185,9 +185,9 @@ void ConfigurationMapperTest::tearDown()
 }
 
 
-CppUnit::Test* ConfigurationMapperTest::suite()
+Poco::CppUnit::Test* ConfigurationMapperTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("ConfigurationMapperTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("ConfigurationMapperTest");
 
 	AbstractConfigurationTest_addTests(pSuite, ConfigurationMapperTest);
 	CppUnit_addTest(pSuite, ConfigurationMapperTest, testMapper1);

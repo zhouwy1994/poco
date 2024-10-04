@@ -13,9 +13,9 @@
 #include "SocketConnectorTest.h"
 
 
-CppUnit::Test* ReactorTestSuite::suite()
+Poco::CppUnit::Test* ReactorTestSuite::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("ReactorTestSuite");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("ReactorTestSuite");
 
 	pSuite->addTest(SocketReactorTest::suite());
 	pSuite->addTest(SocketConnectorTest::suite());

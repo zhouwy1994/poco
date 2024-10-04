@@ -16,9 +16,9 @@
 #include "ValidatorTest.h"
 
 
-CppUnit::Test* OptionsTestSuite::suite()
+Poco::CppUnit::Test* OptionsTestSuite::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("OptionsTestSuite");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("OptionsTestSuite");
 
 	pSuite->addTest(OptionTest::suite());
 	pSuite->addTest(OptionSetTest::suite());

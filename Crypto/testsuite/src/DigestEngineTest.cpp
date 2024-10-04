@@ -9,15 +9,15 @@
 
 
 #include "DigestEngineTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/Crypto/DigestEngine.h"
 
 
 using Poco::Crypto::DigestEngine;
 
 
-DigestEngineTest::DigestEngineTest(const std::string& name): CppUnit::TestCase(name)
+DigestEngineTest::DigestEngineTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -83,9 +83,9 @@ void DigestEngineTest::tearDown()
 }
 
 
-CppUnit::Test* DigestEngineTest::suite()
+Poco::CppUnit::Test* DigestEngineTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("DigestEngineTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("DigestEngineTest");
 
 	CppUnit_addTest(pSuite, DigestEngineTest, testMD5);
 	CppUnit_addTest(pSuite, DigestEngineTest, testSHA1);

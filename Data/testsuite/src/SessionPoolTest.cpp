@@ -9,8 +9,8 @@
 
 
 #include "SessionPoolTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/Data/SessionPool.h"
 #include "Poco/Data/SessionPoolContainer.h"
 #include "Poco/Thread.h"
@@ -32,7 +32,7 @@ using Poco::Data::SessionPoolExistsException;
 using Poco::Data::SessionUnavailableException;
 
 
-SessionPoolTest::SessionPoolTest(const std::string& name): CppUnit::TestCase(name)
+SessionPoolTest::SessionPoolTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 	Poco::Data::Test::Connector::addToFactory();
 }
@@ -274,9 +274,9 @@ void SessionPoolTest::tearDown()
 }
 
 
-CppUnit::Test* SessionPoolTest::suite()
+Poco::CppUnit::Test* SessionPoolTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("SessionPoolTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("SessionPoolTest");
 
 	CppUnit_addTest(pSuite, SessionPoolTest, testSessionPool);
 	CppUnit_addTest(pSuite, SessionPoolTest, testSessionPoolContainer);

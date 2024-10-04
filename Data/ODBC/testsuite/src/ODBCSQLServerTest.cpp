@@ -9,8 +9,8 @@
 
 
 #include "ODBCSQLServerTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/String.h"
 #include "Poco/Format.h"
 #include "Poco/Any.h"
@@ -745,7 +745,7 @@ void ODBCSQLServerTest::recreateEncodingTables()
 }
 
 
-CppUnit::Test* ODBCSQLServerTest::suite()
+Poco::CppUnit::Test* ODBCSQLServerTest::suite()
 {
 	if ((_pSession = init(_driver, _dsn, _uid, _pwd, _connectString, _db)))
 	{
@@ -757,7 +757,7 @@ CppUnit::Test* ODBCSQLServerTest::suite()
 
 		_pExecutor = new SQLExecutor(_driver + " SQL Executor", _pSession, _pEncSession);
 
-		CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("ODBCSQLServerTest");
+		Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("ODBCSQLServerTest");
 
 		CppUnit_addTest(pSuite, ODBCSQLServerTest, testBareboneODBC);
 		CppUnit_addTest(pSuite, ODBCSQLServerTest, testZeroRows);

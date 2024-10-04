@@ -16,10 +16,10 @@
 
 #include "Poco/MongoDB/MongoDB.h"
 #include "Poco/MongoDB/Connection.h"
-#include "CppUnit/TestCase.h"
+#include "Poco/CppUnit/TestCase.h"
 
 
-class MongoDBTest: public CppUnit::TestCase
+class MongoDBTest: public Poco::CppUnit::TestCase
 {
 public:
 	MongoDBTest(const std::string& name);
@@ -44,7 +44,7 @@ public:
 	void setUp();
 	void tearDown();
 
-	static CppUnit::Test* suite();
+	static Poco::CppUnit::Test* suite();
 
 private:
 	static Poco::MongoDB::Connection::Ptr _mongo;

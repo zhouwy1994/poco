@@ -9,8 +9,8 @@
 
 
 #include "ActiveDispatcherTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/ActiveDispatcher.h"
 #include "Poco/ActiveMethod.h"
 #include "Poco/Thread.h"
@@ -91,7 +91,7 @@ namespace
 }
 
 
-ActiveDispatcherTest::ActiveDispatcherTest(const std::string& name): CppUnit::TestCase(name)
+ActiveDispatcherTest::ActiveDispatcherTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -214,9 +214,9 @@ void ActiveDispatcherTest::tearDown()
 }
 
 
-CppUnit::Test* ActiveDispatcherTest::suite()
+Poco::CppUnit::Test* ActiveDispatcherTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("ActiveDispatcherTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("ActiveDispatcherTest");
 
 	// see https://github.com/pocoproject/poco/pull/3617
 	if (!Environment::has("TSAN_OPTIONS"))

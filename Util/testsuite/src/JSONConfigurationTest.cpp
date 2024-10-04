@@ -9,8 +9,8 @@
 
 
 #include "JSONConfigurationTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/Util/JSONConfiguration.h"
 #include "Poco/JSON/JSONException.h"
 
@@ -149,9 +149,9 @@ void JSONConfigurationTest::tearDown()
 }
 
 
-CppUnit::Test* JSONConfigurationTest::suite()
+Poco::CppUnit::Test* JSONConfigurationTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("JSONConfigurationTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("JSONConfigurationTest");
 
 	AbstractConfigurationTest_addTests(pSuite, JSONConfigurationTest);
 	CppUnit_addTest(pSuite, JSONConfigurationTest, testLoad);

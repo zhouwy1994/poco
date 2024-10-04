@@ -9,8 +9,8 @@
 
 
 #include "PKCS12ContainerTest.h"
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "Poco/Crypto/EVPPKey.h"
 #include "Poco/Crypto/RSAKey.h"
 #include "Poco/Crypto/KeyPairImpl.h"
@@ -31,7 +31,7 @@ using Poco::File;
 using Poco::TemporaryFile;
 
 
-PKCS12ContainerTest::PKCS12ContainerTest(const std::string& name): CppUnit::TestCase(name)
+PKCS12ContainerTest::PKCS12ContainerTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -354,9 +354,9 @@ std::string PKCS12ContainerTest::getTestFilesPath(const std::string& name, const
 }
 
 
-CppUnit::Test* PKCS12ContainerTest::suite()
+Poco::CppUnit::Test* PKCS12ContainerTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("PKCS12ContainerTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("PKCS12ContainerTest");
 
 	CppUnit_addTest(pSuite, PKCS12ContainerTest, testFullPKCS12);
 	CppUnit_addTest(pSuite, PKCS12ContainerTest, testCertsOnlyPKCS12);

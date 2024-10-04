@@ -12,9 +12,9 @@
 #include "TimerTest.h"
 
 
-CppUnit::Test* TimerTestSuite::suite()
+Poco::CppUnit::Test* TimerTestSuite::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("TimerTestSuite");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("TimerTestSuite");
 
 	pSuite->addTest(TimerTest::suite());
 

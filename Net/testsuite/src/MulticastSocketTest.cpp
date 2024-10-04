@@ -14,8 +14,8 @@
 #ifdef POCO_NET_HAS_INTERFACE
 
 
-#include "CppUnit/TestCaller.h"
-#include "CppUnit/TestSuite.h"
+#include "Poco/CppUnit/TestCaller.h"
+#include "Poco/CppUnit/TestSuite.h"
 #include "MulticastEchoServer.h"
 #include "Poco/Net/MulticastSocket.h"
 #include "Poco/Net/SocketAddress.h"
@@ -35,7 +35,7 @@ using Poco::InvalidArgumentException;
 using Poco::IOException;
 
 
-MulticastSocketTest::MulticastSocketTest(const std::string& name): CppUnit::TestCase(name)
+MulticastSocketTest::MulticastSocketTest(const std::string& name): Poco::CppUnit::TestCase(name)
 {
 }
 
@@ -82,9 +82,9 @@ void MulticastSocketTest::tearDown()
 }
 
 
-CppUnit::Test* MulticastSocketTest::suite()
+Poco::CppUnit::Test* MulticastSocketTest::suite()
 {
-	CppUnit::TestSuite* pSuite = new CppUnit::TestSuite("MulticastSocketTest");
+	Poco::CppUnit::TestSuite* pSuite = new Poco::CppUnit::TestSuite("MulticastSocketTest");
 #if (POCO_OS != POCO_OS_FREE_BSD) // TODO
 	CppUnit_addTest(pSuite, MulticastSocketTest, testMulticast);
 #endif
