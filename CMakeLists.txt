@@ -195,6 +195,10 @@ option(ENABLE_PAGECOMPILER_FILE2PAGE "Enable File2Page" ON)
 option(ENABLE_ACTIVERECORD "Enable ActiveRecord" ON)
 option(ENABLE_ACTIVERECORD_COMPILER "Enable ActiveRecord Compiler" ON)
 
+option(ENABLE_SERIAL_PORT "Enable Serial Port" OFF)
+option(ENABLE_FRUIT "Enable Fruit" OFF)
+option(ENABLE_CPPUNIT "Enable CppUnit" OFF)
+
 if(ENABLE_ACTIVERECORD AND NOT ENABLE_DATA)
   set(ENABLE_DATA ON CACHE BOOL "Enable Data" FORCE)
 endif()
@@ -464,6 +468,11 @@ endif()
 if(EXISTS ${PROJECT_SOURCE_DIR}/Fruit AND ENABLE_FRUIT)
 	add_subdirectory(Fruit)
 	list(APPEND Poco_COMPONENTS "Fruit")
+endif()
+
+if(EXISTS ${PROJECT_SOURCE_DIR}/CppUnit AND ENABLE_CPPUNIT)
+	add_subdirectory(CppUnit)
+	list(APPEND Poco_COMPONENTS "CppUnit")
 endif()
 
 #############################################################

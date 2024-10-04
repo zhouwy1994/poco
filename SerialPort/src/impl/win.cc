@@ -444,7 +444,7 @@ Serial::SerialImpl::getStopbits () const
 }
 
 void
-Serial::SerialImpl::setFlowcontrol (serial::flowcontrol_t flowcontrol)
+Serial::SerialImpl::setFlowcontrol (Poco::SerialPort::flowcontrol_t flowcontrol)
 {
   flowcontrol_ = flowcontrol;
   if (is_open_) {
@@ -452,7 +452,7 @@ Serial::SerialImpl::setFlowcontrol (serial::flowcontrol_t flowcontrol)
   }
 }
 
-serial::flowcontrol_t
+Poco::SerialPort::flowcontrol_t
 Serial::SerialImpl::getFlowcontrol () const
 {
   return flowcontrol_;

@@ -15,7 +15,7 @@
 #include <devguid.h>
 #include <cstring>
 
-using serial::PortInfo;
+using Poco::SerialPort::PortInfo;
 using std::vector;
 using std::string;
 
@@ -33,7 +33,7 @@ std::string utf8_encode(const std::wstring &wstr)
 }
 
 vector<PortInfo>
-serial::list_ports()
+Poco::SerialPort::list_ports()
 {
     vector<PortInfo> devices_found;
 

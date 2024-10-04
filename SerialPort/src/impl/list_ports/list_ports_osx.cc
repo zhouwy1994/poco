@@ -14,7 +14,7 @@
 
 #include "serial/SerialPort.h"
 
-using serial::PortInfo;
+using Poco::SerialPort::PortInfo;
 using std::string;
 using std::vector;
 
@@ -208,7 +208,7 @@ string rtrim(const string& str)
 }
 
 vector<PortInfo>
-serial::list_ports(void)
+Poco::SerialPort::list_ports(void)
 {
     vector<PortInfo> devices_found;
     CFMutableDictionaryRef classes_to_match;
